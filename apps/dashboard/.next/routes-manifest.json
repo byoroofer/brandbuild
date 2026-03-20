@@ -1,0 +1,208 @@
+{
+  "version": 3,
+  "pages404": true,
+  "caseSensitive": false,
+  "basePath": "",
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+",
+      "internal": true,
+      "statusCode": 308,
+      "regex": "^(?:/((?:[^/]+?)(?:/(?:[^/]+?))*))/$"
+    }
+  ],
+  "headers": [],
+  "rewrites": {
+    "beforeFiles": [],
+    "afterFiles": [],
+    "fallback": []
+  },
+  "dynamicRoutes": [
+    {
+      "page": "/api/generate/[generationId]",
+      "regex": "^/api/generate/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPgenerationId": "nxtPgenerationId"
+      },
+      "namedRegex": "^/api/generate/(?<nxtPgenerationId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/api/roof-measure/measurements/[id]",
+      "regex": "^/api/roof\\-measure/measurements/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/api/roof\\-measure/measurements/(?<nxtPid>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/dashboard/campaigns/[campaignId]",
+      "regex": "^/dashboard/campaigns/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPcampaignId": "nxtPcampaignId"
+      },
+      "namedRegex": "^/dashboard/campaigns/(?<nxtPcampaignId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/dashboard/shots/[shotId]",
+      "regex": "^/dashboard/shots/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPshotId": "nxtPshotId"
+      },
+      "namedRegex": "^/dashboard/shots/(?<nxtPshotId>[^/]+?)(?:/)?$"
+    },
+    {
+      "page": "/roof-measure/results/[id]",
+      "regex": "^/roof\\-measure/results/([^/]+?)(?:/)?$",
+      "routeKeys": {
+        "nxtPid": "nxtPid"
+      },
+      "namedRegex": "^/roof\\-measure/results/(?<nxtPid>[^/]+?)(?:/)?$"
+    }
+  ],
+  "staticRoutes": [
+    {
+      "page": "/",
+      "regex": "^/(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/(?:/)?$"
+    },
+    {
+      "page": "/_not-found",
+      "regex": "^/_not\\-found(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/_not\\-found(?:/)?$"
+    },
+    {
+      "page": "/auth/callback",
+      "regex": "^/auth/callback(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/auth/callback(?:/)?$"
+    },
+    {
+      "page": "/campaign/onboarding",
+      "regex": "^/campaign/onboarding(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/campaign/onboarding(?:/)?$"
+    },
+    {
+      "page": "/creator/onboarding",
+      "regex": "^/creator/onboarding(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/creator/onboarding(?:/)?$"
+    },
+    {
+      "page": "/dashboard",
+      "regex": "^/dashboard(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard(?:/)?$"
+    },
+    {
+      "page": "/dashboard/assets",
+      "regex": "^/dashboard/assets(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/assets(?:/)?$"
+    },
+    {
+      "page": "/dashboard/campaign",
+      "regex": "^/dashboard/campaign(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/campaign(?:/)?$"
+    },
+    {
+      "page": "/dashboard/campaigns",
+      "regex": "^/dashboard/campaigns(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/campaigns(?:/)?$"
+    },
+    {
+      "page": "/dashboard/creator",
+      "regex": "^/dashboard/creator(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/creator(?:/)?$"
+    },
+    {
+      "page": "/dashboard/new-scan",
+      "regex": "^/dashboard/new\\-scan(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/new\\-scan(?:/)?$"
+    },
+    {
+      "page": "/dashboard/reviews",
+      "regex": "^/dashboard/reviews(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/reviews(?:/)?$"
+    },
+    {
+      "page": "/dashboard/shots",
+      "regex": "^/dashboard/shots(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/dashboard/shots(?:/)?$"
+    },
+    {
+      "page": "/for-campaigns",
+      "regex": "^/for\\-campaigns(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/for\\-campaigns(?:/)?$"
+    },
+    {
+      "page": "/for-creators",
+      "regex": "^/for\\-creators(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/for\\-creators(?:/)?$"
+    },
+    {
+      "page": "/login",
+      "regex": "^/login(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/login(?:/)?$"
+    },
+    {
+      "page": "/pricing",
+      "regex": "^/pricing(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/pricing(?:/)?$"
+    },
+    {
+      "page": "/roof-measure",
+      "regex": "^/roof\\-measure(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/roof\\-measure(?:/)?$"
+    },
+    {
+      "page": "/roof-measure/measure",
+      "regex": "^/roof\\-measure/measure(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/roof\\-measure/measure(?:/)?$"
+    },
+    {
+      "page": "/roof-measure/results",
+      "regex": "^/roof\\-measure/results(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/roof\\-measure/results(?:/)?$"
+    },
+    {
+      "page": "/signup",
+      "regex": "^/signup(?:/)?$",
+      "routeKeys": {},
+      "namedRegex": "^/signup(?:/)?$"
+    }
+  ],
+  "dataRoutes": [],
+  "rsc": {
+    "header": "rsc",
+    "varyHeader": "rsc, next-router-state-tree, next-router-prefetch, next-router-segment-prefetch",
+    "prefetchHeader": "next-router-prefetch",
+    "didPostponeHeader": "x-nextjs-postponed",
+    "contentTypeHeader": "text/x-component",
+    "suffix": ".rsc",
+    "prefetchSuffix": ".prefetch.rsc",
+    "prefetchSegmentHeader": "next-router-segment-prefetch",
+    "prefetchSegmentSuffix": ".segment.rsc",
+    "prefetchSegmentDirSuffix": ".segments"
+  },
+  "rewriteHeaders": {
+    "pathHeader": "x-nextjs-rewritten-path",
+    "queryHeader": "x-nextjs-rewritten-query"
+  }
+}

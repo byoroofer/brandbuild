@@ -1,0 +1,28 @@
+{
+  "name": "ai-video-studio",
+  "private": true,
+  "version": "0.1.0",
+  "packageManager": "pnpm@10.0.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @ai-video-studio/dashboard",
+    "build": "npm run build -w @ai-video-studio/dashboard",
+    "start": "npm run start -w @ai-video-studio/dashboard",
+    "typecheck": "npm run typecheck -w @ai-video-studio/dashboard",
+    "check:forbidden-references": "npm run check:forbidden-references -w @ai-video-studio/dashboard",
+    "screenshots:ai-video-sites": "node scripts/ai-video-sites/script.js",
+    "screenshots:ai-video-sites:mobile": "node scripts/ai-video-sites/script.js --mobile",
+    "dev:turbo": "turbo dev",
+    "build:turbo": "turbo build",
+    "typecheck:turbo": "turbo typecheck"
+  },
+  "devDependencies": {
+    "archiver": "^7.0.1",
+    "playwright": "^1.54.2",
+    "turbo": "^2.5.8",
+    "typescript": "^5.8.2"
+  }
+}
