@@ -10,6 +10,24 @@ function hasKlingCredentials() {
   return Boolean(process.env.KLING_API_KEY && process.env.KLING_API_SECRET);
 }
 
+function hasHiggsfieldCredentials() {
+  const combined =
+    process.env.HF_KEY?.trim() ??
+    process.env.HIGGSFIELD_KEY?.trim() ??
+    (process.env.HIGGSFIELD_API_KEY?.includes(":")
+      ? process.env.HIGGSFIELD_API_KEY.trim()
+      : null);
+
+  if (combined && combined.includes(":")) {
+    return true;
+  }
+
+  return Boolean(
+    (process.env.HIGGSFIELD_API_KEY || process.env.HF_API_KEY) &&
+      (process.env.HIGGSFIELD_API_SECRET || process.env.HF_API_SECRET),
+  );
+}
+
 const providerCatalog: Record<ProviderCatalogItem["id"], ProviderCatalogItem> = {
   sora: {
     capabilities: ["premium-cinematic", "hero-polish"],
@@ -34,13 +52,13 @@ const providerCatalog: Record<ProviderCatalogItem["id"], ProviderCatalogItem> = 
   },
   higgsfield: {
     capabilities: ["experimental-worldbuilding", "premium-cinematic"],
-    configured: Boolean(process.env.HIGGSFIELD_API_KEY),
+    configured: hasHiggsfieldCredentials(),
     description:
       "Best for exploratory cinematic concepts, surreal worldbuilding, and broader creative exploration.",
     fitSummary:
       "Use when the brief benefits from experimentation before locking a production-safe path.",
     id: "higgsfield",
-    integrationStage: "stubbed",
+    integrationStage: "live",
     label: "Higgsfield",
   },
 };

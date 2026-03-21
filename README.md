@@ -20,7 +20,7 @@ The maintained product surface lives in `apps/dashboard`. This repo still contai
 - Provider routing
 - Asset library
 - Reviews and selects
-- Live Sora enqueue path plus live-capable Kling and stubbed Higgsfield adapters
+- Live Sora, Kling, and Higgsfield provider adapters behind one shared generation contract
 - Automatic asset-row sync when successful live generations return output URLs
 - Studio Agent dock in the dashboard command bar
 - Current tag discovery from typed briefs or short voice notes
@@ -48,7 +48,7 @@ Notes:
 - `OPENAI_TRANSCRIBE_MODEL` is optional and defaults to `gpt-4o-mini-transcribe` for short voice-note transcription.
 - Without `OPENAI_API_KEY`, the tag discovery dock still works for typed briefs, but it clearly falls back to relevance-only local suggestions and cannot transcribe audio notes.
 - Kling now has a live-capable adapter with JWT auth, env-configurable endpoint overrides, and generation status sync. Without Kling credentials, it still falls back to explicit mock runs so the internal workflow keeps moving.
-- Higgsfield remains intentionally stubbed in this pass, while Sora creates real OpenAI video jobs and records them in `shot_generations`.
+- Higgsfield is now live-capable through the REST API and defaults to the `higgsfield-ai/dop/standard` model for reference-driven cinematic exploration.
 - The optional Kling overrides let you adapt to account-specific or region-specific API path differences without changing app code:
   - `KLING_API_BASE_URL`
   - `KLING_API_CREATE_PATH`
@@ -97,7 +97,7 @@ Current implementation:
 - Successful live generation refreshes now upsert `generated_video` and `thumbnail` asset rows automatically when the provider returns usable URLs.
 - When `SUPABASE_SERVICE_ROLE_KEY` is present, those auto-synced asset rows are also mirrored into the `STORAGE_BUCKET_ASSETS` bucket and resolved back to signed URLs in the internal UI.
 - The Kling live path currently defaults to the global API base `https://api-singapore.klingai.com` and the common `text2video` task routes, with env overrides available if your account docs differ.
-- Higgsfield still returns explicit mocked jobs until its live API is wired.
+- Higgsfield uses the same generation history, refresh, and asset-sync pipeline as the other providers, with mock fallback when credentials are not configured.
 - The command bar includes a Studio Agent that uses OpenAI when configured and falls back to grounded local guidance when it is not.
 - The command bar also includes a tag discovery dock that can:
   - accept a typed search brief
@@ -114,7 +114,7 @@ V1 internal dashboard with:
 - campaigns, shots, assets, and reviews pages
 - structured prompt builder on shot detail
 - live Sora generation workflow that writes `shot_generations`
-- live-capable Kling generation workflow with mock fallback, plus mocked Higgsfield runs
+- live-capable Kling and Higgsfield generation workflows with mock fallback when credentials are missing
 - dashboard-level Studio Agent for routing, prompt, and next-step guidance
 - dashboard-level tag discovery for current creative tags and voice-note brief input
 
@@ -124,7 +124,7 @@ Still intentionally out of scope in this pass:
 - Sora webhook handling and automatic status sync
 - automatic video download and asset ingestion from completed Sora jobs
 - automatic asset ingestion from completed Kling jobs
-- live Higgsfield API execution
+- production webhook handling for Higgsfield (polling is live now; webhook sync is the next step)
 - upload pipeline automation
 - consumer-facing product flows
 
