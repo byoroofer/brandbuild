@@ -5,6 +5,7 @@ import { usePathname } from "next/navigation";
 import type { ReactNode } from "react";
 
 import { CommandBar } from "@/components/dashboard/command-bar";
+import { BrandbuildLogo } from "@/components/site/brandbuild-logo";
 import { StatusPill } from "@/components/studio/status-pill";
 import { cx } from "@/lib/utils";
 import type { WorkspaceMode } from "@/lib/studio/types";
@@ -32,6 +33,11 @@ export function DashboardShell({ children, mode = "demo" }: DashboardShellProps)
         <div className="app-shell rounded-[30px] p-6">
           <div className="space-y-6">
             <div className="space-y-3">
+              <BrandbuildLogo
+                alt="BrandBuild"
+                className="h-auto w-[min(100%,14rem)]"
+                priority
+              />
               <span className="inline-flex rounded-full border border-violet-400/20 bg-violet-400/10 px-3 py-1 text-xs font-semibold tracking-[0.18em] text-violet-100 uppercase">
                 Studio OS
               </span>

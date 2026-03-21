@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { BrandbuildLogo } from "@/components/site/brandbuild-logo";
 import { ControlRoomPreview } from "@/components/marketing/control-room-preview";
 import { MediaFrame } from "@/components/marketing/media-frame";
 import { MediaMarquee } from "@/components/marketing/media-marquee";
@@ -178,6 +179,11 @@ export function BrandbuildHomepage({ mode, providers }: BrandbuildHomepageProps)
               </div>
 
               <div className="max-w-3xl space-y-5">
+                <BrandbuildLogo
+                  alt="BrandBuild"
+                  className="h-auto w-[min(100%,24rem)] drop-shadow-[0_26px_60px_rgba(0,0,0,0.42)] sm:w-[28rem] lg:w-[31rem]"
+                  priority
+                />
                 <h1 className="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-[-0.07em] text-white sm:text-6xl lg:text-7xl xl:text-[5.4rem]">
                   Generate polished enterprise video by combining Sora 2, Kling, and Higgsfield through one control system.
                 </h1>
