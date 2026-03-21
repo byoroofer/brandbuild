@@ -21,11 +21,8 @@ const inputClassName =
 
 export function SignupForm({ redirectPath }: SignupFormProps) {
   const router = useRouter();
-  const supabaseAvailable = hasSupabaseEnv();
-  const supabase = useMemo(
-    () => (supabaseAvailable ? createBrowserSupabaseClient() : null),
-    [supabaseAvailable],
-  );
+  const supabase = useMemo(() => createBrowserSupabaseClient(), []);
+  const supabaseAvailable = hasSupabaseEnv() && Boolean(supabase);
   const profilesTable = supabase ? (supabase.from("profiles") as any) : null;
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);

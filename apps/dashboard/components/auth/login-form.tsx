@@ -20,11 +20,8 @@ const inputClassName =
 
 export function LoginForm({ redirectPath }: LoginFormProps) {
   const router = useRouter();
-  const supabaseAvailable = hasSupabaseEnv();
-  const supabase = useMemo(
-    () => (supabaseAvailable ? createBrowserSupabaseClient() : null),
-    [supabaseAvailable],
-  );
+  const supabase = useMemo(() => createBrowserSupabaseClient(), []);
+  const supabaseAvailable = hasSupabaseEnv() && Boolean(supabase);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 

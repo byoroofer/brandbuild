@@ -1,15 +1,5 @@
 import { resolveAppUrl } from "@/lib/utils/app-url";
 
-function getRequiredEnv(name: "NEXT_PUBLIC_SUPABASE_URL") {
-  const value = process.env[name];
-
-  if (!value) {
-    throw new Error(`${name} is not set.`);
-  }
-
-  return value;
-}
-
 export function hasSupabaseEnv() {
   return Boolean(
     process.env.NEXT_PUBLIC_SUPABASE_URL &&
@@ -24,7 +14,13 @@ export function hasSupabaseAdminEnv() {
 }
 
 export function getSupabaseUrl() {
-  return getRequiredEnv("NEXT_PUBLIC_SUPABASE_URL");
+  const value = process.env.NEXT_PUBLIC_SUPABASE_URL;
+
+  if (!value) {
+    throw new Error("NEXT_PUBLIC_SUPABASE_URL is not set.");
+  }
+
+  return value;
 }
 
 export function getSupabasePublicKey() {

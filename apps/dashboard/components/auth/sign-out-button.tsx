@@ -15,6 +15,12 @@ export function SignOutButton() {
     setIsSubmitting(true);
 
     try {
+      if (!supabase) {
+        router.push("/");
+        router.refresh();
+        return;
+      }
+
       await supabase.auth.signOut();
       router.push("/");
       router.refresh();
