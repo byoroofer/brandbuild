@@ -12,7 +12,7 @@ export const metadata: Metadata = {
     template: "%s | BrandBuild",
   },
   description:
-    "BrandBuild is an enterprise AI video orchestration platform for planning, routing, reviewing, and assembling stronger final videos across Sora 2, Kling, and Higgsfield.",
+    "BrandBuild is an enterprise AI video generation platform that uses Sora 2, Kling, and Higgsfield to produce polished final videos through one controlled workflow.",
   metadataBase: new URL(resolveAppUrl()),
 };
 

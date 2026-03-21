@@ -3,7 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const hiddenPrefixes = ["/campaign", "/creator", "/dashboard", "/login", "/roof-measure", "/signup"];
+const hiddenPrefixes = [
+  "/account",
+  "/campaign",
+  "/creator",
+  "/dashboard",
+  "/login",
+  "/roof-measure",
+  "/signup",
+];
 
 function shouldHideSiteChrome(pathname: string) {
   return hiddenPrefixes.some(

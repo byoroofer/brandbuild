@@ -20,6 +20,7 @@ const navItems = [
   { href: "/dashboard/shots", label: "Shots" },
   { href: "/dashboard/assets", label: "Assets" },
   { href: "/dashboard/reviews", label: "Reviews" },
+  { href: "/account", label: "Account" },
 ];
 
 export function DashboardShell({ children, mode = "demo" }: DashboardShellProps) {

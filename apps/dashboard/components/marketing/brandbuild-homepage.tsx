@@ -168,7 +168,7 @@ export function BrandbuildHomepage({ mode, providers }: BrandbuildHomepageProps)
           <div className="relative grid gap-10 xl:grid-cols-[minmax(0,0.94fr)_minmax(420px,0.98fr)] xl:items-center">
             <div className="space-y-8">
               <div className="flex flex-wrap items-center gap-3">
-                <span className="brandbuild-kicker">Enterprise AI video orchestration</span>
+                <span className="brandbuild-kicker">Enterprise AI video generation</span>
                 <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-[11px] font-medium tracking-[0.18em] text-white/72 uppercase">
                   {mode === "live" ? "Live workspace" : "Demo workspace"}
                 </span>
@@ -179,12 +179,12 @@ export function BrandbuildHomepage({ mode, providers }: BrandbuildHomepageProps)
 
               <div className="max-w-3xl space-y-5">
                 <h1 className="max-w-4xl text-5xl font-semibold leading-[0.95] tracking-[-0.07em] text-white sm:text-6xl lg:text-7xl xl:text-[5.4rem]">
-                  Orchestrate Sora 2, Kling, and Higgsfield into one better video workflow.
+                  Generate polished enterprise video by combining Sora 2, Kling, and Higgsfield through one control system.
                 </h1>
                 <p className="max-w-2xl text-base leading-8 text-white/68 sm:text-lg">
-                  BrandBuild is the control layer for serious AI video teams. Route each shot to the
-                  right engine, compare outputs side by side, keep assets organized, and build a
-                  stronger final film than any single model can deliver alone.
+                  BrandBuild is an enterprise AI video generation platform for serious teams. Use
+                  Sora 2, Kling, and Higgsfield where each performs best, compare the outputs side
+                  by side, and shape them into one stronger final production.
                 </p>
               </div>
 

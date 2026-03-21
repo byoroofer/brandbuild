@@ -10,7 +10,15 @@ const navigationItems = [
   { href: "#enterprise", label: "Enterprise" },
 ];
 
-const hiddenPrefixes = ["/campaign", "/creator", "/dashboard", "/login", "/roof-measure", "/signup"];
+const hiddenPrefixes = [
+  "/account",
+  "/campaign",
+  "/creator",
+  "/dashboard",
+  "/login",
+  "/roof-measure",
+  "/signup",
+];
 
 function shouldHideSiteChrome(pathname: string) {
   return hiddenPrefixes.some(
