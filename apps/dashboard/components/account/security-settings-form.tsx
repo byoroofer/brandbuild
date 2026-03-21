@@ -74,7 +74,7 @@ export function SecuritySettingsForm({
 
     setDirty(false);
     setPassword("");
-    setMessage("Security settings updated.");
+    setMessage(payload.message ?? "Security settings updated.");
     setIsSaving(false);
   }
 
@@ -96,9 +96,15 @@ export function SecuritySettingsForm({
               </p>
             </div>
 
+            <div className="rounded-[24px] border border-cyan-400/14 bg-cyan-400/8 p-4 text-sm leading-6 text-cyan-50/90">
+              Changing the sign-in email sends a branded BrandBuild confirmation email. If Secure
+              Email Change is enabled in Supabase, both the current and new address will need to
+              confirm before the switch completes.
+            </div>
+
             <label className="grid gap-2">
               <span className="text-xs font-semibold tracking-[0.16em] text-white/42 uppercase">
-                Change email
+                Change sign-in email
               </span>
               <input
                 className="rounded-[18px] border border-white/8 bg-black/20 px-4 py-3 text-sm text-white"

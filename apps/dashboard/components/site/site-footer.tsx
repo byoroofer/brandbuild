@@ -3,12 +3,15 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { BrandbuildLogo } from "@/components/site/brandbuild-logo";
+
 const hiddenPrefixes = [
   "/account",
   "/campaign",
   "/creator",
   "/dashboard",
   "/login",
+  "/reset-password",
   "/roof-measure",
   "/signup",
 ];
@@ -33,7 +36,7 @@ export function SiteFooter() {
       <div className="mx-auto max-w-7xl rounded-[36px] border border-white/8 bg-[rgba(7,9,14,0.72)] p-6 shadow-[0_30px_90px_rgba(0,0,0,0.34)] backdrop-blur-xl sm:p-8">
         <div className="grid gap-8 lg:grid-cols-[minmax(0,1.15fr)_repeat(3,minmax(0,0.6fr))]">
           <div className="space-y-4">
-            <span className="brandbuild-kicker">BrandBuild</span>
+            <BrandbuildLogo alt="BrandBuild" className="h-14 w-auto" />
             <h2 className="max-w-md text-2xl font-semibold tracking-[-0.05em] text-white">
               The AI video operating system for multi-model creative teams.
             </h2>

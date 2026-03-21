@@ -7,7 +7,7 @@ import { useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { SurfaceCard } from "@/components/ui/surface-card";
-import { buildAuthPageHref } from "@/lib/auth/redirects";
+import { buildAbsoluteAppUrl, buildAuthPageHref } from "@/lib/auth/redirects";
 import { hasSupabaseEnv } from "@/lib/supabase/env";
 import { createBrowserSupabaseClient } from "@/lib/supabase/browser";
 
@@ -22,10 +22,14 @@ export function LoginForm({ redirectPath }: LoginFormProps) {
   const router = useRouter();
   const supabase = useMemo(() => createBrowserSupabaseClient(), []);
   const supabaseAvailable = hasSupabaseEnv() && Boolean(supabase);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [infoMessage, setInfoMessage] = useState<string | null>(null);
+  const [isPasswordSubmitting, setIsPasswordSubmitting] = useState(false);
+  const [isMagicLinkSubmitting, setIsMagicLinkSubmitting] = useState(false);
 
-  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handlePasswordSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (!supabase) {
@@ -36,11 +40,8 @@ export function LoginForm({ redirectPath }: LoginFormProps) {
     }
 
     setErrorMessage(null);
-    setIsSubmitting(true);
-
-    const formData = new FormData(event.currentTarget);
-    const email = String(formData.get("email") ?? "");
-    const password = String(formData.get("password") ?? "");
+    setInfoMessage(null);
+    setIsPasswordSubmitting(true);
 
     try {
       const { error } = await supabase.auth.signInWithPassword({
@@ -57,7 +58,49 @@ export function LoginForm({ redirectPath }: LoginFormProps) {
     } catch (error) {
       setErrorMessage(error instanceof Error ? error.message : "Unable to log in right now.");
     } finally {
-      setIsSubmitting(false);
+      setIsPasswordSubmitting(false);
+    }
+  }
+
+  async function handleMagicLinkRequest() {
+    if (!supabase) {
+      setErrorMessage(
+        "Supabase auth is not configured in this deployment yet. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in Vercel, then redeploy.",
+      );
+      return;
+    }
+
+    if (!email.trim()) {
+      setErrorMessage("Enter your work email first and then request a magic link.");
+      return;
+    }
+
+    setErrorMessage(null);
+    setInfoMessage(null);
+    setIsMagicLinkSubmitting(true);
+
+    try {
+      const { error } = await supabase.auth.signInWithOtp({
+        email: email.trim(),
+        options: {
+          emailRedirectTo: buildAbsoluteAppUrl(window.location.origin, redirectPath),
+          shouldCreateUser: false,
+        },
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      setInfoMessage(
+        "Check your inbox for a BrandBuild sign-in email. The link will bring you back into the app, not a generic Supabase screen.",
+      );
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error ? error.message : "We couldn't send a magic link right now.",
+      );
+    } finally {
+      setIsMagicLinkSubmitting(false);
     }
   }
 
@@ -69,17 +112,17 @@ export function LoginForm({ redirectPath }: LoginFormProps) {
             Welcome back
           </span>
           <div className="space-y-2">
-            <h1 className="display-font text-4xl leading-none text-slate-950">Log in to AI Video Studio</h1>
+            <h1 className="display-font text-4xl leading-none text-slate-950">Log in to BrandBuild</h1>
             <p className="text-base leading-7 text-slate-600">
-              Access the internal dashboard for campaigns, shot planning, asset review, and model routing.
+              Use a password or request a branded magic link to get back into the AI video studio workspace.
             </p>
           </div>
         </div>
 
-        <form className="space-y-4" onSubmit={handleSubmit}>
+        <form className="space-y-4" onSubmit={handlePasswordSubmit}>
           <div className="space-y-2">
             <label className="text-sm font-medium text-slate-700" htmlFor="login-email">
-              Email
+              Work email
             </label>
             <input
               autoComplete="email"
@@ -87,16 +130,23 @@ export function LoginForm({ redirectPath }: LoginFormProps) {
               disabled={!supabaseAvailable}
               id="login-email"
               name="email"
-              placeholder="team@yourstudio.com"
+              onChange={(event) => setEmail(event.target.value)}
+              placeholder="team@brandbuild.online"
               required
               type="email"
+              value={email}
             />
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-700" htmlFor="login-password">
-              Password
-            </label>
+            <div className="flex items-center justify-between gap-3">
+              <label className="text-sm font-medium text-slate-700" htmlFor="login-password">
+                Password
+              </label>
+              <Link className="text-sm font-semibold text-blue-700" href="/reset-password">
+                Forgot password?
+              </Link>
+            </div>
             <input
               autoComplete="current-password"
               className={inputClassName}
@@ -104,9 +154,11 @@ export function LoginForm({ redirectPath }: LoginFormProps) {
               id="login-password"
               minLength={8}
               name="password"
+              onChange={(event) => setPassword(event.target.value)}
               placeholder="At least 8 characters"
               required
               type="password"
+              value={password}
             />
           </div>
 
@@ -123,9 +175,33 @@ export function LoginForm({ redirectPath }: LoginFormProps) {
             </p>
           ) : null}
 
-          <Button className="w-full" disabled={isSubmitting || !supabaseAvailable} size="lg" type="submit">
-            {isSubmitting ? "Signing in..." : "Sign in"}
-          </Button>
+          {infoMessage ? (
+            <p className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-700">
+              {infoMessage}
+            </p>
+          ) : null}
+
+          <div className="flex flex-col gap-3">
+            <Button
+              className="w-full"
+              disabled={isPasswordSubmitting || !supabaseAvailable}
+              size="lg"
+              type="submit"
+            >
+              {isPasswordSubmitting ? "Signing in..." : "Sign in"}
+            </Button>
+
+            <Button
+              className="w-full"
+              disabled={isMagicLinkSubmitting || isPasswordSubmitting || !supabaseAvailable}
+              onClick={handleMagicLinkRequest}
+              size="lg"
+              type="button"
+              variant="secondary"
+            >
+              {isMagicLinkSubmitting ? "Sending magic link..." : "Email me a magic link"}
+            </Button>
+          </div>
         </form>
 
         <p className="text-sm text-slate-600">

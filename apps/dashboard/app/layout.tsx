@@ -13,6 +13,10 @@ export const metadata: Metadata = {
   },
   description:
     "BrandBuild is an enterprise AI video generation platform that uses Sora 2, Kling, and Higgsfield to produce polished final videos through one controlled workflow.",
+  icons: {
+    icon: [{ type: "image/svg+xml", url: "/icon.svg" }],
+    shortcut: ["/icon.svg"],
+  },
   metadataBase: new URL(resolveAppUrl()),
 };
 

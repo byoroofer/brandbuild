@@ -7,7 +7,7 @@ import { useMemo, useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import { SurfaceCard } from "@/components/ui/surface-card";
-import { buildAuthCallbackUrl, buildAuthPageHref } from "@/lib/auth/redirects";
+import { buildAbsoluteAppUrl, buildAuthPageHref } from "@/lib/auth/redirects";
 import { hasSupabaseEnv } from "@/lib/supabase/env";
 import { createBrowserSupabaseClient } from "@/lib/supabase/browser";
 import type { Database } from "@/types/database";
@@ -44,11 +44,11 @@ export function SignupForm({ redirectPath }: SignupFormProps) {
 
     const formData = new FormData(event.currentTarget);
     const fullName = String(formData.get("fullName") ?? "").trim();
-    const email = String(formData.get("email") ?? "");
+    const email = String(formData.get("email") ?? "").trim();
     const password = String(formData.get("password") ?? "");
 
     try {
-      const emailRedirectTo = buildAuthCallbackUrl(window.location.origin, redirectPath);
+      const emailRedirectTo = buildAbsoluteAppUrl(window.location.origin, redirectPath);
 
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -81,7 +81,7 @@ export function SignupForm({ redirectPath }: SignupFormProps) {
       }
 
       setSuccessMessage(
-        "Account created. Check your inbox, confirm your email, and we’ll bring you into the studio workspace.",
+        "Account created. Check your inbox for a BrandBuild confirmation email from your studio domain, then come back into the workspace.",
       );
     } catch (error) {
       setErrorMessage(
@@ -100,9 +100,9 @@ export function SignupForm({ redirectPath }: SignupFormProps) {
             Internal team signup
           </span>
           <div className="space-y-2">
-            <h1 className="display-font text-4xl leading-none text-slate-950">Create AI Video Studio access</h1>
+            <h1 className="display-font text-4xl leading-none text-slate-950">Create BrandBuild access</h1>
             <p className="text-base leading-7 text-slate-600">
-              Set up a simple internal operator account for planning campaigns, prompts, assets, and reviews.
+              Set up a simple internal operator account for campaigns, prompts, generation, asset review, and handoff.
             </p>
           </div>
         </div>
@@ -126,7 +126,7 @@ export function SignupForm({ redirectPath }: SignupFormProps) {
 
           <div className="space-y-2">
             <label className="text-sm font-medium text-slate-700" htmlFor="signup-email">
-              Email
+              Work email
             </label>
             <input
               autoComplete="email"
@@ -134,7 +134,7 @@ export function SignupForm({ redirectPath }: SignupFormProps) {
               disabled={!supabaseAvailable}
               id="signup-email"
               name="email"
-              placeholder="team@yourstudio.com"
+              placeholder="team@brandbuild.online"
               required
               type="email"
             />

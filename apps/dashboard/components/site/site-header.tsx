@@ -3,6 +3,8 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
+import { BrandbuildLogo } from "@/components/site/brandbuild-logo";
+
 const navigationItems = [
   { href: "#platform", label: "Platform" },
   { href: "#workflow", label: "Workflow" },
@@ -16,6 +18,7 @@ const hiddenPrefixes = [
   "/creator",
   "/dashboard",
   "/login",
+  "/reset-password",
   "/roof-measure",
   "/signup",
 ];
@@ -42,16 +45,11 @@ export function SiteHeader() {
           className="flex items-center gap-3 rounded-full px-2 py-1.5 transition hover:bg-white/5"
           href="/"
         >
-          <span className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-[linear-gradient(135deg,rgba(255,218,103,0.18),rgba(92,129,255,0.22))] text-sm font-semibold tracking-[0.22em] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
-            BB
-          </span>
-
-          <span className="flex flex-col">
-            <span className="text-[11px] font-semibold tracking-[0.28em] text-white/84 uppercase">
-              brandbuild
-            </span>
-            <span className="text-sm text-white/46">AI video orchestration</span>
-          </span>
+          <BrandbuildLogo
+            alt="BrandBuild home"
+            className="h-10 w-auto sm:h-11"
+            priority
+          />
         </Link>
 
         <nav className="hidden items-center gap-2 lg:flex">

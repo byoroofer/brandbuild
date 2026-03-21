@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 
 import { LoginForm } from "@/components/auth/login-form";
+import { BrandbuildLogo } from "@/components/site/brandbuild-logo";
 import { SurfaceCard } from "@/components/ui/surface-card";
 import { getSafeRedirectPath } from "@/lib/auth/redirects";
 import { getOptionalUser } from "@/lib/auth/session";
@@ -27,6 +28,7 @@ export default async function LoginPage({ searchParams }: LoginPageProps) {
       <SurfaceCard className="hidden overflow-hidden p-10 lg:block">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(56,189,248,0.16),transparent_34%),radial-gradient(circle_at_top,rgba(139,92,246,0.18),transparent_46%)]" />
         <div className="relative space-y-8">
+          <BrandbuildLogo alt="BrandBuild" className="h-14 w-auto" priority />
           <span className="inline-flex rounded-full border border-violet-200 bg-violet-50 px-3 py-1 text-xs font-semibold tracking-[0.18em] text-violet-700 uppercase">
             Internal operator access
           </span>

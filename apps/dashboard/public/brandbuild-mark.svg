@@ -1,0 +1,43 @@
+<svg width="512" height="512" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="brandbuildMarkFill" x1="108" y1="72" x2="404" y2="432" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#36E4FF"/>
+      <stop offset="0.52" stop-color="#3996FF"/>
+      <stop offset="1" stop-color="#9736FF"/>
+    </linearGradient>
+    <filter id="brandbuildMarkGlow" x="0" y="0" width="512" height="512" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="24"/>
+      <feGaussianBlur stdDeviation="28"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.055 0 0 0 0 0.094 0 0 0 0 0.18 0 0 0 0.42 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+  </defs>
+  <g filter="url(#brandbuildMarkGlow)">
+    <path d="M256 54L374 122V258L256 326L138 258V122L256 54Z" fill="url(#brandbuildMarkFill)"/>
+    <path d="M256 54L374 122V258L256 326L138 258V122L256 54Z" stroke="rgba(255,255,255,0.2)" stroke-width="10"/>
+    <path d="M188 88L318 74L364 144L364 176C316 140 274 116 188 88Z" fill="rgba(255,255,255,0.16)"/>
+    <path d="M160 168H80" stroke="#36E4FF" stroke-width="12" stroke-linecap="round"/>
+    <path d="M156 208H44" stroke="#36E4FF" stroke-width="12" stroke-linecap="round"/>
+    <path d="M160 248H80" stroke="#36E4FF" stroke-width="12" stroke-linecap="round"/>
+    <path d="M164 168C136 144 116 128 92 128" stroke="#36E4FF" stroke-width="8" stroke-linecap="round"/>
+    <path d="M164 248C136 272 116 288 92 288" stroke="#36E4FF" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="34" cy="208" r="12" fill="#36E4FF"/>
+    <circle cx="72" cy="128" r="7" fill="#7ED0FF"/>
+    <circle cx="72" cy="288" r="7" fill="#7ED0FF"/>
+    <path d="M352 168H432" stroke="#A345FF" stroke-width="12" stroke-linecap="round"/>
+    <path d="M356 208H468" stroke="#A345FF" stroke-width="12" stroke-linecap="round"/>
+    <path d="M352 248H432" stroke="#A345FF" stroke-width="12" stroke-linecap="round"/>
+    <path d="M348 168C376 144 396 128 420 128" stroke="#9A52FF" stroke-width="8" stroke-linecap="round"/>
+    <path d="M348 248C376 272 396 288 420 288" stroke="#9A52FF" stroke-width="8" stroke-linecap="round"/>
+    <circle cx="478" cy="208" r="12" fill="#A345FF"/>
+    <circle cx="440" cy="128" r="7" fill="#B07CFF"/>
+    <circle cx="440" cy="288" r="7" fill="#B07CFF"/>
+    <path d="M198 146H230L286 324H252L242 289H184L174 324H142L198 146ZM192 260H234L212 186L192 260Z" fill="#F8FBFF"/>
+    <path d="M336 146C351.464 146 364 158.536 364 174C364 189.464 351.464 202 336 202C320.536 202 308 189.464 308 174C308 158.536 320.536 146 336 146ZM315 218H357V324H315V218Z" fill="#F8FBFF"/>
+    <path d="M276 282C294 280 310 272 322 260" stroke="rgba(255,255,255,0.36)" stroke-width="12" stroke-linecap="round"/>
+  </g>
+</svg>

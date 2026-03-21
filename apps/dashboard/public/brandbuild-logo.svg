@@ -1,0 +1,56 @@
+<svg width="760" height="180" viewBox="0 0 760 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="brandbuildHexFill" x1="44" y1="22" x2="170" y2="154" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#36E4FF"/>
+      <stop offset="0.55" stop-color="#3996FF"/>
+      <stop offset="1" stop-color="#9736FF"/>
+    </linearGradient>
+    <linearGradient id="brandbuildWordmarkFill" x1="188" y1="42" x2="696" y2="144" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#3AD6FF"/>
+      <stop offset="0.46" stop-color="#347DFF"/>
+      <stop offset="1" stop-color="#9E38FF"/>
+    </linearGradient>
+    <filter id="brandbuildGlow" x="0" y="0" width="760" height="180" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+      <feFlood flood-opacity="0" result="BackgroundImageFix"/>
+      <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+      <feOffset dy="14"/>
+      <feGaussianBlur stdDeviation="16"/>
+      <feComposite in2="hardAlpha" operator="out"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.075 0 0 0 0 0.121 0 0 0 0 0.204 0 0 0 0.38 0"/>
+      <feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_1"/>
+      <feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_1" result="shape"/>
+    </filter>
+  </defs>
+  <g filter="url(#brandbuildGlow)">
+    <g opacity="0.95">
+      <path d="M18 68H56" stroke="url(#brandbuildWordmarkFill)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M2 86H52" stroke="url(#brandbuildWordmarkFill)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M18 104H56" stroke="url(#brandbuildWordmarkFill)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M36 50C58 50 72 62 84 74" stroke="url(#brandbuildWordmarkFill)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M36 122C58 122 72 110 84 98" stroke="url(#brandbuildWordmarkFill)" stroke-width="4" stroke-linecap="round"/>
+      <circle cx="8" cy="86" r="6" fill="#3AD6FF"/>
+      <circle cx="22" cy="68" r="4" fill="#3AD6FF"/>
+      <circle cx="22" cy="104" r="4" fill="#3AD6FF"/>
+      <circle cx="44" cy="50" r="3.5" fill="#63BEFF"/>
+      <circle cx="44" cy="122" r="3.5" fill="#63BEFF"/>
+    </g>
+    <g opacity="0.95">
+      <path d="M134 74C146 62 160 50 182 50" stroke="url(#brandbuildWordmarkFill)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M134 98C146 110 160 122 182 122" stroke="url(#brandbuildWordmarkFill)" stroke-width="4" stroke-linecap="round"/>
+      <path d="M150 68H188" stroke="url(#brandbuildWordmarkFill)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M154 86H204" stroke="url(#brandbuildWordmarkFill)" stroke-width="5" stroke-linecap="round"/>
+      <path d="M150 104H188" stroke="url(#brandbuildWordmarkFill)" stroke-width="5" stroke-linecap="round"/>
+      <circle cx="198" cy="50" r="3.5" fill="#8A5EFF"/>
+      <circle cx="214" cy="68" r="4" fill="#8A5EFF"/>
+      <circle cx="214" cy="104" r="4" fill="#8A5EFF"/>
+      <circle cx="228" cy="86" r="6" fill="#A83CFF"/>
+    </g>
+    <path d="M96 10L154 44V112L96 146L38 112V44L96 10Z" fill="url(#brandbuildHexFill)"/>
+    <path d="M96 10L154 44V112L96 146L38 112V44L96 10Z" stroke="rgba(255,255,255,0.18)" stroke-width="4"/>
+    <path d="M64 26L132 18L150 54L150 78C124 58 98 46 64 26Z" fill="rgba(255,255,255,0.16)"/>
+    <path d="M110 122C122 120 132 114 140 106" stroke="rgba(255,255,255,0.32)" stroke-width="6" stroke-linecap="round"/>
+    <path d="M90 44H105L129 112H114L109.5 97H85L80.5 112H66L90 44ZM88.5 85H106L97.25 56L88.5 85Z" fill="#F8FBFF"/>
+    <path d="M135 44C140.523 44 145 48.4772 145 54C145 59.5228 140.523 64 135 64C129.477 64 125 59.5228 125 54C125 48.4772 129.477 44 135 44ZM128 70H142V112H128V70Z" fill="#F8FBFF"/>
+    <text x="188" y="103" fill="url(#brandbuildWordmarkFill)" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="-2.4">brandbuild.online</text>
+  </g>
+</svg>
