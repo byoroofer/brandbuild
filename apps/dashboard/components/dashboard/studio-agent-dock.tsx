@@ -17,9 +17,9 @@ type StudioAgentReply = {
 };
 
 const quickPrompts = [
-  "Which shots should stay on Sora right now?",
-  "Give me the best next production moves for today's queue.",
-  "Tighten the hook and prompt structure for our current hero shots.",
+  "Turn this brief into a step-by-step production plan.",
+  "Which engine should handle this shot and why?",
+  "Rewrite this ask so the operator can generate the next best run.",
 ];
 
 const inputClassName =
@@ -72,7 +72,10 @@ export function StudioAgentDock() {
   }
 
   return (
-    <div className="rounded-[28px] border border-white/8 bg-[linear-gradient(180deg,rgba(10,14,22,0.92),rgba(6,10,18,0.86))] p-4">
+    <div
+      className="rounded-[28px] border border-white/8 bg-[linear-gradient(180deg,rgba(10,14,22,0.92),rgba(6,10,18,0.86))] p-4"
+      id="studio-agent-dock"
+    >
       <div className="flex flex-col gap-4 xl:flex-row xl:items-start xl:justify-between">
         <div className="min-w-0 flex-1 space-y-3">
           <div className="flex flex-wrap items-center gap-2">
@@ -85,10 +88,12 @@ export function StudioAgentDock() {
           </div>
 
           <div>
-            <p className="text-sm font-semibold text-white">Ask the studio what to do next</p>
+            <p className="text-sm font-semibold text-white">
+              Ask the agent to interpret the ask and guide the workflow
+            </p>
             <p className="mt-1 text-sm leading-6 text-slate-400">
               Use the same workspace data, routing logic, and provider readiness the operators see
-              in the dashboard.
+              in the dashboard so the next action feels clear, not manual.
             </p>
           </div>
 

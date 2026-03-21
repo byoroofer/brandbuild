@@ -2,6 +2,7 @@ import Link from "next/link";
 
 import { StudioAgentDock } from "@/components/dashboard/studio-agent-dock";
 import { TagDiscoveryDock } from "@/components/dashboard/tag-discovery-dock";
+import { WorkflowLaunchpad } from "@/components/dashboard/workflow-launchpad";
 import { Panel } from "@/components/studio/panel";
 import { StatusPill } from "@/components/studio/status-pill";
 import { ButtonLink } from "@/components/ui/button";
@@ -27,11 +28,12 @@ export function CommandBar({ mode }: CommandBarProps) {
 
             <div>
               <p className="text-lg font-semibold text-white">
-                Search current tag signals, steer operators, and keep the queue moving.
+                Guide operators step by step, translate intent, and keep the queue moving.
               </p>
               <p className="mt-2 text-sm leading-6 text-slate-400">
-                Use the command bar to turn a brief or voice note into relevant current tags, then
-                hand the next decision to the Studio Agent without leaving the dashboard.
+                The command center should make three generators feel like one guided workflow:
+                clarify the ask, route the right engine, generate the shot, and move straight into
+                review.
               </p>
             </div>
 
@@ -67,6 +69,7 @@ export function CommandBar({ mode }: CommandBarProps) {
           </div>
         </div>
 
+        <WorkflowLaunchpad mode={mode} />
         <TagDiscoveryDock />
         <StudioAgentDock />
       </div>

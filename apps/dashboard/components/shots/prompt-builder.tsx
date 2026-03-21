@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useActionState, useEffect, useMemo, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 
@@ -23,12 +24,14 @@ import {
   parseTagDiscoveryNotes,
 } from "@/lib/utils/tag-discovery";
 import { applyPromptTemplate, composeStructuredPrompt } from "@/lib/utils/prompts";
+import { cx } from "@/lib/utils";
 
 type PromptBuilderProps = {
   generations: ShotGeneration[];
   mode: WorkspaceMode;
   persistenceEnabled: boolean;
   promptTemplates: PromptTemplate[];
+  reviewCount: number;
   routingRecommendation: RoutingRecommendation;
   shot: Shot;
 };
@@ -39,6 +42,37 @@ type ApplyTagDiscoveryEvent = CustomEvent<{
 
 const fieldClassName =
   "w-full rounded-2xl border border-white/10 bg-black/18 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400/40";
+
+const workflowStageTargets = [
+  "shot-setup",
+  "creative-direction",
+  "routing-stage",
+  "generate-stage",
+  "review-stage",
+] as const;
+
+type BuilderSectionProps = {
+  children: ReactNode;
+  description: string;
+  id: string;
+  step: string;
+  title: string;
+};
+
+function BuilderSection({ children, description, id, step, title }: BuilderSectionProps) {
+  return (
+    <section className="space-y-4 rounded-[28px] border border-white/8 bg-black/12 p-5" id={id}>
+      <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+        <div>
+          <p className="text-xs font-semibold tracking-[0.18em] text-slate-500 uppercase">{step}</p>
+          <h3 className="mt-2 text-xl font-semibold text-white">{title}</h3>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-400">{description}</p>
+        </div>
+      </div>
+      {children}
+    </section>
+  );
+}
 
 function mergeUniqueTags(currentTags: TagDiscoveryTag[], incomingTags: TagDiscoveryTag[]) {
   const merged = new Map<string, TagDiscoveryTag>();
@@ -63,6 +97,7 @@ export function PromptBuilder({
   mode,
   persistenceEnabled,
   promptTemplates,
+  reviewCount,
   routingRecommendation,
   shot,
 }: PromptBuilderProps) {
@@ -144,6 +179,72 @@ export function PromptBuilder({
   const [promptOverrideEnabled, setPromptOverrideEnabled] = useState(
     initialPromptText.trim() !== taggedDefaultPrompt.trim(),
   );
+
+  const workflowStages = useMemo(() => {
+    const stages = [
+      {
+        complete: title.trim().length > 0 && purpose.trim().length > 0,
+        guidance: "Tighten the shot title, duration, and purpose first so the rest of the flow stays grounded.",
+        label: "Brief",
+      },
+      {
+        complete:
+          subject.trim().length > 0 &&
+          action.trim().length > 0 &&
+          camera.trim().length > 0 &&
+          environment.trim().length > 0,
+        guidance:
+          "Use the structured fields to define subject, action, camera, and environment before you hand anything to a generator.",
+        label: "Structure",
+      },
+      {
+        complete: Boolean(targetModel) && promptText.trim().length >= 120,
+        guidance:
+          "Confirm the best-fit engine and make sure the final prompt is concrete enough to produce a usable run.",
+        label: "Route",
+      },
+      {
+        complete: generations.length > 0,
+        guidance:
+          "Save the draft, then launch the first run so the team can compare outputs instead of guessing.",
+        label: "Generate",
+      },
+      {
+        complete: reviewCount > 0,
+        guidance:
+          "Once a run lands, review and score it quickly so one output can move into edit handoff.",
+        label: "Review",
+      },
+    ];
+
+    const activeIndex = stages.findIndex((stage) => !stage.complete);
+
+    return stages.map((stage, index) => ({
+      ...stage,
+      target: workflowStageTargets[index] ?? workflowStageTargets[workflowStageTargets.length - 1],
+      state:
+        index < (activeIndex === -1 ? stages.length : activeIndex)
+          ? "complete"
+          : index === (activeIndex === -1 ? stages.length - 1 : activeIndex)
+            ? "active"
+            : "up-next",
+    }));
+  }, [
+    action,
+    camera,
+    environment,
+    generations.length,
+    promptText,
+    purpose,
+    reviewCount,
+    subject,
+    targetModel,
+    title,
+  ]);
+
+  const activeWorkflowStage =
+    workflowStages.find((stage) => stage.state === "active") ??
+    workflowStages[workflowStages.length - 1];
 
   useEffect(() => {
     if (promptOverrideEnabled) {
@@ -382,314 +483,505 @@ export function PromptBuilder({
           </div>
         </div>
 
-        <form action={formAction} className="mt-8 grid gap-4">
+        <div className="mt-8 rounded-[30px] border border-white/8 bg-black/16 p-5">
+          <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+            <div>
+              <p className="text-xs font-semibold tracking-[0.18em] text-slate-500 uppercase">
+                Guided workflow
+              </p>
+              <h3 className="mt-2 text-xl font-semibold text-white">
+                {activeWorkflowStage.label} is the next best move
+              </h3>
+              <p className="mt-2 max-w-3xl text-sm leading-6 text-slate-400">
+                {activeWorkflowStage.guidance}
+              </p>
+            </div>
+            <StatusPill
+              label={`${workflowStages.filter((stage) => stage.complete).length}/${workflowStages.length} complete`}
+              tone="info"
+            />
+          </div>
+
+          <div className="mt-5 grid gap-3 xl:grid-cols-5">
+            {workflowStages.map((stage, index) => (
+              <a
+                className={cx(
+                  "rounded-[22px] border px-4 py-4 text-left transition",
+                  stage.state === "complete"
+                    ? "border-emerald-400/20 bg-emerald-400/10"
+                    : stage.state === "active"
+                      ? "border-cyan-400/25 bg-cyan-400/10"
+                      : "border-white/8 bg-white/4 hover:border-white/14 hover:bg-white/6",
+                )}
+                href={`#${stage.target}`}
+                key={stage.label}
+              >
+                <div className="flex items-center justify-between gap-3">
+                  <span
+                    className={cx(
+                      "inline-flex h-9 w-9 items-center justify-center rounded-full border text-xs font-semibold tracking-[0.16em] uppercase",
+                      stage.state === "complete"
+                        ? "border-emerald-300/30 bg-emerald-300/15 text-emerald-100"
+                        : stage.state === "active"
+                          ? "border-cyan-300/30 bg-cyan-300/15 text-cyan-100"
+                          : "border-white/10 bg-white/6 text-slate-300",
+                    )}
+                  >
+                    {String(index + 1).padStart(2, "0")}
+                  </span>
+                  <StatusPill
+                    label={
+                      stage.state === "complete"
+                        ? "Done"
+                        : stage.state === "active"
+                          ? "Active"
+                          : "Up next"
+                    }
+                    tone={
+                      stage.state === "complete"
+                        ? "success"
+                        : stage.state === "active"
+                          ? "info"
+                          : "default"
+                    }
+                  />
+                </div>
+                <p className="mt-4 text-base font-semibold text-white">{stage.label}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-400">{stage.guidance}</p>
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <form action={formAction} className="mt-8 grid gap-5">
           <input name="shotId" type="hidden" value={shot.id} />
           <input name="notes" type="hidden" value={combinedNotes} />
 
-          <div className="grid gap-4 md:grid-cols-[minmax(0,1.3fr)_220px_180px]">
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300">Shot title</label>
-              <input
-                className={fieldClassName}
-                name="title"
-                onChange={(event) => setTitle(event.target.value)}
-                value={title}
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300">Duration (seconds)</label>
-              <input
-                className={fieldClassName}
-                min={1}
-                name="durationSeconds"
-                onChange={(event) => setDurationSeconds(event.target.value)}
-                step={1}
-                type="number"
-                value={durationSeconds}
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300">Aspect ratio</label>
-              <select
-                className={fieldClassName}
-                name="aspectRatio"
-                onChange={(event) => setAspectRatio(event.target.value)}
-                value={aspectRatio}
-              >
-                <option value="16:9">16:9</option>
-                <option value="9:16">9:16</option>
-                <option value="1:1">1:1</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-300">Shot purpose</label>
-            <textarea
-              className={fieldClassName}
-              name="purpose"
-              onChange={(event) => setPurpose(event.target.value)}
-              rows={3}
-              value={purpose}
-            />
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-2">
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300">Subject</label>
-              <textarea
-                className={fieldClassName}
-                name="subject"
-                onChange={(event) => setSubject(event.target.value)}
-                rows={3}
-                value={subject}
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300">Action</label>
-              <textarea
-                className={fieldClassName}
-                name="action"
-                onChange={(event) => setAction(event.target.value)}
-                rows={3}
-                value={action}
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300">Camera</label>
-              <textarea
-                className={fieldClassName}
-                name="camera"
-                onChange={(event) => setCamera(event.target.value)}
-                rows={3}
-                value={camera}
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300">Environment</label>
-              <textarea
-                className={fieldClassName}
-                name="environment"
-                onChange={(event) => setEnvironment(event.target.value)}
-                rows={3}
-                value={environment}
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300">Lighting</label>
-              <textarea
-                className={fieldClassName}
-                name="lighting"
-                onChange={(event) => setLighting(event.target.value)}
-                rows={3}
-                value={lighting}
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300">Mood</label>
-              <textarea
-                className={fieldClassName}
-                name="mood"
-                onChange={(event) => setMood(event.target.value)}
-                rows={3}
-                value={mood}
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300">Visual style</label>
-              <textarea
-                className={fieldClassName}
-                name="visualStyle"
-                onChange={(event) => setVisualStyle(event.target.value)}
-                rows={3}
-                value={visualStyle}
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300">Dialogue / audio intent</label>
-              <textarea
-                className={fieldClassName}
-                name="dialogueAudioIntent"
-                onChange={(event) => setDialogueAudioIntent(event.target.value)}
-                rows={3}
-                value={dialogueAudioIntent}
-              />
-            </div>
-          </div>
-
-          <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_220px]">
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300">Constraints</label>
-              <textarea
-                className={fieldClassName}
-                name="constraints"
-                onChange={(event) => setConstraints(event.target.value)}
-                rows={3}
-                value={constraints}
-              />
-            </div>
-            <div className="space-y-2">
-              <label className="text-sm font-medium text-slate-300">Target model</label>
-              <select
-                className={fieldClassName}
-                name="targetModel"
-                onChange={(event) => setTargetModel(event.target.value as Shot["targetModel"])}
-                value={targetModel}
-              >
-                <option value="sora">OpenAI Sora 2</option>
-                <option value="kling">Kling</option>
-                <option value="higgsfield">Higgsfield</option>
-              </select>
-            </div>
-          </div>
-
-          <div className="space-y-3 rounded-[28px] border border-white/8 bg-black/16 p-5">
-            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-              <div>
-                <p className="text-sm font-semibold text-white">Applied discovery tags</p>
-                <p className="mt-1 text-sm text-slate-400">
-                  Tags from the command bar can be folded into the prompt and persisted with this
-                  shot draft.
-                </p>
+          <BuilderSection
+            description="Start with the operator brief. Lock the title, intent, duration, and frame before you refine the creative details."
+            id="shot-setup"
+            step="Step 1"
+            title="Brief the shot"
+          >
+            <div className="grid gap-4 md:grid-cols-[minmax(0,1.3fr)_220px_180px]">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-300">Shot title</label>
+                <input
+                  className={fieldClassName}
+                  name="title"
+                  onChange={(event) => setTitle(event.target.value)}
+                  value={title}
+                />
               </div>
-              <StatusPill label={`${appliedTags.length} tags`} tone="info" />
-            </div>
-
-            {appliedTags.length > 0 ? (
-              <div className="flex flex-wrap gap-2">
-                {appliedTags.map((tag) => (
-                  <button
-                    className="inline-flex items-center gap-2 rounded-full border border-cyan-400/18 bg-cyan-400/10 px-3 py-2 text-xs font-semibold tracking-[0.14em] text-cyan-50 uppercase transition hover:border-rose-400/30 hover:bg-rose-400/10 hover:text-rose-50"
-                    key={tag.label}
-                    onClick={() => removeAppliedTag(tag.label)}
-                    type="button"
-                  >
-                    <span>{tag.label}</span>
-                    <span className="text-[10px] text-cyan-200/70">remove</span>
-                  </button>
-                ))}
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-300">Duration (seconds)</label>
+                <input
+                  className={fieldClassName}
+                  min={1}
+                  name="durationSeconds"
+                  onChange={(event) => setDurationSeconds(event.target.value)}
+                  step={1}
+                  type="number"
+                  value={durationSeconds}
+                />
               </div>
-            ) : (
-              <div className="rounded-2xl border border-dashed border-white/10 bg-white/3 px-4 py-4 text-sm leading-6 text-slate-400">
-                Run tag discovery in the command bar above, then apply one tag or the full pack to
-                this shot draft.
-              </div>
-            )}
-          </div>
-
-          <div className="space-y-3 rounded-[28px] border border-white/8 bg-black/16 p-5">
-            <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-              <div>
-                <p className="text-sm font-semibold text-white">Final composed prompt</p>
-                <p className="mt-1 text-sm text-slate-400">
-                  Structured fields auto-sync the final prompt unless you intentionally turn on a
-                  manual override.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-3">
-                <Button
-                  onClick={() => {
-                    setPromptOverrideEnabled((value) => !value);
-                  }}
-                  type="button"
-                  variant="secondary"
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-300">Aspect ratio</label>
+                <select
+                  className={fieldClassName}
+                  name="aspectRatio"
+                  onChange={(event) => setAspectRatio(event.target.value)}
+                  value={aspectRatio}
                 >
-                  {promptOverrideEnabled ? "Disable manual override" : "Enable manual override"}
-                </Button>
-                <Button onClick={refreshPromptText} type="button" variant="secondary">
-                  Recompose prompt
-                </Button>
+                  <option value="16:9">16:9</option>
+                  <option value="9:16">9:16</option>
+                  <option value="1:1">1:1</option>
+                </select>
               </div>
             </div>
 
-            <textarea
-              className={fieldClassName}
-              name="promptText"
-              onChange={(event) => {
-                setPromptText(event.target.value);
-                if (!promptOverrideEnabled) {
-                  setPromptOverrideEnabled(true);
-                }
-              }}
-              rows={10}
-              value={promptText}
-            />
-          </div>
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-300">Shot purpose</label>
+              <textarea
+                className={fieldClassName}
+                name="purpose"
+                onChange={(event) => setPurpose(event.target.value)}
+                rows={3}
+                value={purpose}
+              />
+            </div>
+          </BuilderSection>
 
-          <div className="space-y-2">
-            <label className="text-sm font-medium text-slate-300">Generation notes</label>
-            <textarea
-              className={fieldClassName}
-              onChange={(event) => setNotes(event.target.value)}
-              rows={6}
-              value={notes}
-            />
-            <p className="text-xs leading-5 text-slate-500">
-              Applied discovery tags are saved automatically with the shot draft and generation run.
-            </p>
-          </div>
+          <BuilderSection
+            description="Build the shot in plain language first. These structured fields are what the agent and generator router use to make smart decisions."
+            id="creative-direction"
+            step="Step 2"
+            title="Structure the creative direction"
+          >
+            <div className="grid gap-4 md:grid-cols-2">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-300">Subject</label>
+                <textarea
+                  className={fieldClassName}
+                  name="subject"
+                  onChange={(event) => setSubject(event.target.value)}
+                  rows={3}
+                  value={subject}
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-300">Action</label>
+                <textarea
+                  className={fieldClassName}
+                  name="action"
+                  onChange={(event) => setAction(event.target.value)}
+                  rows={3}
+                  value={action}
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-300">Camera</label>
+                <textarea
+                  className={fieldClassName}
+                  name="camera"
+                  onChange={(event) => setCamera(event.target.value)}
+                  rows={3}
+                  value={camera}
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-300">Environment</label>
+                <textarea
+                  className={fieldClassName}
+                  name="environment"
+                  onChange={(event) => setEnvironment(event.target.value)}
+                  rows={3}
+                  value={environment}
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-300">Lighting</label>
+                <textarea
+                  className={fieldClassName}
+                  name="lighting"
+                  onChange={(event) => setLighting(event.target.value)}
+                  rows={3}
+                  value={lighting}
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-300">Mood</label>
+                <textarea
+                  className={fieldClassName}
+                  name="mood"
+                  onChange={(event) => setMood(event.target.value)}
+                  rows={3}
+                  value={mood}
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-300">Visual style</label>
+                <textarea
+                  className={fieldClassName}
+                  name="visualStyle"
+                  onChange={(event) => setVisualStyle(event.target.value)}
+                  rows={3}
+                  value={visualStyle}
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-300">
+                  Dialogue / audio intent
+                </label>
+                <textarea
+                  className={fieldClassName}
+                  name="dialogueAudioIntent"
+                  onChange={(event) => setDialogueAudioIntent(event.target.value)}
+                  rows={3}
+                  value={dialogueAudioIntent}
+                />
+              </div>
+            </div>
 
-          {!persistenceEnabled ? (
-            <p className="rounded-2xl border border-amber-400/20 bg-amber-400/10 px-4 py-3 text-sm text-amber-100">
-              Demo mode is active. Connect Supabase and sign in as an operator to save prompt edits
-              and record generation requests.
-            </p>
-          ) : null}
+            <div className="space-y-3 rounded-[24px] border border-white/8 bg-black/16 p-5">
+              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="text-sm font-semibold text-white">Applied discovery tags</p>
+                  <p className="mt-1 text-sm text-slate-400">
+                    Tags from the command bar can be folded into the prompt and saved with the shot
+                    so future runs inherit the same audience signals.
+                  </p>
+                </div>
+                <StatusPill label={`${appliedTags.length} tags`} tone="info" />
+              </div>
 
-          {persistenceEnabled && targetModel === "sora" && aspectRatio === "1:1" ? (
-            <p className="rounded-2xl border border-amber-400/20 bg-amber-400/10 px-4 py-3 text-sm text-amber-100">
-              The live Sora integration currently supports `16:9` and `9:16` only in this
-              workspace. Route square shots to another provider for now.
-            </p>
-          ) : null}
+              {appliedTags.length > 0 ? (
+                <div className="flex flex-wrap gap-2">
+                  {appliedTags.map((tag) => (
+                    <button
+                      className="inline-flex items-center gap-2 rounded-full border border-cyan-400/18 bg-cyan-400/10 px-3 py-2 text-xs font-semibold tracking-[0.14em] text-cyan-50 uppercase transition hover:border-rose-400/30 hover:bg-rose-400/10 hover:text-rose-50"
+                      key={tag.label}
+                      onClick={() => removeAppliedTag(tag.label)}
+                      type="button"
+                    >
+                      <span>{tag.label}</span>
+                      <span className="text-[10px] text-cyan-200/70">remove</span>
+                    </button>
+                  ))}
+                </div>
+              ) : (
+                <div className="rounded-2xl border border-dashed border-white/10 bg-white/3 px-4 py-4 text-sm leading-6 text-slate-400">
+                  Run tag discovery in the command bar, then apply a tag pack here to steer the
+                  shot toward the right audience and creative angle.
+                </div>
+              )}
+            </div>
+          </BuilderSection>
 
-          {tagApplicationMessage ? (
-            <p className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-sm text-cyan-100">
-              {tagApplicationMessage}
-            </p>
-          ) : null}
+          <BuilderSection
+            description="Choose the engine that gives this shot the best chance of landing. Keep the provider guidance visible, but simple enough for operators to trust quickly."
+            id="routing-stage"
+            step="Step 3"
+            title="Route the best engine"
+          >
+            <div className="grid gap-4 md:grid-cols-[minmax(0,1fr)_220px]">
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-300">Constraints</label>
+                <textarea
+                  className={fieldClassName}
+                  name="constraints"
+                  onChange={(event) => setConstraints(event.target.value)}
+                  rows={3}
+                  value={constraints}
+                />
+              </div>
+              <div className="space-y-2">
+                <label className="text-sm font-medium text-slate-300">Target model</label>
+                <select
+                  className={fieldClassName}
+                  name="targetModel"
+                  onChange={(event) => setTargetModel(event.target.value as Shot["targetModel"])}
+                  value={targetModel}
+                >
+                  <option value="sora">OpenAI Sora 2</option>
+                  <option value="kling">Kling</option>
+                  <option value="higgsfield">Higgsfield</option>
+                </select>
+              </div>
+            </div>
 
-          {state.error ? (
-            <p className="rounded-2xl border border-rose-400/20 bg-rose-400/10 px-4 py-3 text-sm text-rose-100">
-              {state.error}
-            </p>
-          ) : null}
+            <div className="rounded-[24px] border border-cyan-400/18 bg-cyan-400/10 p-5">
+              <div className="flex flex-col gap-3 md:flex-row md:items-start md:justify-between">
+                <div>
+                  <p className="text-xs font-semibold tracking-[0.18em] text-cyan-100/70 uppercase">
+                    Recommended route
+                  </p>
+                  <h4 className="mt-2 text-lg font-semibold text-white">
+                    {routingRecommendation.model}
+                  </h4>
+                  <p className="mt-2 text-sm leading-6 text-cyan-50/90">
+                    {routingRecommendation.fitSummary}
+                  </p>
+                </div>
+                <StatusPill label="Agent recommendation" tone="info" />
+              </div>
+              <p className="mt-4 text-sm leading-6 text-cyan-50/75">
+                {routingRecommendation.rationale}
+              </p>
+            </div>
+          </BuilderSection>
 
-          {state.success ? (
-            <p className="rounded-2xl border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-100">
-              {state.success}
-            </p>
-          ) : null}
-
-          {generationError ? (
-            <p className="rounded-2xl border border-rose-400/20 bg-rose-400/10 px-4 py-3 text-sm text-rose-100">
-              {generationError}
-            </p>
-          ) : null}
-
-          {generationSuccess ? (
-            <p className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-sm text-cyan-100">
-              {generationSuccess}
-            </p>
-          ) : null}
-
-          <div className="flex flex-wrap justify-end gap-3">
-            <Button disabled={!persistenceEnabled || isSaving} type="submit" variant="secondary">
-              {isSaving ? "Saving..." : "Save prompt draft"}
-            </Button>
-            <Button
-              disabled={!persistenceEnabled || isGenerating || isSaving}
-              onClick={handleGenerate}
-              type="button"
+          <BuilderSection
+            description="This is the handoff prompt the providers see. Auto-compose it from the structure above, or manually override when a shot needs careful steering."
+            id="generate-stage"
+            step="Step 4"
+            title="Generate and compare"
+          >
+            <div
+              className="space-y-3 rounded-[24px] border border-white/8 bg-black/16 p-5"
+              id="final-prompt-stage"
             >
-              {isGenerating ? "Generating..." : "Generate run"}
-            </Button>
-          </div>
+              <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+                <div>
+                  <p className="text-sm font-semibold text-white">Final composed prompt</p>
+                  <p className="mt-1 text-sm text-slate-400">
+                    Structured fields auto-sync the final prompt unless you intentionally turn on a
+                    manual override.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-3">
+                  <Button
+                    onClick={() => {
+                      setPromptOverrideEnabled((value) => !value);
+                    }}
+                    type="button"
+                    variant="secondary"
+                  >
+                    {promptOverrideEnabled ? "Disable manual override" : "Enable manual override"}
+                  </Button>
+                  <Button onClick={refreshPromptText} type="button" variant="secondary">
+                    Recompose prompt
+                  </Button>
+                </div>
+              </div>
+
+              <textarea
+                className={fieldClassName}
+                name="promptText"
+                onChange={(event) => {
+                  setPromptText(event.target.value);
+                  if (!promptOverrideEnabled) {
+                    setPromptOverrideEnabled(true);
+                  }
+                }}
+                rows={10}
+                value={promptText}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <label className="text-sm font-medium text-slate-300">Generation notes</label>
+              <textarea
+                className={fieldClassName}
+                onChange={(event) => setNotes(event.target.value)}
+                rows={6}
+                value={notes}
+              />
+              <p className="text-xs leading-5 text-slate-500">
+                Applied discovery tags are saved automatically with the shot draft and generation
+                run.
+              </p>
+            </div>
+
+            {!persistenceEnabled ? (
+              <p className="rounded-2xl border border-amber-400/20 bg-amber-400/10 px-4 py-3 text-sm text-amber-100">
+                Demo mode is active. Connect Supabase and sign in as an operator to save prompt
+                edits and record generation requests.
+              </p>
+            ) : null}
+
+            {persistenceEnabled && targetModel === "sora" && aspectRatio === "1:1" ? (
+              <p className="rounded-2xl border border-amber-400/20 bg-amber-400/10 px-4 py-3 text-sm text-amber-100">
+                The live Sora integration currently supports `16:9` and `9:16` only in this
+                workspace. Route square shots to another provider for now.
+              </p>
+            ) : null}
+
+            {tagApplicationMessage ? (
+              <p className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-sm text-cyan-100">
+                {tagApplicationMessage}
+              </p>
+            ) : null}
+
+            {state.error ? (
+              <p className="rounded-2xl border border-rose-400/20 bg-rose-400/10 px-4 py-3 text-sm text-rose-100">
+                {state.error}
+              </p>
+            ) : null}
+
+            {state.success ? (
+              <p className="rounded-2xl border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-100">
+                {state.success}
+              </p>
+            ) : null}
+
+            {generationError ? (
+              <p className="rounded-2xl border border-rose-400/20 bg-rose-400/10 px-4 py-3 text-sm text-rose-100">
+                {generationError}
+              </p>
+            ) : null}
+
+            {generationSuccess ? (
+              <p className="rounded-2xl border border-cyan-400/20 bg-cyan-400/10 px-4 py-3 text-sm text-cyan-100">
+                {generationSuccess}
+              </p>
+            ) : null}
+
+            <div className="flex flex-col gap-4 rounded-[24px] border border-white/8 bg-white/4 p-4 md:flex-row md:items-center md:justify-between">
+              <p className="max-w-2xl text-sm leading-6 text-slate-400">
+                Save the draft before you generate if you want the current brief, tags, and notes
+                preserved exactly as this run was launched.
+              </p>
+              <div className="flex flex-wrap justify-end gap-3">
+                <Button disabled={!persistenceEnabled || isSaving} type="submit" variant="secondary">
+                  {isSaving ? "Saving..." : "Save prompt draft"}
+                </Button>
+                <Button
+                  disabled={!persistenceEnabled || isGenerating || isSaving}
+                  onClick={handleGenerate}
+                  type="button"
+                >
+                  {isGenerating ? "Generating..." : "Generate run"}
+                </Button>
+              </div>
+            </div>
+          </BuilderSection>
+
+          <BuilderSection
+            description="Once a run lands, move quickly into selects, scoring, and edit handoff. Keep the next operator action obvious."
+            id="review-stage"
+            step="Step 5"
+            title="Review and hand off"
+          >
+            <div className="grid gap-4 md:grid-cols-3">
+              <div className="rounded-[24px] border border-white/8 bg-black/16 p-4">
+                <p className="text-xs font-semibold tracking-[0.18em] text-slate-500 uppercase">
+                  Runs logged
+                </p>
+                <p className="mt-3 text-3xl font-semibold text-white">{generations.length}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-400">
+                  Compare outputs before you commit to a select.
+                </p>
+              </div>
+              <div className="rounded-[24px] border border-white/8 bg-black/16 p-4">
+                <p className="text-xs font-semibold tracking-[0.18em] text-slate-500 uppercase">
+                  Reviews logged
+                </p>
+                <p className="mt-3 text-3xl font-semibold text-white">{reviewCount}</p>
+                <p className="mt-2 text-sm leading-6 text-slate-400">
+                  Score fast so the best run moves into the edit lane.
+                </p>
+              </div>
+              <div className="rounded-[24px] border border-white/8 bg-black/16 p-4">
+                <p className="text-xs font-semibold tracking-[0.18em] text-slate-500 uppercase">
+                  Current shot status
+                </p>
+                <div className="mt-3">
+                  <StatusPill status={shot.status} />
+                </div>
+                <p className="mt-3 text-sm leading-6 text-slate-400">
+                  Keep the shot moving by checking assets, reviewing the output, and logging the
+                  handoff decision.
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-3">
+              <a
+                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/6 px-4 py-2 text-xs font-semibold tracking-[0.14em] text-slate-100 uppercase transition hover:border-white/18 hover:bg-white/10"
+                href="#associated-assets"
+              >
+                Jump to assets
+              </a>
+              <a
+                className="inline-flex items-center justify-center rounded-full border border-cyan-400/18 bg-cyan-400/10 px-4 py-2 text-xs font-semibold tracking-[0.14em] text-cyan-50 uppercase transition hover:border-cyan-300/40 hover:bg-cyan-400/14"
+                href="#review-panel"
+              >
+                Open review panel
+              </a>
+              <a
+                className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/6 px-4 py-2 text-xs font-semibold tracking-[0.14em] text-slate-100 uppercase transition hover:border-white/18 hover:bg-white/10"
+                href="/dashboard/reviews"
+              >
+                Review workspace
+              </a>
+            </div>
+          </BuilderSection>
         </form>
       </div>
 
       <div className="grid gap-6">
-        <div className="app-shell rounded-[30px] p-6">
+        <div className="app-shell rounded-[30px] p-6" id="generation-history">
           <p className="text-sm font-semibold tracking-[0.18em] text-slate-400 uppercase">
             Model routing
           </p>

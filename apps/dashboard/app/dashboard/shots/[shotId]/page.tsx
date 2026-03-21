@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PromptBuilder } from "@/components/shots/prompt-builder";
+import { ShotWorkflowCoach } from "@/components/shots/shot-workflow-coach";
 import { Panel } from "@/components/studio/panel";
 import { StatusPill } from "@/components/studio/status-pill";
 import { ButtonLink } from "@/components/ui/button";
@@ -74,16 +75,27 @@ export default async function ShotDetailPage({ params }: ShotDetailPageProps) {
         </div>
       </Panel>
 
+      <ShotWorkflowCoach
+        campaignId={detail.campaign.id}
+        generations={detail.generations}
+        reviewRecords={detail.reviews}
+        routingRecommendation={detail.routingRecommendation}
+        shot={detail.shot}
+        shotAssets={shotAssets}
+        supportAssetCount={campaignAssets.length}
+      />
+
       <PromptBuilder
         generations={detail.generations}
         mode={detail.mode}
         persistenceEnabled={isStudioPersistenceEnabled()}
         promptTemplates={detail.promptTemplates}
+        reviewCount={detail.reviews.length}
         routingRecommendation={detail.routingRecommendation}
         shot={detail.shot}
       />
 
-      <section className="grid gap-6 xl:grid-cols-[minmax(0,1.1fr)_420px]">
+      <section className="grid gap-6 xl:grid-cols-[minmax(0,1.1fr)_420px]" id="associated-assets">
         <Panel className="p-6">
           <div className="flex items-center justify-between gap-4">
             <div>
@@ -157,7 +169,7 @@ export default async function ShotDetailPage({ params }: ShotDetailPageProps) {
           ) : null}
         </Panel>
 
-        <Panel className="p-6">
+        <Panel className="p-6" id="review-panel">
           <p className="text-sm font-semibold tracking-[0.18em] text-slate-400 uppercase">
             Review panel
           </p>

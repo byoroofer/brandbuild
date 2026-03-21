@@ -264,7 +264,10 @@ export function TagDiscoveryDock() {
   }
 
   return (
-    <div className="rounded-[28px] border border-white/8 bg-[linear-gradient(180deg,rgba(10,14,22,0.92),rgba(6,10,18,0.86))] p-4">
+    <div
+      className="rounded-[28px] border border-white/8 bg-[linear-gradient(180deg,rgba(10,14,22,0.92),rgba(6,10,18,0.86))] p-4"
+      id="tag-discovery-dock"
+    >
       <div className="grid gap-5 xl:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.9fr)]">
         <div className="space-y-4">
           <div className="flex flex-wrap items-center gap-2">
