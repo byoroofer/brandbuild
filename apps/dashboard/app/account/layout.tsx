@@ -2,7 +2,7 @@ import type { ReactNode } from "react";
 
 import { AccountShell } from "@/components/account/account-shell";
 import { getAccountSnapshot } from "@/lib/account/repository";
-import { requireAccountRequestContext } from "@/lib/account/server";
+import { requireAccountRequestContextOrRedirect } from "@/lib/account/server";
 
 type AccountLayoutProps = {
   children: ReactNode;
@@ -11,7 +11,7 @@ type AccountLayoutProps = {
 export const dynamic = "force-dynamic";
 
 export default async function AccountLayout({ children }: AccountLayoutProps) {
-  const context = await requireAccountRequestContext();
+  const context = await requireAccountRequestContextOrRedirect("/account");
   const snapshot = await getAccountSnapshot(context);
 
   return (
@@ -22,4 +22,3 @@ export default async function AccountLayout({ children }: AccountLayoutProps) {
     </div>
   );
 }
-

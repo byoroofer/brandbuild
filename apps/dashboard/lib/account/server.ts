@@ -2,6 +2,7 @@ import { createHash, randomUUID } from "node:crypto";
 
 import { createClient, type User } from "@supabase/supabase-js";
 import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 import {
   accountAvatarAllowedMimeTypes,
@@ -178,6 +179,21 @@ export async function requireAccountRequestContext(request?: Request): Promise<A
     user,
     userAgent: headerStore.get("user-agent"),
   };
+}
+
+export async function requireAccountRequestContextOrRedirect(
+  redirectedFrom: string,
+  request?: Request,
+) {
+  try {
+    return await requireAccountRequestContext(request);
+  } catch (error) {
+    if (error instanceof AccountApiError && error.status === 401) {
+      redirect(`/login?redirectedFrom=${encodeURIComponent(redirectedFrom)}`);
+    }
+
+    throw error;
+  }
 }
 
 export function assertSameOrigin(request: Request) {

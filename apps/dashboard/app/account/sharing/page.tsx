@@ -1,10 +1,10 @@
 import { SettingsSection } from "@/components/account/settings-section";
 import { ShareProfileCard } from "@/components/account/share-profile-card";
 import { getAccountSnapshot } from "@/lib/account/repository";
-import { requireAccountRequestContext } from "@/lib/account/server";
+import { requireAccountRequestContextOrRedirect } from "@/lib/account/server";
 
 export default async function AccountSharingPage() {
-  const context = await requireAccountRequestContext();
+  const context = await requireAccountRequestContextOrRedirect("/account/sharing");
   const snapshot = await getAccountSnapshot(context);
 
   return (

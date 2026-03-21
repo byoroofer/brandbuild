@@ -1,10 +1,10 @@
 import { SecuritySettingsForm } from "@/components/account/security-settings-form";
 import { SettingsSection } from "@/components/account/settings-section";
 import { getAccountSnapshot } from "@/lib/account/repository";
-import { requireAccountRequestContext } from "@/lib/account/server";
+import { requireAccountRequestContextOrRedirect } from "@/lib/account/server";
 
 export default async function AccountSecurityPage() {
-  const context = await requireAccountRequestContext();
+  const context = await requireAccountRequestContextOrRedirect("/account/security");
   const snapshot = await getAccountSnapshot(context);
 
   return (

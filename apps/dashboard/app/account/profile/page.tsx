@@ -1,10 +1,10 @@
 import { ProfileSettingsForm } from "@/components/account/profile-settings-form";
 import { SettingsSection } from "@/components/account/settings-section";
 import { getAccountSnapshot } from "@/lib/account/repository";
-import { requireAccountRequestContext } from "@/lib/account/server";
+import { requireAccountRequestContextOrRedirect } from "@/lib/account/server";
 
 export default async function AccountProfilePage() {
-  const context = await requireAccountRequestContext();
+  const context = await requireAccountRequestContextOrRedirect("/account/profile");
   const snapshot = await getAccountSnapshot(context);
 
   return (
@@ -17,4 +17,3 @@ export default async function AccountProfilePage() {
     </SettingsSection>
   );
 }
-

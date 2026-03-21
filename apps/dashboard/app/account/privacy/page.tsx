@@ -1,10 +1,10 @@
 import { PrivacySettingsForm } from "@/components/account/privacy-settings-form";
 import { SettingsSection } from "@/components/account/settings-section";
 import { getAccountSnapshot } from "@/lib/account/repository";
-import { requireAccountRequestContext } from "@/lib/account/server";
+import { requireAccountRequestContextOrRedirect } from "@/lib/account/server";
 
 export default async function AccountPrivacyPage() {
-  const context = await requireAccountRequestContext();
+  const context = await requireAccountRequestContextOrRedirect("/account/privacy");
   const snapshot = await getAccountSnapshot(context);
   const marketingPreference = snapshot.notifications.find((item) => item.topic === "marketing");
 
@@ -22,4 +22,3 @@ export default async function AccountPrivacyPage() {
     </SettingsSection>
   );
 }
-

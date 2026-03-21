@@ -3,10 +3,10 @@ import Link from "next/link";
 import { SettingsSection } from "@/components/account/settings-section";
 import { accountRouteItems } from "@/lib/account/constants";
 import { getAccountSnapshot } from "@/lib/account/repository";
-import { requireAccountRequestContext } from "@/lib/account/server";
+import { requireAccountRequestContextOrRedirect } from "@/lib/account/server";
 
 export default async function AccountOverviewPage() {
-  const context = await requireAccountRequestContext();
+  const context = await requireAccountRequestContextOrRedirect("/account");
   const snapshot = await getAccountSnapshot(context);
 
   return (
@@ -69,4 +69,3 @@ export default async function AccountOverviewPage() {
     </div>
   );
 }
-
