@@ -7,21 +7,13 @@ type ProfileRouteState = Pick<
 > | null;
 
 export function getDashboardPathForRole(role: AppRole) {
-  return role === "creator" ? "/dashboard/creator" : "/dashboard/campaign";
+  return "/dashboard";
 }
 
 export function getOnboardingPathForRole(role: AppRole) {
-  return role === "creator" ? "/creator/onboarding" : "/campaign/onboarding";
+  return "/dashboard";
 }
 
 export function getSignedInDestination(profile: ProfileRouteState) {
-  if (!profile?.role) {
-    return "/signup?step=role";
-  }
-
-  if (!profile.onboarding_completed) {
-    return getOnboardingPathForRole(profile.role);
-  }
-
-  return getDashboardPathForRole(profile.role);
+  return "/dashboard";
 }
