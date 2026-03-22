@@ -4,7 +4,7 @@ import { createStudioWriteClient } from "@/lib/db/client";
 import { maybeMirrorGeneratedAssetToStorage } from "@/lib/db/generated-asset-storage";
 import type { SaveShotPromptDraftInput } from "@/lib/db/shots";
 import { saveShotPromptDraft } from "@/lib/db/shots";
-import { isSupabaseAdminAvailable } from "@/lib/supabase/admin";
+import { createAdminSupabaseClient, isSupabaseAdminAvailable } from "@/lib/supabase/admin";
 import { getProvider } from "@/lib/providers/router";
 import type { GenerationJob } from "@/lib/studio/providers/types";
 import { parseStoragePointer } from "@/lib/utils/storage";
@@ -216,6 +216,49 @@ function buildStatusSyncNote(job: GenerationJob, title: string) {
   return `Mock ${providerLabel} status refreshed for ${title}.`;
 }
 
+async function resolveProviderReferenceAssetUrls(
+  assets: Array<{
+    file_url: string;
+    metadata_json: Database["public"]["Tables"]["assets"]["Row"]["metadata_json"];
+  }>,
+) {
+  const admin = isSupabaseAdminAvailable() ? createAdminSupabaseClient() : null;
+  const resolvedUrls = await Promise.all(
+    assets.map(async (asset) => {
+      const storagePointer = parseStoragePointer(asset.file_url);
+
+      if (!storagePointer) {
+        return asset.file_url;
+      }
+
+      if (!admin) {
+        if (
+          asset.metadata_json &&
+          typeof asset.metadata_json === "object" &&
+          !Array.isArray(asset.metadata_json) &&
+          typeof asset.metadata_json.provider_source_url === "string"
+        ) {
+          return asset.metadata_json.provider_source_url;
+        }
+
+        return null;
+      }
+
+      const signedUrlResult = await admin.storage
+        .from(storagePointer.bucket)
+        .createSignedUrl(storagePointer.objectPath, 60 * 60);
+
+      if (!signedUrlResult.error && signedUrlResult.data?.signedUrl) {
+        return signedUrlResult.data.signedUrl;
+      }
+
+      return null;
+    }),
+  );
+
+  return resolvedUrls.filter((value): value is string => Boolean(value));
+}
+
 async function syncCompletedGenerationAssets(input: {
   campaignId: string;
   generation: Database["public"]["Tables"]["shot_generations"]["Row"];
@@ -419,26 +462,25 @@ export async function triggerShotGeneration(input: SaveShotPromptDraftInput) {
 
   const { data: referenceAssets, error: assetsError } = await supabase
     .from("assets")
-    .select("file_url, shot_id, type")
+    .select("file_url, metadata_json, shot_id, type")
     .eq("campaign_id", updatedShot.campaign_id);
 
   if (assetsError) {
     throw assetsError;
   }
 
-  const referenceAssetUrls =
-    referenceAssets
-      ?.filter(
-        (asset) =>
-          asset.shot_id === input.shotId ||
-          asset.shot_id === null ||
-          asset.type === "reference_image" ||
+  const candidateReferenceAssets =
+    referenceAssets?.filter(
+      (asset) =>
+        (asset.shot_id === input.shotId || asset.shot_id === null) &&
+        (asset.type === "reference_image" ||
           asset.type === "reference_video" ||
           asset.type === "product_image" ||
           asset.type === "character_sheet" ||
-          asset.type === "moodboard",
-      )
-      .map((asset) => asset.file_url) ?? [];
+          asset.type === "moodboard" ||
+          asset.type === "logo"),
+    ) ?? [];
+  const referenceAssetUrls = await resolveProviderReferenceAssetUrls(candidateReferenceAssets);
 
   const provider = getProvider(input.targetModel);
   const job = await provider.enqueue({

@@ -30,6 +30,30 @@ export const tagDiscoveryAudioExtensions = [
 
 export const maxTagDiscoveryAudioBytes = 8 * 1024 * 1024;
 export const maxTagDiscoveryQueryCharacters = 800;
+export const uploadableStudioAssetTypes = [
+  "reference_image",
+  "reference_video",
+  "product_image",
+  "character_sheet",
+  "moodboard",
+  "logo",
+] as const;
+export const studioImageUploadMimeTypes = [
+  "image/jpeg",
+  "image/png",
+  "image/webp",
+] as const;
+export const studioVideoUploadMimeTypes = [
+  "video/mp4",
+  "video/quicktime",
+  "video/webm",
+] as const;
+export const maxStudioImageUploadBytes = 10 * 1024 * 1024;
+export const maxStudioVideoUploadBytes = 20 * 1024 * 1024;
+
+export const studioAssetUploadSchema = z.object({
+  assetType: z.enum(uploadableStudioAssetTypes),
+});
 
 export const campaignCreateSchema = z.object({
   audience: z.string().min(1, "Audience is required."),

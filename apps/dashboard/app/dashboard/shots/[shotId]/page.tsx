@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 
 import { PromptBuilder } from "@/components/shots/prompt-builder";
+import { ShotAssetUploader } from "@/components/shots/shot-asset-uploader";
 import { ShotWorkflowCoach } from "@/components/shots/shot-workflow-coach";
 import { Panel } from "@/components/studio/panel";
 import { StatusPill } from "@/components/studio/status-pill";
@@ -21,6 +22,22 @@ function formatAverage(values: number[]) {
   }
 
   return (values.reduce((total, value) => total + value, 0) / values.length).toFixed(1);
+}
+
+function isVideoAsset(mimeType: string | null | undefined, assetType: string) {
+  if (mimeType?.startsWith("video/")) {
+    return true;
+  }
+
+  return assetType === "reference_video" || assetType === "generated_video";
+}
+
+function isImageAsset(mimeType: string | null | undefined, assetType: string) {
+  if (mimeType?.startsWith("image/")) {
+    return true;
+  }
+
+  return !isVideoAsset(mimeType, assetType);
 }
 
 export default async function ShotDetailPage({ params }: ShotDetailPageProps) {
@@ -114,12 +131,44 @@ export default async function ShotDetailPage({ params }: ShotDetailPageProps) {
             </Link>
           </div>
 
+          <div className="mt-6">
+            <ShotAssetUploader
+              persistenceEnabled={isStudioPersistenceEnabled()}
+              shotId={detail.shot.id}
+              targetModel={detail.shot.targetModel}
+            />
+          </div>
+
           <div className="mt-6 grid gap-4 md:grid-cols-2">
             {shotAssets.map((asset) => (
               <div className="rounded-[24px] border border-white/8 bg-black/14 p-4" key={asset.id}>
+                {isVideoAsset(asset.mimeType, asset.type) ? (
+                  <div className="mb-4 overflow-hidden rounded-[20px] border border-white/8 bg-black/30">
+                    <video
+                      className="h-56 w-full object-cover"
+                      controls
+                      muted
+                      playsInline
+                      preload="metadata"
+                      src={asset.fileUrl}
+                    />
+                  </div>
+                ) : null}
+                {isImageAsset(asset.mimeType, asset.type) ? (
+                  <div className="mb-4 overflow-hidden rounded-[20px] border border-white/8 bg-black/30">
+                    <img
+                      alt={asset.fileName}
+                      className="h-56 w-full object-cover"
+                      src={asset.fileUrl}
+                    />
+                  </div>
+                ) : null}
                 <div className="flex items-start justify-between gap-3">
                   <div>
                     <p className="font-semibold text-white">{asset.fileName}</p>
+                    <p className="mt-2 text-xs tracking-[0.14em] text-slate-500 uppercase">
+                      {asset.source ?? "upload"} / {new Date(asset.createdAt).toLocaleDateString()}
+                    </p>
                     <a
                       className="mt-2 inline-flex text-sm text-cyan-300 transition hover:text-cyan-200"
                       href={asset.fileUrl}
@@ -143,8 +192,8 @@ export default async function ShotDetailPage({ params }: ShotDetailPageProps) {
 
             {shotAssets.length === 0 ? (
               <div className="rounded-[24px] border border-dashed border-white/10 bg-black/14 p-6 text-sm leading-6 text-slate-400">
-                No shot-linked assets are tracked yet. Use the asset library as the next step when
-                uploads and generation outputs land.
+                No shot-linked assets are tracked yet. Upload a reference image or short reference
+                video above, then launch the next generation run with that material attached.
               </div>
             ) : null}
           </div>
