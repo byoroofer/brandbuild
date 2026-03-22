@@ -3,11 +3,15 @@ import "server-only";
 import type { ProviderCatalogItem } from "@/lib/studio/providers/types";
 
 function hasOpenAiSoraCredentials() {
-  return Boolean(process.env.OPENAI_API_KEY || process.env.SORA_API_KEY);
+  return Boolean(
+    process.env.OPENAI_API_KEY?.trim() || process.env.SORA_API_KEY?.trim(),
+  );
 }
 
 function hasKlingCredentials() {
-  return Boolean(process.env.KLING_API_KEY && process.env.KLING_API_SECRET);
+  return Boolean(
+    process.env.KLING_API_KEY?.trim() && process.env.KLING_API_SECRET?.trim(),
+  );
 }
 
 function hasHiggsfieldCredentials() {

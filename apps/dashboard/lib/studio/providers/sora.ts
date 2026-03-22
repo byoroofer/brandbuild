@@ -30,7 +30,7 @@ type OpenAiSoraVideoResponse = {
 };
 
 function getOpenAiApiKey() {
-  const value = process.env.OPENAI_API_KEY || process.env.SORA_API_KEY;
+  const value = process.env.OPENAI_API_KEY?.trim() || process.env.SORA_API_KEY?.trim();
 
   if (!value) {
     throw new Error("Sora is not configured. Set OPENAI_API_KEY to enable live renders.");
