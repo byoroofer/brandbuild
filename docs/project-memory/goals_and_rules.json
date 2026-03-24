@@ -1,0 +1,43 @@
+﻿{
+    "mission":  "Operate BrandBuild / AI Video as the canonical product repo for the shared AI video platform while keeping unrelated BYOR-owned roofing features out of this codebase.",
+    "primary_goals":  [
+                          "Keep apps/dashboard as the main supported product surface.",
+                          "Maintain clean provider-abstraction and internal dashboard workflows.",
+                          "Prevent cross-product contamination from BYOR."
+                      ],
+    "secondary_goals":  [
+                            "Reduce naming drift between BrandBuild and AI Video Studio where practical.",
+                            "Maintain durable project memory inside the repo."
+                        ],
+    "non_goals":  [
+                      "Do not host BYOR roof-measure runtime features here.",
+                      "Do not turn this repo into the sandbox/testbed when the separate sandbox already exists."
+                  ],
+    "hard_rules":  [
+                       "BrandBuild and AI Video are the same product family by user direction.",
+                       "BYOR-owned roof-measure code belongs in BYOR, not in this repo.",
+                       "Use .project-memory as the canonical durable memory location for this repo."
+                   ],
+    "strong_preferences":  [
+                               "Keep forbidden-reference checks product-neutral and focused on boundary enforcement.",
+                               "Prefer promoting stable work here from the sandbox instead of duplicating long-term effort."
+                           ],
+    "optional_preferences":  [
+                                 "Reconcile naming drift over time so package identity and repo marketing language align better."
+                             ],
+    "business_constraints":  [
+                                 "This is the canonical repo for the BrandBuild / AI Video product family."
+                             ],
+    "technical_constraints":  [
+                                  "apps/dashboard remains the maintained product surface.",
+                                  "Typecheck should keep passing after cleanup batches."
+                              ],
+    "compliance_notes":  [
+                             "Keep provider logic server-side and behind internal adapters as described in repo docs."
+                         ],
+    "definitions_of_done":  [
+                                "No BYOR-owned roofing features remain in the runtime source tree.",
+                                "Boundary checks pass.",
+                                "Project memory files stay current."
+                            ]
+}

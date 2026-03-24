@@ -166,6 +166,16 @@ export default async function DashboardHomePage() {
                 Compare realism, brand fit, hook strength, and editability before final handoff.
               </p>
             </Link>
+            <Link
+              className="rounded-[24px] border border-white/8 bg-black/14 p-4 transition hover:border-white/16"
+              href="/dashboard/settings"
+            >
+              <p className="font-semibold text-white">Open system settings</p>
+              <p className="mt-2 text-sm leading-6 text-slate-400">
+                Inspect provider readiness, integration gaps, and the next build order without
+                leaving the product.
+              </p>
+            </Link>
           </div>
         </Panel>
       </section>

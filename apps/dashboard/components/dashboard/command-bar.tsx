@@ -56,6 +56,12 @@ export function CommandBar({ mode }: CommandBarProps) {
               >
                 Shot queue
               </Link>
+              <Link
+                className="text-sm font-medium text-slate-400 transition hover:text-white"
+                href="/dashboard/settings"
+              >
+                Settings
+              </Link>
             </div>
           </div>
 

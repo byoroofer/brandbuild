@@ -1,0 +1,125 @@
+{
+  "project": {
+    "name": "BrandBuild",
+    "repo": "brandbuild",
+    "local_path": "D:\\Playground\\brandbuild-online-repo",
+    "production_url": "https://brandbuild.online",
+    "updated_at": "2026-03-24T18:52:00-05:00"
+  },
+  "current_product_objective": "Build BrandBuild into a premium creative production operating system that unifies Sora, Kling, and Higgsfield for prompt creation, asset upload, generation orchestration, review, versioning, and delivery.",
+  "stack_summary": [
+    "Next.js App Router",
+    "TypeScript",
+    "React 19",
+    "Tailwind CSS 4",
+    "Supabase",
+    "Vercel",
+    "OpenAI API",
+    "Kling API",
+    "Higgsfield API"
+  ],
+  "architecture_summary": {
+    "current_spine": [
+      "campaigns",
+      "scenes",
+      "shots",
+      "assets",
+      "reviews",
+      "shot_generations",
+      "prompt_templates",
+      "activity_log"
+    ],
+    "current_strengths": [
+      "Shared provider adapter layer",
+      "Structured shot prompt builder",
+      "Private shot asset uploads",
+      "Generation status refresh",
+      "Asset sync from successful generations",
+      "Premium dark dashboard shell"
+    ],
+    "current_gaps": [
+      "No dedicated compare outputs workspace",
+      "No version group or timeline model",
+      "No export bundle or edit handoff layer",
+      "No usage or cost tracking surface",
+      "No admin/debug console"
+    ]
+  },
+  "current_working_features": [
+    "Campaign, shot, asset, and review pages",
+    "Guided prompt builder on shot detail",
+    "Provider routing recommendations",
+    "Studio Agent and tag discovery",
+    "Private shot asset upload flow",
+    "Live-capable Sora, Kling, and Higgsfield adapters",
+    "Settings/control-center audit page at /dashboard/settings"
+  ],
+  "broken_or_blocked_features": [
+    "Branded auth emails are coded but still blocked by manual Supabase dashboard setup.",
+    "Live provider success is not fully validated end to end for Sora, Kling, and Higgsfield.",
+    "The repository can fall back to demo mode too aggressively when live queries partially fail."
+  ],
+  "pending_integrations": {
+    "sora": [
+      "Validate one real dashboard run",
+      "Add background polling or webhook support",
+      "Persist cost and timing telemetry"
+    ],
+    "kling": [
+      "Validate one real dashboard run",
+      "Add webhook/background refresh support",
+      "Expand beyond the current text-to-video path"
+    ],
+    "higgsfield": [
+      "Validate one real reference-image-led dashboard run",
+      "Add product-managed model selection",
+      "Implement webhook/background refresh support"
+    ]
+  },
+  "credentials_or_manual_setup_needed": [
+    "Supabase Send Email Hook enablement in dashboard",
+    "SMTP sender configuration for auth emails",
+    "Supabase Auth redirect URL cleanup and verification",
+    "Real provider-account validation results captured from signed-in runs"
+  ],
+  "major_decisions_made": [
+    "Use a clean standalone BrandBuild repo and deployment target",
+    "Keep providers behind one internal adapter contract",
+    "Use a Supabase Send Email Hook for branded auth emails",
+    "Build private asset upload before editing flows",
+    "Add an in-product settings/control-center truth layer before deeper orchestration work"
+  ],
+  "files_changed_this_session": [
+    "apps/dashboard/app/dashboard/settings/page.tsx",
+    "apps/dashboard/components/settings/studio-control-center.tsx",
+    "apps/dashboard/lib/studio/system-audit.ts",
+    "apps/dashboard/components/dashboard/dashboard-shell.tsx",
+    "apps/dashboard/app/dashboard/page.tsx",
+    "apps/dashboard/components/dashboard/command-bar.tsx",
+    "docs/project-memory/project_profile.json",
+    "docs/project-memory/goals_and_rules.json",
+    "docs/project-memory/current_state.json",
+    "docs/project-memory/decisions_log.json",
+    "docs/project-memory/session_log.json",
+    "docs/project-memory/tasks.json",
+    "docs/project-memory/file_index.json",
+    "docs/project-memory/knowledge_registry.json"
+  ],
+  "unresolved_bugs_or_issues": [
+    "Supabase auth trust layer is still not fully live.",
+    "Compare outputs, versions, and export workflow remain unbuilt.",
+    "Settings/control-center currently reports readiness from code and env state, not live runtime telemetry."
+  ],
+  "ui_ux_improvements_still_needed": [
+    "Promote compare outputs into a first-class workspace.",
+    "Promote version timeline and editor handoff into a first-class workflow.",
+    "Clarify Projects as the top-level mental model across the app.",
+    "Show provider requirements in-context during generation, not only in settings."
+  ],
+  "exact_next_steps": [
+    "Finish manual Supabase Auth dashboard setup.",
+    "Validate one live run each for Sora, Kling, and Higgsfield.",
+    "Build compare outputs workspace.",
+    "Design and build version timeline plus edit handoff."
+  ]
+}

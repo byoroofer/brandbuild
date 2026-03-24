@@ -19,7 +19,6 @@ const hiddenPrefixes = [
   "/dashboard",
   "/login",
   "/reset-password",
-  "/roof-measure",
   "/signup",
 ];
 

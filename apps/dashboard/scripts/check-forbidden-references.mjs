@@ -50,21 +50,22 @@ const allowedFileExtensions = new Set([
   ".yml",
 ]);
 
-const forbiddenPatterns = [
+// BrandBuild / AI Video should not ship BYOR-owned branding or links.
+const blockedPatterns = [
   {
-    label: "BYORoofer domain",
+    label: "BYOR domain",
     regex: /\bhttps?:\/\/(?:www\.)?byoroofer\.com\b/i,
   },
   {
-    label: "BYORoofer domain",
+    label: "BYOR domain",
     regex: /\b(?:www\.)?byoroofer\.com\b/i,
   },
   {
-    label: "BYORoofer GitHub org",
+    label: "BYOR GitHub org",
     regex: /\bgithub\.com\/byoroofer\/[^\s"'`<>)]*/i,
   },
   {
-    label: "BYORoofer brand name",
+    label: "BYOR brand name",
     regex: /\bBYORoofer\b/i,
   },
 ];
@@ -118,7 +119,7 @@ async function inspectFile(filePath) {
   const content = await fs.readFile(filePath, "utf8");
   const findings = [];
 
-  for (const pattern of forbiddenPatterns) {
+  for (const pattern of blockedPatterns) {
     const match = content.match(pattern.regex);
 
     if (!match || typeof match.index !== "number") {
@@ -158,11 +159,15 @@ async function main() {
   }
 
   if (findings.length === 0) {
-    console.log("No forbidden BYORoofer references were found in protected AI Video Studio surfaces.");
+    console.log(
+      "No blocked external-product references were found in protected BrandBuild/AI Video surfaces."
+    );
     return;
   }
 
-  console.error("Forbidden BYORoofer references were found:");
+  console.error(
+    "Blocked external-product references were found in protected BrandBuild/AI Video surfaces:"
+  );
 
   for (const finding of findings) {
     const relativePath = path.relative(repoRoot, finding.filePath) || finding.filePath;
@@ -173,7 +178,7 @@ async function main() {
 }
 
 main().catch((error) => {
-  console.error("Failed to inspect protected surfaces for forbidden references.");
+  console.error("Failed to inspect protected BrandBuild/AI Video surfaces.");
   console.error(error);
   process.exitCode = 1;
 });

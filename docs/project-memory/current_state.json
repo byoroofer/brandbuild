@@ -1,0 +1,41 @@
+﻿{
+    "current_phase":  "canonical repo cleanup and memory initialization",
+    "summary":  "BrandBuild / AI Video remains the canonical production repo for the shared AI video product family. Misplaced BYOR roof-measure runtime source was removed from this repo and archived into BYOR reference storage. The repo still has minor unrelated local changes outside that cleanup.",
+    "active_workstreams":  [
+                               "internal dashboard product development",
+                               "cross-product boundary cleanup",
+                               "project-memory initialization"
+                           ],
+    "current_priorities":  [
+                               "Keep this repo focused on BrandBuild / AI Video.",
+                               "Resolve naming drift between README branding and package naming when appropriate.",
+                               "Track remaining unrelated local changes separately from cleanup work."
+                           ],
+    "blockers":  [
+
+                 ],
+    "risks":  [
+                  "Naming drift can confuse repo ownership and release communication.",
+                  "Unrelated local changes may complicate future cleanup commits."
+              ],
+    "assumptions":  [
+                        "BrandBuild and AI Video are the same product family.",
+                        "Roof-measure belongs to BYOR."
+                    ],
+    "known_issues":  [
+                         "Root package name still uses ai-video-studio while README and product identity use BrandBuild.",
+                         "There are unrelated modified/untracked files already present in the repo."
+                     ],
+    "recent_changes":  [
+                           "Removed roof-measure source trees and the new-scan page from the dashboard app.",
+                           "Updated site header/footer hidden-prefix handling.",
+                           "Updated the forbidden-reference script to neutral BrandBuild / AI Video messaging.",
+                           "Initialized .project-memory files."
+                       ],
+    "next_steps":  [
+                       "Decide whether to align package naming with BrandBuild branding or keep the shared AI Video naming intentionally.",
+                       "Keep the repo free of BYOR-owned runtime features.",
+                       "Update .project-memory files as future product work lands."
+                   ],
+    "updated_at":  "2026-03-24T17:40:09.0933149-05:00"
+}
