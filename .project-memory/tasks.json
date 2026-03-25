@@ -177,17 +177,17 @@
     "title": "Remove non-fatal Dynamic server usage warning on /",
     "description": "Refactor the marketing root session check so build-time static evaluation does not log a Dynamic server usage warning when cookies are touched.",
     "priority": "medium",
-    "status": "backlog",
+    "status": "complete",
     "owner": "agent",
     "created_at": "2026-03-24T23:59:00-05:00",
-    "updated_at": "2026-03-24T23:59:00-05:00",
+    "updated_at": "2026-03-25T00:28:00-05:00",
     "dependencies": [],
     "related_files": [
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\session.ts"
     ],
-    "notes": "The warning is currently non-fatal, but it pollutes build logs and could mask real issues."
+    "notes": "Completed by making the marketing root fully static-safe in apps/dashboard/app/(marketing)/page.tsx."
   },
   {
     "task_id": "brandbuild-task-012",

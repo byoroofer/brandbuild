@@ -39,3 +39,8 @@
 - Rechecked the staged BrandBuild diff and reran typecheck and build.
 - Committed the runtime hardening and memory updates as `4351c81`.
 - Pushed `main` so git now matches the live production fix set.
+
+## 2026-03-25 00:20-00:28 CT - Marketing Root Static Fix
+- Removed session-aware calls from `apps/dashboard/app/(marketing)/page.tsx`.
+- Kept the homepage static-safe by using provider catalog plus env-based workspace readiness only.
+- Re-ran typecheck and build and confirmed the Dynamic server usage warning disappeared.

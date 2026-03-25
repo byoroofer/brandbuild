@@ -3,8 +3,7 @@
 ## Now
 1. Keep production stable on the correct Vercel deployment.
 2. Finish Supabase Auth dashboard setup for branded emails and clean redirects.
-3. Clean up the non-fatal Dynamic server usage warning on the marketing root.
-4. Validate one real run for Sora, Kling, and Higgsfield.
+3. Validate one real run for Sora, Kling, and Higgsfield.
 
 ## Next
 1. Build compare outputs as a first-class workspace.

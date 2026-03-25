@@ -202,5 +202,21 @@
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.env.local",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\env.ts"
     ]
+  },
+  {
+    "id": "brandbuild-know-013",
+    "category": "stability",
+    "fact": "The marketing homepage should stay static-safe; auth-session redirects and workspace reads on / are unnecessary and were removed to eliminate the Dynamic server usage build warning.",
+    "confidence": "high",
+    "source": "2026-03-25 root-route warning fix",
+    "first_recorded_at": "2026-03-25T00:28:00-05:00",
+    "last_confirmed_at": "2026-03-25T00:28:00-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx"
+    ]
   }
 ]

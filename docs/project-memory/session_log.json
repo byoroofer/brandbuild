@@ -361,5 +361,48 @@
     "next_recommended_actions": [
       "Continue with Supabase Auth setup, provider validation, and the marketing-root warning cleanup."
     ]
+  },
+  {
+    "session_id": "2026-03-25-marketing-root-static-fix",
+    "timestamp_start": "2026-03-25T00:20:00-05:00",
+    "timestamp_end": "2026-03-25T00:28:00-05:00",
+    "user_objective": "Continue improving stability by removing the non-fatal Dynamic server usage warning on the marketing root.",
+    "actions_taken": [
+      "Inspected the marketing homepage and confirmed it still called getOptionalUser and getWorkspaceMode.",
+      "Refactored the homepage to use only static-safe provider catalog and env-based workspace readiness.",
+      "Re-ran typecheck and build successfully and confirmed the Dynamic server usage warning no longer appears."
+    ],
+    "files_created": [],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx"
+    ],
+    "key_findings": [
+      "The warning came from cookie-dependent auth and workspace checks on the marketing root.",
+      "The root page does not need to auto-redirect authenticated users in order to satisfy BrandBuild's core workflow."
+    ],
+    "decisions_added": [],
+    "memory_updates": [
+      "Marked the Dynamic server usage warning as resolved."
+    ],
+    "unresolved_items": [
+      "Supabase Auth dashboard setup remains incomplete.",
+      "Live provider runs still need full validation.",
+      "The Next.js workspace-root warning from duplicate lockfiles still remains."
+    ],
+    "next_recommended_actions": [
+      "Push the root-page fix and deploy it so production and git remain aligned.",
+      "Continue with Supabase Auth setup and provider validation."
+    ]
   }
 ]

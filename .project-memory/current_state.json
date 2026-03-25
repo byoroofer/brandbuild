@@ -32,8 +32,7 @@
     "There is no dedicated compare outputs workspace yet.",
     "There is no version timeline or edit handoff/export bundle layer yet.",
     "The root package naming still says ai-video-studio while the product brand is BrandBuild.",
-    "Next.js build warns that it is inferring the workspace root because both D:\\Playground and the BrandBuild repo contain lockfiles.",
-    "The marketing root still triggers a non-fatal Dynamic server usage warning during build because session-aware code can touch cookies while Next is statically evaluating /."
+    "Next.js build warns that it is inferring the workspace root because both D:\\Playground and the BrandBuild repo contain lockfiles."
   ],
   "recent_changes": [
     "Added /dashboard/settings as a control-center route for system readiness and integration status.",
@@ -42,13 +41,13 @@
     "Hardened the studio persistence client so dashboard pages return null instead of throwing when server-side auth client initialization fails.",
     "Deployed a fresh production build at brandbuild-online-453sok21c-byoroofers-projects.vercel.app and verified the live domain, login page, and signed-out dashboard redirect in a browser.",
     "Pulled the current production environment into apps/dashboard/.env.local so local runs stop throwing NEXT_PUBLIC_SUPABASE_URL is not set.",
+    "Removed session-aware root-page calls so the marketing homepage is static again and the Dynamic server usage build warning no longer appears.",
     "Created the requested root project-memory operating files.",
     "Consolidated project memory so docs/project-memory is the canonical structured source and .project-memory is a mirrored copy.",
     "Re-ran typecheck and production build successfully after memory consolidation."
   ],
   "next_steps": [
     "Finish Supabase Auth dashboard setup for branded email and correct redirect behavior.",
-    "Clean up the marketing-route cookie access so the build stops logging the Dynamic server usage warning.",
     "Run and capture one real Sora generation through the dashboard.",
     "Run and capture one real Kling generation through the dashboard.",
     "Run and capture one real Higgsfield generation through the dashboard.",
