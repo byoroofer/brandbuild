@@ -1,61 +1,73 @@
-﻿[
-    {
-        "id":  "brandbuild-dec-20260324-001",
-        "timestamp":  "2026-03-24T17:40:09.0933149-05:00",
-        "title":  "Treat BrandBuild and AI Video as the same product family",
-        "decision":  "Allow BrandBuild and AI Video Studio naming to coexist as one product family rather than treating them as separate repos/products.",
-        "reason":  "User explicitly said AI Video and BrandBuild are the same.",
-        "alternatives_considered":  [
-                                        "Force a separate-product interpretation",
-                                        "Split responsibilities across different repos"
-                                    ],
-        "impact":  "Repo cleanup focuses on removing unrelated features rather than renaming everything immediately.",
-        "status":  "active",
-        "supersedes":  [
-
-                       ],
-        "related_files":  [
-                              "D:\\Playground\\brandbuild-online-repo\\README.md",
-                              "D:\\Playground\\brandbuild-online-repo\\package.json"
-                          ]
-    },
-    {
-        "id":  "brandbuild-dec-20260324-002",
-        "timestamp":  "2026-03-24T17:40:09.0933149-05:00",
-        "title":  "Remove roof-measure runtime source from BrandBuild",
-        "decision":  "Delete roof-measure runtime source from the BrandBuild repo and archive the implementation into BYOR reference storage.",
-        "reason":  "User decided roof-measure features belong in BYOR.",
-        "alternatives_considered":  [
-                                        "Keep roof-measure inside BrandBuild",
-                                        "Refactor roof-measure into a shared multi-product package"
-                                    ],
-        "impact":  "BrandBuild runtime surfaces are cleaner and no longer carry the BYOR-owned roof-measure feature.",
-        "status":  "active",
-        "supersedes":  [
-
-                       ],
-        "related_files":  [
-                              "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs",
-                              "D:\\byoroofer-app\\reference\\external-roof-measure\\brandbuild-google-maps\\README.md"
-                          ]
-    },
-    {
-        "id":  "brandbuild-dec-20260324-003",
-        "timestamp":  "2026-03-24T17:40:09.0933149-05:00",
-        "title":  "Use .project-memory as canonical durable memory location",
-        "decision":  "Store persistent project memory inside .project-memory at repo root.",
-        "reason":  "A repo-backed location satisfies local-first persistence and keeps memory versionable.",
-        "alternatives_considered":  [
-                                        "docs/project-memory",
-                                        "external non-repo memory folder"
-                                    ],
-        "impact":  "Future sessions should load and update this directory first.",
-        "status":  "active",
-        "supersedes":  [
-
-                       ],
-        "related_files":  [
-                              "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json"
-                          ]
-    }
+[
+  {
+    "id": "brandbuild-dec-20260324-001",
+    "timestamp": "2026-03-24T17:40:09.0933149-05:00",
+    "title": "Treat BrandBuild and AI Video as the same product family",
+    "decision": "Allow BrandBuild and AI Video Studio naming to coexist as one product family rather than treating them as separate repos/products.",
+    "reason": "User explicitly said AI Video and BrandBuild are the same.",
+    "alternatives_considered": [
+      "Force a separate-product interpretation",
+      "Split responsibilities across different repos"
+    ],
+    "impact": "Repo cleanup focuses on removing unrelated features rather than renaming everything immediately.",
+    "status": "active",
+    "supersedes": [],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\README.md",
+      "D:\\Playground\\brandbuild-online-repo\\package.json"
+    ]
+  },
+  {
+    "id": "brandbuild-dec-20260324-002",
+    "timestamp": "2026-03-24T17:40:09.0933149-05:00",
+    "title": "Remove roof-measure runtime source from BrandBuild",
+    "decision": "Delete roof-measure runtime source from the BrandBuild repo and archive the implementation into BYOR reference storage.",
+    "reason": "User decided roof-measure features belong in BYOR.",
+    "alternatives_considered": [
+      "Keep roof-measure inside BrandBuild",
+      "Refactor roof-measure into a shared multi-product package"
+    ],
+    "impact": "BrandBuild runtime surfaces are cleaner and no longer carry the BYOR-owned roof-measure feature.",
+    "status": "active",
+    "supersedes": [],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs",
+      "D:\\byoroofer-app\\reference\\external-roof-measure\\brandbuild-google-maps\\README.md"
+    ]
+  },
+  {
+    "id": "brandbuild-dec-20260324-003",
+    "timestamp": "2026-03-24T17:40:09.0933149-05:00",
+    "title": "Use .project-memory as canonical durable memory location",
+    "decision": "Store persistent project memory inside .project-memory at repo root.",
+    "reason": "A repo-backed location satisfies local-first persistence and keeps memory versionable.",
+    "alternatives_considered": [
+      "docs/project-memory",
+      "external non-repo memory folder"
+    ],
+    "impact": "Future sessions should load and update this directory first.",
+    "status": "active",
+    "supersedes": [],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json"
+    ]
+  },
+  {
+    "id": "brandbuild-dec-20260324-004",
+    "timestamp": "2026-03-24T19:25:09.983424-05:00",
+    "title": "Send BrandBuild cleanup upstream on main",
+    "decision": "Push the roof-measure cleanup and project-memory initialization to origin/main as 3b02833.",
+    "reason": "User explicitly asked to send all changed repos.",
+    "alternatives_considered": [
+      "Leave the cleanup local-only",
+      "Delay the push until all naming drift was resolved"
+    ],
+    "impact": "BrandBuild is now cleanly upstream without the misplaced roof-measure runtime feature.",
+    "status": "active",
+    "supersedes": [],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs",
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json"
+    ]
+  }
 ]

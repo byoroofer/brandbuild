@@ -1,73 +1,66 @@
-﻿[
-    {
-        "task_id":  "brandbuild-task-001",
-        "title":  "Resolve naming drift between BrandBuild and ai-video-studio",
-        "description":  "Decide whether package names, README branding, and internal labels should stay mixed or be aligned intentionally.",
-        "priority":  "high",
-        "status":  "backlog",
-        "owner":  "user",
-        "created_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "updated_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "dependencies":  [
-
-                         ],
-        "related_files":  [
-                              "D:\\Playground\\brandbuild-online-repo\\README.md",
-                              "D:\\Playground\\brandbuild-online-repo\\package.json"
-                          ],
-        "notes":  "User has already said the two labels are the same product family; this is an intentional cleanup decision, not a bug by default."
-    },
-    {
-        "task_id":  "brandbuild-task-002",
-        "title":  "Keep BYOR-owned runtime features out of BrandBuild",
-        "description":  "Prevent reintroduction of roof-measure or other BYOR-owned runtime features into the canonical BrandBuild repo.",
-        "priority":  "high",
-        "status":  "active",
-        "owner":  "agent",
-        "created_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "updated_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "dependencies":  [
-
-                         ],
-        "related_files":  [
-                              "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs"
-                          ],
-        "notes":  "Boundary script is now the first line of defense."
-    },
-    {
-        "task_id":  "brandbuild-task-003",
-        "title":  "Track unrelated local modifications separately",
-        "description":  "Review or isolate unrelated local changes already present in the repo so they do not get conflated with the roof-measure cleanup.",
-        "priority":  "medium",
-        "status":  "active",
-        "owner":  "user+agent",
-        "created_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "updated_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "dependencies":  [
-
-                         ],
-        "related_files":  [
-                              "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
-                              "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\error.tsx",
-                              "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\global-error.tsx"
-                          ],
-        "notes":  "These changes predated the memory initialization and should be tracked independently."
-    },
-    {
-        "task_id":  "brandbuild-task-004",
-        "title":  "Maintain BrandBuild project memory",
-        "description":  "Update .project-memory files at the start and end of future sessions.",
-        "priority":  "medium",
-        "status":  "active",
-        "owner":  "agent",
-        "created_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "updated_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "dependencies":  [
-
-                         ],
-        "related_files":  [
-                              "D:\\Playground\\brandbuild-online-repo\\.project-memory\\current_state.json"
-                          ],
-        "notes":  "Memory system initialized on 2026-03-24."
-    }
+[
+  {
+    "task_id": "brandbuild-task-001",
+    "title": "Resolve naming drift between BrandBuild and ai-video-studio",
+    "description": "Decide whether package names, README branding, and internal labels should stay mixed or be aligned intentionally.",
+    "priority": "high",
+    "status": "backlog",
+    "owner": "user",
+    "created_at": "2026-03-24T17:40:09.0933149-05:00",
+    "updated_at": "2026-03-24T17:40:09.0933149-05:00",
+    "dependencies": [],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\README.md",
+      "D:\\Playground\\brandbuild-online-repo\\package.json"
+    ],
+    "notes": "User has already said the two labels are the same product family; this is an intentional cleanup decision, not a bug by default."
+  },
+  {
+    "task_id": "brandbuild-task-002",
+    "title": "Keep BYOR-owned runtime features out of BrandBuild",
+    "description": "Prevent reintroduction of roof-measure or other BYOR-owned runtime features into the canonical BrandBuild repo.",
+    "priority": "high",
+    "status": "active",
+    "owner": "agent",
+    "created_at": "2026-03-24T17:40:09.0933149-05:00",
+    "updated_at": "2026-03-24T17:40:09.0933149-05:00",
+    "dependencies": [],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs"
+    ],
+    "notes": "Boundary script is now the first line of defense."
+  },
+  {
+    "task_id": "brandbuild-task-003",
+    "title": "Track unrelated local modifications separately",
+    "description": "Review or isolate unrelated local changes already present in the repo so they do not get conflated with the roof-measure cleanup.",
+    "priority": "medium",
+    "status": "active",
+    "owner": "user+agent",
+    "created_at": "2026-03-24T17:40:09.0933149-05:00",
+    "updated_at": "2026-03-24T17:40:09.0933149-05:00",
+    "dependencies": [],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\error.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\global-error.tsx"
+    ],
+    "notes": "These changes predated the memory initialization and should be tracked independently."
+  },
+  {
+    "task_id": "brandbuild-task-004",
+    "title": "Push BrandBuild cleanup upstream",
+    "description": "Send the roof-measure cleanup and project-memory initialization to origin/main.",
+    "priority": "high",
+    "status": "complete",
+    "owner": "agent",
+    "created_at": "2026-03-24T19:25:09.983424-05:00",
+    "updated_at": "2026-03-24T19:25:09.983424-05:00",
+    "dependencies": [],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs",
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\session_log.json"
+    ],
+    "notes": "Completed as commit 3b02833 on 2026-03-24."
+  }
 ]

@@ -1,83 +1,77 @@
-﻿[
-    {
-        "id":  "brandbuild-know-001",
-        "category":  "product-identity",
-        "fact":  "BrandBuild and AI Video are the same product family by user direction.",
-        "confidence":  "high",
-        "source":  "User instruction on 2026-03-24",
-        "first_recorded_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "last_confirmed_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "status":  "active",
-        "related_projects":  [
-                                 "D:\\Playground"
-                             ],
-        "related_files":  [
-                              "D:\\Playground\\brandbuild-online-repo\\README.md",
-                              "D:\\Playground\\brandbuild-online-repo\\package.json"
-                          ]
-    },
-    {
-        "id":  "brandbuild-know-002",
-        "category":  "ownership-boundary",
-        "fact":  "BYOR-owned roof-measure runtime source was removed from the BrandBuild repo and archived into BYOR reference storage.",
-        "confidence":  "high",
-        "source":  "Repo cleanup session 2026-03-24",
-        "first_recorded_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "last_confirmed_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "status":  "active",
-        "related_projects":  [
-                                 "D:\\byoroofer-app"
-                             ],
-        "related_files":  [
-                              "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs"
-                          ]
-    },
-    {
-        "id":  "brandbuild-know-003",
-        "category":  "repo-structure",
-        "fact":  "The maintained product surface for BrandBuild is apps/dashboard.",
-        "confidence":  "high",
-        "source":  "README reviewed on 2026-03-24",
-        "first_recorded_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "last_confirmed_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "status":  "active",
-        "related_projects":  [
-
-                             ],
-        "related_files":  [
-                              "D:\\Playground\\brandbuild-online-repo\\README.md"
-                          ]
-    },
-    {
-        "id":  "brandbuild-know-004",
-        "category":  "verification",
-        "fact":  "npm run typecheck passed in the BrandBuild repo after the roof-measure cleanup.",
-        "confidence":  "high",
-        "source":  "Local verification on 2026-03-24",
-        "first_recorded_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "last_confirmed_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "status":  "active",
-        "related_projects":  [
-
-                             ],
-        "related_files":  [
-                              "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs"
-                          ]
-    },
-    {
-        "id":  "brandbuild-know-005",
-        "category":  "memory-system",
-        "fact":  "The canonical durable memory location for the BrandBuild repo is D:\\Playground\\brandbuild-online-repo\\.project-memory.",
-        "confidence":  "high",
-        "source":  "Memory initialization decision on 2026-03-24",
-        "first_recorded_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "last_confirmed_at":  "2026-03-24T17:40:09.0933149-05:00",
-        "status":  "active",
-        "related_projects":  [
-
-                             ],
-        "related_files":  [
-                              "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json"
-                          ]
-    }
+[
+  {
+    "id": "brandbuild-know-001",
+    "category": "product-identity",
+    "fact": "BrandBuild and AI Video are the same product family by user direction.",
+    "confidence": "high",
+    "source": "User instruction on 2026-03-24",
+    "first_recorded_at": "2026-03-24T17:40:09.0933149-05:00",
+    "last_confirmed_at": "2026-03-24T17:40:09.0933149-05:00",
+    "status": "active",
+    "related_projects": [
+      "D:\\Playground"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\README.md",
+      "D:\\Playground\\brandbuild-online-repo\\package.json"
+    ]
+  },
+  {
+    "id": "brandbuild-know-002",
+    "category": "ownership-boundary",
+    "fact": "BYOR-owned roof-measure runtime source was removed from the BrandBuild repo and archived into BYOR reference storage.",
+    "confidence": "high",
+    "source": "Repo cleanup session 2026-03-24",
+    "first_recorded_at": "2026-03-24T17:40:09.0933149-05:00",
+    "last_confirmed_at": "2026-03-24T17:40:09.0933149-05:00",
+    "status": "active",
+    "related_projects": [
+      "D:\\byoroofer-app"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs"
+    ]
+  },
+  {
+    "id": "brandbuild-know-003",
+    "category": "repo-structure",
+    "fact": "The maintained product surface for BrandBuild is apps/dashboard.",
+    "confidence": "high",
+    "source": "README reviewed on 2026-03-24",
+    "first_recorded_at": "2026-03-24T17:40:09.0933149-05:00",
+    "last_confirmed_at": "2026-03-24T17:40:09.0933149-05:00",
+    "status": "active",
+    "related_projects": [],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\README.md"
+    ]
+  },
+  {
+    "id": "brandbuild-know-004",
+    "category": "verification",
+    "fact": "npm run typecheck passed in the BrandBuild repo after the roof-measure cleanup.",
+    "confidence": "high",
+    "source": "Local verification on 2026-03-24",
+    "first_recorded_at": "2026-03-24T17:40:09.0933149-05:00",
+    "last_confirmed_at": "2026-03-24T17:40:09.0933149-05:00",
+    "status": "active",
+    "related_projects": [],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs"
+    ]
+  },
+  {
+    "id": "brandbuild-know-005",
+    "category": "memory-system",
+    "fact": "The canonical durable memory location for the BrandBuild repo is D:\\Playground\\brandbuild-online-repo\\.project-memory.",
+    "confidence": "high",
+    "source": "Memory initialization decision on 2026-03-24",
+    "first_recorded_at": "2026-03-24T17:40:09.0933149-05:00",
+    "last_confirmed_at": "2026-03-24T17:40:09.0933149-05:00",
+    "status": "active",
+    "related_projects": [],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json"
+    ]
+  }
 ]

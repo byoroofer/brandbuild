@@ -1,50 +1,58 @@
-﻿[
-    {
-        "path":  "D:\\Playground\\brandbuild-online-repo\\README.md",
-        "purpose":  "Top-level product identity and setup doc",
-        "criticality":  "high",
-        "last_touched":  "2026-03-24T17:40:09.0933149-05:00",
-        "notes":  "Defines BrandBuild as the primary supported app.",
-        "kind":  "docs"
-    },
-    {
-        "path":  "D:\\Playground\\brandbuild-online-repo\\package.json",
-        "purpose":  "Monorepo identity and scripts",
-        "criticality":  "high",
-        "last_touched":  "2026-03-24T17:40:09.0933149-05:00",
-        "notes":  "Still uses ai-video-studio as root package name.",
-        "kind":  "config"
-    },
-    {
-        "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs",
-        "purpose":  "Boundary check for external-product references",
-        "criticality":  "high",
-        "last_touched":  "2026-03-24T17:40:09.0933149-05:00",
-        "notes":  "Updated to product-neutral wording after roof-measure removal.",
-        "kind":  "config"
-    },
-    {
-        "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
-        "purpose":  "Dashboard header and route-prefix handling",
-        "criticality":  "medium",
-        "last_touched":  "2026-03-24T17:40:09.0933149-05:00",
-        "notes":  "Roof-measure path removed from hidden prefixes.",
-        "kind":  "user-facing"
-    },
-    {
-        "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
-        "purpose":  "Dashboard footer and route-prefix handling",
-        "criticality":  "medium",
-        "last_touched":  "2026-03-24T17:40:09.0933149-05:00",
-        "notes":  "Roof-measure path removed from hidden prefixes.",
-        "kind":  "user-facing"
-    },
-    {
-        "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
-        "purpose":  "Unrelated local marketing-page changes present in repo",
-        "criticality":  "medium",
-        "last_touched":  "2026-03-24T17:40:09.0933149-05:00",
-        "notes":  "Not part of the roof-measure cleanup but still important local state.",
-        "kind":  "user-facing"
-    }
+[
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\README.md",
+    "purpose": "Top-level product identity and setup doc",
+    "criticality": "high",
+    "last_touched": "2026-03-24T17:40:09.0933149-05:00",
+    "notes": "Defines BrandBuild as the primary supported app.",
+    "kind": "docs"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\package.json",
+    "purpose": "Monorepo identity and scripts",
+    "criticality": "high",
+    "last_touched": "2026-03-24T17:40:09.0933149-05:00",
+    "notes": "Still uses ai-video-studio as root package name.",
+    "kind": "config"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs",
+    "purpose": "Boundary check for external-product references",
+    "criticality": "high",
+    "last_touched": "2026-03-24T17:40:09.0933149-05:00",
+    "notes": "Updated to product-neutral wording after roof-measure removal.",
+    "kind": "config"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
+    "purpose": "Dashboard header and route-prefix handling",
+    "criticality": "medium",
+    "last_touched": "2026-03-24T17:40:09.0933149-05:00",
+    "notes": "Roof-measure path removed from hidden prefixes.",
+    "kind": "user-facing"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
+    "purpose": "Dashboard footer and route-prefix handling",
+    "criticality": "medium",
+    "last_touched": "2026-03-24T17:40:09.0933149-05:00",
+    "notes": "Roof-measure path removed from hidden prefixes.",
+    "kind": "user-facing"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
+    "purpose": "Unrelated local marketing-page changes present in repo",
+    "criticality": "medium",
+    "last_touched": "2026-03-24T17:40:09.0933149-05:00",
+    "notes": "Not part of the roof-measure cleanup but still important local state.",
+    "kind": "user-facing"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\.project-memory\\session_log.json",
+    "purpose": "Append-only BrandBuild session record",
+    "criticality": "high",
+    "last_touched": "2026-03-24T19:25:09.983424-05:00",
+    "notes": "Updated after upstream push confirmation.",
+    "kind": "docs"
+  }
 ]
