@@ -82,7 +82,9 @@
                            "Added a no-storage fallback on shot detail: operators can now attach hosted HTTPS asset URLs or import curated BrandBuild sample references without waiting on private-upload readiness.",
                            "Expanded the shot asset route so the existing /api/shots/[shotId]/assets endpoint now supports upload, hosted URL linking, and built-in sample import modes.",
                            "Added a curated BrandBuild reference-sample library with cinematic images plus a public motion-reference clip for quicker dashboard validation while storage rollout is still pending.",
-                           "Updated the shot asset uploader UI so private upload, hosted-link, and sample-import paths all converge in the same shot asset workflow."
+                           "Updated the shot asset uploader UI so private upload, hosted-link, and sample-import paths all converge in the same shot asset workflow.",
+                           "Deployed the shot reference fallback batch to https://brandbuild-online-8bamrb8bx-byoroofers-projects.vercel.app, re-aliased brandbuild.online, and verified the live root returned 200.",
+                           "Pushed the hosted-reference and sample-import batch to origin/main in commit e7393d3 so git, deployment, and project memory are aligned again."
                        ],
     "next_steps":  [
                        "Apply the assets bucket and storage policy migration to the live Supabase project.",
@@ -93,5 +95,5 @@
                        "Fix or rotate Higgsfield credentials, then rerun the smoke test and a signed-in dashboard generation.",
                        "Add timeline sequencing across selected outputs and deepen the delivery/export workflow."
                    ],
-    "updated_at":  "2026-03-25T16:49:53.1809302-05:00"
+    "updated_at":  "2026-03-25T17:00:00-05:00"
 }

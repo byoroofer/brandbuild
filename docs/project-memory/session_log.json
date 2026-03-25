@@ -961,5 +961,51 @@
                                          "Validate a signed-in Sora dashboard run using the new fallback reference path.",
                                          "Apply the Supabase storage migration and then validate authenticated private uploads."
                                      ]
+    },
+    {
+        "session_id":  "brandbuild-session-2026-03-25-shot-reference-fallback-deploy",
+        "timestamp_start":  "2026-03-25T16:50:00-05:00",
+        "timestamp_end":  "2026-03-25T17:00:00-05:00",
+        "user_objective":  "Ship the shot reference fallback batch to production and align git plus project memory.",
+        "actions_taken":  [
+                              "Deployed the hosted-reference and sample-import batch to Vercel production.",
+                              "Verified brandbuild.online returned 200.",
+                              "Committed the batch as e7393d3 and pushed origin/main."
+                          ],
+        "files_created":  [
+
+                          ],
+        "files_modified":  [
+                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+                               "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+                               "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
+                           ],
+        "files_reviewed":  [
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts"
+                           ],
+        "key_findings":  [
+                             "The shot workflow no longer has to wait on private-upload readiness to attach useful references.",
+                             "GitHub, Vercel production, and repo-backed project memory are aligned again."
+                         ],
+        "decisions_added":  [
+
+                            ],
+        "memory_updates":  [
+                               "Recorded the production deployment URL and pushed commit for the new fallback workflow."
+                           ],
+        "unresolved_items":  [
+                                 "Supabase storage migration still needs to be applied for authenticated private uploads.",
+                                 "Supabase branded auth/email setup is still manual.",
+                                 "Kling balance and Higgsfield credentials are still external blockers."
+                             ],
+        "next_recommended_actions":  [
+                                         "Run a signed-in Sora dashboard generation using the new fallback reference path.",
+                                         "Apply the Supabase assets-bucket migration.",
+                                         "Continue live provider validation."
+                                     ]
     }
 ]

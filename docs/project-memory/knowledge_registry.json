@@ -554,6 +554,24 @@
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\product-hero.svg",
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\motion-preview.svg"
                                         ]
+                  },
+                  {
+                      "id":  "brandbuild-know-033",
+                      "category":  "deployment",
+                      "fact":  "The hosted-reference and sample-import shot workflow shipped live in commit e7393d3 and was deployed to https://brandbuild-online-8bamrb8bx-byoroofers-projects.vercel.app, after which brandbuild.online returned 200 on direct verification.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 deployment verification",
+                      "first_recorded_at":  "2026-03-25T17:00:00-05:00",
+                      "last_confirmed_at":  "2026-03-25T17:00:00-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+                                        ]
                   }
               ],
     "Count":  28

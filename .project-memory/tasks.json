@@ -384,7 +384,7 @@
                       "status":  "complete",
                       "owner":  "agent",
                       "created_at":  "2026-03-25T16:49:53.1809302-05:00",
-                      "updated_at":  "2026-03-25T16:49:53.1809302-05:00",
+                      "updated_at":  "2026-03-25T17:00:00-05:00",
                       "dependencies":  [
                                            "brandbuild-task-017"
                                        ],
@@ -396,7 +396,7 @@
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\product-hero.svg",
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\motion-preview.svg"
                                         ],
-                      "notes":  "Completed by keeping the existing shot asset route surface and adding hosted URL plus built-in sample import modes."
+                      "notes":  "Completed by commit e7393d3 and deployed to https://brandbuild-online-8bamrb8bx-byoroofers-projects.vercel.app, keeping the same shot asset route while adding hosted URL plus built-in sample import modes."
                   }
               ],
     "Count":  19
