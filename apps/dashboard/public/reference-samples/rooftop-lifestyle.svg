@@ -1,0 +1,28 @@
+<svg width="1440" height="960" viewBox="0 0 1440 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1440" height="960" fill="#09090B"/>
+  <rect width="1440" height="960" fill="url(#sky)"/>
+  <path d="M0 650C146 620 270 606 412 620C550 632 700 680 856 690C1002 700 1154 674 1440 618V960H0V650Z" fill="#0F172A"/>
+  <path d="M0 724C160 702 344 690 528 720C684 744 826 792 968 794C1116 798 1266 754 1440 708V960H0V724Z" fill="#111827"/>
+  <circle cx="1090" cy="182" r="96" fill="#F59E0B" fill-opacity="0.66"/>
+  <rect x="206" y="140" width="1028" height="680" rx="44" fill="#020617" fill-opacity="0.42" stroke="white" stroke-opacity="0.10"/>
+  <rect x="290" y="252" width="324" height="420" rx="36" fill="#1E293B" fill-opacity="0.84"/>
+  <rect x="690" y="208" width="450" height="506" rx="40" fill="#111827" fill-opacity="0.78"/>
+  <path d="M852 666C882 552 900 474 930 368C942 322 978 294 1020 294H1066C1112 294 1144 338 1134 382C1110 490 1096 552 1072 656" stroke="#F8FAFC" stroke-width="26" stroke-linecap="round"/>
+  <path d="M920 374L1000 318" stroke="#38BDF8" stroke-width="14" stroke-linecap="round"/>
+  <path d="M1068 660C1030 642 988 634 944 634" stroke="#C084FC" stroke-width="16" stroke-linecap="round"/>
+  <rect x="936" y="382" width="116" height="206" rx="22" fill="url(#can)"/>
+  <path d="M428 640C468 560 516 498 564 472C598 454 624 420 626 376C632 280 560 226 480 226C384 226 322 310 350 402C360 434 380 460 406 486C446 526 468 570 486 640" fill="#E2E8F0" fill-opacity="0.88"/>
+  <text x="288" y="758" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Rooftop lifestyle reference</text>
+  <text x="288" y="806" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="22">Golden-hour energy, fashion-forward framing, social-ad motion direction</text>
+  <defs>
+    <linearGradient id="sky" x1="720" y1="0" x2="720" y2="736" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FB923C"/>
+      <stop offset="0.38" stop-color="#F97316"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="can" x1="936" y1="382" x2="1052" y2="588" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38BDF8"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+</svg>

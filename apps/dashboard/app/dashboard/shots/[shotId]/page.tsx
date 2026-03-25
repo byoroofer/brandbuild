@@ -198,8 +198,9 @@ export default async function ShotDetailPage({ params }: ShotDetailPageProps) {
 
             {shotAssets.length === 0 ? (
               <div className="rounded-[24px] border border-dashed border-white/10 bg-black/14 p-6 text-sm leading-6 text-slate-400">
-                No shot-linked assets are tracked yet. Upload a reference image or short reference
-                video above, then launch the next generation run with that material attached.
+                No shot-linked assets are tracked yet. Upload privately, attach a hosted reference
+                URL, or import one of the built-in BrandBuild samples above, then launch the next
+                generation run with that material attached.
               </div>
             ) : null}
           </div>

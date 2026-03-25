@@ -110,3 +110,12 @@
 - Added Supabase migration 20260325164000_assets_bucket_policies.sql for the private assets bucket and authenticated storage policies.
 - Deployed production at https://brandbuild-online-dwznxfdtn-byoroofers-projects.vercel.app and re-aliased brandbuild.online.
 - Remaining blockers: apply the storage migration, finish Supabase auth/email setup, fund Kling, and fix Higgsfield credentials.
+## 2026-03-25 16:31-16:49 CT - Shot Reference Fallback Unblock
+- Confirmed the next blocker was infrastructure rollout, not the shot workflow itself.
+- Added a no-storage fallback so shots can now accept hosted HTTPS references and curated BrandBuild sample imports through the same asset route used for private uploads.
+- Added a built-in BrandBuild reference sample library with cinematic image references plus a public motion-reference clip.
+- Rebuilt the shot asset uploader so private upload, hosted-link, and sample-import paths all live in one premium operator surface.
+- Re-ran 
+pm run typecheck and 
+pm run build successfully.
+- Next: deploy this batch, then validate a signed-in Sora dashboard run using the new fallback reference path.

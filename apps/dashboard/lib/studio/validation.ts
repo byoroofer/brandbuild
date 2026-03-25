@@ -55,6 +55,26 @@ export const studioAssetUploadSchema = z.object({
   assetType: z.enum(uploadableStudioAssetTypes),
 });
 
+export const studioExternalAssetSchema = z.object({
+  assetType: z.enum(uploadableStudioAssetTypes),
+  fileName: z
+    .string()
+    .trim()
+    .max(160, "Keep file labels under 160 characters.")
+    .optional()
+    .transform((value) => value?.trim() || undefined),
+  fileUrl: z
+    .string()
+    .trim()
+    .max(2048, "Hosted asset URLs must be under 2048 characters.")
+    .url("Paste a valid hosted media URL.")
+    .refine((value) => value.startsWith("https://"), "Use an HTTPS media URL."),
+});
+
+export const studioReferenceSampleImportSchema = z.object({
+  sampleId: z.string().trim().min(1, "Choose a reference sample."),
+});
+
 export const campaignCreateSchema = z.object({
   audience: z.string().min(1, "Audience is required."),
   brandName: z.string().min(1, "Brand name is required."),

@@ -27,6 +27,54 @@ function inferUploadTags(assetType: StudioUploadAssetType) {
   return tags;
 }
 
+function inferLinkedTags(
+  assetType: Database["public"]["Tables"]["assets"]["Row"]["type"],
+  extraTags: string[] = [],
+) {
+  const tags = ["linked", "studio", ...extraTags];
+
+  if (assetType === "reference_video") {
+    tags.push("reference", "video");
+  } else {
+    tags.push("reference", "image");
+  }
+
+  return Array.from(new Set(tags));
+}
+
+function inferLinkedMimeType(
+  assetType: Database["public"]["Tables"]["assets"]["Row"]["type"],
+  fileUrl: string,
+) {
+  const lowerUrl = fileUrl.toLowerCase();
+
+  if (assetType === "reference_video") {
+    if (lowerUrl.endsWith(".webm")) {
+      return "video/webm";
+    }
+
+    if (lowerUrl.endsWith(".mov")) {
+      return "video/quicktime";
+    }
+
+    return "video/mp4";
+  }
+
+  if (lowerUrl.endsWith(".png")) {
+    return "image/png";
+  }
+
+  if (lowerUrl.endsWith(".webp")) {
+    return "image/webp";
+  }
+
+  if (lowerUrl.endsWith(".svg")) {
+    return "image/svg+xml";
+  }
+
+  return "image/jpeg";
+}
+
 export async function createUploadedShotAsset(
   context: StudioRequestContext,
   input: {
@@ -95,6 +143,55 @@ export async function createUploadedShotAsset(
       file_url: signedUrl ?? (assetRow as AssetRow).file_url,
     },
     objectPath,
+  };
+}
+
+export async function createLinkedShotAsset(
+  context: StudioRequestContext,
+  input: {
+    assetType: Database["public"]["Tables"]["assets"]["Row"]["type"];
+    campaignId: string;
+    fileName: string;
+    fileUrl: string;
+    metadataJson?: Record<string, string | number | boolean | null>;
+    shotId: string;
+    shotTitle: string;
+    tags?: string[];
+  },
+) {
+  const insertPayload: AssetInsert = {
+    campaign_id: input.campaignId,
+    file_name: input.fileName,
+    file_url: input.fileUrl,
+    metadata_json: {
+      asset_role: input.assetType,
+      linked_by_user_id: context.user.id,
+      linked_url: input.fileUrl,
+      shot_title: input.shotTitle,
+      ...(input.metadataJson ?? {}),
+    },
+    mime_type: inferLinkedMimeType(input.assetType, input.fileUrl),
+    shot_id: input.shotId,
+    source: "external_link",
+    tags: inferLinkedTags(input.assetType, input.tags),
+    type: input.assetType,
+  };
+
+  const { data: assetRow, error: assetInsertError } = await (context.supabase
+    .from("assets") as any)
+    .insert(insertPayload)
+    .select("*")
+    .single();
+
+  if (assetInsertError || !assetRow) {
+    throw new StudioApiError(
+      assetInsertError?.message ?? "We couldn't create the linked asset record.",
+      500,
+    );
+  }
+
+  return {
+    asset: assetRow as AssetRow,
   };
 }
 

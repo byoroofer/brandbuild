@@ -1,0 +1,38 @@
+<svg width="1440" height="960" viewBox="0 0 1440 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1440" height="960" fill="#020617"/>
+  <rect width="1440" height="960" fill="url(#bg)"/>
+  <ellipse cx="1146" cy="180" rx="240" ry="188" fill="#A855F7" fill-opacity="0.26"/>
+  <ellipse cx="320" cy="758" rx="330" ry="200" fill="#0891B2" fill-opacity="0.26"/>
+  <rect x="184" y="136" width="1072" height="688" rx="42" fill="#020617" fill-opacity="0.34" stroke="white" stroke-opacity="0.10"/>
+  <rect x="246" y="208" width="540" height="544" rx="36" fill="#0F172A" fill-opacity="0.88"/>
+  <rect x="838" y="212" width="338" height="268" rx="30" fill="#111827" fill-opacity="0.8"/>
+  <rect x="838" y="516" width="338" height="236" rx="30" fill="#111827" fill-opacity="0.8"/>
+  <circle cx="494" cy="390" r="130" fill="#111827"/>
+  <path d="M356 618C390 524 462 482 532 482C618 482 674 544 694 618V698H356V618Z" fill="#111827"/>
+  <path d="M412 386C430 308 484 254 546 236C608 220 658 238 700 290" stroke="#38BDF8" stroke-width="20" stroke-linecap="round"/>
+  <path d="M438 390C470 426 516 444 566 442" stroke="#C084FC" stroke-width="16" stroke-linecap="round"/>
+  <circle cx="462" cy="390" r="18" fill="#67E8F9"/>
+  <circle cx="586" cy="390" r="18" fill="#F472B6"/>
+  <rect x="880" y="256" width="254" height="58" rx="18" fill="#1E293B"/>
+  <rect x="880" y="338" width="208" height="18" rx="9" fill="#38BDF8" fill-opacity="0.5"/>
+  <rect x="880" y="376" width="154" height="18" rx="9" fill="#C084FC" fill-opacity="0.5"/>
+  <rect x="880" y="560" width="254" height="132" rx="24" fill="url(#card)"/>
+  <text x="880" y="292" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="28" font-weight="700">Character continuity</text>
+  <text x="880" y="598" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="24" font-weight="700">Look notes</text>
+  <text x="880" y="636" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="18">Neon edge light</text>
+  <text x="880" y="668" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="18">Editorial framing</text>
+  <text x="880" y="700" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="18">High-contrast silhouette</text>
+  <text x="252" y="792" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Neon portrait character sheet</text>
+  <text x="252" y="836" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="22">Use this to keep talent, styling, and tonal consistency locked in</text>
+  <defs>
+    <linearGradient id="bg" x1="160" y1="112" x2="1276" y2="832" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#020617"/>
+      <stop offset="0.45" stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#1E1B4B"/>
+    </linearGradient>
+    <linearGradient id="card" x1="880" y1="560" x2="1134" y2="692" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+</svg>

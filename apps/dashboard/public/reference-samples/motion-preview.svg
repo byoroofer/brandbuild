@@ -1,0 +1,26 @@
+<svg width="1440" height="960" viewBox="0 0 1440 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1440" height="960" fill="#020617"/>
+  <rect width="1440" height="960" fill="url(#bg)"/>
+  <rect x="150" y="118" width="1140" height="724" rx="44" fill="#020617" fill-opacity="0.42" stroke="white" stroke-opacity="0.10"/>
+  <rect x="230" y="196" width="980" height="568" rx="36" fill="url(#frame)"/>
+  <path d="M332 616C422 530 500 474 556 446C628 412 706 414 774 456C834 492 892 558 972 650" stroke="#38BDF8" stroke-width="20" stroke-linecap="round"/>
+  <path d="M444 356C522 310 584 286 636 284C722 280 806 336 882 436" stroke="#C084FC" stroke-width="16" stroke-linecap="round" stroke-opacity="0.82"/>
+  <circle cx="748" cy="480" r="106" fill="#0F172A" fill-opacity="0.86" stroke="white" stroke-opacity="0.12"/>
+  <path d="M718 430L816 480L718 530V430Z" fill="#F8FAFC"/>
+  <rect x="290" y="708" width="860" height="18" rx="9" fill="#E2E8F0" fill-opacity="0.12"/>
+  <rect x="290" y="708" width="402" height="18" rx="9" fill="#38BDF8"/>
+  <circle cx="692" cy="717" r="18" fill="#F8FAFC"/>
+  <text x="244" y="834" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Motion reference clip</text>
+  <text x="244" y="878" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="22">Use this public video as a stand-in motion plate for camera movement and pacing</text>
+  <defs>
+    <linearGradient id="bg" x1="92" y1="62" x2="1316" y2="898" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#020617"/>
+      <stop offset="0.48" stop-color="#111827"/>
+      <stop offset="1" stop-color="#1E1B4B"/>
+    </linearGradient>
+    <linearGradient id="frame" x1="250" y1="214" x2="1190" y2="742" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+  </defs>
+</svg>

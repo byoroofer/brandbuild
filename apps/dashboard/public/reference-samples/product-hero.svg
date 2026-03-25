@@ -1,0 +1,40 @@
+<svg width="1440" height="960" viewBox="0 0 1440 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1440" height="960" fill="#050816"/>
+  <rect width="1440" height="960" fill="url(#bg)"/>
+  <ellipse cx="1036" cy="172" rx="274" ry="188" fill="#7C3AED" fill-opacity="0.24"/>
+  <ellipse cx="350" cy="798" rx="362" ry="214" fill="#0891B2" fill-opacity="0.26"/>
+  <rect x="158" y="144" width="1124" height="672" rx="48" fill="url(#panel)" stroke="white" stroke-opacity="0.12"/>
+  <rect x="436" y="218" width="568" height="524" rx="40" fill="url(#stage)" stroke="white" stroke-opacity="0.10"/>
+  <ellipse cx="720" cy="686" rx="240" ry="48" fill="#0EA5E9" fill-opacity="0.22"/>
+  <rect x="618" y="254" width="204" height="384" rx="82" fill="url(#can)"/>
+  <rect x="648" y="230" width="144" height="74" rx="30" fill="#B6E7FF" fill-opacity="0.28"/>
+  <rect x="654" y="336" width="132" height="24" rx="12" fill="#E2F3FF" fill-opacity="0.64"/>
+  <rect x="654" y="390" width="132" height="20" rx="10" fill="#E2F3FF" fill-opacity="0.32"/>
+  <rect x="654" y="432" width="108" height="18" rx="9" fill="#E2F3FF" fill-opacity="0.18"/>
+  <path d="M562 292C602 236 658 206 726 206" stroke="#67E8F9" stroke-width="6" stroke-linecap="round" stroke-opacity="0.7"/>
+  <path d="M880 300C844 238 788 206 720 206" stroke="#C084FC" stroke-width="6" stroke-linecap="round" stroke-opacity="0.7"/>
+  <circle cx="560" cy="290" r="14" fill="#67E8F9"/>
+  <circle cx="880" cy="300" r="14" fill="#C084FC"/>
+  <text x="230" y="250" fill="#E2E8F0" font-family="Arial, Helvetica, sans-serif" font-size="36" font-weight="700">Premium product hero</text>
+  <text x="230" y="302" fill="#94A3B8" font-family="Arial, Helvetica, sans-serif" font-size="24">Glossy studio lighting, centered label, controlled luxury mood</text>
+  <defs>
+    <linearGradient id="bg" x1="140" y1="112" x2="1302" y2="858" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#020617"/>
+      <stop offset="0.44" stop-color="#111827"/>
+      <stop offset="1" stop-color="#1E1B4B"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="186" y1="166" x2="1240" y2="804" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A" stop-opacity="0.94"/>
+      <stop offset="1" stop-color="#020617" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="stage" x1="478" y1="246" x2="990" y2="730" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#030712"/>
+    </linearGradient>
+    <linearGradient id="can" x1="618" y1="254" x2="822" y2="638" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#38BDF8"/>
+      <stop offset="0.52" stop-color="#0EA5E9"/>
+      <stop offset="1" stop-color="#8B5CF6"/>
+    </linearGradient>
+  </defs>
+</svg>

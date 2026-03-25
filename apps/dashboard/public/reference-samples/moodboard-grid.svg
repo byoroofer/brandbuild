@@ -1,0 +1,52 @@
+<svg width="1440" height="960" viewBox="0 0 1440 960" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1440" height="960" fill="#020617"/>
+  <rect x="126" y="108" width="1188" height="744" rx="44" fill="#0F172A" fill-opacity="0.9" stroke="white" stroke-opacity="0.08"/>
+  <rect x="190" y="180" width="300" height="248" rx="28" fill="url(#card1)"/>
+  <rect x="520" y="180" width="332" height="248" rx="28" fill="url(#card2)"/>
+  <rect x="882" y="180" width="368" height="248" rx="28" fill="url(#card3)"/>
+  <rect x="190" y="462" width="420" height="278" rx="28" fill="url(#card4)"/>
+  <rect x="640" y="462" width="284" height="278" rx="28" fill="url(#card5)"/>
+  <rect x="954" y="462" width="296" height="278" rx="28" fill="url(#card6)"/>
+  <circle cx="354" cy="304" r="76" fill="white" fill-opacity="0.08"/>
+  <rect x="556" y="228" width="264" height="18" rx="9" fill="#E2E8F0" fill-opacity="0.78"/>
+  <rect x="556" y="266" width="192" height="18" rx="9" fill="#E2E8F0" fill-opacity="0.32"/>
+  <rect x="556" y="304" width="218" height="18" rx="9" fill="#E2E8F0" fill-opacity="0.18"/>
+  <path d="M948 222L1016 374L1084 248L1150 374L1218 222" stroke="#F8FAFC" stroke-width="16" stroke-linecap="round" stroke-linejoin="round" stroke-opacity="0.7"/>
+  <rect x="236" y="516" width="132" height="132" rx="24" fill="#38BDF8" fill-opacity="0.86"/>
+  <rect x="388" y="516" width="132" height="132" rx="24" fill="#8B5CF6" fill-opacity="0.82"/>
+  <rect x="540" y="516" width="132" height="132" rx="24" fill="#F97316" fill-opacity="0.84"/>
+  <rect x="676" y="516" width="212" height="36" rx="18" fill="#E2E8F0" fill-opacity="0.7"/>
+  <rect x="676" y="574" width="170" height="18" rx="9" fill="#E2E8F0" fill-opacity="0.28"/>
+  <rect x="676" y="612" width="208" height="18" rx="9" fill="#E2E8F0" fill-opacity="0.18"/>
+  <circle cx="1068" cy="600" r="76" fill="#0EA5E9" fill-opacity="0.72"/>
+  <circle cx="1146" cy="600" r="76" fill="#C084FC" fill-opacity="0.72"/>
+  <circle cx="1108" cy="530" r="76" fill="#F59E0B" fill-opacity="0.62"/>
+  <text x="198" y="814" fill="#F8FAFC" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Cinematic moodboard</text>
+  <text x="198" y="856" fill="#CBD5E1" font-family="Arial, Helvetica, sans-serif" font-size="22">Use for palette, shape language, atmosphere, and interface-inspired art direction</text>
+  <defs>
+    <linearGradient id="card1" x1="190" y1="180" x2="490" y2="428" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#164E63"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="card2" x1="520" y1="180" x2="852" y2="428" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E1B4B"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="card3" x1="882" y1="180" x2="1250" y2="428" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3F1D55"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="card4" x1="190" y1="462" x2="610" y2="740" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#020617"/>
+    </linearGradient>
+    <linearGradient id="card5" x1="640" y1="462" x2="924" y2="740" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#172554"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="card6" x1="954" y1="462" x2="1250" y2="740" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#1E1B4B"/>
+    </linearGradient>
+  </defs>
+</svg>
