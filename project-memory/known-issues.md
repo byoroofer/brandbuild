@@ -15,5 +15,4 @@
 - Next.js currently warns about workspace-root inference because both the parent workspace and this repo contain lockfiles.
 - The marketing root still logs a non-fatal Dynamic server usage warning during build because session-aware code can touch cookies while `/` is being evaluated.
 - Local runs require `apps/dashboard/.env.local`; without it, routes that instantiate the Supabase client can throw missing-env errors even though production is configured.
-- The latest dashboard hardening and memory updates are deployed live but not yet committed and pushed to `origin/main`.
 - The repo has pre-existing unrelated worktree changes outside the scope of the current stabilization work.

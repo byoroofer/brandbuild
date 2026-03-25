@@ -323,5 +323,43 @@
       "Commit the current BrandBuild incident fixes and project-memory updates.",
       "Push main so git matches production again."
     ]
+  },
+  {
+    "session_id": "2026-03-25-push-runtime-fixes",
+    "timestamp_start": "2026-03-25T00:13:00-05:00",
+    "timestamp_end": "2026-03-25T00:18:00-05:00",
+    "user_objective": "Push the current BrandBuild runtime fixes and memory updates.",
+    "actions_taken": [
+      "Verified the intended diff and reran typecheck and build.",
+      "Committed the staged runtime fix and memory updates as 4351c81.",
+      "Pushed main to origin so git now includes the live production fix set."
+    ],
+    "files_created": [],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts"
+    ],
+    "key_findings": [
+      "The deployed runtime fix is now committed and pushed in git.",
+      "origin/main now includes the current BrandBuild production hardening work."
+    ],
+    "decisions_added": [],
+    "memory_updates": [
+      "Recorded the successful push and cleared the deployed-but-unpushed known issue."
+    ],
+    "unresolved_items": [
+      "Supabase Auth dashboard setup remains incomplete.",
+      "Live provider runs still need full validation.",
+      "The non-fatal Dynamic server usage build warning still needs cleanup."
+    ],
+    "next_recommended_actions": [
+      "Continue with Supabase Auth setup, provider validation, and the marketing-root warning cleanup."
+    ]
   }
 ]
