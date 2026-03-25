@@ -107,5 +107,25 @@
       "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json",
       "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json"
     ]
+  },
+  {
+    "id": "brandbuild-dec-20260325-007",
+    "timestamp": "2026-03-25T08:38:00-05:00",
+    "title": "Use shot-grouped compare outputs as the reviews surface",
+    "decision": "Keep /dashboard/reviews as the compare route and rebuild it around shot-grouped candidates with media previews, provider context, and focused review details rather than adding a separate compare route.",
+    "reason": "The product needed a first-class comparison workflow quickly, and the existing reviews surface already owned selection logic and review context.",
+    "alternatives_considered": [
+      "Keep the existing flat review list and defer compare UX",
+      "Create a brand new /dashboard/compare route before improving the reviews workspace"
+    ],
+    "impact": "BrandBuild now expresses its multi-model value proposition much more clearly without changing the route structure or schema.",
+    "status": "active",
+    "supersedes": [],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\reviews\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
+    ]
   }
 ]

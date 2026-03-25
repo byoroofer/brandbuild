@@ -515,31 +515,143 @@ export async function listAssets() {
 
 export async function getReviewsSummary(): Promise<ReviewsSummary> {
   const data = await getWorkspaceData();
-  const reviews = data.reviews.map((review) => ({
-    ...review,
-    asset: data.assets.find((asset) => asset.id === review.assetId) ?? null,
-    campaignName:
-      data.campaigns.find(
-        (campaign) =>
-          campaign.id === data.shots.find((shot) => shot.id === review.shotId)?.campaignId,
-      )?.name ?? "Unknown campaign",
-    shot: data.shots.find((shot) => shot.id === review.shotId) ?? null,
-  }));
 
   const average = (values: number[]) =>
     values.length === 0
       ? "0.0"
       : (values.reduce((total, value) => total + value, 0) / values.length).toFixed(1);
 
+  const decisionCounts: ReviewsSummary["decisionCounts"] = {
+    hold: 0,
+    pending: 0,
+    rejected: 0,
+    selected: 0,
+  };
+  const providerCounts: ReviewsSummary["providerCounts"] = {
+    higgsfield: 0,
+    kling: 0,
+    sora: 0,
+  };
+
+  const reviews: ReviewsSummary["reviews"] = data.reviews.map((review) => {
+    const asset = data.assets.find((entry) => entry.id === review.assetId) ?? null;
+    const shot = data.shots.find((entry) => entry.id === review.shotId) ?? null;
+    const campaign = shot
+      ? data.campaigns.find((entry) => entry.id === shot.campaignId) ?? null
+      : null;
+    const generation =
+      (asset?.generationId
+        ? data.generations.find((entry) => entry.id === asset.generationId) ?? null
+        : null) ??
+      data.generations.find((entry) => entry.shotId === review.shotId) ??
+      null;
+    const provider = generation?.provider ?? shot?.targetModel ?? null;
+    const averageScore = Number(
+      (
+        [
+          review.scoreBrandFit,
+          review.scoreEditability,
+          review.scoreHookStrength,
+          review.scoreMotionQuality,
+          review.scorePromptFidelity,
+          review.scoreRealism,
+        ].reduce((total, value) => total + value, 0) / 6
+      ).toFixed(1),
+    );
+
+    decisionCounts[review.decision] += 1;
+
+    if (provider) {
+      providerCounts[provider] += 1;
+    }
+
+    return {
+      ...review,
+      asset,
+      averageScore,
+      campaign,
+      campaignName: campaign?.name ?? "Unknown campaign",
+      generation,
+      provider,
+      shot,
+    };
+  });
+
+  const decisionPriority: Record<string, number> = {
+    selected: 0,
+    pending: 1,
+    hold: 2,
+    rejected: 3,
+  };
+
+  const comparisonGroupsMap = new Map<string, ReviewsSummary["reviews"]>();
+
+  for (const review of reviews) {
+    const existing = comparisonGroupsMap.get(review.shotId) ?? [];
+    existing.push(review);
+    comparisonGroupsMap.set(review.shotId, existing);
+  }
+
+  const comparisonGroups: ReviewsSummary["compareGroups"] = Array.from(
+    comparisonGroupsMap.values(),
+  )
+    .map((entries) => {
+      const comparisonCandidates = [...entries].sort((left, right) => {
+        const leftDecisionPriority = decisionPriority[left.decision] ?? 99;
+        const rightDecisionPriority = decisionPriority[right.decision] ?? 99;
+
+        if (leftDecisionPriority !== rightDecisionPriority) {
+          return leftDecisionPriority - rightDecisionPriority;
+        }
+
+        if (right.averageScore !== left.averageScore) {
+          return right.averageScore - left.averageScore;
+        }
+
+        return right.createdAt.localeCompare(left.createdAt);
+      });
+
+      return {
+        averageScore: average(comparisonCandidates.map((candidate) => candidate.averageScore)),
+        campaign: comparisonCandidates[0]?.campaign ?? null,
+        candidateCount: comparisonCandidates.length,
+        comparisonCandidates,
+        latestReviewAt: comparisonCandidates.reduce(
+          (latest, candidate) =>
+            candidate.createdAt > latest ? candidate.createdAt : latest,
+          comparisonCandidates[0]?.createdAt ?? "",
+        ),
+        selectedCount: comparisonCandidates.filter(
+          (candidate) => candidate.decision === "selected",
+        ).length,
+        shot: comparisonCandidates[0]?.shot ?? null,
+        topCandidateId: comparisonCandidates[0]?.id ?? null,
+      };
+    })
+    .sort((left, right) => {
+      if (right.selectedCount !== left.selectedCount) {
+        return right.selectedCount - left.selectedCount;
+      }
+
+      if (Number.parseFloat(right.averageScore) !== Number.parseFloat(left.averageScore)) {
+        return Number.parseFloat(right.averageScore) - Number.parseFloat(left.averageScore);
+      }
+
+      return right.latestReviewAt.localeCompare(left.latestReviewAt);
+    });
+
   return {
     averageBrandFit: average(reviews.map((review) => review.scoreBrandFit)),
     averageEditability: average(reviews.map((review) => review.scoreEditability)),
     averageHookStrength: average(reviews.map((review) => review.scoreHookStrength)),
     averageRealism: average(reviews.map((review) => review.scoreRealism)),
+    compareGroups: comparisonGroups,
+    decisionCounts,
     mode: data.mode,
-    rejectedCount: reviews.filter((review) => review.decision === "rejected").length,
+    providerCounts,
+    rejectedCount: decisionCounts.rejected,
     reviews,
-    selectedCount: reviews.filter((review) => review.decision === "selected").length,
+    selectedCount: decisionCounts.selected,
   };
 }
 

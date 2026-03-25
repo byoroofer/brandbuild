@@ -75,8 +75,24 @@
     "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
     "purpose": "Server read model for dashboard data.",
     "criticality": "high",
-    "last_touched": "2026-03-22T00:00:00-05:00",
-    "notes": "Needs future tightening so live failures do not hide behind demo fallback too easily.",
+    "last_touched": "2026-03-25T08:38:00-05:00",
+    "notes": "Now builds a grouped compare-outputs review summary, but still needs future tightening so live failures do not hide behind demo fallback too easily.",
+    "type": "server-side"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
+    "purpose": "Primary compare-outputs workspace for grouped review and selection decisions.",
+    "criticality": "high",
+    "last_touched": "2026-03-25T08:38:00-05:00",
+    "notes": "Rebuilt from a flat review list into a grouped compare console with filters, previews, and focused review detail.",
+    "type": "user-facing"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts",
+    "purpose": "Core product read-model and workflow types shared across dashboard surfaces.",
+    "criticality": "high",
+    "last_touched": "2026-03-25T08:38:00-05:00",
+    "notes": "Expanded with comparison candidate and comparison group types for the reviews workspace.",
     "type": "server-side"
   },
   {

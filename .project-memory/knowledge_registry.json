@@ -235,5 +235,23 @@
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
     ]
+  },
+  {
+    "id": "brandbuild-know-015",
+    "category": "product",
+    "fact": "The compare-outputs workflow can be delivered cleanly on /dashboard/reviews by grouping review candidates by shot and enriching them with asset, generation, provider, and campaign context; no schema migration is required for that surface.",
+    "confidence": "high",
+    "source": "2026-03-25 compare-workspace implementation",
+    "first_recorded_at": "2026-03-25T08:38:00-05:00",
+    "last_confirmed_at": "2026-03-25T08:38:00-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
+    ]
   }
 ]

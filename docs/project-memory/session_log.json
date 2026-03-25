@@ -452,5 +452,62 @@
       "Validate one real run each for Sora, Kling, and Higgsfield.",
       "Build the compare outputs workspace."
     ]
+  },
+  {
+    "session_id": "2026-03-25-compare-workspace-batch",
+    "timestamp_start": "2026-03-25T08:12:00-05:00",
+    "timestamp_end": "2026-03-25T08:38:00-05:00",
+    "user_objective": "Continue BrandBuild by implementing the next major workflow surface after stabilization.",
+    "actions_taken": [
+      "Loaded BrandBuild project memory and identified compare outputs as the next implementable vertical slice.",
+      "Audited the existing reviews route, reviews workbench, asset library, studio types, and repository read model.",
+      "Expanded the reviews read model into shot-grouped comparison data with provider, generation, campaign, and average-score context.",
+      "Rebuilt /dashboard/reviews into a premium compare-outputs workspace with filters, grouped shot navigation, rich previews, and focused review detail.",
+      "Re-ran typecheck and production build successfully."
+    ],
+    "files_created": [],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\decisions_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\file_index.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\ui-ux-review.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\reviews\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
+    ],
+    "key_findings": [
+      "The old reviews surface still behaved like a score list and did not express BrandBuild's multi-model compare value clearly.",
+      "The existing schema already had enough data to build a proper compare workspace without migration drift."
+    ],
+    "decisions_added": [
+      "brandbuild-dec-20260325-007"
+    ],
+    "memory_updates": [
+      "Marked compare outputs as a shipped local workflow surface and moved the roadmap forward to versions plus handoff."
+    ],
+    "unresolved_items": [
+      "Supabase Auth dashboard setup remains incomplete.",
+      "Live provider runs still need full validation.",
+      "Version timeline and edit handoff/export are still missing."
+    ],
+    "next_recommended_actions": [
+      "Push and deploy the compare-workspace batch after final review.",
+      "Design and build version groups plus edit handoff/export next."
+    ]
   }
 ]

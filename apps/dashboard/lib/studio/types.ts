@@ -239,13 +239,37 @@ export type ShotDetail = {
   shot: Shot;
 };
 
+export type ReviewComparisonCandidate = Review & {
+  asset: Asset | null;
+  averageScore: number;
+  campaign: Campaign | null;
+  campaignName: string;
+  generation: ShotGeneration | null;
+  provider: TargetModel | null;
+  shot: Shot | null;
+};
+
+export type ReviewComparisonGroup = {
+  averageScore: string;
+  campaign: Campaign | null;
+  candidateCount: number;
+  comparisonCandidates: ReviewComparisonCandidate[];
+  latestReviewAt: string;
+  selectedCount: number;
+  shot: Shot | null;
+  topCandidateId: string | null;
+};
+
 export type ReviewsSummary = {
   averageBrandFit: string;
   averageEditability: string;
   averageHookStrength: string;
   averageRealism: string;
+  compareGroups: ReviewComparisonGroup[];
+  decisionCounts: Record<ReviewDecision, number>;
   mode: WorkspaceMode;
+  providerCounts: Record<TargetModel, number>;
   rejectedCount: number;
-  reviews: Array<Review & { asset: Asset | null; campaignName: string; shot: Shot | null }>;
+  reviews: ReviewComparisonCandidate[];
   selectedCount: number;
 };

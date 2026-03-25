@@ -4,7 +4,7 @@
     "repo": "brandbuild",
     "local_path": "D:\\Playground\\brandbuild-online-repo",
     "production_url": "https://brandbuild.online",
-    "updated_at": "2026-03-24T19:41:23.2499373-05:00"
+    "updated_at": "2026-03-25T08:38:00-05:00"
   },
   "current_product_objective": "Build BrandBuild into a premium creative production operating system that unifies Sora, Kling, and Higgsfield for prompt creation, asset upload, generation orchestration, review, versioning, and delivery.",
   "stack_summary": [
@@ -38,11 +38,11 @@
       "Private shot asset uploads",
       "Generation status refresh",
       "Asset sync from successful generations",
+      "Grouped compare outputs workspace",
       "Premium dark dashboard shell",
       "Control-center settings page"
     ],
     "current_gaps": [
-      "No dedicated compare outputs workspace",
       "No version group or timeline model",
       "No export bundle or edit handoff layer",
       "No usage or cost tracking surface",
@@ -51,6 +51,7 @@
   },
   "current_working_features": [
     "Campaign, shot, asset, and review pages",
+    "Grouped compare outputs workspace at /dashboard/reviews",
     "Guided prompt builder on shot detail",
     "Provider routing recommendations",
     "Studio Agent and tag discovery",
@@ -96,12 +97,9 @@
     "Canonicalize structured memory in docs/project-memory and mirror it into .project-memory."
   ],
   "files_changed_this_session": [
-    "apps/dashboard/lib/studio/system-audit.ts",
-    "apps/dashboard/components/settings/studio-control-center.tsx",
-    "apps/dashboard/app/dashboard/settings/page.tsx",
-    "apps/dashboard/components/dashboard/dashboard-shell.tsx",
-    "apps/dashboard/app/dashboard/page.tsx",
-    "apps/dashboard/components/dashboard/command-bar.tsx",
+    "apps/dashboard/components/reviews/reviews-workbench.tsx",
+    "apps/dashboard/lib/studio/repository.ts",
+    "apps/dashboard/lib/studio/types.ts",
     "docs/project-memory/project_profile.json",
     "docs/project-memory/goals_and_rules.json",
     "docs/project-memory/current_state.json",
@@ -119,14 +117,12 @@
   ],
   "unresolved_bugs_or_issues": [
     "Supabase auth trust layer is still not fully live.",
-    "Compare outputs, versions, and export workflow remain unbuilt.",
+    "Versioning and export/handoff workflow remain unbuilt.",
     "Settings/control-center currently reports readiness from code and env state, not live telemetry.",
     "The root package naming still says ai-video-studio.",
-    "Next.js currently warns about workspace-root inference because multiple lockfiles exist.",
-    "The marketing route still logs a non-fatal Dynamic server usage warning during build."
+    "Next.js currently warns about workspace-root inference because multiple lockfiles exist."
   ],
   "ui_ux_improvements_still_needed": [
-    "Promote compare outputs into a first-class workspace.",
     "Promote version timeline and editor handoff into a first-class workflow.",
     "Clarify Projects as the top-level mental model across the app.",
     "Show provider requirements in-context during generation, not only in settings."
@@ -134,7 +130,6 @@
   "exact_next_steps": [
     "Finish manual Supabase Auth dashboard setup.",
     "Validate one live run each for Sora, Kling, and Higgsfield.",
-    "Build compare outputs workspace.",
     "Design and build version timeline plus edit handoff."
   ]
 }

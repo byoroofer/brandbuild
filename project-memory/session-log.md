@@ -51,3 +51,9 @@
 - Committed the batch as `6701f83` and pushed `main`.
 - Deployed production to `brandbuild-online-ogvlahkwd-byoroofers-projects.vercel.app` and re-aliased `brandbuild.online`.
 - Verified the live site: `/` returned `200`, `/login` returned `200`, and signed-out `/dashboard` redirected to `/login`.
+
+## 2026-03-25 08:12-08:38 CT - Compare Workspace Batch
+- Audited the existing reviews route and confirmed it was still a flat score list.
+- Expanded the review read model to group candidates by shot and attach campaign, provider, generation, and average-score context.
+- Rebuilt `/dashboard/reviews` into a real compare-outputs workspace with grouped navigation, media previews, filters, and focused review detail.
+- Re-ran `npm run typecheck` and `npm run build` successfully.

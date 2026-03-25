@@ -5,7 +5,6 @@
 - Live provider integrations for Sora, Kling, and Higgsfield are code-wired but not fully validated with confirmed operator runs.
 
 ## Product Gaps
-- There is no first-class compare outputs workspace yet.
 - There is no version timeline or edit handoff/export bundle layer yet.
 - There is no usage/cost/admin console yet.
 

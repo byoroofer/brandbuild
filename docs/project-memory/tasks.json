@@ -95,16 +95,16 @@
     "title": "Build compare outputs workspace",
     "description": "Create a first-class UI for side-by-side output review across providers, with selection, notes, and decision capture tied to projects and shots.",
     "priority": "high",
-    "status": "active",
+    "status": "complete",
     "owner": "agent",
     "created_at": "2026-03-24T18:30:00-05:00",
-    "updated_at": "2026-03-24T19:41:23.2499373-05:00",
+    "updated_at": "2026-03-25T08:38:00-05:00",
     "dependencies": [],
     "related_files": [
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\reviews\\page.tsx",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx"
     ],
-    "notes": "This is the next strongest product workflow gap after auth trust and provider validation."
+    "notes": "Completed by rebuilding /dashboard/reviews into a grouped compare workspace backed by richer review summary data."
   },
   {
     "task_id": "brandbuild-task-007",
