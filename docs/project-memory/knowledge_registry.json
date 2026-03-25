@@ -253,5 +253,22 @@
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
     ]
+  },
+  {
+    "id": "brandbuild-know-016",
+    "category": "deployment",
+    "fact": "The compare-outputs workspace shipped in commit 387f697 and the live deployment at brandbuild-online-5e318lqwu-byoroofers-projects.vercel.app was verified with healthy public routes plus correct signed-out redirects for /dashboard and /dashboard/reviews.",
+    "confidence": "high",
+    "source": "2026-03-25 compare-workspace deployment verification",
+    "first_recorded_at": "2026-03-25T08:42:00-05:00",
+    "last_confirmed_at": "2026-03-25T08:42:00-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+    ]
   }
 ]

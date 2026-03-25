@@ -1,6 +1,6 @@
 {
   "current_phase": "stabilization, integration hardening, and workflow expansion",
-  "summary": "BrandBuild is live on brandbuild.online with a premium dashboard, private shot asset uploads, provider adapters for Sora, Kling, and Higgsfield, a settings control center, and a new compare-outputs workspace at /dashboard/reviews. The main remaining blockers are Supabase Auth dashboard configuration, end-to-end live provider validation, and missing version/export workflow layers.",
+  "summary": "BrandBuild is live on brandbuild.online with a premium dashboard, private shot asset uploads, provider adapters for Sora, Kling, and Higgsfield, a settings control center, and a compare-outputs workspace at /dashboard/reviews. Production is now aligned to commit 387f697 after the compare workspace shipped successfully. The main remaining blockers are Supabase Auth dashboard configuration, end-to-end live provider validation, and missing version/export workflow layers.",
   "active_workstreams": [
     "production stability and trust",
     "provider validation and orchestration hardening",
@@ -47,6 +47,9 @@
     "Rebuilt /dashboard/reviews into a premium compare-outputs workspace grouped by shot instead of a flat review list.",
     "Expanded the reviews read model so each candidate carries campaign, shot, provider, generation, and average-score context without changing the underlying schema.",
     "Re-ran typecheck and production build successfully after the compare-workspace batch.",
+    "Committed the compare workspace as 387f697 and pushed main.",
+    "Deployed production at brandbuild-online-5e318lqwu-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
+    "Verified the live compare batch with direct checks: / returns 200, /login returns 200, and signed-out /dashboard and /dashboard/reviews redirect to /login.",
     "Created the requested root project-memory operating files.",
     "Consolidated project memory so docs/project-memory is the canonical structured source and .project-memory is a mirrored copy.",
     "Re-ran typecheck and production build successfully after memory consolidation."
@@ -58,5 +61,5 @@
     "Run and capture one real Higgsfield generation through the dashboard.",
     "Design and implement version timeline plus edit handoff/export."
   ],
-  "updated_at": "2026-03-25T08:38:00-05:00"
+  "updated_at": "2026-03-25T08:42:00-05:00"
 }

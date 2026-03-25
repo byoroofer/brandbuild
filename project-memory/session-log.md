@@ -57,3 +57,4 @@
 - Expanded the review read model to group candidates by shot and attach campaign, provider, generation, and average-score context.
 - Rebuilt `/dashboard/reviews` into a real compare-outputs workspace with grouped navigation, media previews, filters, and focused review detail.
 - Re-ran `npm run typecheck` and `npm run build` successfully.
+- Committed the batch as `387f697`, pushed `main`, deployed production to `brandbuild-online-5e318lqwu-byoroofers-projects.vercel.app`, and verified healthy public routes plus correct signed-out redirects for `/dashboard` and `/dashboard/reviews`.

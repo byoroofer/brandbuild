@@ -104,7 +104,7 @@
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\reviews\\page.tsx",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx"
     ],
-    "notes": "Completed by rebuilding /dashboard/reviews into a grouped compare workspace backed by richer review summary data."
+    "notes": "Completed by rebuilding /dashboard/reviews into a grouped compare workspace, then shipping it in commit 387f697 and deploying it to brandbuild-online-5e318lqwu-byoroofers-projects.vercel.app."
   },
   {
     "task_id": "brandbuild-task-007",
