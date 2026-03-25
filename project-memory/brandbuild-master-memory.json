@@ -4,7 +4,7 @@
     "repo": "brandbuild",
     "local_path": "D:\\Playground\\brandbuild-online-repo",
     "production_url": "https://brandbuild.online",
-    "updated_at": "2026-03-25T09:01:54.1394838-05:00"
+    "updated_at": "2026-03-25T09:09:41.3207972-05:00"
   },
   "current_product_objective": "Build BrandBuild into a premium creative production operating system that unifies Sora, Kling, and Higgsfield for prompt creation, asset upload, generation orchestration, review, versioning, and delivery.",
   "stack_summary": [
@@ -60,7 +60,8 @@
     "Live-capable Sora, Kling, and Higgsfield adapters",
     "Settings/control-center audit page at /dashboard/settings",
     "Healthy production deployment on brandbuild.online after redeploy",
-    "Compare outputs workspace shipped to production"
+    "Compare outputs workspace shipped to production",
+    "Assets workspace shipped to production"
   ],
   "broken_or_blocked_features": [
     "Branded auth emails are coded but still blocked by manual Supabase dashboard setup.",
@@ -129,7 +130,6 @@
     "Show provider requirements in-context during generation, not only in settings."
   ],
   "exact_next_steps": [
-    "Push and deploy the new assets workspace.",
     "Finish manual Supabase Auth dashboard setup.",
     "Validate one live run each for Sora, Kling, and Higgsfield.",
     "Design and build campaign-level sequencing on top of the new handoff data."

@@ -306,5 +306,23 @@
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
     ]
+  },
+  {
+    "id": "brandbuild-know-019",
+    "category": "deployment",
+    "fact": "The assets workspace with library, versions, and handoff views shipped in commit 428ce4b and was deployed to brandbuild-online-n3qvlcudy-byoroofers-projects.vercel.app, after which brandbuild.online returned 200 on direct verification.",
+    "confidence": "high",
+    "source": "2026-03-25 assets-workspace deployment verification",
+    "first_recorded_at": "2026-03-25T09:09:41.3207972-05:00",
+    "last_confirmed_at": "2026-03-25T09:09:41.3207972-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+    ]
   }
 ]

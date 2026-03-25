@@ -55,7 +55,10 @@
     "Re-ran typecheck and production build successfully after memory consolidation.",
     "Expanded the assets read model so it derives version groups and campaign handoff packages from the existing assets, generations, reviews, shots, and campaigns data.",
     "Rebuilt /dashboard/assets into a multi-view workspace for asset browsing, version review, and handoff preparation without changing the route structure.",
-    "Re-ran typecheck and production build successfully after the assets workspace batch."
+    "Re-ran typecheck and production build successfully after the assets workspace batch.",
+    "Committed the assets workspace as 428ce4b and pushed main.",
+    "Deployed production at brandbuild-online-n3qvlcudy-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
+    "Verified the live root returns 200 after the assets workspace deployment."
   ],
   "next_steps": [
     "Finish Supabase Auth dashboard setup for branded email and correct redirect behavior.",
@@ -64,5 +67,5 @@
     "Run and capture one real Higgsfield generation through the dashboard.",
     "Add timeline sequencing across selected outputs and deepen the delivery/export workflow."
   ],
-  "updated_at": "2026-03-25T09:01:54.1394838-05:00"
+  "updated_at": "2026-03-25T09:09:41.3207972-05:00"
 }

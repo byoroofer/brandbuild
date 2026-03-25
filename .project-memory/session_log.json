@@ -516,20 +516,35 @@
   {
     "session_id": "2026-03-25-assets-workspace-version-handoff-batch",
     "timestamp_start": "2026-03-25T08:43:00-05:00",
-    "timestamp_end": "2026-03-25T09:01:54.1394838-05:00",
+    "timestamp_end": "2026-03-25T09:09:41.3207972-05:00",
     "user_objective": "Continue BrandBuild by turning the assets area into the next workflow surface after compare outputs.",
     "actions_taken": [
       "Loaded BrandBuild project memory and confirmed version groups plus handoff were the next highest-value workflow layer.",
       "Expanded the assets read model so it derives normalized version candidates, grouped version sets, and campaign handoff packages from the existing schema.",
       "Restored and wired the assets workspace to support library, versions, and handoff views on /dashboard/assets.",
-      "Re-ran typecheck and production build successfully."
+      "Re-ran typecheck and production build successfully.",
+      "Committed the batch as 428ce4b and pushed main to origin.",
+      "Deployed the dashboard app to Vercel production and re-aliased brandbuild.online.",
+      "Verified the live root returns 200 after deployment."
     ],
     "files_created": [],
     "files_modified": [
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\decisions_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\file_index.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\ui-ux-review.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md"
     ],
     "files_reviewed": [
       "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
@@ -541,7 +556,8 @@
     ],
     "key_findings": [
       "The existing schema already contained enough information to build version groups and handoff packages without migration drift.",
-      "Keeping versions and handoff inside /dashboard/assets preserved navigation clarity while materially upgrading the workflow."
+      "Keeping versions and handoff inside /dashboard/assets preserved navigation clarity while materially upgrading the workflow.",
+      "The shipped assets workspace can reach production cleanly without route churn or schema changes."
     ],
     "decisions_added": [
       "brandbuild-dec-20260325-008"
@@ -555,7 +571,6 @@
       "There is still no dedicated timeline sequencing interface across selected outputs."
     ],
     "next_recommended_actions": [
-      "Push and deploy the new assets workspace.",
       "Validate one real run each for Sora, Kling, and Higgsfield.",
       "Add campaign-level sequencing and delivery preparation on top of the new handoff data."
     ]

@@ -64,4 +64,6 @@
 - Expanded the assets read model so it derives normalized version groups and campaign handoff packages from the existing schema.
 - Restored and wired `/dashboard/assets` into a three-view workspace for asset browsing, versions, and handoff preparation.
 - Re-ran `npm run typecheck` and `npm run build` successfully.
+- Committed the batch as `428ce4b`, pushed `main`, deployed production to `brandbuild-online-n3qvlcudy-byoroofers-projects.vercel.app`, and re-aliased `brandbuild.online`.
+- Verified `brandbuild.online` returned `200` after deployment.
 - Recorded the next remaining gap as campaign-level sequencing across selected outputs.
