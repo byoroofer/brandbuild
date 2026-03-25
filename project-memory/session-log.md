@@ -100,3 +100,4 @@
   - Higgsfield failed with `Invalid credentials`
 - Re-ran typecheck and build successfully.
 - Deployed production to `brandbuild-online-nwyykfvzj-byoroofers-projects.vercel.app`, re-aliased `brandbuild.online`, and verified the live root returned `200`.
+- Pushed the repo upstream through commit `1a8b5b3` so GitHub matches the latest deployed state.

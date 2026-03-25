@@ -779,7 +779,8 @@
                               "Added a reusable provider smoke-test harness at apps/dashboard/scripts/provider-smoke.mjs and wired it into package.json.",
                               "Ran the live smoke test against the current provider credentials.",
                               "Verified the repo still passes typecheck and build.",
-                              "Deployed the latest batch to Vercel production and verified brandbuild.online returned 200."
+                              "Deployed the latest batch to Vercel production and verified brandbuild.online returned 200.",
+                              "Pushed origin/main through commit 1a8b5b3 so GitHub matches the latest deployed state."
                           ],
         "files_created":  [
                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
@@ -817,8 +818,7 @@
         "unresolved_items":  [
                                  "Production still needs SUPABASE_SERVICE_ROLE_KEY before private uploads can work.",
                                  "Kling still needs account funding before live jobs can proceed.",
-                                 "Higgsfield still needs valid credentials before live jobs can proceed.",
-                                 "The latest repair commit still needs to be pushed upstream once git credentials are available."
+                                 "Higgsfield still needs valid credentials before live jobs can proceed."
                              ],
         "next_recommended_actions":  [
                                          "Add SUPABASE_SERVICE_ROLE_KEY to the Vercel project and local app env, then test a real private upload from the shot page.",

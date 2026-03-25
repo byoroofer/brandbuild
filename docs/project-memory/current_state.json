@@ -85,7 +85,8 @@
                            "Added a reusable provider smoke-test harness at apps/dashboard/scripts/provider-smoke.mjs.",
                            "Ran the live smoke test against current provider creds: Sora accepted a queued job, Kling failed with account balance not enough, and Higgsfield failed with invalid credentials.",
                            "Deployed production at brandbuild-online-nwyykfvzj-byoroofers-projects.vercel.app and re-aliased brandbuild.online after the upload-readiness and smoke-test batch.",
-                           "Verified the live root returns 200 after the newest deployment."
+                           "Verified the live root returns 200 after the newest deployment.",
+                           "Pushed main to origin through commit 1a8b5b3 so GitHub now matches the latest deployed BrandBuild state."
                        ],
     "next_steps":  [
                        "Finish Supabase Auth dashboard setup for branded email and correct redirect behavior.",
@@ -97,5 +98,5 @@
                        "Define the integration boundary for local generative tooling only after isolated development and testing are ready.",
                        "Decide whether to keep D:\\\\Projects\\\\brandbuild as a secondary clone or remove it to reduce clone drift."
                    ],
-    "updated_at":  "2026-03-25T12:46:38.0836727-05:00"
+    "updated_at":  "2026-03-25T15:54:50.6728671-05:00"
 }
