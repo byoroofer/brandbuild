@@ -218,5 +218,22 @@
     "related_files": [
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx"
     ]
+  },
+  {
+    "id": "brandbuild-know-014",
+    "category": "deployment",
+    "fact": "After commit 6701f83, brandbuild.online was redeployed successfully and verified with direct checks: root returns 200, /login returns 200, and signed-out /dashboard redirects to /login.",
+    "confidence": "high",
+    "source": "2026-03-25 production deployment verification",
+    "first_recorded_at": "2026-03-25T08:11:00-05:00",
+    "last_confirmed_at": "2026-03-25T08:11:00-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+    ]
   }
 ]

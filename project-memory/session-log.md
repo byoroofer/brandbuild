@@ -44,3 +44,10 @@
 - Removed session-aware calls from `apps/dashboard/app/(marketing)/page.tsx`.
 - Kept the homepage static-safe by using provider catalog plus env-based workspace readiness only.
 - Re-ran typecheck and build and confirmed the Dynamic server usage warning disappeared.
+
+## 2026-03-25 08:00-08:11 CT - Push And Deploy Static Homepage Fix
+- Mirrored canonical memory updates into `.project-memory`.
+- Re-ran `npm run typecheck` and `npm run build` successfully.
+- Committed the batch as `6701f83` and pushed `main`.
+- Deployed production to `brandbuild-online-ogvlahkwd-byoroofers-projects.vercel.app` and re-aliased `brandbuild.online`.
+- Verified the live site: `/` returned `200`, `/login` returned `200`, and signed-out `/dashboard` redirected to `/login`.

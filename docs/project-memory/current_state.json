@@ -1,6 +1,6 @@
 {
   "current_phase": "stabilization, integration hardening, and workflow expansion",
-  "summary": "BrandBuild is live on brandbuild.online with a premium dashboard, private shot asset uploads, provider adapters for Sora, Kling, and Higgsfield, and a new settings control center. Production was recovered again on March 24 by hardening the dashboard persistence client so auth or Supabase client initialization failures fall back cleanly instead of crashing the page. The main remaining blockers are Supabase Auth dashboard configuration, end-to-end live provider validation, and missing compare/version/export workflow layers.",
+  "summary": "BrandBuild is live on brandbuild.online with a premium dashboard, private shot asset uploads, provider adapters for Sora, Kling, and Higgsfield, and a new settings control center. Production is now aligned to commit 6701f83 after the marketing homepage was made static-safe and redeployed successfully. The main remaining blockers are Supabase Auth dashboard configuration, end-to-end live provider validation, and missing compare/version/export workflow layers.",
   "active_workstreams": [
     "production stability and trust",
     "provider validation and orchestration hardening",
@@ -42,6 +42,9 @@
     "Deployed a fresh production build at brandbuild-online-453sok21c-byoroofers-projects.vercel.app and verified the live domain, login page, and signed-out dashboard redirect in a browser.",
     "Pulled the current production environment into apps/dashboard/.env.local so local runs stop throwing NEXT_PUBLIC_SUPABASE_URL is not set.",
     "Removed session-aware root-page calls so the marketing homepage is static again and the Dynamic server usage build warning no longer appears.",
+    "Committed the homepage stability fix as 6701f83 and pushed main so git matches the latest verified state.",
+    "Deployed production at brandbuild-online-ogvlahkwd-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
+    "Verified the live site directly: / returns 200, /login returns 200, and signed-out /dashboard redirects to /login.",
     "Created the requested root project-memory operating files.",
     "Consolidated project memory so docs/project-memory is the canonical structured source and .project-memory is a mirrored copy.",
     "Re-ran typecheck and production build successfully after memory consolidation."
@@ -54,5 +57,5 @@
     "Build the compare outputs workspace.",
     "Design and implement version timeline plus edit handoff/export."
   ],
-  "updated_at": "2026-03-24T19:41:23.2499373-05:00"
+  "updated_at": "2026-03-25T08:11:00-05:00"
 }

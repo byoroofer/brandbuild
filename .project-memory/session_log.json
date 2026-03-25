@@ -404,5 +404,53 @@
       "Push the root-page fix and deploy it so production and git remain aligned.",
       "Continue with Supabase Auth setup and provider validation."
     ]
+  },
+  {
+    "session_id": "2026-03-25-push-and-deploy-static-homepage-fix",
+    "timestamp_start": "2026-03-25T08:00:00-05:00",
+    "timestamp_end": "2026-03-25T08:11:00-05:00",
+    "user_objective": "Continue the pending BrandBuild stability batch through push and production deployment.",
+    "actions_taken": [
+      "Loaded the BrandBuild project memory and confirmed the pending diff was the static-safe marketing homepage fix plus aligned memory updates.",
+      "Mirrored canonical structured memory into .project-memory before shipping.",
+      "Re-ran typecheck and production build successfully.",
+      "Committed the batch as 6701f83 and pushed main to origin.",
+      "Deployed the dashboard app to Vercel production and re-aliased brandbuild.online.",
+      "Verified the live site with direct checks: root 200, login 200, signed-out dashboard 307 to /login."
+    ],
+    "files_created": [],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+    ],
+    "key_findings": [
+      "The outstanding batch was production-safe and verified locally before shipping.",
+      "The marketing homepage fix is now in git and live production, so git, memory, and Vercel are aligned again."
+    ],
+    "decisions_added": [],
+    "memory_updates": [
+      "Recorded the successful push, deployment, and live verification outcome."
+    ],
+    "unresolved_items": [
+      "Supabase Auth dashboard setup remains incomplete.",
+      "Live provider runs still need full validation.",
+      "The Next.js workspace-root warning from duplicate lockfiles still remains."
+    ],
+    "next_recommended_actions": [
+      "Finish Supabase Auth dashboard setup for branded emails and correct redirect behavior.",
+      "Validate one real run each for Sora, Kling, and Higgsfield.",
+      "Build the compare outputs workspace."
+    ]
   }
 ]
