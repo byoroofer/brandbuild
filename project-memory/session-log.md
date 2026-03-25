@@ -67,3 +67,11 @@
 - Committed the batch as `428ce4b`, pushed `main`, deployed production to `brandbuild-online-n3qvlcudy-byoroofers-projects.vercel.app`, and re-aliased `brandbuild.online`.
 - Verified `brandbuild.online` returned `200` after deployment.
 - Recorded the next remaining gap as campaign-level sequencing across selected outputs.
+
+## 2026-03-25 09:10-09:34 CT - Auth Boundary Incident Hardening
+- Treated the continuing live error page as a production incident rather than assuming the latest UI batch was the direct cause.
+- Verified the likely brittle paths were middleware session refresh and auth email-link handling around bad cookies, expired links, or transient Supabase failures.
+- Hardened `apps/dashboard/lib/supabase/middleware.ts` so session refresh failures degrade to an anonymous response instead of throwing.
+- Hardened `apps/dashboard/lib/auth/email-action.ts` so callback failures redirect back to login with a safe error instead of hitting the global error page.
+- Re-ran `npm run typecheck` and `npm run build` successfully.
+- Deployed production to `brandbuild-online-h3jyx59f5-byoroofers-projects.vercel.app`, re-aliased `brandbuild.online`, and verified the live root returned `200`.

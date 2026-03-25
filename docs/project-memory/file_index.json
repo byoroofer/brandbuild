@@ -48,6 +48,22 @@
     "type": "server-side"
   },
   {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\middleware.ts",
+    "purpose": "Refreshes Supabase auth state in middleware and protects dashboard routes.",
+    "criticality": "high",
+    "last_touched": "2026-03-25T09:34:30.9567883-05:00",
+    "notes": "Hardened so bad cookies or Supabase session-refresh failures fall back to an anonymous response instead of throwing a production error page.",
+    "type": "server-side"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\email-action.ts",
+    "purpose": "Handles BrandBuild auth email callback, verification, and magic-link redirects.",
+    "criticality": "high",
+    "last_touched": "2026-03-25T09:34:30.9567883-05:00",
+    "notes": "Hardened so auth callback failures redirect back to login safely instead of falling through to the global error page.",
+    "type": "server-side"
+  },
+  {
     "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\route.ts",
     "purpose": "Create generation jobs through the unified provider layer.",
     "criticality": "high",

@@ -1,6 +1,6 @@
 {
   "current_phase": "stabilization, integration hardening, and workflow expansion",
-  "summary": "BrandBuild is live on brandbuild.online with a premium dashboard, private shot asset uploads, provider adapters for Sora, Kling, and Higgsfield, a settings control center, a compare-outputs workspace at /dashboard/reviews, and a new assets workspace that now handles library browsing, version groups, and handoff packages at /dashboard/assets. The main remaining blockers are Supabase Auth dashboard configuration, end-to-end live provider validation, and the absence of dedicated timeline sequencing across selected outputs.",
+  "summary": "BrandBuild is live on brandbuild.online with a premium dashboard, private shot asset uploads, provider adapters for Sora, Kling, and Higgsfield, a settings control center, a compare-outputs workspace at /dashboard/reviews, and an assets workspace for library browsing, version groups, and handoff packages at /dashboard/assets. The auth boundary has now been hardened so bad session cookies or auth callback failures redirect safely instead of triggering the global error page. The main remaining blockers are Supabase Auth dashboard configuration, end-to-end live provider validation, and the absence of dedicated timeline sequencing across selected outputs.",
   "active_workstreams": [
     "production stability and trust",
     "provider validation and orchestration hardening",
@@ -20,7 +20,7 @@
   "risks": [
     "The repository can fall back to demo data too aggressively when live queries partially fail, which can hide production issues.",
     "Multiple memory folders can drift if they are not mirrored deliberately.",
-    "The worktree contains unrelated pre-existing changes outside this session's scope."
+    "Direct live verification for some HTTPS paths from this shell can be noisy because PowerShell/curl intermittently hit local schannel credential errors."
   ],
   "assumptions": [
     "BrandBuild and AI Video Studio are the same product family.",
@@ -58,7 +58,12 @@
     "Re-ran typecheck and production build successfully after the assets workspace batch.",
     "Committed the assets workspace as 428ce4b and pushed main.",
     "Deployed production at brandbuild-online-n3qvlcudy-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
-    "Verified the live root returns 200 after the assets workspace deployment."
+    "Verified the live root returns 200 after the assets workspace deployment.",
+    "Hardened Supabase middleware so session refresh failures return an anonymous response instead of throwing through the request pipeline.",
+    "Hardened auth email-action handling so magic-link and confirmation callback failures redirect safely back to login instead of hitting the global error page.",
+    "Re-ran typecheck and production build successfully after the auth-boundary hardening batch.",
+    "Deployed production at brandbuild-online-h3jyx59f5-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
+    "Verified the live root returns 200 after the auth-boundary incident fix."
   ],
   "next_steps": [
     "Finish Supabase Auth dashboard setup for branded email and correct redirect behavior.",
@@ -67,5 +72,5 @@
     "Run and capture one real Higgsfield generation through the dashboard.",
     "Add timeline sequencing across selected outputs and deepen the delivery/export workflow."
   ],
-  "updated_at": "2026-03-25T09:09:41.3207972-05:00"
+  "updated_at": "2026-03-25T09:34:30.9567883-05:00"
 }

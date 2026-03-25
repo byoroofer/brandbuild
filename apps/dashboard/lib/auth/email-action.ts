@@ -54,54 +54,68 @@ export async function handleAuthEmailActionRequest(request: Request) {
   const callbackError =
     searchParams.get("error_description") ?? searchParams.get("error");
 
-  if (callbackError) {
-    return NextResponse.redirect(
-      buildAbsoluteRedirect(request, buildLoginErrorHref(callbackError, nextPath)),
-    );
-  }
-
-  const supabase = await createServerSupabaseClient();
-
-  if (code) {
-    const { error } = await supabase.auth.exchangeCodeForSession(code);
-
-    if (!error) {
-      return NextResponse.redirect(buildAbsoluteRedirect(request, nextPath));
+  try {
+    if (callbackError) {
+      return NextResponse.redirect(
+        buildAbsoluteRedirect(request, buildLoginErrorHref(callbackError, nextPath)),
+      );
     }
+
+    const supabase = await createServerSupabaseClient();
+
+    if (code) {
+      const { error } = await supabase.auth.exchangeCodeForSession(code);
+
+      if (!error) {
+        return NextResponse.redirect(buildAbsoluteRedirect(request, nextPath));
+      }
+
+      return NextResponse.redirect(
+        buildAbsoluteRedirect(
+          request,
+          buildLoginErrorHref(
+            "We could not complete email confirmation. Please try again.",
+            nextPath,
+          ),
+        ),
+      );
+    }
+
+    if (tokenHash && isSupportedEmailOtpType(type)) {
+      const { error } = await supabase.auth.verifyOtp({
+        token_hash: tokenHash,
+        type,
+      });
+
+      if (!error) {
+        return NextResponse.redirect(buildAbsoluteRedirect(request, nextPath));
+      }
+
+      return NextResponse.redirect(
+        buildAbsoluteRedirect(
+          request,
+          buildLoginErrorHref("This confirmation link is invalid or expired.", nextPath),
+        ),
+      );
+    }
+
+    return NextResponse.redirect(
+      buildAbsoluteRedirect(
+        request,
+        buildLoginErrorHref("We could not verify that link. Please log in again.", nextPath),
+      ),
+    );
+  } catch (error) {
+    console.error("[BrandBuild] Auth email action failed.", error);
 
     return NextResponse.redirect(
       buildAbsoluteRedirect(
         request,
         buildLoginErrorHref(
-          "We could not complete email confirmation. Please try again.",
+          "We hit a temporary sign-in issue. Please request a fresh link and try again.",
           nextPath,
         ),
       ),
     );
   }
-
-  if (tokenHash && isSupportedEmailOtpType(type)) {
-    const { error } = await supabase.auth.verifyOtp({
-      token_hash: tokenHash,
-      type,
-    });
-
-    if (!error) {
-      return NextResponse.redirect(buildAbsoluteRedirect(request, nextPath));
-    }
-
-    return NextResponse.redirect(
-      buildAbsoluteRedirect(
-        request,
-        buildLoginErrorHref("This confirmation link is invalid or expired.", nextPath),
-      ),
-    );
-  }
-
-  return NextResponse.redirect(
-    buildAbsoluteRedirect(
-      request,
-      buildLoginErrorHref("We could not verify that link. Please log in again.", nextPath),
-    ),
-  );
 }

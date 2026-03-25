@@ -574,5 +574,53 @@
       "Validate one real run each for Sora, Kling, and Higgsfield.",
       "Add campaign-level sequencing and delivery preparation on top of the new handoff data."
     ]
+  },
+  {
+    "session_id": "2026-03-25-auth-boundary-incident-hardening",
+    "timestamp_start": "2026-03-25T09:10:00-05:00",
+    "timestamp_end": "2026-03-25T09:34:30.9567883-05:00",
+    "user_objective": "Fix the live BrandBuild error page that was still appearing during login and auth-link handling.",
+    "actions_taken": [
+      "Loaded BrandBuild project memory and treated the issue as a production incident.",
+      "Inspected the dashboard, auth, Supabase server, and middleware boundaries instead of assuming the latest UI batch was the direct cause.",
+      "Pulled Vercel deploy output and runtime logging commands to narrow the failure toward the auth/session boundary.",
+      "Hardened middleware session refresh so bad cookies or Supabase session-refresh failures return a safe anonymous response instead of throwing.",
+      "Hardened auth email-action handling so callback failures redirect back to login with a safe error instead of hitting the global error page.",
+      "Re-ran typecheck and production build successfully.",
+      "Deployed the fix to Vercel production and re-aliased brandbuild.online.",
+      "Verified the live root returns 200 after the incident deployment."
+    ],
+    "files_created": [],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\middleware.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\email-action.ts"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\layout.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\session.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\email-action.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\middleware.ts"
+    ],
+    "key_findings": [
+      "The newly shipped assets workspace was build-clean and not the most likely root cause of the live error page.",
+      "The remaining brittle paths were middleware session refresh and auth callback handling around bad cookies, expired links, or transient Supabase failures."
+    ],
+    "decisions_added": [],
+    "memory_updates": [
+      "Recorded the auth/session hardening as a production reliability fix and preserved the exact deployment URL."
+    ],
+    "unresolved_items": [
+      "Supabase Auth dashboard setup remains incomplete.",
+      "Live provider runs still need full validation.",
+      "Campaign-level sequencing across selected outputs is still unbuilt."
+    ],
+    "next_recommended_actions": [
+      "Push the auth-boundary incident fix to origin/main.",
+      "Keep watching the login and callback paths until the user confirms the global error page is gone.",
+      "Continue with Supabase Auth dashboard setup and real provider validation."
+    ]
   }
 ]

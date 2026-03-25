@@ -31,42 +31,47 @@ export async function updateSession(
     },
   });
 
-  const supabase = createServerClient<Database>(
-    getSupabaseUrl(),
-    getSupabasePublicKey(),
-    {
-      cookies: {
-        getAll() {
-          return request.cookies.getAll();
-        },
-        setAll(
-          cookiesToSet: Array<{
-            name: string;
-            options: CookieOptions;
-            value: string;
-          }>,
-        ) {
-          cookiesToSet.forEach(({ name, value }) => {
-            request.cookies.set(name, value);
-          });
+  try {
+    const supabase = createServerClient<Database>(
+      getSupabaseUrl(),
+      getSupabasePublicKey(),
+      {
+        cookies: {
+          getAll() {
+            return request.cookies.getAll();
+          },
+          setAll(
+            cookiesToSet: Array<{
+              name: string;
+              options: CookieOptions;
+              value: string;
+            }>,
+          ) {
+            cookiesToSet.forEach(({ name, value }) => {
+              request.cookies.set(name, value);
+            });
 
-          response = MiddlewareResponse.next({
-            request: {
-              headers: effectiveHeaders,
-            },
-          });
+            response = MiddlewareResponse.next({
+              request: {
+                headers: effectiveHeaders,
+              },
+            });
 
-          cookiesToSet.forEach(({ name, value, options }) => {
-            response.cookies.set(name, value, options);
-          });
+            cookiesToSet.forEach(({ name, value, options }) => {
+              response.cookies.set(name, value, options);
+            });
+          },
         },
       },
-    },
-  );
+    );
 
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
+    const {
+      data: { user },
+    } = await supabase.auth.getUser();
 
-  return { response, user };
+    return { response, user };
+  } catch (error) {
+    console.error("[BrandBuild] Middleware session refresh failed.", error);
+    return { response, user: null };
+  }
 }

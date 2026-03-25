@@ -61,7 +61,8 @@
     "Settings/control-center audit page at /dashboard/settings",
     "Healthy production deployment on brandbuild.online after redeploy",
     "Compare outputs workspace shipped to production",
-    "Assets workspace shipped to production"
+    "Assets workspace shipped to production",
+    "Auth/session boundary hardened so broken cookies or callback failures redirect safely instead of crashing"
   ],
   "broken_or_blocked_features": [
     "Branded auth emails are coded but still blocked by manual Supabase dashboard setup.",

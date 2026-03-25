@@ -324,5 +324,40 @@
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
     ]
+  },
+  {
+    "id": "brandbuild-know-020",
+    "category": "reliability",
+    "fact": "BrandBuild's auth boundary is safer when both middleware session refresh and auth email-action handling treat Supabase/session failures as recoverable and redirect back to login instead of letting the global error page render.",
+    "confidence": "high",
+    "source": "2026-03-25 auth incident hardening",
+    "first_recorded_at": "2026-03-25T09:34:30.9567883-05:00",
+    "last_confirmed_at": "2026-03-25T09:34:30.9567883-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\middleware.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\email-action.ts"
+    ]
+  },
+  {
+    "id": "brandbuild-know-021",
+    "category": "deployment",
+    "fact": "The auth/session incident fix was deployed to brandbuild-online-h3jyx59f5-byoroofers-projects.vercel.app, and brandbuild.online returned 200 after the deployment.",
+    "confidence": "high",
+    "source": "2026-03-25 auth incident deployment verification",
+    "first_recorded_at": "2026-03-25T09:34:30.9567883-05:00",
+    "last_confirmed_at": "2026-03-25T09:34:30.9567883-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\middleware.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\email-action.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+    ]
   }
 ]
