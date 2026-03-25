@@ -1,17 +1,17 @@
 {
   "current_phase": "stabilization, integration hardening, and workflow expansion",
-  "summary": "BrandBuild is live on brandbuild.online with a premium dashboard, private shot asset uploads, provider adapters for Sora, Kling, and Higgsfield, a settings control center, and a compare-outputs workspace at /dashboard/reviews. Production is now aligned to commit 387f697 after the compare workspace shipped successfully. The main remaining blockers are Supabase Auth dashboard configuration, end-to-end live provider validation, and missing version/export workflow layers.",
+  "summary": "BrandBuild is live on brandbuild.online with a premium dashboard, private shot asset uploads, provider adapters for Sora, Kling, and Higgsfield, a settings control center, a compare-outputs workspace at /dashboard/reviews, and a new assets workspace that now handles library browsing, version groups, and handoff packages at /dashboard/assets. The main remaining blockers are Supabase Auth dashboard configuration, end-to-end live provider validation, and the absence of dedicated timeline sequencing across selected outputs.",
   "active_workstreams": [
     "production stability and trust",
     "provider validation and orchestration hardening",
-    "compare outputs and version workflow design",
+    "version groups, handoff packages, and delivery workflow refinement",
     "durable project-memory consolidation"
   ],
   "current_priorities": [
     "Keep brandbuild.online stable on the latest deployment.",
     "Finish the Supabase Auth trust layer so emails and redirects are fully BrandBuild-native.",
     "Validate one real generation run each for Sora, Kling, and Higgsfield.",
-    "Build version timeline and edit handoff as the next major workflow surface."
+    "Turn the new assets workspace into a true timeline sequencing and delivery surface."
   ],
   "blockers": [
     "Supabase Auth dashboard still needs branded email hook enablement, SMTP sender setup, and redirect cleanup.",
@@ -29,7 +29,7 @@
   ],
   "known_issues": [
     "Branded auth email infrastructure exists in code but is not fully live until the Supabase dashboard settings are completed.",
-    "There is no version timeline or edit handoff/export bundle layer yet.",
+    "There is still no dedicated sequencing timeline for arranging selected outputs across a campaign.",
     "The root package naming still says ai-video-studio while the product brand is BrandBuild.",
     "Next.js build warns that it is inferring the workspace root because both D:\\Playground and the BrandBuild repo contain lockfiles."
   ],
@@ -52,14 +52,17 @@
     "Verified the live compare batch with direct checks: / returns 200, /login returns 200, and signed-out /dashboard and /dashboard/reviews redirect to /login.",
     "Created the requested root project-memory operating files.",
     "Consolidated project memory so docs/project-memory is the canonical structured source and .project-memory is a mirrored copy.",
-    "Re-ran typecheck and production build successfully after memory consolidation."
+    "Re-ran typecheck and production build successfully after memory consolidation.",
+    "Expanded the assets read model so it derives version groups and campaign handoff packages from the existing assets, generations, reviews, shots, and campaigns data.",
+    "Rebuilt /dashboard/assets into a multi-view workspace for asset browsing, version review, and handoff preparation without changing the route structure.",
+    "Re-ran typecheck and production build successfully after the assets workspace batch."
   ],
   "next_steps": [
     "Finish Supabase Auth dashboard setup for branded email and correct redirect behavior.",
     "Run and capture one real Sora generation through the dashboard.",
     "Run and capture one real Kling generation through the dashboard.",
     "Run and capture one real Higgsfield generation through the dashboard.",
-    "Design and implement version timeline plus edit handoff/export."
+    "Add timeline sequencing across selected outputs and deepen the delivery/export workflow."
   ],
-  "updated_at": "2026-03-25T08:42:00-05:00"
+  "updated_at": "2026-03-25T09:01:54.1394838-05:00"
 }

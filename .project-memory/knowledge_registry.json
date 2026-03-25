@@ -270,5 +270,41 @@
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
     ]
+  },
+  {
+    "id": "brandbuild-know-017",
+    "category": "product",
+    "fact": "The existing assets route can safely serve as BrandBuild's versions and handoff surface by deriving version groups and campaign handoff packages from the current assets, generations, reviews, shots, and campaigns schema; no migration is required for this layer.",
+    "confidence": "high",
+    "source": "2026-03-25 assets workspace implementation",
+    "first_recorded_at": "2026-03-25T09:01:54.1394838-05:00",
+    "last_confirmed_at": "2026-03-25T09:01:54.1394838-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
+    ]
+  },
+  {
+    "id": "brandbuild-know-018",
+    "category": "workflow",
+    "fact": "BrandBuild now has a usable pre-edit finishing layer: operators can browse assets, inspect grouped versions, and download campaign handoff manifests before a dedicated sequencing timeline exists.",
+    "confidence": "high",
+    "source": "2026-03-25 assets workspace implementation",
+    "first_recorded_at": "2026-03-25T09:01:54.1394838-05:00",
+    "last_confirmed_at": "2026-03-25T09:01:54.1394838-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
+    ]
   }
 ]

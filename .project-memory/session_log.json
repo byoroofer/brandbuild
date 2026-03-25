@@ -512,5 +512,52 @@
       "Design and build version groups plus edit handoff/export next.",
       "Continue with Supabase Auth setup and live provider validation."
     ]
+  },
+  {
+    "session_id": "2026-03-25-assets-workspace-version-handoff-batch",
+    "timestamp_start": "2026-03-25T08:43:00-05:00",
+    "timestamp_end": "2026-03-25T09:01:54.1394838-05:00",
+    "user_objective": "Continue BrandBuild by turning the assets area into the next workflow surface after compare outputs.",
+    "actions_taken": [
+      "Loaded BrandBuild project memory and confirmed version groups plus handoff were the next highest-value workflow layer.",
+      "Expanded the assets read model so it derives normalized version candidates, grouped version sets, and campaign handoff packages from the existing schema.",
+      "Restored and wired the assets workspace to support library, versions, and handoff views on /dashboard/assets.",
+      "Re-ran typecheck and production build successfully."
+    ],
+    "files_created": [],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
+    ],
+    "key_findings": [
+      "The existing schema already contained enough information to build version groups and handoff packages without migration drift.",
+      "Keeping versions and handoff inside /dashboard/assets preserved navigation clarity while materially upgrading the workflow."
+    ],
+    "decisions_added": [
+      "brandbuild-dec-20260325-008"
+    ],
+    "memory_updates": [
+      "Recorded the new assets workspace as a shipped workflow surface and advanced the roadmap to timeline sequencing plus live validation."
+    ],
+    "unresolved_items": [
+      "Supabase Auth dashboard setup remains incomplete.",
+      "Live provider runs still need full validation.",
+      "There is still no dedicated timeline sequencing interface across selected outputs."
+    ],
+    "next_recommended_actions": [
+      "Push and deploy the new assets workspace.",
+      "Validate one real run each for Sora, Kling, and Higgsfield.",
+      "Add campaign-level sequencing and delivery preparation on top of the new handoff data."
+    ]
   }
 ]

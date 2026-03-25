@@ -127,5 +127,25 @@
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
     ]
+  },
+  {
+    "id": "brandbuild-dec-20260325-008",
+    "timestamp": "2026-03-25T09:01:54.1394838-05:00",
+    "title": "Use /dashboard/assets as the versions and handoff workspace",
+    "decision": "Keep /dashboard/assets as the unified route for asset browsing, version groups, and handoff preparation instead of introducing a separate versions or deliverables route at this stage.",
+    "reason": "The assets surface already owned the mental model for outputs and files, so extending it into versions and handoff kept navigation stable while making the workflow materially more useful.",
+    "alternatives_considered": [
+      "Create a separate /dashboard/versions route before the model was mature",
+      "Wait to build handoff until a full timeline editor existed"
+    ],
+    "impact": "BrandBuild now has a functional pre-edit delivery layer without route churn or schema changes, and the next missing step is sequencing rather than structure.",
+    "status": "active",
+    "supersedes": [],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
+    ]
   }
 ]

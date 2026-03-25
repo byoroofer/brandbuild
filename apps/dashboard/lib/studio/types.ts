@@ -175,6 +175,44 @@ export type Review = {
   shotId: string;
 };
 
+export type VersionCandidate = {
+  asset: Asset;
+  averageScore: number | null;
+  campaign: Campaign | null;
+  createdAt: string;
+  generation: ShotGeneration | null;
+  id: string;
+  provider: TargetModel | null;
+  review: Review | null;
+  shot: Shot | null;
+  thumbnailAsset: Asset | null;
+};
+
+export type VersionGroup = {
+  averageScore: string;
+  campaign: Campaign | null;
+  candidateCount: number;
+  latestCreatedAt: string;
+  pendingReviewCount: number;
+  readyForHandoff: boolean;
+  selectedCandidateId: string | null;
+  selectedCount: number;
+  shot: Shot | null;
+  versionCandidates: VersionCandidate[];
+};
+
+export type HandoffPackage = {
+  campaign: Campaign;
+  deliverableChecklist: string[];
+  editorNotes: string[];
+  exportReady: boolean;
+  id: string;
+  missingShotCount: number;
+  missingShots: Shot[];
+  pendingReviewCount: number;
+  selectedVersions: VersionCandidate[];
+};
+
 export type StudioStat = {
   helper: string;
   label: string;
@@ -272,4 +310,13 @@ export type ReviewsSummary = {
   rejectedCount: number;
   reviews: ReviewComparisonCandidate[];
   selectedCount: number;
+};
+
+export type AssetsWorkspace = {
+  assets: Asset[];
+  campaigns: Campaign[];
+  handoffPackages: HandoffPackage[];
+  mode: WorkspaceMode;
+  shots: Shot[];
+  versionGroups: VersionGroup[];
 };

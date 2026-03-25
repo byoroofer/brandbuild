@@ -75,8 +75,8 @@
     "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
     "purpose": "Server read model for dashboard data.",
     "criticality": "high",
-    "last_touched": "2026-03-25T08:38:00-05:00",
-    "notes": "Now builds a grouped compare-outputs review summary, but still needs future tightening so live failures do not hide behind demo fallback too easily.",
+    "last_touched": "2026-03-25T09:01:54.1394838-05:00",
+    "notes": "Now builds grouped compare-outputs review data plus asset-version groups and campaign handoff packages, but still needs future tightening so live failures do not hide behind demo fallback too easily.",
     "type": "server-side"
   },
   {
@@ -91,9 +91,25 @@
     "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts",
     "purpose": "Core product read-model and workflow types shared across dashboard surfaces.",
     "criticality": "high",
-    "last_touched": "2026-03-25T08:38:00-05:00",
-    "notes": "Expanded with comparison candidate and comparison group types for the reviews workspace.",
+    "last_touched": "2026-03-25T09:01:54.1394838-05:00",
+    "notes": "Expanded with comparison, version-group, and handoff-package types for the reviews and assets workspaces.",
     "type": "server-side"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+    "purpose": "Assets route that now fronts the library, version-group, and handoff workflow.",
+    "criticality": "high",
+    "last_touched": "2026-03-25T09:01:54.1394838-05:00",
+    "notes": "Keeps the existing /dashboard/assets route stable while feeding the richer workspace model.",
+    "type": "user-facing"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+    "purpose": "Primary asset workspace UI for browsing outputs, reviewing version groups, and preparing handoff packages.",
+    "criticality": "high",
+    "last_touched": "2026-03-25T09:01:54.1394838-05:00",
+    "notes": "Now owns three views: library, versions, and handoff/export preparation.",
+    "type": "user-facing"
   },
   {
     "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",

@@ -16,8 +16,8 @@
 - Still needed: one confirmed real dashboard run plus model-selection and refresh hardening.
 
 ## Shared Pipeline
-- Working now: structured prompts, private reference uploads, normalized generation persistence, status refresh, asset sync for successful runs, and a grouped compare-outputs workspace.
-- Missing now: version groups, edit handoff/export, cost tracking, and richer admin/debug visibility.
+- Working now: structured prompts, private reference uploads, normalized generation persistence, status refresh, asset sync for successful runs, a grouped compare-outputs workspace, plus asset-driven version groups and handoff packages.
+- Missing now: campaign-level sequencing, cost tracking, and richer admin/debug visibility.
 
 ## Auth / Trust Layer
 - Code exists for branded auth emails through a Supabase Send Email Hook.

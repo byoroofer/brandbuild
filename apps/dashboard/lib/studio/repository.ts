@@ -11,9 +11,11 @@ import {
 import { getRoutingRecommendation } from "@/lib/studio/model-routing";
 import type {
   Asset,
+  AssetsWorkspace,
   Campaign,
   CampaignDetail,
   DashboardHomeData,
+  HandoffPackage,
   PromptTemplate,
   Review,
   ReviewsSummary,
@@ -21,6 +23,8 @@ import type {
   ShotDetail,
   ShotGeneration,
   TargetModel,
+  VersionCandidate,
+  VersionGroup,
   WorkspaceMode,
 } from "@/lib/studio/types";
 import type { Database, Json } from "@/types/database";
@@ -504,13 +508,208 @@ export async function getShotDetail(shotId: string): Promise<ShotDetail | null> 
 
 export async function listAssets() {
   const data = await getWorkspaceData();
+  const sortedAssets = [...data.assets].sort((a, b) => b.createdAt.localeCompare(a.createdAt));
+  const latestReviewByAssetId = new Map<string, Review>();
+  const generationById = new Map(data.generations.map((generation) => [generation.id, generation]));
+  const shotById = new Map(data.shots.map((shot) => [shot.id, shot]));
+  const campaignById = new Map(data.campaigns.map((campaign) => [campaign.id, campaign]));
 
-  return {
-    assets: [...data.assets].sort((a, b) => b.createdAt.localeCompare(a.createdAt)),
+  for (const review of [...data.reviews].sort((a, b) => b.createdAt.localeCompare(a.createdAt))) {
+    if (!latestReviewByAssetId.has(review.assetId)) {
+      latestReviewByAssetId.set(review.assetId, review);
+    }
+  }
+
+  const average = (values: number[]) =>
+    values.length === 0
+      ? "0.0"
+      : (values.reduce((total, value) => total + value, 0) / values.length).toFixed(1);
+
+  const generatedVideoAssets = sortedAssets.filter((asset) => asset.type === "generated_video");
+  const thumbnailByGenerationId = new Map<string, Asset>();
+
+  for (const asset of sortedAssets) {
+    if (asset.type === "thumbnail" && asset.generationId && !thumbnailByGenerationId.has(asset.generationId)) {
+      thumbnailByGenerationId.set(asset.generationId, asset);
+    }
+  }
+
+  const versionCandidates: VersionCandidate[] = generatedVideoAssets.map((asset) => {
+    const review = latestReviewByAssetId.get(asset.id) ?? null;
+    const shot = asset.shotId ? shotById.get(asset.shotId) ?? null : null;
+    const campaign = campaignById.get(asset.campaignId) ?? null;
+    const generation = asset.generationId ? generationById.get(asset.generationId) ?? null : null;
+    const provider = generation?.provider ?? shot?.targetModel ?? null;
+    const averageScore = review
+      ? Number(
+          (
+            [
+              review.scoreBrandFit,
+              review.scoreEditability,
+              review.scoreHookStrength,
+              review.scoreMotionQuality,
+              review.scorePromptFidelity,
+              review.scoreRealism,
+            ].reduce((total, value) => total + value, 0) / 6
+          ).toFixed(1),
+        )
+      : null;
+
+    return {
+      asset,
+      averageScore,
+      campaign,
+      createdAt: asset.createdAt,
+      generation,
+      id: asset.id,
+      provider,
+      review,
+      shot,
+      thumbnailAsset: asset.generationId ? thumbnailByGenerationId.get(asset.generationId) ?? null : null,
+    };
+  });
+
+  const versionGroupsMap = new Map<string, VersionCandidate[]>();
+
+  for (const candidate of versionCandidates) {
+    const key = candidate.shot?.id ?? `asset:${candidate.asset.id}`;
+    const existing = versionGroupsMap.get(key) ?? [];
+    existing.push(candidate);
+    versionGroupsMap.set(key, existing);
+  }
+
+  const versionGroups: VersionGroup[] = Array.from(versionGroupsMap.values())
+    .map((entries) => {
+      const sortedCandidates = [...entries].sort((left, right) => {
+        const leftSelected = left.review?.decision === "selected" ? 1 : 0;
+        const rightSelected = right.review?.decision === "selected" ? 1 : 0;
+
+        if (rightSelected !== leftSelected) {
+          return rightSelected - leftSelected;
+        }
+
+        if ((right.averageScore ?? -1) !== (left.averageScore ?? -1)) {
+          return (right.averageScore ?? -1) - (left.averageScore ?? -1);
+        }
+
+        return right.createdAt.localeCompare(left.createdAt);
+      });
+
+      return {
+        averageScore: average(
+          sortedCandidates
+            .map((candidate) => candidate.averageScore)
+            .filter((score): score is number => score !== null),
+        ),
+        campaign: sortedCandidates[0]?.campaign ?? null,
+        candidateCount: sortedCandidates.length,
+        latestCreatedAt: sortedCandidates[0]?.createdAt ?? "",
+        pendingReviewCount: sortedCandidates.filter(
+          (candidate) =>
+            !candidate.review ||
+            candidate.review.decision === "pending" ||
+            candidate.review.decision === "hold",
+        ).length,
+        readyForHandoff: sortedCandidates.some(
+          (candidate) => candidate.review?.decision === "selected",
+        ),
+        selectedCandidateId:
+          sortedCandidates.find((candidate) => candidate.review?.decision === "selected")?.id ??
+          sortedCandidates[0]?.id ??
+          null,
+        selectedCount: sortedCandidates.filter(
+          (candidate) => candidate.review?.decision === "selected",
+        ).length,
+        shot: sortedCandidates[0]?.shot ?? null,
+        versionCandidates: sortedCandidates,
+      };
+    })
+    .sort((left, right) => {
+      if (Number(right.readyForHandoff) !== Number(left.readyForHandoff)) {
+        return Number(right.readyForHandoff) - Number(left.readyForHandoff);
+      }
+
+      return right.latestCreatedAt.localeCompare(left.latestCreatedAt);
+    });
+
+  const selectedVersionByShotId = new Map<string, VersionCandidate>();
+
+  for (const group of versionGroups) {
+    const shotId = group.shot?.id;
+
+    if (!shotId) {
+      continue;
+    }
+
+    const selectedVersion = group.versionCandidates.find(
+      (candidate) => candidate.review?.decision === "selected",
+    );
+
+    if (selectedVersion) {
+      selectedVersionByShotId.set(shotId, selectedVersion);
+    }
+  }
+
+  const handoffPackages: HandoffPackage[] = data.campaigns
+    .map((campaign) => {
+      const campaignShots = data.shots.filter((shot) => shot.campaignId === campaign.id);
+      const campaignVersionGroups = versionGroups.filter(
+        (group) => group.campaign?.id === campaign.id,
+      );
+      const selectedVersions = campaignVersionGroups.flatMap((group) =>
+        group.versionCandidates.filter((candidate) => candidate.review?.decision === "selected"),
+      );
+      const pendingReviewCount = campaignVersionGroups.reduce(
+        (total, group) => total + group.pendingReviewCount,
+        0,
+      );
+      const missingShots = campaignShots.filter((shot) => !selectedVersionByShotId.has(shot.id));
+      const editorNotes = Array.from(
+        new Set(
+          selectedVersions
+            .map((candidate) => candidate.shot?.notes?.trim() ?? "")
+            .filter((note) => note.length > 0),
+        ),
+      ).slice(0, 4);
+
+      const deliverableChecklist = [
+        `${selectedVersions.length} selected ${selectedVersions.length === 1 ? "output" : "outputs"} ready`,
+        `${pendingReviewCount} ${pendingReviewCount === 1 ? "candidate still needs" : "candidates still need"} review attention`,
+        `${missingShots.length} ${missingShots.length === 1 ? "shot is still missing a select" : "shots are still missing selects"}`,
+      ];
+
+      return {
+        campaign,
+        deliverableChecklist,
+        editorNotes,
+        exportReady: selectedVersions.length > 0,
+        id: campaign.id,
+        missingShotCount: missingShots.length,
+        missingShots,
+        pendingReviewCount,
+        selectedVersions: selectedVersions.sort((left, right) =>
+          right.createdAt.localeCompare(left.createdAt),
+        ),
+      };
+    })
+    .sort((left, right) => {
+      if (Number(right.exportReady) !== Number(left.exportReady)) {
+        return Number(right.exportReady) - Number(left.exportReady);
+      }
+
+      return right.selectedVersions.length - left.selectedVersions.length;
+    });
+
+  const workspace: AssetsWorkspace = {
+    assets: sortedAssets,
     campaigns: data.campaigns,
+    handoffPackages,
     mode: data.mode,
     shots: data.shots,
+    versionGroups,
   };
+
+  return workspace;
 }
 
 export async function getReviewsSummary(): Promise<ReviewsSummary> {

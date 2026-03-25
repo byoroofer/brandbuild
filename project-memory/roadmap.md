@@ -4,10 +4,10 @@
 1. Keep production stable on the correct Vercel deployment.
 2. Finish Supabase Auth dashboard setup for branded emails and clean redirects.
 3. Validate one real run for Sora, Kling, and Higgsfield.
-4. Add version groups and timeline history.
+4. Add campaign-level sequencing on top of the new versions and handoff layer.
 
 ## Next
-1. Add edit handoff and export bundles.
+1. Deepen edit handoff and export bundles.
 2. Resolve the Next.js workspace-root warning.
 3. Add usage and cost tracking.
 

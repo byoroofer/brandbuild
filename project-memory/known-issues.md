@@ -5,7 +5,7 @@
 - Live provider integrations for Sora, Kling, and Higgsfield are code-wired but not fully validated with confirmed operator runs.
 
 ## Product Gaps
-- There is no version timeline or edit handoff/export bundle layer yet.
+- There is still no dedicated campaign-level sequencing timeline across selected outputs.
 - There is no usage/cost/admin console yet.
 
 ## Technical / Operational

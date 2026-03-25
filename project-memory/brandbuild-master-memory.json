@@ -4,7 +4,7 @@
     "repo": "brandbuild",
     "local_path": "D:\\Playground\\brandbuild-online-repo",
     "production_url": "https://brandbuild.online",
-    "updated_at": "2026-03-25T08:42:00-05:00"
+    "updated_at": "2026-03-25T09:01:54.1394838-05:00"
   },
   "current_product_objective": "Build BrandBuild into a premium creative production operating system that unifies Sora, Kling, and Higgsfield for prompt creation, asset upload, generation orchestration, review, versioning, and delivery.",
   "stack_summary": [
@@ -38,13 +38,13 @@
       "Private shot asset uploads",
       "Generation status refresh",
       "Asset sync from successful generations",
+      "Assets workspace with library, version groups, and handoff packages",
       "Grouped compare outputs workspace",
       "Premium dark dashboard shell",
       "Control-center settings page"
     ],
     "current_gaps": [
-      "No version group or timeline model",
-      "No export bundle or edit handoff layer",
+      "No dedicated timeline sequencing model across selected outputs",
       "No usage or cost tracking surface",
       "No admin/debug console"
     ]
@@ -52,6 +52,7 @@
   "current_working_features": [
     "Campaign, shot, asset, and review pages",
     "Grouped compare outputs workspace at /dashboard/reviews",
+    "Assets workspace with library, versions, and handoff views at /dashboard/assets",
     "Guided prompt builder on shot detail",
     "Provider routing recommendations",
     "Studio Agent and tag discovery",
@@ -98,7 +99,8 @@
     "Canonicalize structured memory in docs/project-memory and mirror it into .project-memory."
   ],
   "files_changed_this_session": [
-    "apps/dashboard/components/reviews/reviews-workbench.tsx",
+    "apps/dashboard/app/dashboard/assets/page.tsx",
+    "apps/dashboard/components/assets/asset-library.tsx",
     "apps/dashboard/lib/studio/repository.ts",
     "apps/dashboard/lib/studio/types.ts",
     "docs/project-memory/current_state.json",
@@ -116,19 +118,20 @@
   ],
   "unresolved_bugs_or_issues": [
     "Supabase auth trust layer is still not fully live.",
-    "Versioning and export/handoff workflow remain unbuilt.",
+    "Campaign-level sequencing across selected outputs is still unbuilt.",
     "Settings/control-center currently reports readiness from code and env state, not live telemetry.",
     "The root package naming still says ai-video-studio.",
     "Next.js currently warns about workspace-root inference because multiple lockfiles exist."
   ],
   "ui_ux_improvements_still_needed": [
-    "Promote version timeline and editor handoff into a first-class workflow.",
+    "Promote campaign-level sequencing into a first-class workflow on top of the new handoff layer.",
     "Clarify Projects as the top-level mental model across the app.",
     "Show provider requirements in-context during generation, not only in settings."
   ],
   "exact_next_steps": [
+    "Push and deploy the new assets workspace.",
     "Finish manual Supabase Auth dashboard setup.",
     "Validate one live run each for Sora, Kling, and Higgsfield.",
-    "Design and build version timeline plus edit handoff."
+    "Design and build campaign-level sequencing on top of the new handoff data."
   ]
 }

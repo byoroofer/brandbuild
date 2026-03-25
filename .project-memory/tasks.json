@@ -111,18 +111,19 @@
     "title": "Build version timeline and edit handoff/export layer",
     "description": "Add version groups, chosen-output sequencing, editor notes, and export bundles so approved outputs can move into finishing without a full browser editor.",
     "priority": "high",
-    "status": "backlog",
+    "status": "active",
     "owner": "agent",
     "created_at": "2026-03-24T18:30:00-05:00",
-    "updated_at": "2026-03-24T19:41:23.2499373-05:00",
+    "updated_at": "2026-03-25T09:01:54.1394838-05:00",
     "dependencies": [
       "brandbuild-task-006"
     ],
     "related_files": [
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
     ],
-    "notes": "This is the correct next step before considering a full editing interface."
+    "notes": "Version groups and handoff packages are now shipped inside /dashboard/assets. The remaining gap is campaign-level sequencing and deeper delivery polish."
   },
   {
     "task_id": "brandbuild-task-008",
@@ -224,5 +225,24 @@
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
     ],
     "notes": "Completed by commit 6701f83, production deployment brandbuild-online-ogvlahkwd-byoroofers-projects.vercel.app, and live verification of /, /login, and /dashboard redirect."
+  },
+  {
+    "task_id": "brandbuild-task-014",
+    "title": "Add campaign-level sequencing across selected outputs",
+    "description": "Turn the new handoff package data into a timeline-style sequencing surface so teams can order selected shots, spot missing beats, and prepare the final edit package.",
+    "priority": "high",
+    "status": "backlog",
+    "owner": "agent",
+    "created_at": "2026-03-25T09:01:54.1394838-05:00",
+    "updated_at": "2026-03-25T09:01:54.1394838-05:00",
+    "dependencies": [
+      "brandbuild-task-007"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
+    ],
+    "notes": "This becomes the next UX layer before attempting a full browser editor."
   }
 ]
