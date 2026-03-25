@@ -262,6 +262,6 @@
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx"
     ],
-    "notes": "Completed by routing public access CTAs directly to /login and marking decorative marketing overlays as pointer-events-none."
+    "notes": "Completed by routing public access CTAs directly to /login, marking decorative marketing overlays as pointer-events-none, deploying production, and pushing the batch in commit 74eafe4."
   }
 ]

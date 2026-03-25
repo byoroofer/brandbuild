@@ -68,7 +68,8 @@
     "Marked decorative marketing overlays and preview surfaces as pointer-events-none so they cannot intercept clicks on public CTAs.",
     "Re-ran typecheck and production build successfully after the public login-path hardening batch.",
     "Deployed production at brandbuild-online-h0b2ffanu-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
-    "Verified the live root returns 200 after the public login-path fix."
+    "Verified the live root returns 200 after the public login-path fix.",
+    "Committed and pushed the public login-path hardening batch to origin/main as 74eafe4."
   ],
   "next_steps": [
     "Finish Supabase Auth dashboard setup for branded email and correct redirect behavior.",

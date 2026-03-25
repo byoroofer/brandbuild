@@ -82,3 +82,4 @@
 - Marked decorative marketing layers and media chrome as `pointer-events-none` so they cannot steal clicks or taps from nearby CTAs.
 - Re-ran `npm run typecheck` and `npm run build` successfully.
 - Deployed production to `brandbuild-online-h0b2ffanu-byoroofers-projects.vercel.app`, re-aliased `brandbuild.online`, and verified the live root returned `200`.
+- Committed the batch as `74eafe4` and pushed `main` so git matches the deployed login-navigation fix.
