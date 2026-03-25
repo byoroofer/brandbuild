@@ -118,14 +118,23 @@ export function validateStudioAssetUpload(file: File, assetType: StudioUploadAss
   }
 }
 
-export async function resolveStudioPrivateObjectUrl(path: string | null) {
-  if (!path || !isSupabaseAdminAvailable()) {
+export async function resolveStudioPrivateObjectUrl(
+  path: string | null,
+  supabase?: StudioRequestContext["supabase"],
+) {
+  if (!path) {
     return null;
   }
 
   const bucketName = process.env.STORAGE_BUCKET_ASSETS || "assets";
-  const signedUrlResult = await createAdminSupabaseClient()
-    .storage.from(bucketName)
+  const signedUrlClient = supabase ?? (isSupabaseAdminAvailable() ? createAdminSupabaseClient() : null);
+
+  if (!signedUrlClient) {
+    return null;
+  }
+
+  const signedUrlResult = await signedUrlClient.storage
+    .from(bucketName)
     .createSignedUrl(path, 60 * 30);
 
   if (signedUrlResult.error || !signedUrlResult.data?.signedUrl) {

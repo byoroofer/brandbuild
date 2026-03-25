@@ -72,6 +72,7 @@ export function getStudioSystemAudit(): StudioSystemAudit {
   const providerById = Object.fromEntries(providerCatalog.map((provider) => [provider.id, provider]));
   const storageMirroringEnabled = isSupabaseAdminAvailable();
   const persistenceEnabled = hasStudioPersistenceEnv();
+  const storageUploadEnabled = persistenceEnabled;
   const timestamp = new Date().toISOString();
 
   const providerAudits: ProviderAudit[] = [
@@ -102,7 +103,7 @@ export function getStudioSystemAudit(): StudioSystemAudit {
       ],
       mediaStorage: storageMirroringEnabled
         ? "Successful provider outputs can be mirrored into Supabase Storage through the existing asset sync path."
-        : "Outputs stay as provider-hosted URLs unless SUPABASE_SERVICE_ROLE_KEY is present.",
+        : "Outputs can still stream through BrandBuild, but storage mirroring stays disabled until SUPABASE_SERVICE_ROLE_KEY is present.",
       nextSteps: [
         "Run a real signed-in Sora shot from the dashboard and capture the success path.",
         "Add background polling or webhook-driven refresh for completed renders.",
@@ -208,10 +209,10 @@ export function getStudioSystemAudit(): StudioSystemAudit {
       },
       {
         nextMove:
-          "Keep the private-upload and handoff model, then require server-side storage credentials on every deployment where uploads should be live.",
+          "Keep uploads on authenticated private storage, then layer server-side mirroring on top for provider-owned outputs.",
         state: "partial",
         summary:
-          "Private uploads, generated outputs, version groups, and handoff packages exist, but deployments without SUPABASE_SERVICE_ROLE_KEY still block the upload path.",
+          "Private uploads, generated outputs, version groups, and handoff packages exist. Uploads can run through authenticated storage policies, while provider-output mirroring still depends on server-side storage credentials.",
         title: "Assets and storage",
       },
       {
@@ -289,12 +290,14 @@ export function getStudioSystemAudit(): StudioSystemAudit {
       {
         id: "private-upload-storage",
         notes: [
+          storageUploadEnabled
+            ? "Authenticated operators can use private storage when the assets bucket and policies are applied."
+            : "This deployment is missing Supabase persistence configuration, so private uploads cannot initialize.",
           storageMirroringEnabled
-            ? "Server-side storage credentials are present, so private upload and output mirroring can run on this deployment."
-            : "This deployment is missing SUPABASE_SERVICE_ROLE_KEY, so private uploads are blocked even though the upload UI and route exist.",
-          "Generated outputs can still remain on provider-hosted URLs, but true private asset storage requires the server-side Supabase key.",
+            ? "Server-side storage credentials are present, so provider-owned outputs can also be mirrored into storage."
+            : "Generated outputs can still stream through BrandBuild, but server-side mirroring remains unavailable until SUPABASE_SERVICE_ROLE_KEY is present.",
         ],
-        status: storageMirroringEnabled ? "partial" : "blocked",
+        status: storageUploadEnabled ? "partial" : "blocked",
         title: "Private upload and storage readiness",
       },
       {
@@ -364,12 +367,15 @@ export function getStudioSystemAudit(): StudioSystemAudit {
       {
         id: "assets-upload",
         notes: [
+          storageUploadEnabled
+            ? "Private shot asset upload and signed operator-side asset URLs are implemented through the authenticated Supabase client."
+            : "The upload route and signed-url logic exist, but Supabase persistence is not configured enough for uploads to initialize.",
           storageMirroringEnabled
-            ? "Private shot asset upload, signed provider reference URLs, and asset sync from successful generations are already in place."
-            : "The upload route, signed-url logic, and storage model are implemented, but this deployment still needs SUPABASE_SERVICE_ROLE_KEY before uploads can succeed.",
+            ? "Successful provider outputs can also mirror into storage."
+            : "Successful provider outputs still remain provider-hosted until server-side mirroring is configured.",
           "BrandBuild also has a shipped assets workspace for library browsing, version review, and handoff preparation.",
         ],
-        status: persistenceEnabled && storageMirroringEnabled ? "working" : "partial",
+        status: storageUploadEnabled ? "working" : "partial",
         title: "Asset and handoff foundation",
       },
     ],

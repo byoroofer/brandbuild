@@ -2,6 +2,7 @@ import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 import { refreshShotGenerationStatus } from "@/lib/db/shot-generations";
+import { resolveGenerationOutputPath } from "@/lib/studio/generation-content";
 
 type RefreshGenerationRouteProps = {
   params: Promise<{ generationId: string }>;
@@ -26,8 +27,14 @@ export async function POST(
       integrationMode: result.job.integrationMode,
       progress:
         typeof result.job.raw?.progress === "number" ? result.job.raw.progress : null,
-      outputUrl:
-        typeof result.job.outputUrl === "string" ? result.job.outputUrl : null,
+      outputUrl: resolveGenerationOutputPath({
+        generationId: result.generation.id,
+        integrationMode: result.job.integrationMode,
+        outputUrl: typeof result.job.outputUrl === "string" ? result.job.outputUrl : null,
+        provider: result.job.provider,
+        providerJobId: result.job.id,
+        status: result.job.status,
+      }),
       provider: result.job.provider,
       providerStatus:
         typeof result.job.raw?.providerStatus === "string"

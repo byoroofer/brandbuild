@@ -1,6 +1,5 @@
 import type { Database } from "@/types/database";
 
-import { createAdminSupabaseClient, isSupabaseAdminAvailable } from "@/lib/supabase/admin";
 import type {
   StudioRequestContext,
   StudioUploadAssetType,
@@ -38,22 +37,20 @@ export async function createUploadedShotAsset(
     shotTitle: string;
   },
 ) {
-  if (!isSupabaseAdminAvailable()) {
-    throw new StudioApiError("Private storage is not configured on this deployment.", 503);
-  }
-
   const objectPath = makeSafeStudioStoragePath(input.campaignId, input.shotId, input.file.name);
   const bucketName = process.env.STORAGE_BUCKET_ASSETS || "assets";
-  const admin = createAdminSupabaseClient();
   const fileBuffer = Buffer.from(await input.file.arrayBuffer());
-  const uploadResult = await admin.storage.from(bucketName).upload(objectPath, fileBuffer, {
+  const uploadResult = await context.supabase.storage.from(bucketName).upload(objectPath, fileBuffer, {
     cacheControl: "3600",
     contentType: input.file.type,
     upsert: true,
   });
 
   if (uploadResult.error) {
-    throw new StudioApiError("We couldn't upload that file to private storage.", 500);
+    throw new StudioApiError(
+      uploadResult.error.message || "We couldn't upload that file to private storage.",
+      500,
+    );
   }
 
   const insertPayload: AssetInsert = {
@@ -83,14 +80,14 @@ export async function createUploadedShotAsset(
     .single();
 
   if (assetInsertError || !assetRow) {
-    await admin.storage.from(bucketName).remove([objectPath]);
+    await context.supabase.storage.from(bucketName).remove([objectPath]);
     throw new StudioApiError(
       assetInsertError?.message ?? "We couldn't create the asset record.",
       500,
     );
   }
 
-  const signedUrl = await resolveStudioPrivateObjectUrl(objectPath);
+  const signedUrl = await resolveStudioPrivateObjectUrl(objectPath, context.supabase);
 
   return {
     asset: {

@@ -20,6 +20,10 @@ const DEFAULT_KLING_PROMPT =
 const DEFAULT_HIGGSFIELD_PROMPT =
   "A cinematic motion study that turns this reference image into a polished premium product reveal with subtle camera drift, dramatic lighting, and elegant commercial movement.";
 
+function buildOpenAiVideoContentUrl(jobId) {
+  return `https://api.openai.com/v1/videos/${jobId}/content`;
+}
+
 function loadEnvFile(filePath) {
   if (!fs.existsSync(filePath)) {
     return;
@@ -58,6 +62,7 @@ function loadEnvFile(filePath) {
 
 function parseArgs(argv) {
   const parsed = {
+    jobId: null,
     help: false,
     provider: DEFAULT_PROVIDER,
     referenceImageUrl: DEFAULT_REFERENCE_IMAGE_URL,
@@ -77,6 +82,12 @@ function parseArgs(argv) {
       continue;
     }
 
+    if (value === "--job-id" && argv[index + 1]) {
+      parsed.jobId = argv[index + 1].trim();
+      index += 1;
+      continue;
+    }
+
     if (value === "--reference-image-url" && argv[index + 1]) {
       parsed.referenceImageUrl = argv[index + 1].trim();
       index += 1;
@@ -90,12 +101,13 @@ function printHelp() {
   console.log(`BrandBuild provider smoke test
 
 Usage:
-  node ./scripts/provider-smoke.mjs [--provider sora|kling|higgsfield|all] [--reference-image-url URL]
+  node ./scripts/provider-smoke.mjs [--provider sora|kling|higgsfield|all] [--reference-image-url URL] [--job-id PROVIDER_JOB_ID]
 
 Notes:
   - Uses apps/dashboard/.env.local when present.
   - Creates real provider jobs when the required keys are available.
-  - Reports upload readiness, including whether SUPABASE_SERVICE_ROLE_KEY is configured.
+  - With --job-id, fetches an existing provider job instead of creating a new one.
+  - Reports upload readiness and whether server-side asset mirroring is configured.
 `);
 }
 
@@ -129,11 +141,8 @@ function buildReadinessSnapshot() {
     higgsfieldApiKey: maskValue(process.env.HIGGSFIELD_API_KEY ?? process.env.HF_API_KEY ?? ""),
     klingApiKey: maskValue(process.env.KLING_API_KEY ?? ""),
     openAiKey: maskValue(process.env.OPENAI_API_KEY ?? ""),
-    uploadReady: Boolean(
-      process.env.NEXT_PUBLIC_SUPABASE_URL &&
-        readPublicKeyPresence() &&
-        process.env.SUPABASE_SERVICE_ROLE_KEY,
-    ),
+    providerAssetMirroringReady: Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY),
+    uploadReady: Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL && readPublicKeyPresence()),
   };
 }
 
@@ -254,7 +263,45 @@ async function runSoraSmokeTest() {
 
   return {
     jobId: typeof payload.id === "string" ? payload.id : null,
-    outputUrl: typeof payload.url === "string" ? payload.url : null,
+    outputUrl:
+      typeof payload.url === "string"
+        ? payload.url
+        : typeof payload.id === "string" && payload.status === "completed"
+          ? buildOpenAiVideoContentUrl(payload.id)
+          : null,
+    provider: "sora",
+    status: payload.status ?? "queued",
+    thumbnailUrl:
+      typeof payload.poster_frame_url === "string" ? payload.poster_frame_url : null,
+  };
+}
+
+async function getSoraJob(jobId) {
+  const response = await fetch(`https://api.openai.com/v1/videos/${jobId}`, {
+    headers: {
+      Authorization: `Bearer ${getOpenAiApiKey()}`,
+    },
+    method: "GET",
+  });
+
+  const payload = await parseResponse(response);
+
+  if (!response.ok) {
+    throw new Error(
+      payload?.error?.message ??
+        payload?.message ??
+        `OpenAI Sora status request failed with status ${response.status}.`,
+    );
+  }
+
+  return {
+    jobId: typeof payload.id === "string" ? payload.id : jobId,
+    outputUrl:
+      typeof payload.url === "string"
+        ? payload.url
+        : payload.status === "completed"
+          ? buildOpenAiVideoContentUrl(jobId)
+          : null,
     provider: "sora",
     status: payload.status ?? "queued",
     thumbnailUrl:
@@ -313,6 +360,49 @@ async function runKlingSmokeTest() {
   };
 }
 
+async function getKlingJob(jobId) {
+  const response = await fetch(`https://api-singapore.klingai.com/v1/videos/text2video/${jobId}`, {
+    headers: {
+      Authorization: `Bearer ${signKlingJwt()}`,
+      "Content-Type": "application/json",
+    },
+    method: "GET",
+  });
+
+  const payload = await parseResponse(response);
+
+  if (!response.ok) {
+    throw new Error(payload?.message ?? `Kling status request failed with status ${response.status}.`);
+  }
+
+  if (typeof payload.code === "number" && payload.code !== 0) {
+    throw new Error(payload.message ?? `Kling status request failed with code ${payload.code}.`);
+  }
+
+  const record = payload.data ?? payload.output ?? {};
+  const resultPayload = record.task_result ?? record.result ?? {};
+  const primaryVideo = Array.isArray(resultPayload.videos) ? resultPayload.videos[0] : null;
+
+  return {
+    jobId: typeof record.task_id === "string" ? record.task_id : jobId,
+    outputUrl:
+      primaryVideo?.url ??
+      primaryVideo?.download_url ??
+      resultPayload.download_url ??
+      null,
+    provider: "kling",
+    status: record.task_status ?? "queued",
+    thumbnailUrl:
+      primaryVideo?.thumbnail_url ??
+      primaryVideo?.cover_url ??
+      primaryVideo?.poster_url ??
+      resultPayload.thumbnail_url ??
+      resultPayload.cover_url ??
+      resultPayload.poster_url ??
+      null,
+  };
+}
+
 async function runHiggsfieldSmokeTest(referenceImageUrl) {
   const credentials = getHiggsfieldCredentials();
   const modelId = (process.env.HIGGSFIELD_MODEL_ID ?? "higgsfield-ai/dop/standard")
@@ -352,6 +442,37 @@ async function runHiggsfieldSmokeTest(referenceImageUrl) {
   };
 }
 
+async function getHiggsfieldJob(jobId) {
+  const credentials = getHiggsfieldCredentials();
+  const response = await fetch(`https://platform.higgsfield.ai/requests/${jobId}/status`, {
+    headers: {
+      Accept: "application/json",
+      Authorization: `Key ${credentials.apiKey}:${credentials.apiSecret}`,
+      "Content-Type": "application/json",
+    },
+    method: "GET",
+  });
+
+  const payload = await parseResponse(response);
+
+  if (!response.ok) {
+    throw new Error(
+      payload?.error ??
+        payload?.detail ??
+        payload?.message ??
+        `Higgsfield status request failed with status ${response.status}.`,
+    );
+  }
+
+  return {
+    jobId: payload.request_id ?? jobId,
+    outputUrl: payload.video?.url ?? null,
+    provider: "higgsfield",
+    status: payload.status ?? "queued",
+    thumbnailUrl: Array.isArray(payload.images) ? payload.images[0]?.url ?? null : null,
+  };
+}
+
 async function run() {
   loadEnvFile(path.join(appRoot, ".env.local"));
   loadEnvFile(path.join(appRoot, ".env"));
@@ -376,7 +497,7 @@ async function run() {
       if (provider === "sora") {
         results.push({
           ok: true,
-          ...(await runSoraSmokeTest()),
+          ...(args.jobId ? await getSoraJob(args.jobId) : await runSoraSmokeTest()),
         });
         continue;
       }
@@ -384,7 +505,7 @@ async function run() {
       if (provider === "kling") {
         results.push({
           ok: true,
-          ...(await runKlingSmokeTest()),
+          ...(args.jobId ? await getKlingJob(args.jobId) : await runKlingSmokeTest()),
         });
         continue;
       }
@@ -392,7 +513,9 @@ async function run() {
       if (provider === "higgsfield") {
         results.push({
           ok: true,
-          ...(await runHiggsfieldSmokeTest(args.referenceImageUrl)),
+          ...(args.jobId
+            ? await getHiggsfieldJob(args.jobId)
+            : await runHiggsfieldSmokeTest(args.referenceImageUrl)),
         });
         continue;
       }
@@ -415,6 +538,7 @@ async function run() {
 
   const report = {
     generatedAt: new Date().toISOString(),
+    jobId: args.jobId,
     readiness: buildReadinessSnapshot(),
     referenceImageUrl: args.referenceImageUrl,
     results,

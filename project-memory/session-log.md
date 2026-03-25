@@ -1,4 +1,4 @@
-﻿# BrandBuild Session Log
+# BrandBuild Session Log
 
 ## 2026-03-24 17:40 CT - Repo Cleanup And Memory Init
 - Established durable project memory inside the repo.
@@ -101,3 +101,12 @@
 - Re-ran typecheck and build successfully.
 - Deployed production to `brandbuild-online-nwyykfvzj-byoroofers-projects.vercel.app`, re-aliased `brandbuild.online`, and verified the live root returned `200`.
 - Pushed the repo upstream through commit `1a8b5b3` so GitHub matches the latest deployed state.
+
+## 2026-03-25 - Sora Media Proxy and Storage Auth Refactor
+- Confirmed from a live OpenAI request that completed Sora video status payloads can omit direct media URLs.
+- Verified the actual media is retrievable from /v1/videos/{video_id}/content.
+- Added BrandBuild route /api/generate/[generationId]/content to stream completed Sora media with server-side auth.
+- Refactored shot uploads and storage-backed asset signing to use authenticated Supabase storage access.
+- Added Supabase migration 20260325164000_assets_bucket_policies.sql for the private assets bucket and authenticated storage policies.
+- Deployed production at https://brandbuild-online-dwznxfdtn-byoroofers-projects.vercel.app and re-aliased brandbuild.online.
+- Remaining blockers: apply the storage migration, finish Supabase auth/email setup, fund Kling, and fix Higgsfield credentials.

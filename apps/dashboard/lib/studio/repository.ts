@@ -1,5 +1,4 @@
 import { createStudioReadClient, hasStudioPersistenceEnv } from "@/lib/db/client";
-import { createAdminSupabaseClient, isSupabaseAdminAvailable } from "@/lib/supabase/admin";
 import {
   demoAssets,
   demoCampaigns,
@@ -8,6 +7,7 @@ import {
   demoShotGenerations,
   demoShots,
 } from "@/lib/studio/demo-data";
+import { resolveGenerationOutputPath } from "@/lib/studio/generation-content";
 import { getRoutingRecommendation } from "@/lib/studio/model-routing";
 import type {
   Asset,
@@ -86,12 +86,13 @@ function asJsonObject(value: Json | null | undefined) {
   return value as Record<string, Json | undefined>;
 }
 
-async function resolveStorageBackedAssetRows(assetRows: AssetRow[]) {
-  if (!isSupabaseAdminAvailable()) {
+async function resolveStorageBackedAssetRows(
+  assetRows: AssetRow[],
+  supabase: Awaited<ReturnType<typeof createStudioReadClient>>,
+) {
+  if (!supabase) {
     return assetRows;
   }
-
-  const admin = createAdminSupabaseClient();
 
   return Promise.all(
     assetRows.map(async (assetRow) => {
@@ -101,7 +102,7 @@ async function resolveStorageBackedAssetRows(assetRows: AssetRow[]) {
         return assetRow;
       }
 
-      const { data, error } = await admin.storage
+      const { data, error } = await supabase.storage
         .from(storagePointer.bucket)
         .createSignedUrl(storagePointer.objectPath, 60 * 60);
 
@@ -181,17 +182,37 @@ function mapShotRow(row: ShotRow): Shot {
 }
 
 function mapAssetRow(row: AssetRow): Asset {
+  const metadata = asMetadataRecord(row.metadata_json);
+  const fileUrl =
+    row.type === "generated_video" &&
+    row.generation_id &&
+    metadata.provider === "sora" &&
+    metadata.integration_mode === "live" &&
+    metadata.generation_status === "succeeded"
+      ? resolveGenerationOutputPath({
+          generationId: row.generation_id,
+          integrationMode: "live",
+          outputUrl: row.file_url,
+          provider: "sora",
+          providerJobId:
+            typeof metadata.provider_job_id === "string"
+              ? metadata.provider_job_id
+              : row.generation_id,
+          status: "succeeded",
+        }) ?? row.file_url
+      : row.file_url;
+
   return {
     campaignId: row.campaign_id,
     createdAt: row.created_at,
     durationSeconds: row.duration_seconds ? Number(row.duration_seconds) : null,
     fileName: row.file_name,
     fileSizeBytes: row.file_size_bytes,
-    fileUrl: row.file_url,
+    fileUrl,
     generationId: row.generation_id,
     height: row.height,
     id: row.id,
-    metadataJson: asMetadataRecord(row.metadata_json),
+    metadataJson: metadata,
     mimeType: row.mime_type,
     shotId: row.shot_id,
     source: row.source,
@@ -279,7 +300,14 @@ function mapShotGenerationRow(row: ShotGenerationRow): ShotGeneration {
     generationNotes: row.generation_notes ?? "",
     id: row.id,
     integrationMode,
-    outputUrl: row.output_url,
+    outputUrl: resolveGenerationOutputPath({
+      generationId: row.id,
+      integrationMode,
+      outputUrl: row.output_url,
+      provider: row.provider,
+      providerJobId: row.provider_job_id,
+      status: row.status,
+    }),
     progress,
     provider: row.provider,
     providerMessage,
@@ -337,7 +365,7 @@ async function loadLiveData() {
       return null;
     }
 
-    const resolvedAssetRows = await resolveStorageBackedAssetRows(assetsResult.data);
+    const resolvedAssetRows = await resolveStorageBackedAssetRows(assetsResult.data, supabase);
 
     return {
       assets: resolvedAssetRows.map(mapAssetRow),
@@ -378,16 +406,12 @@ export function isStudioPersistenceEnabled() {
 }
 
 export function isStudioUploadEnabled() {
-  return hasStudioPersistenceEnv() && isSupabaseAdminAvailable();
+  return hasStudioPersistenceEnv();
 }
 
 export function getStudioUploadBlockedReason() {
   if (!hasStudioPersistenceEnv()) {
     return "Connect Supabase operator access before uploads are enabled.";
-  }
-
-  if (!isSupabaseAdminAvailable()) {
-    return "Private uploads are blocked on this deployment until SUPABASE_SERVICE_ROLE_KEY is configured.";
   }
 
   return null;

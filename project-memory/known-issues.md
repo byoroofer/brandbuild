@@ -20,3 +20,8 @@
 - Next.js currently warns about workspace-root inference because both the parent workspace and this repo contain lockfiles.
 - Local runs require `apps/dashboard/.env.local`; without it, routes that instantiate the Supabase client can throw missing-env errors even though production is configured.
 - The repo has pre-existing unrelated worktree changes outside the scope of the current stabilization work.
+
+### 2026-03-25 storage deployment follow-up
+- Upload code no longer depends on SUPABASE_SERVICE_ROLE_KEY.
+- Production uploads still need the assets bucket and storage policies applied in Supabase.
+- Provider-output mirroring still remains blocked until SUPABASE_SERVICE_ROLE_KEY is configured.

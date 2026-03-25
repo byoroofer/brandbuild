@@ -29,6 +29,10 @@ type OpenAiSoraVideoResponse = {
   [key: string]: Json | undefined;
 };
 
+function buildSoraContentEndpoint(jobId: string) {
+  return `${OPENAI_API_BASE_URL}/videos/${jobId}/content`;
+}
+
 function getOpenAiApiKey() {
   const value = process.env.OPENAI_API_KEY?.trim() || process.env.SORA_API_KEY?.trim();
 
@@ -100,16 +104,25 @@ function buildSoraJob(
     throw new Error("OpenAI Sora did not return a video id.");
   }
 
+  const normalizedStatus = normalizeSoraStatus(response.status);
+  const resolvedOutputUrl =
+    typeof response.url === "string"
+      ? response.url
+      : normalizedStatus === "succeeded"
+        ? buildSoraContentEndpoint(response.id)
+        : null;
+
   return {
     id: response.id,
     integrationMode: "live",
-    outputUrl: typeof response.url === "string" ? response.url : null,
+    outputUrl: resolvedOutputUrl,
     provider: "sora",
     raw: {
       message:
-        normalizeSoraStatus(response.status) === "failed"
+        normalizedStatus === "failed"
           ? "OpenAI Sora reported a failed render."
           : "OpenAI Sora accepted the render request.",
+      contentUrl: resolvedOutputUrl,
       model: response.model,
       openaiStatus: response.status,
       progress: response.progress,
@@ -119,7 +132,7 @@ function buildSoraJob(
       resolvedSize: requestMeta.resolvedSize,
       video: response,
     },
-    status: normalizeSoraStatus(response.status),
+    status: normalizedStatus,
     thumbnailUrl:
       typeof response.poster_frame_url === "string" ? response.poster_frame_url : null,
   };
@@ -209,6 +222,32 @@ async function retrieveSoraVideo(jobId: string) {
   return buildSoraJob(payload, {});
 }
 
+async function retrieveSoraVideoContent(jobId: string) {
+  const response = await fetch(buildSoraContentEndpoint(jobId), {
+    cache: "no-store",
+    headers: {
+      Authorization: `Bearer ${getOpenAiApiKey()}`,
+    },
+    method: "GET",
+  });
+
+  if (!response.ok) {
+    const contentType = response.headers.get("content-type") ?? "";
+    const payload =
+      contentType.includes("application/json")
+        ? await parseOpenAiJson<unknown>(response).catch(() => null)
+        : await response.text().catch(() => null);
+
+    throw new Error(
+      typeof payload === "string"
+        ? payload
+        : extractOpenAiErrorMessage(response.status, payload),
+    );
+  }
+
+  return response;
+}
+
 export const soraProvider: GenerationProviderAdapter = {
   capabilities: ["premium-cinematic", "hero-polish"],
   description: getProviderCatalogItem("sora").description,
@@ -219,6 +258,9 @@ export const soraProvider: GenerationProviderAdapter = {
   },
   async getJob(jobId: string) {
     return retrieveSoraVideo(jobId);
+  },
+  async getContent(jobId: string) {
+    return retrieveSoraVideoContent(jobId);
   },
   isConfigured() {
     return getProviderCatalogItem("sora").configured;

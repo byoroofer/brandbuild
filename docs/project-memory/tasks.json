@@ -1,357 +1,359 @@
-﻿{
-    "value":  [
-                  {
-                      "task_id":  "brandbuild-task-001",
-                      "title":  "Resolve naming drift between BrandBuild and ai-video-studio",
-                      "description":  "Decide whether the package and workspace names should be aligned with BrandBuild or intentionally remain AI Video Studio internally.",
-                      "priority":  "medium",
-                      "status":  "backlog",
-                      "owner":  "user+agent",
-                      "created_at":  "2026-03-24T17:40:09.0933149-05:00",
-                      "updated_at":  "2026-03-24T19:41:23.2499373-05:00",
-                      "dependencies":  [
-
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\package.json",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\package.json",
-                                            "D:\\Playground\\brandbuild-online-repo\\README.md"
-                                        ],
-                      "notes":  "This is branding and maintainability cleanup, not a blocker for core product work."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-002",
-                      "title":  "Finish branded Supabase Auth setup",
-                      "description":  "Enable the Supabase Send Email Hook, configure branded SMTP sending, and clean redirect URLs so auth emails and magic links are fully BrandBuild-native.",
-                      "priority":  "critical",
-                      "status":  "active",
-                      "owner":  "agent",
-                      "created_at":  "2026-03-24T18:20:00-05:00",
-                      "updated_at":  "2026-03-24T19:41:23.2499373-05:00",
-                      "dependencies":  [
-
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\supabase\\functions\\send-auth-email\\index.ts",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\auth\\callback\\route.ts",
-                                            "D:\\Playground\\brandbuild-online-repo\\README.md"
-                                        ],
-                      "notes":  "Code exists, but the dashboard-side Supabase configuration is still the blocker."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-003",
-                      "title":  "Validate one real Sora run through the dashboard",
-                      "description":  "Upload a viable reference asset if needed, launch a real Sora generation from a shot, and capture request, status refresh, output sync, and any failure modes.",
-                      "priority":  "high",
-                      "status":  "active",
-                      "owner":  "agent",
-                      "created_at":  "2026-03-24T18:20:00-05:00",
-                      "updated_at":  "2026-03-24T19:41:23.2499373-05:00",
-                      "dependencies":  [
-                                           "brandbuild-task-002"
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\route.ts",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts"
-                                        ],
-                      "notes":  "Live account-side access may still be the limiting factor even with the OpenAI key configured."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-004",
-                      "title":  "Validate one real Kling run through the dashboard",
-                      "description":  "Launch a real Kling generation from a shot and capture auth, request normalization, async status behavior, and output sync.",
-                      "priority":  "high",
-                      "status":  "active",
-                      "owner":  "agent",
-                      "created_at":  "2026-03-24T18:20:00-05:00",
-                      "updated_at":  "2026-03-24T19:41:23.2499373-05:00",
-                      "dependencies":  [
-                                           "brandbuild-task-002"
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\route.ts",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts"
-                                        ],
-                      "notes":  "Current adapter is live-capable but still needs one confirmed operator run."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-005",
-                      "title":  "Validate one real Higgsfield run through the dashboard",
-                      "description":  "Launch a real Higgsfield generation with a valid reference image and capture request, polling, output sync, and any model-specific edge cases.",
-                      "priority":  "high",
-                      "status":  "active",
-                      "owner":  "agent",
-                      "created_at":  "2026-03-24T18:20:00-05:00",
-                      "updated_at":  "2026-03-24T19:41:23.2499373-05:00",
-                      "dependencies":  [
-                                           "brandbuild-task-002"
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\route.ts",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts"
-                                        ],
-                      "notes":  "The default model path expects a reference image for the safest first validation run."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-006",
-                      "title":  "Build compare outputs workspace",
-                      "description":  "Create a first-class UI for side-by-side output review across providers, with selection, notes, and decision capture tied to projects and shots.",
-                      "priority":  "high",
-                      "status":  "complete",
-                      "owner":  "agent",
-                      "created_at":  "2026-03-24T18:30:00-05:00",
-                      "updated_at":  "2026-03-25T08:38:00-05:00",
-                      "dependencies":  [
-
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\reviews\\page.tsx",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx"
-                                        ],
-                      "notes":  "Completed by rebuilding /dashboard/reviews into a grouped compare workspace, then shipping it in commit 387f697 and deploying it to brandbuild-online-5e318lqwu-byoroofers-projects.vercel.app."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-007",
-                      "title":  "Build version timeline and edit handoff/export layer",
-                      "description":  "Add version groups, chosen-output sequencing, editor notes, and export bundles so approved outputs can move into finishing without a full browser editor.",
-                      "priority":  "high",
-                      "status":  "active",
-                      "owner":  "agent",
-                      "created_at":  "2026-03-24T18:30:00-05:00",
-                      "updated_at":  "2026-03-25T09:01:54.1394838-05:00",
-                      "dependencies":  [
-                                           "brandbuild-task-006"
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
-                                        ],
-                      "notes":  "Version groups and handoff packages are now shipped inside /dashboard/assets. The remaining gap is campaign-level sequencing and deeper delivery polish."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-008",
-                      "title":  "Consolidate project memory folders",
-                      "description":  "Keep docs/project-memory canonical, mirror .project-memory, and maintain the requested root project-memory operating files.",
-                      "priority":  "high",
-                      "status":  "complete",
-                      "owner":  "agent",
-                      "created_at":  "2026-03-24T19:30:00-05:00",
-                      "updated_at":  "2026-03-24T19:41:23.2499373-05:00",
-                      "dependencies":  [
-
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
-                                            "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json",
-                                            "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json"
-                                        ],
-                      "notes":  "This keeps future sessions from loading stale project state."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-009",
-                      "title":  "Keep production deployment current",
-                      "description":  "Ensure brandbuild.online points at the intended BrandBuild deployment and re-alias production when it drifts behind local validated work.",
-                      "priority":  "critical",
-                      "status":  "complete",
-                      "owner":  "agent",
-                      "created_at":  "2026-03-24T19:30:00-05:00",
-                      "updated_at":  "2026-03-24T19:41:23.2499373-05:00",
-                      "dependencies":  [
-
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
-                                        ],
-                      "notes":  "Completed by deploying the latest local workspace to Vercel production and confirming the live domain."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-010",
-                      "title":  "Resolve Next.js workspace-root warning",
-                      "description":  "Set outputFileTracingRoot or remove the extra lockfile so Next.js stops inferring the workspace root from the parent D:\\Playground directory.",
-                      "priority":  "medium",
-                      "status":  "backlog",
-                      "owner":  "agent",
-                      "created_at":  "2026-03-24T19:41:23.2499373-05:00",
-                      "updated_at":  "2026-03-24T19:41:23.2499373-05:00",
-                      "dependencies":  [
-
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\next.config.ts",
-                                            "D:\\Playground\\brandbuild-online-repo\\package-lock.json"
-                                        ],
-                      "notes":  "Not a current production blocker, but it is durable build hygiene work."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-011",
-                      "title":  "Remove non-fatal Dynamic server usage warning on /",
-                      "description":  "Refactor the marketing root session check so build-time static evaluation does not log a Dynamic server usage warning when cookies are touched.",
-                      "priority":  "medium",
-                      "status":  "complete",
-                      "owner":  "agent",
-                      "created_at":  "2026-03-24T23:59:00-05:00",
-                      "updated_at":  "2026-03-25T00:28:00-05:00",
-                      "dependencies":  [
-
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\session.ts"
-                                        ],
-                      "notes":  "Completed by making the marketing root fully static-safe in apps/dashboard/app/(marketing)/page.tsx."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-012",
-                      "title":  "Push the deployed local fixes to origin/main",
-                      "description":  "Commit the current dashboard hardening, memory updates, and env-pull gitignore change so git matches the live production deployment again.",
-                      "priority":  "high",
-                      "status":  "complete",
-                      "owner":  "agent",
-                      "created_at":  "2026-03-25T00:13:00-05:00",
-                      "updated_at":  "2026-03-25T00:18:00-05:00",
-                      "dependencies":  [
-
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts",
-                                            "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
-                                            "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json"
-                                        ],
-                      "notes":  "Completed by commit 4351c81 and push to origin/main on 2026-03-25."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-013",
-                      "title":  "Push and deploy the static-safe marketing homepage fix",
-                      "description":  "Ship the root-page stability fix, keep project memory aligned, and verify the live site after production deployment.",
-                      "priority":  "high",
-                      "status":  "complete",
-                      "owner":  "agent",
-                      "created_at":  "2026-03-25T08:00:00-05:00",
-                      "updated_at":  "2026-03-25T08:11:00-05:00",
-                      "dependencies":  [
-                                           "brandbuild-task-011"
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
-                                            "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
-                                        ],
-                      "notes":  "Completed by commit 6701f83, production deployment brandbuild-online-ogvlahkwd-byoroofers-projects.vercel.app, and live verification of /, /login, and /dashboard redirect."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-014",
-                      "title":  "Add campaign-level sequencing across selected outputs",
-                      "description":  "Turn the new handoff package data into a timeline-style sequencing surface so teams can order selected shots, spot missing beats, and prepare the final edit package.",
-                      "priority":  "high",
-                      "status":  "backlog",
-                      "owner":  "agent",
-                      "created_at":  "2026-03-25T09:01:54.1394838-05:00",
-                      "updated_at":  "2026-03-25T09:01:54.1394838-05:00",
-                      "dependencies":  [
-                                           "brandbuild-task-007"
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
-                                        ],
-                      "notes":  "This becomes the next UX layer before attempting a full browser editor."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-015",
-                      "title":  "Harden the public login path on the marketing site",
-                      "description":  "Ensure the public-site access buttons navigate directly to /login and that decorative marketing layers cannot steal clicks or taps from sign-in CTAs.",
-                      "priority":  "high",
-                      "status":  "complete",
-                      "owner":  "agent",
-                      "created_at":  "2026-03-25T12:00:00-05:00",
-                      "updated_at":  "2026-03-25T12:18:00-05:00",
-                      "dependencies":  [
-
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx"
-                                        ],
-                      "notes":  "Completed by routing public access CTAs directly to /login, marking decorative marketing overlays as pointer-events-none, deploying production, and pushing the batch in commit 74eafe4."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-016",
-                      "title":  "Repair campaign creation flow",
-                      "description":  "Stop campaign creation from throwing the global error page by moving the create path onto a dedicated JSON API route and handling success and failure inline in the modal.",
-                      "priority":  "critical",
-                      "status":  "complete",
-                      "owner":  "agent",
-                      "created_at":  "2026-03-25T12:46:38.0836727-05:00",
-                      "updated_at":  "2026-03-25T15:19:24-05:00",
-                      "dependencies":  [ ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\create-campaign-modal.tsx"
-                                        ],
-                      "notes":  "Completed by replacing the server-action path with POST /api/campaigns, keeping errors inline, validating the repo build, and deploying the fix to production."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-017",
-                      "title":  "Configure server-side storage access for private uploads",
-                      "description":  "Add SUPABASE_SERVICE_ROLE_KEY to the live deployment and local app env so BrandBuild can write private uploads and mirror generated outputs into Supabase Storage.",
-                      "priority":  "critical",
-                      "status":  "active",
-                      "owner":  "agent",
-                      "created_at":  "2026-03-25T12:46:38.0836727-05:00",
-                      "updated_at":  "2026-03-25T15:19:24-05:00",
-                      "dependencies":  [ ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\admin.ts"
-                                        ],
-                      "notes":  "Current smoke testing confirmed uploads are blocked until this env is present."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-018",
-                      "title":  "Unblock live Kling generation",
-                      "description":  "Resolve the Kling account readiness issue so live jobs can be created and then validate the full dashboard generation path.",
-                      "priority":  "high",
-                      "status":  "blocked",
-                      "owner":  "user+agent",
-                      "created_at":  "2026-03-25T12:46:38.0836727-05:00",
-                      "updated_at":  "2026-03-25T15:19:24-05:00",
-                      "dependencies":  [
-                                           "brandbuild-task-002"
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
-                                        ],
-                      "notes":  "The live smoke test reached Kling and failed with 'Account balance not enough', which points to account funding rather than missing code wiring."
-                  },
-                  {
-                      "task_id":  "brandbuild-task-019",
-                      "title":  "Fix Higgsfield credential validity",
-                      "description":  "Rotate or correct the Higgsfield credentials, then rerun both the smoke test and the signed-in dashboard path.",
-                      "priority":  "high",
-                      "status":  "blocked",
-                      "owner":  "user+agent",
-                      "created_at":  "2026-03-25T12:46:38.0836727-05:00",
-                      "updated_at":  "2026-03-25T15:19:24-05:00",
-                      "dependencies":  [
-                                           "brandbuild-task-002"
-                                       ],
-                      "related_files":  [
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts",
-                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
-                                        ],
-                      "notes":  "The live smoke test returned 'Invalid credentials', so the current Higgsfield keys are not usable."
-                  }
-              ],
-    "Count":  19
+{
+  "value": [
+    {
+      "task_id": "brandbuild-task-001",
+      "title": "Resolve naming drift between BrandBuild and ai-video-studio",
+      "description": "Decide whether the package and workspace names should be aligned with BrandBuild or intentionally remain AI Video Studio internally.",
+      "priority": "medium",
+      "status": "backlog",
+      "owner": "user+agent",
+      "created_at": "2026-03-24T17:40:09.0933149-05:00",
+      "updated_at": "2026-03-24T19:41:23.2499373-05:00",
+      "dependencies": [],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\package.json",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\package.json",
+        "D:\\Playground\\brandbuild-online-repo\\README.md"
+      ],
+      "notes": "This is branding and maintainability cleanup, not a blocker for core product work."
+    },
+    {
+      "task_id": "brandbuild-task-002",
+      "title": "Finish branded Supabase Auth setup",
+      "description": "Enable the Supabase Send Email Hook, configure branded SMTP sending, and clean redirect URLs so auth emails and magic links are fully BrandBuild-native.",
+      "priority": "critical",
+      "status": "active",
+      "owner": "agent",
+      "created_at": "2026-03-24T18:20:00-05:00",
+      "updated_at": "2026-03-24T19:41:23.2499373-05:00",
+      "dependencies": [],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\supabase\\functions\\send-auth-email\\index.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\auth\\callback\\route.ts",
+        "D:\\Playground\\brandbuild-online-repo\\README.md"
+      ],
+      "notes": "Code exists, but the dashboard-side Supabase configuration is still the blocker."
+    },
+    {
+      "task_id": "brandbuild-task-003",
+      "title": "Validate one real Sora run through the dashboard",
+      "description": "Upload a viable reference asset if needed, launch a real Sora generation from a shot, and capture request, status refresh, output sync, and any failure modes.",
+      "priority": "high",
+      "status": "active",
+      "owner": "agent",
+      "created_at": "2026-03-24T18:20:00-05:00",
+      "updated_at": "2026-03-25T16:30:00-05:00",
+      "dependencies": [
+        "brandbuild-task-002"
+      ],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\route.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts"
+      ],
+      "notes": "A real Sora smoke test now confirms both job creation and completed content retrieval. The next step is a signed-in dashboard run that exercises the in-app media proxy and asset flow."
+    },
+    {
+      "task_id": "brandbuild-task-004",
+      "title": "Validate one real Kling run through the dashboard",
+      "description": "Launch a real Kling generation from a shot and capture auth, request normalization, async status behavior, and output sync.",
+      "priority": "high",
+      "status": "active",
+      "owner": "agent",
+      "created_at": "2026-03-24T18:20:00-05:00",
+      "updated_at": "2026-03-24T19:41:23.2499373-05:00",
+      "dependencies": [
+        "brandbuild-task-002"
+      ],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\route.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts"
+      ],
+      "notes": "Current adapter is live-capable but still needs one confirmed operator run."
+    },
+    {
+      "task_id": "brandbuild-task-005",
+      "title": "Validate one real Higgsfield run through the dashboard",
+      "description": "Launch a real Higgsfield generation with a valid reference image and capture request, polling, output sync, and any model-specific edge cases.",
+      "priority": "high",
+      "status": "active",
+      "owner": "agent",
+      "created_at": "2026-03-24T18:20:00-05:00",
+      "updated_at": "2026-03-24T19:41:23.2499373-05:00",
+      "dependencies": [
+        "brandbuild-task-002"
+      ],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\route.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts"
+      ],
+      "notes": "The default model path expects a reference image for the safest first validation run."
+    },
+    {
+      "task_id": "brandbuild-task-006",
+      "title": "Build compare outputs workspace",
+      "description": "Create a first-class UI for side-by-side output review across providers, with selection, notes, and decision capture tied to projects and shots.",
+      "priority": "high",
+      "status": "complete",
+      "owner": "agent",
+      "created_at": "2026-03-24T18:30:00-05:00",
+      "updated_at": "2026-03-25T08:38:00-05:00",
+      "dependencies": [],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\reviews\\page.tsx",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx"
+      ],
+      "notes": "Completed by rebuilding /dashboard/reviews into a grouped compare workspace, then shipping it in commit 387f697 and deploying it to brandbuild-online-5e318lqwu-byoroofers-projects.vercel.app."
+    },
+    {
+      "task_id": "brandbuild-task-007",
+      "title": "Build version timeline and edit handoff/export layer",
+      "description": "Add version groups, chosen-output sequencing, editor notes, and export bundles so approved outputs can move into finishing without a full browser editor.",
+      "priority": "high",
+      "status": "active",
+      "owner": "agent",
+      "created_at": "2026-03-24T18:30:00-05:00",
+      "updated_at": "2026-03-25T09:01:54.1394838-05:00",
+      "dependencies": [
+        "brandbuild-task-006"
+      ],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
+      ],
+      "notes": "Version groups and handoff packages are now shipped inside /dashboard/assets. The remaining gap is campaign-level sequencing and deeper delivery polish."
+    },
+    {
+      "task_id": "brandbuild-task-008",
+      "title": "Consolidate project memory folders",
+      "description": "Keep docs/project-memory canonical, mirror .project-memory, and maintain the requested root project-memory operating files.",
+      "priority": "high",
+      "status": "complete",
+      "owner": "agent",
+      "created_at": "2026-03-24T19:30:00-05:00",
+      "updated_at": "2026-03-24T19:41:23.2499373-05:00",
+      "dependencies": [],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
+        "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json",
+        "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json"
+      ],
+      "notes": "This keeps future sessions from loading stale project state."
+    },
+    {
+      "task_id": "brandbuild-task-009",
+      "title": "Keep production deployment current",
+      "description": "Ensure brandbuild.online points at the intended BrandBuild deployment and re-alias production when it drifts behind local validated work.",
+      "priority": "critical",
+      "status": "complete",
+      "owner": "agent",
+      "created_at": "2026-03-24T19:30:00-05:00",
+      "updated_at": "2026-03-24T19:41:23.2499373-05:00",
+      "dependencies": [],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+      ],
+      "notes": "Completed by deploying the latest local workspace to Vercel production and confirming the live domain."
+    },
+    {
+      "task_id": "brandbuild-task-010",
+      "title": "Resolve Next.js workspace-root warning",
+      "description": "Set outputFileTracingRoot or remove the extra lockfile so Next.js stops inferring the workspace root from the parent D:\\Playground directory.",
+      "priority": "medium",
+      "status": "backlog",
+      "owner": "agent",
+      "created_at": "2026-03-24T19:41:23.2499373-05:00",
+      "updated_at": "2026-03-24T19:41:23.2499373-05:00",
+      "dependencies": [],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\next.config.ts",
+        "D:\\Playground\\brandbuild-online-repo\\package-lock.json"
+      ],
+      "notes": "Not a current production blocker, but it is durable build hygiene work."
+    },
+    {
+      "task_id": "brandbuild-task-011",
+      "title": "Remove non-fatal Dynamic server usage warning on /",
+      "description": "Refactor the marketing root session check so build-time static evaluation does not log a Dynamic server usage warning when cookies are touched.",
+      "priority": "medium",
+      "status": "complete",
+      "owner": "agent",
+      "created_at": "2026-03-24T23:59:00-05:00",
+      "updated_at": "2026-03-25T00:28:00-05:00",
+      "dependencies": [],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\session.ts"
+      ],
+      "notes": "Completed by making the marketing root fully static-safe in apps/dashboard/app/(marketing)/page.tsx."
+    },
+    {
+      "task_id": "brandbuild-task-012",
+      "title": "Push the deployed local fixes to origin/main",
+      "description": "Commit the current dashboard hardening, memory updates, and env-pull gitignore change so git matches the live production deployment again.",
+      "priority": "high",
+      "status": "complete",
+      "owner": "agent",
+      "created_at": "2026-03-25T00:13:00-05:00",
+      "updated_at": "2026-03-25T00:18:00-05:00",
+      "dependencies": [],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts",
+        "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
+        "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json"
+      ],
+      "notes": "Completed by commit 4351c81 and push to origin/main on 2026-03-25."
+    },
+    {
+      "task_id": "brandbuild-task-013",
+      "title": "Push and deploy the static-safe marketing homepage fix",
+      "description": "Ship the root-page stability fix, keep project memory aligned, and verify the live site after production deployment.",
+      "priority": "high",
+      "status": "complete",
+      "owner": "agent",
+      "created_at": "2026-03-25T08:00:00-05:00",
+      "updated_at": "2026-03-25T08:11:00-05:00",
+      "dependencies": [
+        "brandbuild-task-011"
+      ],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
+        "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+      ],
+      "notes": "Completed by commit 6701f83, production deployment brandbuild-online-ogvlahkwd-byoroofers-projects.vercel.app, and live verification of /, /login, and /dashboard redirect."
+    },
+    {
+      "task_id": "brandbuild-task-014",
+      "title": "Add campaign-level sequencing across selected outputs",
+      "description": "Turn the new handoff package data into a timeline-style sequencing surface so teams can order selected shots, spot missing beats, and prepare the final edit package.",
+      "priority": "high",
+      "status": "backlog",
+      "owner": "agent",
+      "created_at": "2026-03-25T09:01:54.1394838-05:00",
+      "updated_at": "2026-03-25T09:01:54.1394838-05:00",
+      "dependencies": [
+        "brandbuild-task-007"
+      ],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
+      ],
+      "notes": "This becomes the next UX layer before attempting a full browser editor."
+    },
+    {
+      "task_id": "brandbuild-task-015",
+      "title": "Harden the public login path on the marketing site",
+      "description": "Ensure the public-site access buttons navigate directly to /login and that decorative marketing layers cannot steal clicks or taps from sign-in CTAs.",
+      "priority": "high",
+      "status": "complete",
+      "owner": "agent",
+      "created_at": "2026-03-25T12:00:00-05:00",
+      "updated_at": "2026-03-25T12:18:00-05:00",
+      "dependencies": [],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx"
+      ],
+      "notes": "Completed by routing public access CTAs directly to /login, marking decorative marketing overlays as pointer-events-none, deploying production, and pushing the batch in commit 74eafe4."
+    },
+    {
+      "task_id": "brandbuild-task-016",
+      "title": "Repair campaign creation flow",
+      "description": "Stop campaign creation from throwing the global error page by moving the create path onto a dedicated JSON API route and handling success and failure inline in the modal.",
+      "priority": "critical",
+      "status": "complete",
+      "owner": "agent",
+      "created_at": "2026-03-25T12:46:38.0836727-05:00",
+      "updated_at": "2026-03-25T15:19:24-05:00",
+      "dependencies": [],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\create-campaign-modal.tsx"
+      ],
+      "notes": "Completed by replacing the server-action path with POST /api/campaigns, keeping errors inline, validating the repo build, and deploying the fix to production."
+    },
+    {
+      "task_id": "brandbuild-task-017",
+      "title": "Configure server-side storage access for private uploads",
+      "description": "Apply the new assets bucket and authenticated storage policy migration in Supabase, then validate that private operator uploads work on production. SUPABASE_SERVICE_ROLE_KEY is now only required for backend provider-output mirroring.",
+      "priority": "critical",
+      "status": "active",
+      "owner": "agent",
+      "created_at": "2026-03-25T12:46:38.0836727-05:00",
+      "updated_at": "2026-03-25T16:30:00-05:00",
+      "dependencies": [],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\server.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+        "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260325164000_assets_bucket_policies.sql"
+      ],
+      "notes": "Code no longer hard-blocks uploads on SUPABASE_SERVICE_ROLE_KEY. The remaining step is applying the storage migration and then retesting production uploads."
+    },
+    {
+      "task_id": "brandbuild-task-018",
+      "title": "Unblock live Kling generation",
+      "description": "Resolve the Kling account readiness issue so live jobs can be created and then validate the full dashboard generation path.",
+      "priority": "high",
+      "status": "blocked",
+      "owner": "user+agent",
+      "created_at": "2026-03-25T12:46:38.0836727-05:00",
+      "updated_at": "2026-03-25T15:19:24-05:00",
+      "dependencies": [
+        "brandbuild-task-002"
+      ],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
+      ],
+      "notes": "The live smoke test reached Kling and failed with 'Account balance not enough', which points to account funding rather than missing code wiring."
+    },
+    {
+      "task_id": "brandbuild-task-019",
+      "title": "Fix Higgsfield credential validity",
+      "description": "Rotate or correct the Higgsfield credentials, then rerun both the smoke test and the signed-in dashboard path.",
+      "priority": "high",
+      "status": "blocked",
+      "owner": "user+agent",
+      "created_at": "2026-03-25T12:46:38.0836727-05:00",
+      "updated_at": "2026-03-25T15:19:24-05:00",
+      "dependencies": [
+        "brandbuild-task-002"
+      ],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
+      ],
+      "notes": "The live smoke test returned 'Invalid credentials', so the current Higgsfield keys are not usable."
+    },
+    {
+      "task_id": "brandbuild-task-020",
+      "title": "Ship and verify Sora content proxy in production",
+      "description": "Use the new /api/generate/[generationId]/content route to confirm completed Sora renders are accessible from the live dashboard after a signed-in generation run.",
+      "priority": "high",
+      "status": "active",
+      "owner": "agent",
+      "created_at": "2026-03-25T16:30:00-05:00",
+      "updated_at": "2026-03-25T16:30:00-05:00",
+      "dependencies": [
+        "brandbuild-task-003"
+      ],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\content\\route.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\generation-content.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts"
+      ],
+      "notes": "Code is deployed. What remains is a signed-in dashboard validation of the operator-facing path."
+    }
+  ],
+  "Count": 19
 }

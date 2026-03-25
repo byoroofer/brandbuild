@@ -17,6 +17,34 @@ function isRemoteHttpUrl(fileUrl: string) {
   return /^https?:\/\//i.test(fileUrl);
 }
 
+function isOpenAiVideoContentUrl(fileUrl: string) {
+  try {
+    const parsed = new URL(fileUrl);
+    return (
+      parsed.hostname === "api.openai.com" &&
+      /^\/v1\/videos\/[^/]+\/content$/i.test(parsed.pathname)
+    );
+  } catch {
+    return false;
+  }
+}
+
+function buildRemoteFetchHeaders(fileUrl: string) {
+  if (isOpenAiVideoContentUrl(fileUrl)) {
+    const apiKey = process.env.OPENAI_API_KEY?.trim() || process.env.SORA_API_KEY?.trim();
+
+    if (!apiKey) {
+      throw new Error("OpenAI content sync requires OPENAI_API_KEY.");
+    }
+
+    return {
+      Authorization: `Bearer ${apiKey}`,
+    };
+  }
+
+  return undefined;
+}
+
 function asMetadataObject(value: Json | null | undefined) {
   if (!value || typeof value !== "object" || Array.isArray(value)) {
     return {} as Record<string, Json | undefined>;
@@ -73,7 +101,10 @@ export async function maybeMirrorGeneratedAssetToStorage(input: {
   }
 
   try {
-    const response = await fetch(input.sourceUrl, { cache: "no-store" });
+    const response = await fetch(input.sourceUrl, {
+      cache: "no-store",
+      headers: buildRemoteFetchHeaders(input.sourceUrl),
+    });
 
     if (!response.ok) {
       throw new Error(`Remote asset download failed with status ${response.status}.`);

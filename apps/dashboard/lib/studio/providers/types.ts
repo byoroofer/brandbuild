@@ -51,6 +51,7 @@ export interface GenerationProviderAdapter {
   id: TargetModel;
   label: string;
   enqueue(request: GenerationRequest): Promise<GenerationJob>;
+  getContent?(jobId: string): Promise<Response>;
   getJob(jobId: string): Promise<GenerationJob>;
   isConfigured(): boolean;
 }

@@ -23,3 +23,9 @@
 ## Auth / Trust Layer
 - Code exists for branded auth emails through a Supabase Send Email Hook.
 - Still needed: Supabase dashboard configuration, SMTP sender setup, and redirect cleanup so the email experience is fully BrandBuild-native.
+
+## 2026-03-25 provider status update
+- Sora: live create and completed content retrieval confirmed. BrandBuild now proxies completed media through /api/generate/[generationId]/content.
+- Kling: adapter is live-capable but current account is blocked by insufficient balance.
+- Higgsfield: adapter is live-capable but current credentials are invalid.
+- Uploads: authenticated storage path is coded; live validation still depends on applying the assets bucket/policy migration.

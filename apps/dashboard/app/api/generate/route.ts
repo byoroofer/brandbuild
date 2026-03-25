@@ -2,6 +2,7 @@ import { revalidatePath } from "next/cache";
 import { NextResponse } from "next/server";
 
 import { triggerShotGeneration } from "@/lib/db/shot-generations";
+import { resolveGenerationOutputPath } from "@/lib/studio/generation-content";
 import { promptBuilderSchema } from "@/lib/studio/validation";
 
 export async function POST(request: Request) {
@@ -41,7 +42,14 @@ export async function POST(request: Request) {
       generationId: result.generation.id,
       integrationMode: result.job.integrationMode,
       jobId: result.job.id,
-      outputUrl: typeof result.job.outputUrl === "string" ? result.job.outputUrl : null,
+      outputUrl: resolveGenerationOutputPath({
+        generationId: result.generation.id,
+        integrationMode: result.job.integrationMode,
+        outputUrl: typeof result.job.outputUrl === "string" ? result.job.outputUrl : null,
+        provider: result.job.provider,
+        providerJobId: result.job.id,
+        status: result.job.status,
+      }),
       provider: result.job.provider,
       status: result.job.status,
       success: true,
