@@ -1,4 +1,4 @@
-# BrandBuild Session Log
+﻿# BrandBuild Session Log
 
 ## 2026-03-24 17:40 CT - Repo Cleanup And Memory Init
 - Established durable project memory inside the repo.
@@ -83,3 +83,8 @@
 - Re-ran `npm run typecheck` and `npm run build` successfully.
 - Deployed production to `brandbuild-online-h0b2ffanu-byoroofers-projects.vercel.app`, re-aliased `brandbuild.online`, and verified the live root returned `200`.
 - Committed the batch as `74eafe4` and pushed `main` so git matches the deployed login-navigation fix.
+## 2026-03-25 12:28 CT - Repo Capture And Cross-Project Memory Link
+- Confirmed the real BrandBuild Git remote is https://github.com/byoroofer/brandbuild.git.
+- Verified the existing canonical local repo at D:\Playground\brandbuild-online-repo already points to that origin.
+- Recorded the future relationship between BrandBuild and the local Stable Diffusion tool without merging those projects yet.
+- Noted that D:\Projects\brandbuild is now a secondary local clone and should not become a competing source of truth by accident.

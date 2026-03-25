@@ -1,399 +1,402 @@
-[
-  {
-    "id": "brandbuild-know-001",
-    "category": "product",
-    "fact": "BrandBuild and AI Video Studio are the same product family for this repo and deployment.",
-    "confidence": "high",
-    "source": "user instruction",
-    "first_recorded_at": "2026-03-24T17:40:09.0933149-05:00",
-    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\README.md",
-      "D:\\Playground\\brandbuild-online-repo\\package.json"
-    ]
-  },
-  {
-    "id": "brandbuild-know-002",
-    "category": "deployment",
-    "fact": "D:\\Playground\\brandbuild-online-repo is the canonical local repo to use for BrandBuild changes and Vercel deployments.",
-    "confidence": "high",
-    "source": "repo setup and deployment history",
-    "first_recorded_at": "2026-03-24T17:40:09.0933149-05:00",
-    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
-    ]
-  },
-  {
-    "id": "brandbuild-know-003",
-    "category": "auth",
-    "fact": "BrandBuild has coded support for branded auth emails through a Supabase Send Email Hook, but the live experience still depends on manual Supabase dashboard configuration and SMTP setup.",
-    "confidence": "high",
-    "source": "code inspection and prior implementation",
-    "first_recorded_at": "2026-03-24T18:20:00-05:00",
-    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\supabase\\functions\\send-auth-email\\index.ts",
-      "D:\\Playground\\brandbuild-online-repo\\README.md"
-    ]
-  },
-  {
-    "id": "brandbuild-know-004",
-    "category": "integrations",
-    "fact": "Sora, Kling, and Higgsfield are all implemented behind a shared provider adapter pattern and exposed through the same generation pipeline.",
-    "confidence": "high",
-    "source": "code inspection",
-    "first_recorded_at": "2026-03-24T18:20:00-05:00",
-    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts"
-    ]
-  },
-  {
-    "id": "brandbuild-know-005",
-    "category": "workflow",
-    "fact": "The strongest existing vertical slice is the shot workspace, including structured prompts, reference uploads, generation history, and workflow guidance.",
-    "confidence": "high",
-    "source": "code inspection and product audit",
-    "first_recorded_at": "2026-03-24T18:20:00-05:00",
-    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\prompt-builder.tsx",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx"
-    ]
-  },
-  {
-    "id": "brandbuild-know-006",
-    "category": "gaps",
-    "fact": "The biggest missing product layers are compare outputs, version timeline, edit handoff/export, and usage/admin visibility.",
-    "confidence": "high",
-    "source": "product audit",
-    "first_recorded_at": "2026-03-24T18:20:00-05:00",
-    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\reviews\\page.tsx",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
-    ]
-  },
-  {
-    "id": "brandbuild-know-007",
-    "category": "reliability",
-    "fact": "The repository read model can fall back to demo data too aggressively when live queries partially fail, which can mask production issues.",
-    "confidence": "high",
-    "source": "product audit",
-    "first_recorded_at": "2026-03-24T18:20:00-05:00",
-    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
-    ]
-  },
-  {
-    "id": "brandbuild-know-008",
-    "category": "deployment",
-    "fact": "The March 24 production application error was resolved by deploying the latest local BrandBuild workspace to Vercel production because the live domain had been serving an older deployment.",
-    "confidence": "high",
-    "source": "deployment inspection and redeploy",
-    "first_recorded_at": "2026-03-24T19:30:00-05:00",
-    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
-    ]
-  },
-  {
-    "id": "brandbuild-know-009",
-    "category": "memory",
-    "fact": "docs/project-memory is the canonical structured memory location; .project-memory is a mirrored compatibility layer; project-memory contains human-facing operating summaries requested by the user.",
-    "confidence": "high",
-    "source": "memory consolidation decision",
-    "first_recorded_at": "2026-03-24T19:41:23.2499373-05:00",
-    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
-      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json",
-      "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json"
-    ]
-  },
-  {
-    "id": "brandbuild-know-010",
-    "category": "build",
-    "fact": "Next.js currently warns that it is inferring the workspace root because both D:\\Playground and the BrandBuild repo contain lockfiles; this should be cleaned up with outputFileTracingRoot or by removing the extra lockfile when safe.",
-    "confidence": "high",
-    "source": "2026-03-24 build output",
-    "first_recorded_at": "2026-03-24T19:41:23.2499373-05:00",
-    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\next.config.ts",
-      "D:\\Playground\\brandbuild-online-repo\\package-lock.json"
-    ]
-  },
-  {
-    "id": "brandbuild-know-011",
-    "category": "reliability",
-    "fact": "A March 24 production incident was mitigated by hardening apps/dashboard/lib/db/client.ts so authenticated dashboard reads return null when Supabase or auth client initialization fails, allowing the repository layer to fall back instead of crashing the page.",
-    "confidence": "high",
-    "source": "incident investigation and deployed fix",
-    "first_recorded_at": "2026-03-24T23:59:00-05:00",
-    "last_confirmed_at": "2026-03-24T23:59:00-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
-    ]
-  },
-  {
-    "id": "brandbuild-know-012",
-    "category": "environment",
-    "fact": "For local BrandBuild runs, the effective Next.js app environment needs to exist at apps/dashboard/.env.local; production Vercel env presence alone does not help local runs.",
-    "confidence": "high",
-    "source": "2026-03-25 local incident investigation",
-    "first_recorded_at": "2026-03-25T00:08:00-05:00",
-    "last_confirmed_at": "2026-03-25T00:08:00-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.env.local",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\env.ts"
-    ]
-  },
-  {
-    "id": "brandbuild-know-013",
-    "category": "stability",
-    "fact": "The marketing homepage should stay static-safe; auth-session redirects and workspace reads on / are unnecessary and were removed to eliminate the Dynamic server usage build warning.",
-    "confidence": "high",
-    "source": "2026-03-25 root-route warning fix",
-    "first_recorded_at": "2026-03-25T00:28:00-05:00",
-    "last_confirmed_at": "2026-03-25T00:28:00-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx"
-    ]
-  },
-  {
-    "id": "brandbuild-know-014",
-    "category": "deployment",
-    "fact": "After commit 6701f83, brandbuild.online was redeployed successfully and verified with direct checks: root returns 200, /login returns 200, and signed-out /dashboard redirects to /login.",
-    "confidence": "high",
-    "source": "2026-03-25 production deployment verification",
-    "first_recorded_at": "2026-03-25T08:11:00-05:00",
-    "last_confirmed_at": "2026-03-25T08:11:00-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
-    ]
-  },
-  {
-    "id": "brandbuild-know-015",
-    "category": "product",
-    "fact": "The compare-outputs workflow can be delivered cleanly on /dashboard/reviews by grouping review candidates by shot and enriching them with asset, generation, provider, and campaign context; no schema migration is required for that surface.",
-    "confidence": "high",
-    "source": "2026-03-25 compare-workspace implementation",
-    "first_recorded_at": "2026-03-25T08:38:00-05:00",
-    "last_confirmed_at": "2026-03-25T08:38:00-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
-    ]
-  },
-  {
-    "id": "brandbuild-know-016",
-    "category": "deployment",
-    "fact": "The compare-outputs workspace shipped in commit 387f697 and the live deployment at brandbuild-online-5e318lqwu-byoroofers-projects.vercel.app was verified with healthy public routes plus correct signed-out redirects for /dashboard and /dashboard/reviews.",
-    "confidence": "high",
-    "source": "2026-03-25 compare-workspace deployment verification",
-    "first_recorded_at": "2026-03-25T08:42:00-05:00",
-    "last_confirmed_at": "2026-03-25T08:42:00-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
-    ]
-  },
-  {
-    "id": "brandbuild-know-017",
-    "category": "product",
-    "fact": "The existing assets route can safely serve as BrandBuild's versions and handoff surface by deriving version groups and campaign handoff packages from the current assets, generations, reviews, shots, and campaigns schema; no migration is required for this layer.",
-    "confidence": "high",
-    "source": "2026-03-25 assets workspace implementation",
-    "first_recorded_at": "2026-03-25T09:01:54.1394838-05:00",
-    "last_confirmed_at": "2026-03-25T09:01:54.1394838-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
-    ]
-  },
-  {
-    "id": "brandbuild-know-018",
-    "category": "workflow",
-    "fact": "BrandBuild now has a usable pre-edit finishing layer: operators can browse assets, inspect grouped versions, and download campaign handoff manifests before a dedicated sequencing timeline exists.",
-    "confidence": "high",
-    "source": "2026-03-25 assets workspace implementation",
-    "first_recorded_at": "2026-03-25T09:01:54.1394838-05:00",
-    "last_confirmed_at": "2026-03-25T09:01:54.1394838-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
-    ]
-  },
-  {
-    "id": "brandbuild-know-019",
-    "category": "deployment",
-    "fact": "The assets workspace with library, versions, and handoff views shipped in commit 428ce4b and was deployed to brandbuild-online-n3qvlcudy-byoroofers-projects.vercel.app, after which brandbuild.online returned 200 on direct verification.",
-    "confidence": "high",
-    "source": "2026-03-25 assets-workspace deployment verification",
-    "first_recorded_at": "2026-03-25T09:09:41.3207972-05:00",
-    "last_confirmed_at": "2026-03-25T09:09:41.3207972-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
-    ]
-  },
-  {
-    "id": "brandbuild-know-020",
-    "category": "reliability",
-    "fact": "BrandBuild's auth boundary is safer when both middleware session refresh and auth email-action handling treat Supabase/session failures as recoverable and redirect back to login instead of letting the global error page render.",
-    "confidence": "high",
-    "source": "2026-03-25 auth incident hardening",
-    "first_recorded_at": "2026-03-25T09:34:30.9567883-05:00",
-    "last_confirmed_at": "2026-03-25T09:34:30.9567883-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\middleware.ts",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\email-action.ts"
-    ]
-  },
-  {
-    "id": "brandbuild-know-021",
-    "category": "deployment",
-    "fact": "The auth/session incident fix was deployed to brandbuild-online-h3jyx59f5-byoroofers-projects.vercel.app, and brandbuild.online returned 200 after the deployment.",
-    "confidence": "high",
-    "source": "2026-03-25 auth incident deployment verification",
-    "first_recorded_at": "2026-03-25T09:34:30.9567883-05:00",
-    "last_confirmed_at": "2026-03-25T09:34:30.9567883-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\middleware.ts",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\email-action.ts",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
-    ]
-  },
-  {
-    "id": "brandbuild-know-022",
-    "category": "ux",
-    "fact": "Public-site access should route directly to /login rather than relying on a protected /dashboard redirect, especially on mobile where the primary visible header CTA may be the only access button shown.",
-    "confidence": "high",
-    "source": "2026-03-25 public login-path incident fix",
-    "first_recorded_at": "2026-03-25T12:18:00-05:00",
-    "last_confirmed_at": "2026-03-25T12:18:00-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\redirects.ts"
-    ]
-  },
-  {
-    "id": "brandbuild-know-023",
-    "category": "ux",
-    "fact": "Decorative marketing layers such as glow washes, preview backgrounds, videos, badges, and sheen effects should be pointer-events-none unless they are intentionally interactive, because they can otherwise steal clicks from nearby CTAs.",
-    "confidence": "high",
-    "source": "2026-03-25 public login-path incident fix",
-    "first_recorded_at": "2026-03-25T12:18:00-05:00",
-    "last_confirmed_at": "2026-03-25T12:18:00-05:00",
-    "status": "active",
-    "related_projects": [
-      "brandbuild"
-    ],
-    "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx"
-    ]
-  }
-]
+﻿{
+    "value":  [
+                  {
+                      "id":  "brandbuild-know-001",
+                      "category":  "product",
+                      "fact":  "BrandBuild and AI Video Studio are the same product family for this repo and deployment.",
+                      "confidence":  "high",
+                      "source":  "user instruction",
+                      "first_recorded_at":  "2026-03-24T17:40:09.0933149-05:00",
+                      "last_confirmed_at":  "2026-03-24T19:41:23.2499373-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\README.md",
+                                            "D:\\Playground\\brandbuild-online-repo\\package.json"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-002",
+                      "category":  "deployment",
+                      "fact":  "D:\\Playground\\brandbuild-online-repo is the canonical local repo to use for BrandBuild changes and Vercel deployments.",
+                      "confidence":  "high",
+                      "source":  "repo setup and deployment history",
+                      "first_recorded_at":  "2026-03-24T17:40:09.0933149-05:00",
+                      "last_confirmed_at":  "2026-03-24T19:41:23.2499373-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-003",
+                      "category":  "auth",
+                      "fact":  "BrandBuild has coded support for branded auth emails through a Supabase Send Email Hook, but the live experience still depends on manual Supabase dashboard configuration and SMTP setup.",
+                      "confidence":  "high",
+                      "source":  "code inspection and prior implementation",
+                      "first_recorded_at":  "2026-03-24T18:20:00-05:00",
+                      "last_confirmed_at":  "2026-03-24T19:41:23.2499373-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\supabase\\functions\\send-auth-email\\index.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\README.md"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-004",
+                      "category":  "integrations",
+                      "fact":  "Sora, Kling, and Higgsfield are all implemented behind a shared provider adapter pattern and exposed through the same generation pipeline.",
+                      "confidence":  "high",
+                      "source":  "code inspection",
+                      "first_recorded_at":  "2026-03-24T18:20:00-05:00",
+                      "last_confirmed_at":  "2026-03-24T19:41:23.2499373-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-005",
+                      "category":  "workflow",
+                      "fact":  "The strongest existing vertical slice is the shot workspace, including structured prompts, reference uploads, generation history, and workflow guidance.",
+                      "confidence":  "high",
+                      "source":  "code inspection and product audit",
+                      "first_recorded_at":  "2026-03-24T18:20:00-05:00",
+                      "last_confirmed_at":  "2026-03-24T19:41:23.2499373-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\prompt-builder.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-006",
+                      "category":  "gaps",
+                      "fact":  "The biggest missing product layers are compare outputs, version timeline, edit handoff/export, and usage/admin visibility.",
+                      "confidence":  "high",
+                      "source":  "product audit",
+                      "first_recorded_at":  "2026-03-24T18:20:00-05:00",
+                      "last_confirmed_at":  "2026-03-24T19:41:23.2499373-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\reviews\\page.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-007",
+                      "category":  "reliability",
+                      "fact":  "The repository read model can fall back to demo data too aggressively when live queries partially fail, which can mask production issues.",
+                      "confidence":  "high",
+                      "source":  "product audit",
+                      "first_recorded_at":  "2026-03-24T18:20:00-05:00",
+                      "last_confirmed_at":  "2026-03-24T19:41:23.2499373-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-008",
+                      "category":  "deployment",
+                      "fact":  "The March 24 production application error was resolved by deploying the latest local BrandBuild workspace to Vercel production because the live domain had been serving an older deployment.",
+                      "confidence":  "high",
+                      "source":  "deployment inspection and redeploy",
+                      "first_recorded_at":  "2026-03-24T19:30:00-05:00",
+                      "last_confirmed_at":  "2026-03-24T19:41:23.2499373-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-009",
+                      "category":  "memory",
+                      "fact":  "docs/project-memory is the canonical structured memory location; .project-memory is a mirrored compatibility layer; project-memory contains human-facing operating summaries requested by the user.",
+                      "confidence":  "high",
+                      "source":  "memory consolidation decision",
+                      "first_recorded_at":  "2026-03-24T19:41:23.2499373-05:00",
+                      "last_confirmed_at":  "2026-03-24T19:41:23.2499373-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
+                                            "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json",
+                                            "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-010",
+                      "category":  "build",
+                      "fact":  "Next.js currently warns that it is inferring the workspace root because both D:\\Playground and the BrandBuild repo contain lockfiles; this should be cleaned up with outputFileTracingRoot or by removing the extra lockfile when safe.",
+                      "confidence":  "high",
+                      "source":  "2026-03-24 build output",
+                      "first_recorded_at":  "2026-03-24T19:41:23.2499373-05:00",
+                      "last_confirmed_at":  "2026-03-24T19:41:23.2499373-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\next.config.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\package-lock.json"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-011",
+                      "category":  "reliability",
+                      "fact":  "A March 24 production incident was mitigated by hardening apps/dashboard/lib/db/client.ts so authenticated dashboard reads return null when Supabase or auth client initialization fails, allowing the repository layer to fall back instead of crashing the page.",
+                      "confidence":  "high",
+                      "source":  "incident investigation and deployed fix",
+                      "first_recorded_at":  "2026-03-24T23:59:00-05:00",
+                      "last_confirmed_at":  "2026-03-24T23:59:00-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-012",
+                      "category":  "environment",
+                      "fact":  "For local BrandBuild runs, the effective Next.js app environment needs to exist at apps/dashboard/.env.local; production Vercel env presence alone does not help local runs.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 local incident investigation",
+                      "first_recorded_at":  "2026-03-25T00:08:00-05:00",
+                      "last_confirmed_at":  "2026-03-25T00:08:00-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.env.local",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\env.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-013",
+                      "category":  "stability",
+                      "fact":  "The marketing homepage should stay static-safe; auth-session redirects and workspace reads on / are unnecessary and were removed to eliminate the Dynamic server usage build warning.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 root-route warning fix",
+                      "first_recorded_at":  "2026-03-25T00:28:00-05:00",
+                      "last_confirmed_at":  "2026-03-25T00:28:00-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-014",
+                      "category":  "deployment",
+                      "fact":  "After commit 6701f83, brandbuild.online was redeployed successfully and verified with direct checks: root returns 200, /login returns 200, and signed-out /dashboard redirects to /login.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 production deployment verification",
+                      "first_recorded_at":  "2026-03-25T08:11:00-05:00",
+                      "last_confirmed_at":  "2026-03-25T08:11:00-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-015",
+                      "category":  "product",
+                      "fact":  "The compare-outputs workflow can be delivered cleanly on /dashboard/reviews by grouping review candidates by shot and enriching them with asset, generation, provider, and campaign context; no schema migration is required for that surface.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 compare-workspace implementation",
+                      "first_recorded_at":  "2026-03-25T08:38:00-05:00",
+                      "last_confirmed_at":  "2026-03-25T08:38:00-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-016",
+                      "category":  "deployment",
+                      "fact":  "The compare-outputs workspace shipped in commit 387f697 and the live deployment at brandbuild-online-5e318lqwu-byoroofers-projects.vercel.app was verified with healthy public routes plus correct signed-out redirects for /dashboard and /dashboard/reviews.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 compare-workspace deployment verification",
+                      "first_recorded_at":  "2026-03-25T08:42:00-05:00",
+                      "last_confirmed_at":  "2026-03-25T08:42:00-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-017",
+                      "category":  "product",
+                      "fact":  "The existing assets route can safely serve as BrandBuild\u0027s versions and handoff surface by deriving version groups and campaign handoff packages from the current assets, generations, reviews, shots, and campaigns schema; no migration is required for this layer.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 assets workspace implementation",
+                      "first_recorded_at":  "2026-03-25T09:01:54.1394838-05:00",
+                      "last_confirmed_at":  "2026-03-25T09:01:54.1394838-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-018",
+                      "category":  "workflow",
+                      "fact":  "BrandBuild now has a usable pre-edit finishing layer: operators can browse assets, inspect grouped versions, and download campaign handoff manifests before a dedicated sequencing timeline exists.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 assets workspace implementation",
+                      "first_recorded_at":  "2026-03-25T09:01:54.1394838-05:00",
+                      "last_confirmed_at":  "2026-03-25T09:01:54.1394838-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-019",
+                      "category":  "deployment",
+                      "fact":  "The assets workspace with library, versions, and handoff views shipped in commit 428ce4b and was deployed to brandbuild-online-n3qvlcudy-byoroofers-projects.vercel.app, after which brandbuild.online returned 200 on direct verification.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 assets-workspace deployment verification",
+                      "first_recorded_at":  "2026-03-25T09:09:41.3207972-05:00",
+                      "last_confirmed_at":  "2026-03-25T09:09:41.3207972-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-020",
+                      "category":  "reliability",
+                      "fact":  "BrandBuild\u0027s auth boundary is safer when both middleware session refresh and auth email-action handling treat Supabase/session failures as recoverable and redirect back to login instead of letting the global error page render.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 auth incident hardening",
+                      "first_recorded_at":  "2026-03-25T09:34:30.9567883-05:00",
+                      "last_confirmed_at":  "2026-03-25T09:34:30.9567883-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\middleware.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\email-action.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-021",
+                      "category":  "deployment",
+                      "fact":  "The auth/session incident fix was deployed to brandbuild-online-h3jyx59f5-byoroofers-projects.vercel.app, and brandbuild.online returned 200 after the deployment.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 auth incident deployment verification",
+                      "first_recorded_at":  "2026-03-25T09:34:30.9567883-05:00",
+                      "last_confirmed_at":  "2026-03-25T09:34:30.9567883-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\middleware.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\email-action.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-022",
+                      "category":  "ux",
+                      "fact":  "Public-site access should route directly to /login rather than relying on a protected /dashboard redirect, especially on mobile where the primary visible header CTA may be the only access button shown.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 public login-path incident fix",
+                      "first_recorded_at":  "2026-03-25T12:18:00-05:00",
+                      "last_confirmed_at":  "2026-03-25T12:18:00-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\redirects.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-023",
+                      "category":  "ux",
+                      "fact":  "Decorative marketing layers such as glow washes, preview backgrounds, videos, badges, and sheen effects should be pointer-events-none unless they are intentionally interactive, because they can otherwise steal clicks from nearby CTAs.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 public login-path incident fix",
+                      "first_recorded_at":  "2026-03-25T12:18:00-05:00",
+                      "last_confirmed_at":  "2026-03-25T12:18:00-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx"
+                                        ]
+                  }
+              ],
+    "Count":  23
+}

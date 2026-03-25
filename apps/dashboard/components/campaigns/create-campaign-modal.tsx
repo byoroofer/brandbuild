@@ -1,11 +1,9 @@
 "use client";
 
-import { useActionState, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import type { FormEvent } from "react";
+import { useEffect, useState } from "react";
 
-import {
-  createCampaignAction,
-  initialStudioActionState,
-} from "@/app/actions/studio";
 import { Button } from "@/components/ui/button";
 
 type CreateCampaignModalProps = {
@@ -30,17 +28,72 @@ export function CreateCampaignModal({
   openOnLoad = false,
   persistenceEnabled,
 }: CreateCampaignModalProps) {
+  const router = useRouter();
   const [isOpen, setIsOpen] = useState(openOnLoad);
-  const [state, formAction, isPending] = useActionState(
-    createCampaignAction,
-    initialStudioActionState,
-  );
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isPending, setIsPending] = useState(false);
 
   useEffect(() => {
-    if (state.success) {
-      setIsOpen(false);
+    setIsOpen(openOnLoad);
+  }, [openOnLoad]);
+
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    if (!persistenceEnabled || isPending) {
+      return;
     }
-  }, [state.success]);
+
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const payload = {
+      audience: String(formData.get("audience") ?? "").trim(),
+      brandName: String(formData.get("brandName") ?? "").trim(),
+      callToAction: String(formData.get("callToAction") ?? "").trim(),
+      clientName: String(formData.get("clientName") ?? "").trim(),
+      name: String(formData.get("name") ?? "").trim(),
+      objective: String(formData.get("objective") ?? "").trim(),
+      offer: String(formData.get("offer") ?? "").trim(),
+      targetPlatforms: formData.getAll("targetPlatforms").map((value) => String(value)),
+    };
+
+    setErrorMessage(null);
+    setIsPending(true);
+
+    try {
+      const response = await fetch("/api/campaigns", {
+        body: JSON.stringify(payload),
+        headers: {
+          "content-type": "application/json",
+        },
+        method: "POST",
+      });
+      const result = (await response.json().catch(() => null)) as
+        | { campaignId?: string; error?: string }
+        | null;
+
+      if (!response.ok) {
+        throw new Error(result?.error ?? "Unable to create campaign.");
+      }
+
+      const campaignId = result?.campaignId;
+
+      if (!campaignId) {
+        throw new Error("Campaign created, but the new campaign id was missing.");
+      }
+
+      setIsOpen(false);
+      form.reset();
+      router.push(`/dashboard/campaigns/${campaignId}`);
+      router.refresh();
+    } catch (error) {
+      setErrorMessage(
+        error instanceof Error ? error.message : "Unable to create campaign.",
+      );
+    } finally {
+      setIsPending(false);
+    }
+  }
 
   return (
     <>
@@ -71,7 +124,7 @@ export function CreateCampaignModal({
               </button>
             </div>
 
-            <form action={formAction} className="mt-8 grid gap-4">
+            <form className="mt-8 grid gap-4" onSubmit={handleSubmit}>
               <div className="grid gap-4 md:grid-cols-2">
                 <input className={inputClassName} name="name" placeholder="Campaign name" required />
                 <input className={inputClassName} name="clientName" placeholder="Client name" required />
@@ -104,14 +157,19 @@ export function CreateCampaignModal({
                 </p>
               ) : null}
 
-              {state.error ? (
+              {errorMessage ? (
                 <p className="rounded-2xl border border-rose-400/20 bg-rose-400/10 px-4 py-3 text-sm text-rose-100">
-                  {state.error}
+                  {errorMessage}
                 </p>
               ) : null}
 
               <div className="flex justify-end gap-3">
-                <Button onClick={() => setIsOpen(false)} type="button" variant="ghost">
+                <Button
+                  disabled={isPending}
+                  onClick={() => setIsOpen(false)}
+                  type="button"
+                  variant="ghost"
+                >
                   Cancel
                 </Button>
                 <Button disabled={!persistenceEnabled || isPending} type="submit">

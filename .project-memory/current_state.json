@@ -1,82 +1,89 @@
-{
-  "current_phase": "stabilization, integration hardening, and workflow expansion",
-  "summary": "BrandBuild is live on brandbuild.online with a premium dashboard, private shot asset uploads, provider adapters for Sora, Kling, and Higgsfield, a settings control center, a compare-outputs workspace at /dashboard/reviews, and an assets workspace for library browsing, version groups, and handoff packages at /dashboard/assets. The auth boundary has been hardened so bad session cookies or auth callback failures redirect safely instead of triggering the global error page, and the public-site access path now routes cleanly into /login without decorative marketing layers stealing taps. The main remaining blockers are Supabase Auth dashboard configuration, end-to-end live provider validation, and the absence of dedicated timeline sequencing across selected outputs.",
-  "active_workstreams": [
-    "production stability and trust",
-    "provider validation and orchestration hardening",
-    "version groups, handoff packages, and delivery workflow refinement",
-    "durable project-memory consolidation"
-  ],
-  "current_priorities": [
-    "Keep brandbuild.online stable on the latest deployment.",
-    "Finish the Supabase Auth trust layer so emails and redirects are fully BrandBuild-native.",
-    "Validate one real generation run each for Sora, Kling, and Higgsfield.",
-    "Turn the new assets workspace into a true timeline sequencing and delivery surface."
-  ],
-  "blockers": [
-    "Supabase Auth dashboard still needs branded email hook enablement, SMTP sender setup, and redirect cleanup.",
-    "Provider integrations are code-wired but not fully validated against real operator runs in production."
-  ],
-  "risks": [
-    "The repository can fall back to demo data too aggressively when live queries partially fail, which can hide production issues.",
-    "Multiple memory folders can drift if they are not mirrored deliberately.",
-    "Direct live verification for some HTTPS paths from this shell can be noisy because PowerShell/curl intermittently hit local schannel credential errors."
-  ],
-  "assumptions": [
-    "BrandBuild and AI Video Studio are the same product family.",
-    "D:\\Playground\\brandbuild-online-repo is the canonical BrandBuild repo and deployment source.",
-    "The current production deployment should track the local clean BrandBuild workspace, not the mixed legacy root workspace."
-  ],
-  "known_issues": [
-    "Branded auth email infrastructure exists in code but is not fully live until the Supabase dashboard settings are completed.",
-    "There is still no dedicated sequencing timeline for arranging selected outputs across a campaign.",
-    "The root package naming still says ai-video-studio while the product brand is BrandBuild.",
-    "Next.js build warns that it is inferring the workspace root because both D:\\Playground and the BrandBuild repo contain lockfiles."
-  ],
-  "recent_changes": [
-    "Added /dashboard/settings as a control-center route for system readiness and integration status.",
-    "Added the studio system audit model and settings UI.",
-    "Recovered production by deploying the latest BrandBuild workspace to Vercel and confirming brandbuild.online points at the new deployment.",
-    "Hardened the studio persistence client so dashboard pages return null instead of throwing when server-side auth client initialization fails.",
-    "Deployed a fresh production build at brandbuild-online-453sok21c-byoroofers-projects.vercel.app and verified the live domain, login page, and signed-out dashboard redirect in a browser.",
-    "Pulled the current production environment into apps/dashboard/.env.local so local runs stop throwing NEXT_PUBLIC_SUPABASE_URL is not set.",
-    "Removed session-aware root-page calls so the marketing homepage is static again and the Dynamic server usage build warning no longer appears.",
-    "Committed the homepage stability fix as 6701f83 and pushed main so git matches the latest verified state.",
-    "Deployed production at brandbuild-online-ogvlahkwd-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
-    "Verified the live site directly: / returns 200, /login returns 200, and signed-out /dashboard redirects to /login.",
-    "Rebuilt /dashboard/reviews into a premium compare-outputs workspace grouped by shot instead of a flat review list.",
-    "Expanded the reviews read model so each candidate carries campaign, shot, provider, generation, and average-score context without changing the underlying schema.",
-    "Re-ran typecheck and production build successfully after the compare-workspace batch.",
-    "Committed the compare workspace as 387f697 and pushed main.",
-    "Deployed production at brandbuild-online-5e318lqwu-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
-    "Verified the live compare batch with direct checks: / returns 200, /login returns 200, and signed-out /dashboard and /dashboard/reviews redirect to /login.",
-    "Created the requested root project-memory operating files.",
-    "Consolidated project memory so docs/project-memory is the canonical structured source and .project-memory is a mirrored copy.",
-    "Re-ran typecheck and production build successfully after memory consolidation.",
-    "Expanded the assets read model so it derives version groups and campaign handoff packages from the existing assets, generations, reviews, shots, and campaigns data.",
-    "Rebuilt /dashboard/assets into a multi-view workspace for asset browsing, version review, and handoff preparation without changing the route structure.",
-    "Re-ran typecheck and production build successfully after the assets workspace batch.",
-    "Committed the assets workspace as 428ce4b and pushed main.",
-    "Deployed production at brandbuild-online-n3qvlcudy-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
-    "Verified the live root returns 200 after the assets workspace deployment.",
-    "Hardened Supabase middleware so session refresh failures return an anonymous response instead of throwing through the request pipeline.",
-    "Hardened auth email-action handling so magic-link and confirmation callback failures redirect safely back to login instead of hitting the global error page.",
-    "Re-ran typecheck and production build successfully after the auth-boundary hardening batch.",
-    "Deployed production at brandbuild-online-h3jyx59f5-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
-    "Verified the live root returns 200 after the auth-boundary incident fix.",
-    "Updated the public-site header and footer so access CTAs point directly to /login instead of relying on a /dashboard redirect.",
-    "Marked decorative marketing overlays and preview surfaces as pointer-events-none so they cannot intercept clicks on public CTAs.",
-    "Re-ran typecheck and production build successfully after the public login-path hardening batch.",
-    "Deployed production at brandbuild-online-h0b2ffanu-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
-    "Verified the live root returns 200 after the public login-path fix.",
-    "Committed and pushed the public login-path hardening batch to origin/main as 74eafe4."
-  ],
-  "next_steps": [
-    "Finish Supabase Auth dashboard setup for branded email and correct redirect behavior.",
-    "Run and capture one real Sora generation through the dashboard.",
-    "Run and capture one real Kling generation through the dashboard.",
-    "Run and capture one real Higgsfield generation through the dashboard.",
-    "Add timeline sequencing across selected outputs and deepen the delivery/export workflow."
-  ],
-  "updated_at": "2026-03-25T12:18:00-05:00"
+﻿{
+    "current_phase":  "stabilization, integration hardening, and workflow expansion",
+    "summary":  "BrandBuild is live on brandbuild.online with a premium dashboard, private shot asset uploads, provider adapters for Sora, Kling, and Higgsfield, a settings control center, a compare-outputs workspace at /dashboard/reviews, and an assets workspace for library browsing, version groups, and handoff packages at /dashboard/assets. The auth boundary has now been hardened so bad session cookies or auth callback failures redirect safely instead of triggering the global error page. The main remaining blockers are Supabase Auth dashboard configuration, end-to-end live provider validation, the absence of dedicated timeline sequencing across selected outputs, and future integration planning for local generative tooling after isolated testing.",
+    "active_workstreams":  [
+                               "production stability and trust",
+                               "provider validation and orchestration hardening",
+                               "version groups, handoff packages, and delivery workflow refinement",
+                               "durable project-memory consolidation"
+                           ],
+    "current_priorities":  [
+                               "Keep brandbuild.online stable on the latest deployment.",
+                               "Finish the Supabase Auth trust layer so emails and redirects are fully BrandBuild-native.",
+                               "Validate one real generation run each for Sora, Kling, and Higgsfield.",
+                               "Turn the new assets workspace into a true timeline sequencing and delivery surface."
+                           ],
+    "blockers":  [
+                     "Supabase Auth dashboard still needs branded email hook enablement, SMTP sender setup, and redirect cleanup.",
+                     "Provider integrations are code-wired but not fully validated against real operator runs in production."
+                 ],
+    "risks":  [
+                  "The repository can fall back to demo data too aggressively when live queries partially fail, which can hide production issues.",
+                  "Direct live verification for some HTTPS paths from this shell can be noisy because PowerShell/curl intermittently hit local schannel credential errors.",
+                  "Multiple memory folders can drift if they are not mirrored deliberately.",
+                  "Multiple local clones of the BrandBuild repo can drift if future changes are split between D:\\\\Playground\\\\brandbuild-online-repo and D:\\\\Projects\\\\brandbuild."
+              ],
+    "assumptions":  [
+                        "BrandBuild and AI Video Studio are the same product family.",
+                        "D:\\Playground\\brandbuild-online-repo is the canonical BrandBuild repo and deployment source.",
+                        "The current production deployment should track the local clean BrandBuild workspace, not the mixed legacy root workspace."
+                    ],
+    "known_issues":  [
+                         "Branded auth email infrastructure exists in code but is not fully live until the Supabase dashboard settings are completed.",
+                         "There is still no dedicated sequencing timeline for arranging selected outputs across a campaign.",
+                         "The root package naming still says ai-video-studio while the product brand is BrandBuild.",
+                         "Next.js build warns that it is inferring the workspace root because both D:\\Playground and the BrandBuild repo contain lockfiles."
+                     ],
+    "recent_changes":  [
+                           "Added /dashboard/settings as a control-center route for system readiness and integration status.",
+                           "Added the studio system audit model and settings UI.",
+                           "Recovered production by deploying the latest BrandBuild workspace to Vercel and confirming brandbuild.online points at the new deployment.",
+                           "Hardened the studio persistence client so dashboard pages return null instead of throwing when server-side auth client initialization fails.",
+                           "Deployed a fresh production build at brandbuild-online-453sok21c-byoroofers-projects.vercel.app and verified the live domain, login page, and signed-out dashboard redirect in a browser.",
+                           "Pulled the current production environment into apps/dashboard/.env.local so local runs stop throwing NEXT_PUBLIC_SUPABASE_URL is not set.",
+                           "Removed session-aware root-page calls so the marketing homepage is static again and the Dynamic server usage build warning no longer appears.",
+                           "Committed the homepage stability fix as 6701f83 and pushed main so git matches the latest verified state.",
+                           "Deployed production at brandbuild-online-ogvlahkwd-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
+                           "Verified the live site directly: / returns 200, /login returns 200, and signed-out /dashboard redirects to /login.",
+                           "Rebuilt /dashboard/reviews into a premium compare-outputs workspace grouped by shot instead of a flat review list.",
+                           "Expanded the reviews read model so each candidate carries campaign, shot, provider, generation, and average-score context without changing the underlying schema.",
+                           "Re-ran typecheck and production build successfully after the compare-workspace batch.",
+                           "Committed the compare workspace as 387f697 and pushed main.",
+                           "Deployed production at brandbuild-online-5e318lqwu-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
+                           "Verified the live compare batch with direct checks: / returns 200, /login returns 200, and signed-out /dashboard and /dashboard/reviews redirect to /login.",
+                           "Created the requested root project-memory operating files.",
+                           "Consolidated project memory so docs/project-memory is the canonical structured source and .project-memory is a mirrored copy.",
+                           "Re-ran typecheck and production build successfully after memory consolidation.",
+                           "Expanded the assets read model so it derives version groups and campaign handoff packages from the existing assets, generations, reviews, shots, and campaigns data.",
+                           "Rebuilt /dashboard/assets into a multi-view workspace for asset browsing, version review, and handoff preparation without changing the route structure.",
+                           "Re-ran typecheck and production build successfully after the assets workspace batch.",
+                           "Committed the assets workspace as 428ce4b and pushed main.",
+                           "Deployed production at brandbuild-online-n3qvlcudy-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
+                           "Verified the live root returns 200 after the assets workspace deployment.",
+                           "Hardened Supabase middleware so session refresh failures return an anonymous response instead of throwing through the request pipeline.",
+                           "Hardened auth email-action handling so magic-link and confirmation callback failures redirect safely back to login instead of hitting the global error page.",
+                           "Re-ran typecheck and production build successfully after the auth-boundary hardening batch.",
+                           "Deployed production at brandbuild-online-h3jyx59f5-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
+                           "Verified the live root returns 200 after the auth-boundary incident fix.",
+                           "Updated the public-site header and footer so access CTAs point directly to /login instead of relying on a /dashboard redirect.",
+                           "Marked decorative marketing overlays and preview surfaces as pointer-events-none so they cannot intercept clicks on public CTAs.",
+                           "Re-ran typecheck and production build successfully after the public login-path hardening batch.",
+                           "Deployed production at brandbuild-online-h0b2ffanu-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
+                           "Verified the live root returns 200 after the public login-path fix.",
+                           "Committed and pushed the public login-path hardening batch to origin/main as 74eafe4.",
+                           "Confirmed the actual BrandBuild Git remote is https://github.com/byoroofer/brandbuild.git.",
+                           "Verified the long-standing canonical local checkout at D:\\\\Playground\\\\brandbuild-online-repo still exists and points at that same origin.",
+                           "Cloned a secondary local checkout to D:\\\\Projects\\\\brandbuild for future integration planning.",
+                           "Recorded a future integration relationship between BrandBuild and the local Stable Diffusion tool without merging the projects yet."
+                       ],
+    "next_steps":  [
+                       "Finish Supabase Auth dashboard setup for branded email and correct redirect behavior.",
+                       "Run and capture one real Sora generation through the dashboard.",
+                       "Run and capture one real Kling generation through the dashboard.",
+                       "Run and capture one real Higgsfield generation through the dashboard.",
+                       "Add timeline sequencing across selected outputs and deepen the delivery/export workflow.",
+                       "Define the integration boundary for local generative tooling only after isolated development and testing are ready.",
+                       "Decide whether to keep D:\\\\Projects\\\\brandbuild as a secondary clone or remove it to reduce clone drift."
+                   ],
+    "updated_at":  "2026-03-25T12:24:56.9046794-05:00"
 }
