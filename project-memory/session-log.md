@@ -88,3 +88,15 @@
 - Verified the existing canonical local repo at D:\Playground\brandbuild-online-repo already points to that origin.
 - Recorded the future relationship between BrandBuild and the local Stable Diffusion tool without merging those projects yet.
 - Noted that D:\Projects\brandbuild is now a secondary local clone and should not become a competing source of truth by accident.
+
+## 2026-03-25 12:46-15:19 CT - Campaign Repair And Provider Smoke Validation
+- Repaired campaign creation by moving it onto `POST /api/campaigns` and keeping success/error handling inline in the create-campaign modal.
+- Confirmed the live deployment is missing `SUPABASE_SERVICE_ROLE_KEY`, so private uploads are blocked even though the route and UI exist.
+- Updated the shot uploader and settings audit so the blocked upload state is explicit instead of looking generically broken.
+- Added `apps/dashboard/scripts/provider-smoke.mjs` as a reusable live provider validation harness.
+- Ran the smoke test with the current env:
+  - Sora accepted a real queued job: `video_69c442cd810881939bdbe6afd2d428f80824e179028ff0fc`
+  - Kling failed with `Account balance not enough`
+  - Higgsfield failed with `Invalid credentials`
+- Re-ran typecheck and build successfully.
+- Deployed production to `brandbuild-online-nwyykfvzj-byoroofers-projects.vercel.app`, re-aliased `brandbuild.online`, and verified the live root returned `200`.

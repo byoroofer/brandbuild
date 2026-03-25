@@ -37,8 +37,8 @@
                           "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
                           "purpose":  "Private reference upload UI for shot assets.",
                           "criticality":  "high",
-                          "last_touched":  "2026-03-24T00:00:00-05:00",
-                          "notes":  "Supports image and short video reference uploads tied to shots.",
+                          "last_touched":  "2026-03-25T12:46:38.0836727-05:00",
+                          "notes":  "Supports image and short video reference uploads tied to shots and now shows a clear blocked state when server-side storage credentials are missing.",
                           "type":  "user-facing"
                       },
                       {
@@ -48,6 +48,30 @@
                           "last_touched":  "2026-03-24T00:00:00-05:00",
                           "notes":  "Validates mime types and file sizes before private storage writes.",
                           "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
+                          "purpose":  "Lists campaigns and now also creates campaigns through a dedicated JSON API path.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T12:46:38.0836727-05:00",
+                          "notes":  "Campaign creation moved here so the modal can keep failures inline instead of crashing the page shell.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\create-campaign-modal.tsx",
+                          "purpose":  "Operator modal for creating campaigns from the dashboard and campaigns list.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T12:46:38.0836727-05:00",
+                          "notes":  "Now posts to /api/campaigns and keeps success and error handling inline in the client.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs",
+                          "purpose":  "Reusable smoke-test harness for live Sora, Kling, and Higgsfield connectivity plus upload-readiness reporting.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T12:46:38.0836727-05:00",
+                          "notes":  "Used to validate real provider credentials without depending on the full signed-in dashboard workflow.",
+                          "type":  "docs"
                       },
                       {
                           "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\middleware.ts",
@@ -157,8 +181,8 @@
                           "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
                           "purpose":  "Product and integration readiness audit model.",
                           "criticality":  "medium",
-                          "last_touched":  "2026-03-24T18:52:00-05:00",
-                          "notes":  "Feeds the control-center status page.",
+                          "last_touched":  "2026-03-25T12:46:38.0836727-05:00",
+                          "notes":  "Feeds the control-center status page and now reflects that compare outputs and handoff are shipped while private uploads remain blocked without SUPABASE_SERVICE_ROLE_KEY.",
                           "type":  "server-side"
                       },
                       {

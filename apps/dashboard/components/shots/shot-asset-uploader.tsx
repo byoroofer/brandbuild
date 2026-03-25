@@ -8,9 +8,10 @@ import type { AssetType, TargetModel } from "@/lib/studio/types";
 import { cx } from "@/lib/utils";
 
 type ShotAssetUploaderProps = {
-  persistenceEnabled: boolean;
   shotId: string;
   targetModel: TargetModel;
+  uploadBlockedReason: string | null;
+  uploadEnabled: boolean;
 };
 
 const assetTypeOptions: Array<{
@@ -70,9 +71,10 @@ function getDefaultAssetType(targetModel: TargetModel): AssetType {
 }
 
 export function ShotAssetUploader({
-  persistenceEnabled,
   shotId,
   targetModel,
+  uploadBlockedReason,
+  uploadEnabled,
 }: ShotAssetUploaderProps) {
   const router = useRouter();
   const [assetType, setAssetType] = useState<AssetType>(getDefaultAssetType(targetModel));
@@ -91,8 +93,11 @@ export function ShotAssetUploader({
       return;
     }
 
-    if (!persistenceEnabled) {
-      setMessage("Connect Supabase operator access before uploads are enabled.");
+    if (!uploadEnabled) {
+      setMessage(
+        uploadBlockedReason ??
+          "Private uploads are not available on this deployment yet.",
+      );
       event.target.value = "";
       return;
     }
@@ -160,6 +165,13 @@ export function ShotAssetUploader({
         </div>
       </div>
 
+      {!uploadEnabled ? (
+        <div className="mt-5 rounded-[24px] border border-amber-300/18 bg-amber-400/10 px-4 py-3 text-sm leading-6 text-amber-50">
+          {uploadBlockedReason ??
+            "Private uploads are not available on this deployment yet."}
+        </div>
+      ) : null}
+
       <div className="mt-5 grid gap-4 xl:grid-cols-[minmax(0,1fr)_280px]">
         <div className="grid gap-3 md:grid-cols-2">
           {assetTypeOptions.map((option) => (
@@ -184,20 +196,27 @@ export function ShotAssetUploader({
           <p className="text-sm font-semibold text-white">{selectedType.label}</p>
           <p className="mt-2 text-sm leading-6 text-slate-400">{selectedType.helper}</p>
           <p className="mt-3 text-xs leading-5 text-slate-500">
-            Images: JPG, PNG, WebP up to 10 MB. Videos: MP4, MOV, WebM up to 20 MB.
+            {uploadEnabled
+              ? "Images: JPG, PNG, WebP up to 10 MB. Videos: MP4, MOV, WebM up to 20 MB."
+              : uploadBlockedReason ??
+                "Private uploads are not available on this deployment yet."}
           </p>
 
           <label
             className={cx(
               "brandbuild-primary-button mt-5 h-11 w-full cursor-pointer px-4",
-              !persistenceEnabled || isUploading ? "pointer-events-none opacity-60" : "",
+              !uploadEnabled || isUploading ? "pointer-events-none opacity-60" : "",
             )}
           >
-            {isUploading ? "Uploading..." : `Upload ${selectedType.label.toLowerCase()}`}
+            {isUploading
+              ? "Uploading..."
+              : uploadEnabled
+                ? `Upload ${selectedType.label.toLowerCase()}`
+                : "Uploads unavailable"}
             <input
               accept={selectedType.accept}
               className="hidden"
-              disabled={!persistenceEnabled || isUploading}
+              disabled={!uploadEnabled || isUploading}
               onChange={handleFileChange}
               type="file"
             />

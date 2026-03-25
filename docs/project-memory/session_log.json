@@ -722,7 +722,7 @@
         "timestamp_end":  "2026-03-25T12:24:56.9046794-05:00",
         "user_objective":  "Capture the correct BrandBuild Git repo and preserve its relationship to the local Stable Diffusion tool.",
         "actions_taken":  [
-                              "Confirmed the actual BrandBuild remote URL is https://github.com/byoroofer/brandbuild.git.",
+                              "Confirmed the actual BrandBuild remote URL and kept it in git configuration rather than repeating it in memory prose.",
                               "Verified the existing local repo at D:\\\\Playground\\\\brandbuild-online-repo still exists and already points at that origin.",
                               "Cloned a secondary local copy to D:\\\\Projects\\\\brandbuild while resolving the repo location.",
                               "Updated structured project memory to keep the D:\\\\Playground checkout canonical and record the future Stable Diffusion integration relationship."
@@ -763,6 +763,68 @@
         "next_recommended_actions":  [
                                          "Keep using D:\\\\Playground\\\\brandbuild-online-repo for actual BrandBuild work unless the canonical path is intentionally changed later.",
                                          "Decide the integration boundary only after the local Stable Diffusion tool is ready for controlled testing."
+                                     ]
+    },
+    {
+        "session_id":  "brandbuild-session-2026-03-25-campaign-repair-and-provider-smoke",
+        "timestamp_start":  "2026-03-25T12:46:38.0836727-05:00",
+        "timestamp_end":  "2026-03-25T15:19:24-05:00",
+        "user_objective":  "Make BrandBuild actually work when creating campaigns, verify uploads and generation together, and build any control tooling needed to validate the integrations.",
+        "actions_taken":  [
+                              "Inspected the create-campaign flow, the shot upload route, generation route, provider adapters, environment state, and current project memory before editing.",
+                              "Repaired campaign creation by moving it onto POST /api/campaigns and changing the modal to client-side fetch with inline success and error handling.",
+                              "Confirmed that the live deployment and local app env do not currently have SUPABASE_SERVICE_ROLE_KEY, which means the private upload path cannot succeed yet.",
+                              "Updated the shot uploader and shot detail page so uploads show a clear blocked state when storage is not configured instead of pretending the feature is ready.",
+                              "Updated the control-center system audit so compare outputs and handoff are treated as shipped while private uploads are correctly shown as blocked without server-side storage credentials.",
+                              "Added a reusable provider smoke-test harness at apps/dashboard/scripts/provider-smoke.mjs and wired it into package.json.",
+                              "Ran the live smoke test against the current provider credentials.",
+                              "Verified the repo still passes typecheck and build.",
+                              "Deployed the latest batch to Vercel production and verified brandbuild.online returned 200."
+                          ],
+        "files_created":  [
+                              "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
+                          ],
+        "files_modified":  [
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\create-campaign-modal.tsx",
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\package.json"
+                           ],
+        "files_reviewed":  [
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts",
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\route.ts",
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts",
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts"
+                           ],
+        "key_findings":  [
+                             "Campaign creation was still brittle at the server-action boundary and needed a dedicated API path with inline UI error handling.",
+                             "The live deployment is missing SUPABASE_SERVICE_ROLE_KEY, so private uploads cannot work yet even though the upload route and UI exist.",
+                             "A live provider smoke test produced concrete integration results: Sora accepted a queued job, Kling failed because the account balance is not enough, and Higgsfield failed because the current credentials are invalid."
+                         ],
+        "decisions_added":  [
+                                "brandbuild-dec-20260325-010",
+                                "brandbuild-dec-20260325-011"
+                            ],
+        "memory_updates":  [
+                               "Recorded the campaign-creation repair, storage-readiness blocker, provider smoke-test outcomes, and the new reusable smoke-test script."
+                           ],
+        "unresolved_items":  [
+                                 "Production still needs SUPABASE_SERVICE_ROLE_KEY before private uploads can work.",
+                                 "Kling still needs account funding before live jobs can proceed.",
+                                 "Higgsfield still needs valid credentials before live jobs can proceed.",
+                                 "The latest repair commit still needs to be pushed upstream once git credentials are available."
+                             ],
+        "next_recommended_actions":  [
+                                         "Add SUPABASE_SERVICE_ROLE_KEY to the Vercel project and local app env, then test a real private upload from the shot page.",
+                                         "Poll the queued Sora job to capture the full live success or failure path.",
+                                         "Fund Kling and rerun the smoke test plus an in-product generation.",
+                                         "Fix or rotate Higgsfield credentials and rerun the smoke test plus an in-product generation."
                                      ]
     }
 ]

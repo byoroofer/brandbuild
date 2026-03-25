@@ -7,7 +7,8 @@
     "check:forbidden-references": "node ./scripts/check-forbidden-references.mjs",
     "build": "npm run check:forbidden-references && next build",
     "start": "next start",
-    "typecheck": "npm run check:forbidden-references && tsc --noEmit"
+    "typecheck": "npm run check:forbidden-references && tsc --noEmit",
+    "smoke:providers": "node ./scripts/provider-smoke.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.5.2",

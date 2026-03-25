@@ -377,6 +377,22 @@ export function isStudioPersistenceEnabled() {
   return hasStudioPersistenceEnv();
 }
 
+export function isStudioUploadEnabled() {
+  return hasStudioPersistenceEnv() && isSupabaseAdminAvailable();
+}
+
+export function getStudioUploadBlockedReason() {
+  if (!hasStudioPersistenceEnv()) {
+    return "Connect Supabase operator access before uploads are enabled.";
+  }
+
+  if (!isSupabaseAdminAvailable()) {
+    return "Private uploads are blocked on this deployment until SUPABASE_SERVICE_ROLE_KEY is configured.";
+  }
+
+  return null;
+}
+
 export async function getWorkspaceMode() {
   const data = await getWorkspaceData();
   return data.mode;

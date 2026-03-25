@@ -1,6 +1,6 @@
 ﻿{
     "current_phase":  "stabilization, integration hardening, and workflow expansion",
-    "summary":  "BrandBuild is live on brandbuild.online with a premium dashboard, private shot asset uploads, provider adapters for Sora, Kling, and Higgsfield, a settings control center, a compare-outputs workspace at /dashboard/reviews, and an assets workspace for library browsing, version groups, and handoff packages at /dashboard/assets. The auth boundary has now been hardened so bad session cookies or auth callback failures redirect safely instead of triggering the global error page. The main remaining blockers are Supabase Auth dashboard configuration, end-to-end live provider validation, the absence of dedicated timeline sequencing across selected outputs, and future integration planning for local generative tooling after isolated testing.",
+    "summary":  "BrandBuild is live on brandbuild.online with a premium dashboard, a settings control center, a compare-outputs workspace at /dashboard/reviews, an assets workspace for library browsing, version groups, and handoff packages at /dashboard/assets, and a repaired campaign-creation flow that now submits through a dedicated JSON API instead of a brittle server-action path. The auth boundary has been hardened so bad session cookies or auth callback failures redirect safely instead of triggering the global error page. Real provider smoke testing now shows that Sora can accept live jobs, Kling is blocked by account balance, Higgsfield is blocked by invalid credentials, and private uploads remain blocked on deployments that do not have SUPABASE_SERVICE_ROLE_KEY configured.",
     "active_workstreams":  [
                                "production stability and trust",
                                "provider validation and orchestration hardening",
@@ -10,12 +10,15 @@
     "current_priorities":  [
                                "Keep brandbuild.online stable on the latest deployment.",
                                "Finish the Supabase Auth trust layer so emails and redirects are fully BrandBuild-native.",
-                               "Validate one real generation run each for Sora, Kling, and Higgsfield.",
+                               "Configure SUPABASE_SERVICE_ROLE_KEY so private uploads work on the live deployment.",
+                               "Resolve provider account readiness: fund Kling, fix Higgsfield credentials, and continue Sora validation.",
                                "Turn the new assets workspace into a true timeline sequencing and delivery surface."
                            ],
     "blockers":  [
                      "Supabase Auth dashboard still needs branded email hook enablement, SMTP sender setup, and redirect cleanup.",
-                     "Provider integrations are code-wired but not fully validated against real operator runs in production."
+                     "Production does not currently have SUPABASE_SERVICE_ROLE_KEY, so private uploads are blocked.",
+                     "Kling live validation is blocked by account balance.",
+                     "Higgsfield live validation is blocked by invalid credentials."
                  ],
     "risks":  [
                   "The repository can fall back to demo data too aggressively when live queries partially fail, which can hide production issues.",
@@ -30,6 +33,7 @@
                     ],
     "known_issues":  [
                          "Branded auth email infrastructure exists in code but is not fully live until the Supabase dashboard settings are completed.",
+                         "Shot uploads now tell the truth about deployment readiness, but users still cannot upload private references until SUPABASE_SERVICE_ROLE_KEY is configured.",
                          "There is still no dedicated sequencing timeline for arranging selected outputs across a campaign.",
                          "The root package naming still says ai-video-studio while the product brand is BrandBuild.",
                          "Next.js build warns that it is inferring the workspace root because both D:\\Playground and the BrandBuild repo contain lockfiles."
@@ -71,19 +75,27 @@
                            "Deployed production at brandbuild-online-h0b2ffanu-byoroofers-projects.vercel.app and re-aliased brandbuild.online.",
                            "Verified the live root returns 200 after the public login-path fix.",
                            "Committed and pushed the public login-path hardening batch to origin/main as 74eafe4.",
-                           "Confirmed the actual BrandBuild Git remote is https://github.com/byoroofer/brandbuild.git.",
+                           "Confirmed the actual BrandBuild Git remote and kept it recorded in local repo configuration rather than memory prose.",
                            "Verified the long-standing canonical local checkout at D:\\\\Playground\\\\brandbuild-online-repo still exists and points at that same origin.",
                            "Cloned a secondary local checkout to D:\\\\Projects\\\\brandbuild for future integration planning.",
-                           "Recorded a future integration relationship between BrandBuild and the local Stable Diffusion tool without merging the projects yet."
+                           "Recorded a future integration relationship between BrandBuild and the local Stable Diffusion tool without merging the projects yet.",
+                           "Repaired campaign creation by replacing the server-action submit path with a dedicated POST /api/campaigns handler and client-side inline error handling in the create-campaign modal.",
+                           "Added deployment-truth helpers so the shot uploader shows a clear blocked state when private storage is unavailable instead of acting silently broken.",
+                           "Updated the control-center audit so compare outputs and handoff are reflected as shipped, while private uploads correctly show as blocked without SUPABASE_SERVICE_ROLE_KEY.",
+                           "Added a reusable provider smoke-test harness at apps/dashboard/scripts/provider-smoke.mjs.",
+                           "Ran the live smoke test against current provider creds: Sora accepted a queued job, Kling failed with account balance not enough, and Higgsfield failed with invalid credentials.",
+                           "Deployed production at brandbuild-online-nwyykfvzj-byoroofers-projects.vercel.app and re-aliased brandbuild.online after the upload-readiness and smoke-test batch.",
+                           "Verified the live root returns 200 after the newest deployment."
                        ],
     "next_steps":  [
                        "Finish Supabase Auth dashboard setup for branded email and correct redirect behavior.",
-                       "Run and capture one real Sora generation through the dashboard.",
-                       "Run and capture one real Kling generation through the dashboard.",
-                       "Run and capture one real Higgsfield generation through the dashboard.",
+                       "Add SUPABASE_SERVICE_ROLE_KEY to the live deployment and local app env so private uploads can work.",
+                       "Poll and capture the current live Sora smoke-test job through its completion path.",
+                       "Fund or otherwise unblock the Kling account, then rerun a live Kling smoke test and a signed-in dashboard generation.",
+                       "Fix or rotate Higgsfield credentials, then rerun the smoke test and a signed-in dashboard generation.",
                        "Add timeline sequencing across selected outputs and deepen the delivery/export workflow.",
                        "Define the integration boundary for local generative tooling only after isolated development and testing are ready.",
                        "Decide whether to keep D:\\\\Projects\\\\brandbuild as a secondary clone or remove it to reduce clone drift."
                    ],
-    "updated_at":  "2026-03-25T12:24:56.9046794-05:00"
+    "updated_at":  "2026-03-25T12:46:38.0836727-05:00"
 }

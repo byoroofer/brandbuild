@@ -186,7 +186,47 @@
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx"
                                         ]
+                  },
+                  {
+                      "id":  "brandbuild-dec-20260325-010",
+                      "timestamp":  "2026-03-25T12:46:38.0836727-05:00",
+                      "title":  "Use an API route for campaign creation instead of the brittle server-action boundary",
+                      "decision":  "Move campaign creation onto POST /api/campaigns and let the create-campaign modal handle success and error states client-side instead of relying on a server-action path that could throw users into the global error screen.",
+                      "reason":  "Campaign creation was still producing a full-page failure state for the user, and the server-action boundary made the failure mode harder to contain and explain inline.",
+                      "alternatives_considered":  [
+                                                      "Keep the server-action flow and keep patching thrown errors around it",
+                                                      "Disable campaign creation until the dashboard auth and persistence stack were revisited more broadly"
+                                                  ],
+                      "impact":  "Campaign creation now fails inline through JSON responses, redirects directly to the new campaign on success, and is easier to debug and validate separately from the page shell.",
+                      "status":  "active",
+                      "supersedes":  [ ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\create-campaign-modal.tsx"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-dec-20260325-011",
+                      "timestamp":  "2026-03-25T12:46:38.0836727-05:00",
+                      "title":  "Expose storage readiness truth and validate providers with a dedicated smoke harness",
+                      "decision":  "Keep the private-upload requirement strict, but surface the blocked state clearly in the shot uploader and add a reusable provider smoke-test script so real provider readiness can be validated without pretending uploads are available when storage is not configured.",
+                      "reason":  "The live deployment is missing SUPABASE_SERVICE_ROLE_KEY, and users need a truthful product state plus a repeatable way to validate Sora, Kling, and Higgsfield from the repo.",
+                      "alternatives_considered":  [
+                                                      "Leave the uploader looking available and let the route fail with a generic message",
+                                                      "Hide all upload surfaces entirely whenever storage credentials are missing",
+                                                      "Rely on ad hoc shell commands instead of a committed smoke-test tool"
+                                                  ],
+                      "impact":  "Operators now get explicit upload-readiness messaging, the settings audit reflects the real blocker, and the repo has a reusable control script for provider integration checks.",
+                      "status":  "active",
+                      "supersedes":  [ ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
+                                        ]
                   }
               ],
-    "Count":  9
+    "Count":  11
 }

@@ -396,7 +396,83 @@
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx"
                                         ]
+                  },
+                  {
+                      "id":  "brandbuild-know-024",
+                      "category":  "workflow",
+                      "fact":  "Campaign creation is safer as a dedicated JSON API plus client-side modal flow than as a server action in this workspace, because the API path keeps failures inline instead of spilling into the global error boundary.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 campaign-creation incident repair",
+                      "first_recorded_at":  "2026-03-25T12:46:38.0836727-05:00",
+                      "last_confirmed_at":  "2026-03-25T12:46:38.0836727-05:00",
+                      "status":  "active",
+                      "related_projects":  [ "brandbuild" ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\create-campaign-modal.tsx"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-025",
+                      "category":  "storage",
+                      "fact":  "Private uploads are blocked on deployments that do not have SUPABASE_SERVICE_ROLE_KEY, even when the public Supabase URL and public key are configured and the upload UI exists.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 deployment audit and smoke-test prerequisites check",
+                      "first_recorded_at":  "2026-03-25T12:46:38.0836727-05:00",
+                      "last_confirmed_at":  "2026-03-25T12:46:38.0836727-05:00",
+                      "status":  "active",
+                      "related_projects":  [ "brandbuild" ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\admin.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-026",
+                      "category":  "integrations",
+                      "fact":  "On 2026-03-25, the live provider smoke test showed that Sora accepted a real queued job, which confirms the OpenAI key and base request path are working from the repo environment.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 provider smoke test",
+                      "first_recorded_at":  "2026-03-25T12:46:38.0836727-05:00",
+                      "last_confirmed_at":  "2026-03-25T12:46:38.0836727-05:00",
+                      "status":  "active",
+                      "related_projects":  [ "brandbuild" ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-027",
+                      "category":  "integrations",
+                      "fact":  "On 2026-03-25, the live provider smoke test failed against Kling with 'Account balance not enough', which indicates a provider-account funding blocker rather than a missing-code or missing-authentication bug in the adapter.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 provider smoke test",
+                      "first_recorded_at":  "2026-03-25T12:46:38.0836727-05:00",
+                      "last_confirmed_at":  "2026-03-25T12:46:38.0836727-05:00",
+                      "status":  "active",
+                      "related_projects":  [ "brandbuild" ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-028",
+                      "category":  "integrations",
+                      "fact":  "On 2026-03-25, the live provider smoke test failed against Higgsfield with 'Invalid credentials', which means the current Higgsfield key pair is not usable and should be rotated or corrected before dashboard validation.",
+                      "confidence":  "high",
+                      "source":  "2026-03-25 provider smoke test",
+                      "first_recorded_at":  "2026-03-25T12:46:38.0836727-05:00",
+                      "last_confirmed_at":  "2026-03-25T12:46:38.0836727-05:00",
+                      "status":  "active",
+                      "related_projects":  [ "brandbuild" ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts"
+                                        ]
                   }
               ],
-    "Count":  23
+    "Count":  28
 }

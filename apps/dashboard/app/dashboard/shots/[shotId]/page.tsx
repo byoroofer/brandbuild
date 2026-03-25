@@ -8,8 +8,10 @@ import { Panel } from "@/components/studio/panel";
 import { StatusPill } from "@/components/studio/status-pill";
 import { ButtonLink } from "@/components/ui/button";
 import {
+  getStudioUploadBlockedReason,
   getShotDetail,
   isStudioPersistenceEnabled,
+  isStudioUploadEnabled,
 } from "@/lib/studio/repository";
 
 type ShotDetailPageProps = {
@@ -43,6 +45,9 @@ function isImageAsset(mimeType: string | null | undefined, assetType: string) {
 export default async function ShotDetailPage({ params }: ShotDetailPageProps) {
   const { shotId } = await params;
   const detail = await getShotDetail(shotId);
+  const persistenceEnabled = isStudioPersistenceEnabled();
+  const uploadEnabled = isStudioUploadEnabled();
+  const uploadBlockedReason = getStudioUploadBlockedReason();
 
   if (!detail) {
     notFound();
@@ -105,7 +110,7 @@ export default async function ShotDetailPage({ params }: ShotDetailPageProps) {
       <PromptBuilder
         generations={detail.generations}
         mode={detail.mode}
-        persistenceEnabled={isStudioPersistenceEnabled()}
+        persistenceEnabled={persistenceEnabled}
         promptTemplates={detail.promptTemplates}
         reviewCount={detail.reviews.length}
         routingRecommendation={detail.routingRecommendation}
@@ -133,9 +138,10 @@ export default async function ShotDetailPage({ params }: ShotDetailPageProps) {
 
           <div className="mt-6">
             <ShotAssetUploader
-              persistenceEnabled={isStudioPersistenceEnabled()}
               shotId={detail.shot.id}
               targetModel={detail.shot.targetModel}
+              uploadBlockedReason={uploadBlockedReason}
+              uploadEnabled={uploadEnabled}
             />
           </div>
 

@@ -282,7 +282,76 @@
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx"
                                         ],
                       "notes":  "Completed by routing public access CTAs directly to /login, marking decorative marketing overlays as pointer-events-none, deploying production, and pushing the batch in commit 74eafe4."
+                  },
+                  {
+                      "task_id":  "brandbuild-task-016",
+                      "title":  "Repair campaign creation flow",
+                      "description":  "Stop campaign creation from throwing the global error page by moving the create path onto a dedicated JSON API route and handling success and failure inline in the modal.",
+                      "priority":  "critical",
+                      "status":  "complete",
+                      "owner":  "agent",
+                      "created_at":  "2026-03-25T12:46:38.0836727-05:00",
+                      "updated_at":  "2026-03-25T15:19:24-05:00",
+                      "dependencies":  [ ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\create-campaign-modal.tsx"
+                                        ],
+                      "notes":  "Completed by replacing the server-action path with POST /api/campaigns, keeping errors inline, validating the repo build, and deploying the fix to production."
+                  },
+                  {
+                      "task_id":  "brandbuild-task-017",
+                      "title":  "Configure server-side storage access for private uploads",
+                      "description":  "Add SUPABASE_SERVICE_ROLE_KEY to the live deployment and local app env so BrandBuild can write private uploads and mirror generated outputs into Supabase Storage.",
+                      "priority":  "critical",
+                      "status":  "active",
+                      "owner":  "agent",
+                      "created_at":  "2026-03-25T12:46:38.0836727-05:00",
+                      "updated_at":  "2026-03-25T15:19:24-05:00",
+                      "dependencies":  [ ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\admin.ts"
+                                        ],
+                      "notes":  "Current smoke testing confirmed uploads are blocked until this env is present."
+                  },
+                  {
+                      "task_id":  "brandbuild-task-018",
+                      "title":  "Unblock live Kling generation",
+                      "description":  "Resolve the Kling account readiness issue so live jobs can be created and then validate the full dashboard generation path.",
+                      "priority":  "high",
+                      "status":  "blocked",
+                      "owner":  "user+agent",
+                      "created_at":  "2026-03-25T12:46:38.0836727-05:00",
+                      "updated_at":  "2026-03-25T15:19:24-05:00",
+                      "dependencies":  [
+                                           "brandbuild-task-002"
+                                       ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
+                                        ],
+                      "notes":  "The live smoke test reached Kling and failed with 'Account balance not enough', which points to account funding rather than missing code wiring."
+                  },
+                  {
+                      "task_id":  "brandbuild-task-019",
+                      "title":  "Fix Higgsfield credential validity",
+                      "description":  "Rotate or correct the Higgsfield credentials, then rerun both the smoke test and the signed-in dashboard path.",
+                      "priority":  "high",
+                      "status":  "blocked",
+                      "owner":  "user+agent",
+                      "created_at":  "2026-03-25T12:46:38.0836727-05:00",
+                      "updated_at":  "2026-03-25T15:19:24-05:00",
+                      "dependencies":  [
+                                           "brandbuild-task-002"
+                                       ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
+                                        ],
+                      "notes":  "The live smoke test returned 'Invalid credentials', so the current Higgsfield keys are not usable."
                   }
               ],
-    "Count":  15
+    "Count":  19
 }

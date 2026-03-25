@@ -208,10 +208,10 @@ export function getStudioSystemAudit(): StudioSystemAudit {
       },
       {
         nextMove:
-          "Expand the asset model to support larger uploads, richer metadata, and explicit edit-ready bundles.",
+          "Keep the private-upload and handoff model, then require server-side storage credentials on every deployment where uploads should be live.",
         state: "partial",
         summary:
-          "Private uploads, generated outputs, and thumbnails are tracked, but bulk ingestion and edit exports are not finished.",
+          "Private uploads, generated outputs, version groups, and handoff packages exist, but deployments without SUPABASE_SERVICE_ROLE_KEY still block the upload path.",
         title: "Assets and storage",
       },
       {
@@ -223,18 +223,19 @@ export function getStudioSystemAudit(): StudioSystemAudit {
         title: "Job orchestration",
       },
       {
-        nextMove: "Add a dedicated compare workspace tied to a shot, run group, and selection decision.",
-        state: "missing",
+        nextMove:
+          "Refine the compare workspace with clearer selection-to-handoff transitions and eventual run-group context.",
+        state: "implemented",
         summary:
-          "Operators can see generation history, but there is no side-by-side compare surface or compare-set model yet.",
+          "Operators now have a dedicated compare-outputs workspace on /dashboard/reviews, grouped by shot with provider context and media previews.",
         title: "Comparison and selects",
       },
       {
         nextMove:
-          "Build edit handoff objects: ordered selects, editor notes, export bundles, and deliverable state.",
-        state: "missing",
+          "Add campaign-level sequencing, ordered selects, and richer export packaging on top of the existing handoff layer.",
+        state: "partial",
         summary:
-          "Reviews exist, but there is no true remix, version timeline, or editor-ready handoff layer.",
+          "BrandBuild already derives version groups and campaign handoff packages on /dashboard/assets, but there is no sequencing timeline or final delivery state model yet.",
         title: "Versions and handoff",
       },
       {
@@ -248,31 +249,31 @@ export function getStudioSystemAudit(): StudioSystemAudit {
     ],
     exactImplementationOrder: [
       "1. Finish auth/email/dashboard environment hardening so operators can log in cleanly and trust the product surface.",
-      "2. Keep the provider abstraction, but add a visible connections and readiness layer for operators and admins.",
+      "2. Keep the provider abstraction, but add a visible connections and readiness layer for operators and admins, including storage/upload blockers.",
       "3. Promote shot_generations into a fuller orchestration model with retries, grouped runs, and webhook-aware status handling.",
-      "4. Build compare outputs as the next operator workspace after generation.",
-      "5. Add version timeline plus edit handoff rather than a full browser editor first.",
+      "4. Add campaign-level sequencing on top of the shipped compare and handoff surfaces.",
+      "5. Deepen the version and edit handoff layer rather than building a full browser editor first.",
       "6. Add usage, cost, and admin/debug visibility after the happy-path workflow is stable.",
     ],
     generatedAt: timestamp,
     missing: [
       {
-        id: "compare-workspace",
+        id: "campaign-sequencing",
         notes: [
-          "There is no dedicated compare outputs view for side-by-side provider evaluation.",
-          "Selection still happens indirectly through review records rather than a compare-first workflow.",
+          "There is still no timeline or ordered-select workspace for arranging chosen outputs across a campaign.",
+          "Editors can receive grouped handoff packages, but they cannot yet see or adjust the intended shot order inside the product.",
         ],
         status: "missing",
-        title: "Compare outputs workspace",
+        title: "Campaign sequencing timeline",
       },
       {
-        id: "version-timeline",
+        id: "delivery-state",
         notes: [
-          "There is no project history/timeline model for remix chains, run groups, or approved version handoff.",
-          "Edit/remix flow and export bundle management are still unbuilt.",
+          "BrandBuild can prepare handoff packages, but it does not yet track final export state, delivered cut versions, or editor-complete milestones.",
+          "There is no final delivery checklist beyond the current selected-output and review signals.",
         ],
         status: "missing",
-        title: "Versioning and export pipeline",
+        title: "Delivery state and export lifecycle",
       },
       {
         id: "usage-admin",
@@ -285,6 +286,17 @@ export function getStudioSystemAudit(): StudioSystemAudit {
       },
     ],
     partial: [
+      {
+        id: "private-upload-storage",
+        notes: [
+          storageMirroringEnabled
+            ? "Server-side storage credentials are present, so private upload and output mirroring can run on this deployment."
+            : "This deployment is missing SUPABASE_SERVICE_ROLE_KEY, so private uploads are blocked even though the upload UI and route exist.",
+          "Generated outputs can still remain on provider-hosted URLs, but true private asset storage requires the server-side Supabase key.",
+        ],
+        status: storageMirroringEnabled ? "partial" : "blocked",
+        title: "Private upload and storage readiness",
+      },
       {
         id: "auth-email",
         notes: [
@@ -307,7 +319,7 @@ export function getStudioSystemAudit(): StudioSystemAudit {
         id: "workflow-ux",
         notes: [
           "Guided workflow exists on the dashboard and shot pages, but the product still expects too much operator intuition.",
-          "Projects, generate, compare, versions, export, and connections are not yet clear top-level workspaces.",
+          "Projects, generate, compare, versions, export, and connections are still not clear enough as top-level workspaces.",
         ],
         status: "partial",
         title: "Unified operator workflow",
@@ -341,13 +353,24 @@ export function getStudioSystemAudit(): StudioSystemAudit {
         title: "Prompt and routing workflow",
       },
       {
+        id: "compare-outputs",
+        notes: [
+          "The reviews surface now acts as a compare-outputs workspace grouped by shot.",
+          "Candidates carry provider, generation, campaign, review, and media-preview context without schema drift.",
+        ],
+        status: "working",
+        title: "Compare outputs workspace",
+      },
+      {
         id: "assets-upload",
         notes: [
-          "Private shot asset upload, signed provider reference URLs, and asset sync from successful generations are already in place.",
-          "This gives the product a real upload-to-generate foundation.",
+          storageMirroringEnabled
+            ? "Private shot asset upload, signed provider reference URLs, and asset sync from successful generations are already in place."
+            : "The upload route, signed-url logic, and storage model are implemented, but this deployment still needs SUPABASE_SERVICE_ROLE_KEY before uploads can succeed.",
+          "BrandBuild also has a shipped assets workspace for library browsing, version review, and handoff preparation.",
         ],
-        status: persistenceEnabled ? "working" : "partial",
-        title: "Asset ingestion foundation",
+        status: persistenceEnabled && storageMirroringEnabled ? "working" : "partial",
+        title: "Asset and handoff foundation",
       },
     ],
   };
