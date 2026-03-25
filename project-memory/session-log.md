@@ -75,3 +75,10 @@
 - Hardened `apps/dashboard/lib/auth/email-action.ts` so callback failures redirect back to login with a safe error instead of hitting the global error page.
 - Re-ran `npm run typecheck` and `npm run build` successfully.
 - Deployed production to `brandbuild-online-h3jyx59f5-byoroofers-projects.vercel.app`, re-aliased `brandbuild.online`, and verified the live root returned `200`.
+
+## 2026-03-25 12:00-12:18 CT - Public Login Path Hardening
+- Confirmed the `/login` route itself was healthy and traced the issue to the public marketing shell rather than the auth page.
+- Updated the public header and footer so access CTAs route directly to `/login` instead of relying on a `/dashboard` redirect.
+- Marked decorative marketing layers and media chrome as `pointer-events-none` so they cannot steal clicks or taps from nearby CTAs.
+- Re-ran `npm run typecheck` and `npm run build` successfully.
+- Deployed production to `brandbuild-online-h0b2ffanu-byoroofers-projects.vercel.app`, re-aliased `brandbuild.online`, and verified the live root returned `200`.

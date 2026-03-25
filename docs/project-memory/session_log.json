@@ -622,5 +622,57 @@
       "Keep watching the login and callback paths until the user confirms the global error page is gone.",
       "Continue with Supabase Auth dashboard setup and real provider validation."
     ]
+  },
+  {
+    "session_id": "2026-03-25-public-login-path-hardening",
+    "timestamp_start": "2026-03-25T12:00:00-05:00",
+    "timestamp_end": "2026-03-25T12:18:00-05:00",
+    "user_objective": "Fix the public-site login button so it actually takes users to the login page.",
+    "actions_taken": [
+      "Loaded BrandBuild project memory and inspected the public header, homepage, marketing media surfaces, login route, and redirect helpers.",
+      "Confirmed the actual /login route was healthy and narrowed the UX issue to the public marketing shell rather than the auth page itself.",
+      "Updated the public header and footer so access CTAs point directly to /login rather than relying on a /dashboard redirect.",
+      "Marked decorative marketing overlays, video frames, and preview layers as pointer-events-none so they cannot intercept clicks or taps.",
+      "Re-ran typecheck and production build successfully.",
+      "Deployed production to Vercel and re-aliased brandbuild.online.",
+      "Verified the live root returned 200 after the deployment."
+    ],
+    "files_created": [],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(auth)\\login\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\auth\\login-form.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\redirects.ts"
+    ],
+    "key_findings": [
+      "The public-site login path issue was a UX and hit-testing problem, not a missing /login route.",
+      "On smaller screens, the visible header CTA was effectively the primary access path, so sending it to /dashboard created unnecessary dependence on protected-route redirect behavior.",
+      "Decorative marketing overlays should be explicitly non-interactive so they cannot interfere with CTA clicks."
+    ],
+    "decisions_added": [
+      "brandbuild-dec-20260325-009"
+    ],
+    "memory_updates": [
+      "Recorded the public login-path hardening and the new navigation/hit-testing rule for future marketing work."
+    ],
+    "unresolved_items": [
+      "Supabase Auth dashboard setup remains incomplete.",
+      "Live provider runs still need full validation.",
+      "Campaign-level sequencing across selected outputs is still unbuilt."
+    ],
+    "next_recommended_actions": [
+      "Push the public login-path fix to origin/main so git matches production again.",
+      "Verify the live /login path in a browser session once the user tests the updated site.",
+      "Continue with Supabase Auth dashboard setup and real provider validation."
+    ]
   }
 ]

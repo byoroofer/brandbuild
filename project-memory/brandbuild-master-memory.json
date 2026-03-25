@@ -4,7 +4,7 @@
     "repo": "brandbuild",
     "local_path": "D:\\Playground\\brandbuild-online-repo",
     "production_url": "https://brandbuild.online",
-    "updated_at": "2026-03-25T09:09:41.3207972-05:00"
+    "updated_at": "2026-03-25T12:18:00-05:00"
   },
   "current_product_objective": "Build BrandBuild into a premium creative production operating system that unifies Sora, Kling, and Higgsfield for prompt creation, asset upload, generation orchestration, review, versioning, and delivery.",
   "stack_summary": [
@@ -57,6 +57,7 @@
     "Provider routing recommendations",
     "Studio Agent and tag discovery",
     "Private shot asset upload flow",
+    "Public-site access CTAs now route directly to /login",
     "Live-capable Sora, Kling, and Higgsfield adapters",
     "Settings/control-center audit page at /dashboard/settings",
     "Healthy production deployment on brandbuild.online after redeploy",
@@ -101,10 +102,11 @@
     "Canonicalize structured memory in docs/project-memory and mirror it into .project-memory."
   ],
   "files_changed_this_session": [
-    "apps/dashboard/app/dashboard/assets/page.tsx",
-    "apps/dashboard/components/assets/asset-library.tsx",
-    "apps/dashboard/lib/studio/repository.ts",
-    "apps/dashboard/lib/studio/types.ts",
+    "apps/dashboard/components/site/site-header.tsx",
+    "apps/dashboard/components/site/site-footer.tsx",
+    "apps/dashboard/components/marketing/brandbuild-homepage.tsx",
+    "apps/dashboard/components/marketing/media-frame.tsx",
+    "apps/dashboard/components/marketing/control-room-preview.tsx",
     "docs/project-memory/current_state.json",
     "docs/project-memory/decisions_log.json",
     "docs/project-memory/session_log.json",
@@ -113,10 +115,7 @@
     "docs/project-memory/knowledge_registry.json",
     "project-memory/brandbuild-master-memory.json",
     "project-memory/session-log.md",
-    "project-memory/known-issues.md",
-    "project-memory/integration-status.md",
-    "project-memory/ui-ux-review.md",
-    "project-memory/roadmap.md"
+    "project-memory/known-issues.md"
   ],
   "unresolved_bugs_or_issues": [
     "Supabase auth trust layer is still not fully live.",

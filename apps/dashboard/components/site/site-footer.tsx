@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 import { BrandbuildLogo } from "@/components/site/brandbuild-logo";
+import { buildAuthPageHref } from "@/lib/auth/redirects";
 
 const hiddenPrefixes = [
   "/account",
@@ -29,6 +30,7 @@ export function SiteFooter() {
   }
 
   const prefix = pathname === "/" ? "" : "/";
+  const loginHref = buildAuthPageHref("/login", "/dashboard");
 
   return (
     <footer className="px-4 pb-10 pt-16 sm:px-6 lg:px-8">
@@ -67,10 +69,10 @@ export function SiteFooter() {
               Access
             </p>
             <div className="grid gap-2 text-sm text-white/60">
-              <Link className="transition hover:text-white" href="/login">
+              <Link className="transition hover:text-white" href={loginHref}>
                 Log in
               </Link>
-              <Link className="transition hover:text-white" href="/dashboard">
+              <Link className="transition hover:text-white" href={loginHref}>
                 Enter dashboard
               </Link>
             </div>

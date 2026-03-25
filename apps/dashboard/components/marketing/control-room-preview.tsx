@@ -44,7 +44,7 @@ function getProviderStatusLabel(provider: ProviderCatalogItem) {
 export function ControlRoomPreview({ mode, providers }: ControlRoomPreviewProps) {
   return (
     <div className="brandbuild-panel relative overflow-hidden rounded-[36px] p-4 sm:p-6 lg:p-7">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(103,180,255,0.16),transparent_26%),radial-gradient(circle_at_85%_15%,rgba(255,205,116,0.12),transparent_20%),linear-gradient(180deg,rgba(8,10,14,0.46),rgba(8,10,14,0.88))]" />
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(103,180,255,0.16),transparent_26%),radial-gradient(circle_at_85%_15%,rgba(255,205,116,0.12),transparent_20%),linear-gradient(180deg,rgba(8,10,14,0.46),rgba(8,10,14,0.88))]" />
 
       <div className="relative flex flex-wrap items-center justify-between gap-4 border-b border-white/8 pb-4">
         <div>

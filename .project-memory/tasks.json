@@ -244,5 +244,24 @@
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
     ],
     "notes": "This becomes the next UX layer before attempting a full browser editor."
+  },
+  {
+    "task_id": "brandbuild-task-015",
+    "title": "Harden the public login path on the marketing site",
+    "description": "Ensure the public-site access buttons navigate directly to /login and that decorative marketing layers cannot steal clicks or taps from sign-in CTAs.",
+    "priority": "high",
+    "status": "complete",
+    "owner": "agent",
+    "created_at": "2026-03-25T12:00:00-05:00",
+    "updated_at": "2026-03-25T12:18:00-05:00",
+    "dependencies": [],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx"
+    ],
+    "notes": "Completed by routing public access CTAs directly to /login and marking decorative marketing overlays as pointer-events-none."
   }
 ]

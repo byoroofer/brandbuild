@@ -359,5 +359,41 @@
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\email-action.ts",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
     ]
+  },
+  {
+    "id": "brandbuild-know-022",
+    "category": "ux",
+    "fact": "Public-site access should route directly to /login rather than relying on a protected /dashboard redirect, especially on mobile where the primary visible header CTA may be the only access button shown.",
+    "confidence": "high",
+    "source": "2026-03-25 public login-path incident fix",
+    "first_recorded_at": "2026-03-25T12:18:00-05:00",
+    "last_confirmed_at": "2026-03-25T12:18:00-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\redirects.ts"
+    ]
+  },
+  {
+    "id": "brandbuild-know-023",
+    "category": "ux",
+    "fact": "Decorative marketing layers such as glow washes, preview backgrounds, videos, badges, and sheen effects should be pointer-events-none unless they are intentionally interactive, because they can otherwise steal clicks from nearby CTAs.",
+    "confidence": "high",
+    "source": "2026-03-25 public login-path incident fix",
+    "first_recorded_at": "2026-03-25T12:18:00-05:00",
+    "last_confirmed_at": "2026-03-25T12:18:00-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx"
+    ]
   }
 ]

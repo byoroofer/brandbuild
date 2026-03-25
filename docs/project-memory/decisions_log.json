@@ -147,5 +147,27 @@
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
       "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
     ]
+  },
+  {
+    "id": "brandbuild-dec-20260325-009",
+    "timestamp": "2026-03-25T12:18:00-05:00",
+    "title": "Send all public access CTAs directly to login",
+    "decision": "Route the public-site header and footer access CTAs straight to /login and make decorative marketing layers non-interactive so access buttons stay reliably clickable across desktop and mobile.",
+    "reason": "The public site should never depend on a protected /dashboard redirect for the basic sign-in path, and decorative overlays should not be allowed to interfere with navigation hit-testing.",
+    "alternatives_considered": [
+      "Keep the header primary CTA pointed at /dashboard and rely on middleware redirects",
+      "Only change the button label without changing click behavior",
+      "Leave decorative overlays interactive and assume browser hit-testing would remain reliable"
+    ],
+    "impact": "Public access is clearer on small screens, login intent is explicit, and the marketing shell is less likely to swallow taps or clicks that should navigate into authentication.",
+    "status": "active",
+    "supersedes": [],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx"
+    ]
   }
 ]

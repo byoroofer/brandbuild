@@ -164,7 +164,7 @@ export function BrandbuildHomepage({ mode, providers }: BrandbuildHomepageProps)
 
       <section className="mx-auto max-w-7xl px-4 pt-6 sm:px-6 lg:px-8 lg:pt-8">
         <div className="brandbuild-panel brandbuild-grid-mask relative overflow-hidden rounded-[40px] px-6 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
-          <div className="absolute inset-x-0 top-0 h-52 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.1),transparent_42%),radial-gradient(circle_at_80%_0%,rgba(255,195,107,0.12),transparent_20%),radial-gradient(circle_at_30%_0%,rgba(100,193,255,0.12),transparent_24%)]" />
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-52 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.1),transparent_42%),radial-gradient(circle_at_80%_0%,rgba(255,195,107,0.12),transparent_20%),radial-gradient(circle_at_30%_0%,rgba(100,193,255,0.12),transparent_24%)]" />
 
           <div className="relative grid gap-10 xl:grid-cols-[minmax(0,0.94fr)_minmax(420px,0.98fr)] xl:items-center">
             <div className="space-y-8">
@@ -581,7 +581,7 @@ export function BrandbuildHomepage({ mode, providers }: BrandbuildHomepageProps)
 
       <section id="cta" className="mx-auto mt-24 max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="brandbuild-panel relative overflow-hidden rounded-[40px] px-6 py-8 sm:px-8 sm:py-10 lg:px-12 lg:py-12">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(93,148,255,0.2),transparent_26%),radial-gradient(circle_at_85%_18%,rgba(255,199,92,0.14),transparent_18%),linear-gradient(125deg,rgba(13,16,24,0.96),rgba(7,9,14,0.9))]" />
+          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(93,148,255,0.2),transparent_26%),radial-gradient(circle_at_85%_18%,rgba(255,199,92,0.14),transparent_18%),linear-gradient(125deg,rgba(13,16,24,0.96),rgba(7,9,14,0.9))]" />
 
           <div className="relative grid gap-8 lg:grid-cols-[minmax(0,0.9fr)_minmax(280px,0.75fr)] lg:items-center">
             <div className="space-y-5">
