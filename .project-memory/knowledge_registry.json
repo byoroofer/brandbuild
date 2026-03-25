@@ -1,15 +1,15 @@
 [
   {
     "id": "brandbuild-know-001",
-    "category": "product-identity",
-    "fact": "BrandBuild and AI Video are the same product family by user direction.",
+    "category": "product",
+    "fact": "BrandBuild and AI Video Studio are the same product family for this repo and deployment.",
     "confidence": "high",
-    "source": "User instruction on 2026-03-24",
+    "source": "user instruction",
     "first_recorded_at": "2026-03-24T17:40:09.0933149-05:00",
-    "last_confirmed_at": "2026-03-24T17:40:09.0933149-05:00",
+    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
     "status": "active",
     "related_projects": [
-      "D:\\Playground"
+      "brandbuild"
     ],
     "related_files": [
       "D:\\Playground\\brandbuild-online-repo\\README.md",
@@ -18,60 +18,189 @@
   },
   {
     "id": "brandbuild-know-002",
-    "category": "ownership-boundary",
-    "fact": "BYOR-owned roof-measure runtime source was removed from the BrandBuild repo and archived into BYOR reference storage.",
+    "category": "deployment",
+    "fact": "D:\\Playground\\brandbuild-online-repo is the canonical local repo to use for BrandBuild changes and Vercel deployments.",
     "confidence": "high",
-    "source": "Repo cleanup session 2026-03-24",
+    "source": "repo setup and deployment history",
     "first_recorded_at": "2026-03-24T17:40:09.0933149-05:00",
-    "last_confirmed_at": "2026-03-24T17:40:09.0933149-05:00",
+    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
     "status": "active",
     "related_projects": [
-      "D:\\byoroofer-app"
+      "brandbuild"
     ],
     "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs"
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
     ]
   },
   {
     "id": "brandbuild-know-003",
-    "category": "repo-structure",
-    "fact": "The maintained product surface for BrandBuild is apps/dashboard.",
+    "category": "auth",
+    "fact": "BrandBuild has coded support for branded auth emails through a Supabase Send Email Hook, but the live experience still depends on manual Supabase dashboard configuration and SMTP setup.",
     "confidence": "high",
-    "source": "README reviewed on 2026-03-24",
-    "first_recorded_at": "2026-03-24T17:40:09.0933149-05:00",
-    "last_confirmed_at": "2026-03-24T17:40:09.0933149-05:00",
+    "source": "code inspection and prior implementation",
+    "first_recorded_at": "2026-03-24T18:20:00-05:00",
+    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
     "status": "active",
-    "related_projects": [],
+    "related_projects": [
+      "brandbuild"
+    ],
     "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\supabase\\functions\\send-auth-email\\index.ts",
       "D:\\Playground\\brandbuild-online-repo\\README.md"
     ]
   },
   {
     "id": "brandbuild-know-004",
-    "category": "verification",
-    "fact": "npm run typecheck passed in the BrandBuild repo after the roof-measure cleanup.",
+    "category": "integrations",
+    "fact": "Sora, Kling, and Higgsfield are all implemented behind a shared provider adapter pattern and exposed through the same generation pipeline.",
     "confidence": "high",
-    "source": "Local verification on 2026-03-24",
-    "first_recorded_at": "2026-03-24T17:40:09.0933149-05:00",
-    "last_confirmed_at": "2026-03-24T17:40:09.0933149-05:00",
+    "source": "code inspection",
+    "first_recorded_at": "2026-03-24T18:20:00-05:00",
+    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
     "status": "active",
-    "related_projects": [],
+    "related_projects": [
+      "brandbuild"
+    ],
     "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs"
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts"
     ]
   },
   {
     "id": "brandbuild-know-005",
-    "category": "memory-system",
-    "fact": "The canonical durable memory location for the BrandBuild repo is D:\\Playground\\brandbuild-online-repo\\.project-memory.",
+    "category": "workflow",
+    "fact": "The strongest existing vertical slice is the shot workspace, including structured prompts, reference uploads, generation history, and workflow guidance.",
     "confidence": "high",
-    "source": "Memory initialization decision on 2026-03-24",
-    "first_recorded_at": "2026-03-24T17:40:09.0933149-05:00",
-    "last_confirmed_at": "2026-03-24T17:40:09.0933149-05:00",
+    "source": "code inspection and product audit",
+    "first_recorded_at": "2026-03-24T18:20:00-05:00",
+    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
     "status": "active",
-    "related_projects": [],
+    "related_projects": [
+      "brandbuild"
+    ],
     "related_files": [
-      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json"
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\prompt-builder.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx"
+    ]
+  },
+  {
+    "id": "brandbuild-know-006",
+    "category": "gaps",
+    "fact": "The biggest missing product layers are compare outputs, version timeline, edit handoff/export, and usage/admin visibility.",
+    "confidence": "high",
+    "source": "product audit",
+    "first_recorded_at": "2026-03-24T18:20:00-05:00",
+    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\reviews\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
+    ]
+  },
+  {
+    "id": "brandbuild-know-007",
+    "category": "reliability",
+    "fact": "The repository read model can fall back to demo data too aggressively when live queries partially fail, which can mask production issues.",
+    "confidence": "high",
+    "source": "product audit",
+    "first_recorded_at": "2026-03-24T18:20:00-05:00",
+    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
+    ]
+  },
+  {
+    "id": "brandbuild-know-008",
+    "category": "deployment",
+    "fact": "The March 24 production application error was resolved by deploying the latest local BrandBuild workspace to Vercel production because the live domain had been serving an older deployment.",
+    "confidence": "high",
+    "source": "deployment inspection and redeploy",
+    "first_recorded_at": "2026-03-24T19:30:00-05:00",
+    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+    ]
+  },
+  {
+    "id": "brandbuild-know-009",
+    "category": "memory",
+    "fact": "docs/project-memory is the canonical structured memory location; .project-memory is a mirrored compatibility layer; project-memory contains human-facing operating summaries requested by the user.",
+    "confidence": "high",
+    "source": "memory consolidation decision",
+    "first_recorded_at": "2026-03-24T19:41:23.2499373-05:00",
+    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json"
+    ]
+  },
+  {
+    "id": "brandbuild-know-010",
+    "category": "build",
+    "fact": "Next.js currently warns that it is inferring the workspace root because both D:\\Playground and the BrandBuild repo contain lockfiles; this should be cleaned up with outputFileTracingRoot or by removing the extra lockfile when safe.",
+    "confidence": "high",
+    "source": "2026-03-24 build output",
+    "first_recorded_at": "2026-03-24T19:41:23.2499373-05:00",
+    "last_confirmed_at": "2026-03-24T19:41:23.2499373-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\next.config.ts",
+      "D:\\Playground\\brandbuild-online-repo\\package-lock.json"
+    ]
+  },
+  {
+    "id": "brandbuild-know-011",
+    "category": "reliability",
+    "fact": "A March 24 production incident was mitigated by hardening apps/dashboard/lib/db/client.ts so authenticated dashboard reads return null when Supabase or auth client initialization fails, allowing the repository layer to fall back instead of crashing the page.",
+    "confidence": "high",
+    "source": "incident investigation and deployed fix",
+    "first_recorded_at": "2026-03-24T23:59:00-05:00",
+    "last_confirmed_at": "2026-03-24T23:59:00-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts"
+    ]
+  },
+  {
+    "id": "brandbuild-know-012",
+    "category": "environment",
+    "fact": "For local BrandBuild runs, the effective Next.js app environment needs to exist at apps/dashboard/.env.local; production Vercel env presence alone does not help local runs.",
+    "confidence": "high",
+    "source": "2026-03-25 local incident investigation",
+    "first_recorded_at": "2026-03-25T00:08:00-05:00",
+    "last_confirmed_at": "2026-03-25T00:08:00-05:00",
+    "status": "active",
+    "related_projects": [
+      "brandbuild"
+    ],
+    "related_files": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.env.local",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\env.ts"
     ]
   }
 ]

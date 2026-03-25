@@ -1,43 +1,57 @@
-﻿{
-    "mission":  "Operate BrandBuild / AI Video as the canonical product repo for the shared AI video platform while keeping unrelated BYOR-owned roofing features out of this codebase.",
-    "primary_goals":  [
-                          "Keep apps/dashboard as the main supported product surface.",
-                          "Maintain clean provider-abstraction and internal dashboard workflows.",
-                          "Prevent cross-product contamination from BYOR."
-                      ],
-    "secondary_goals":  [
-                            "Reduce naming drift between BrandBuild and AI Video Studio where practical.",
-                            "Maintain durable project memory inside the repo."
-                        ],
-    "non_goals":  [
-                      "Do not host BYOR roof-measure runtime features here.",
-                      "Do not turn this repo into the sandbox/testbed when the separate sandbox already exists."
-                  ],
-    "hard_rules":  [
-                       "BrandBuild and AI Video are the same product family by user direction.",
-                       "BYOR-owned roof-measure code belongs in BYOR, not in this repo.",
-                       "Use .project-memory as the canonical durable memory location for this repo."
-                   ],
-    "strong_preferences":  [
-                               "Keep forbidden-reference checks product-neutral and focused on boundary enforcement.",
-                               "Prefer promoting stable work here from the sandbox instead of duplicating long-term effort."
-                           ],
-    "optional_preferences":  [
-                                 "Reconcile naming drift over time so package identity and repo marketing language align better."
-                             ],
-    "business_constraints":  [
-                                 "This is the canonical repo for the BrandBuild / AI Video product family."
-                             ],
-    "technical_constraints":  [
-                                  "apps/dashboard remains the maintained product surface.",
-                                  "Typecheck should keep passing after cleanup batches."
-                              ],
-    "compliance_notes":  [
-                             "Keep provider logic server-side and behind internal adapters as described in repo docs."
-                         ],
-    "definitions_of_done":  [
-                                "No BYOR-owned roofing features remain in the runtime source tree.",
-                                "Boundary checks pass.",
-                                "Project memory files stay current."
-                            ]
+{
+  "mission": "Build BrandBuild into an elite creative production console that lets operators combine Sora, Kling, and Higgsfield into a stronger end-to-end video workflow than any single engine alone.",
+  "primary_goals": [
+    "Keep brandbuild.online stable and trustworthy in production.",
+    "Unify prompting, asset upload, generation orchestration, review, versioning, and export inside one premium dashboard.",
+    "Validate and harden live provider integrations for Sora, Kling, and Higgsfield.",
+    "Make the product feel polished enough to present as a serious venture-backed SaaS platform."
+  ],
+  "secondary_goals": [
+    "Deepen the in-portal Studio Agent so it can guide project setup and provider routing.",
+    "Surface integration readiness, failures, and manual setup requirements clearly inside the product.",
+    "Keep durable project memory current so future sessions can reconstruct state from files alone."
+  ],
+  "non_goals": [
+    "Do not build a full browser-based nonlinear editor in v1.",
+    "Do not expose provider secrets client-side.",
+    "Do not present mocked integrations as fully validated production features.",
+    "Do not reintroduce unrelated legacy product surfaces into BrandBuild."
+  ],
+  "hard_rules": [
+    "Use BrandBuild as the user-facing product identity on production surfaces.",
+    "Keep provider API access behind the internal adapter layer.",
+    "Validate uploads for mime type and size and keep stored assets private.",
+    "Do not let important session context live only in chat; write it into repo-backed memory files.",
+    "Prefer production-minded vertical slices over disconnected prototypes.",
+    "Do not silently discard historical project memory; mark superseded or archived states clearly."
+  ],
+  "strong_preferences": [
+    "Dark, cinematic, premium UI.",
+    "Desktop-first workflow with strong operator guidance.",
+    "Full-file replacements for major improvements.",
+    "In-product visibility into system status, blockers, and next actions."
+  ],
+  "optional_preferences": [
+    "Reduced-motion fallbacks for richer media surfaces.",
+    "Incremental expansion of telemetry, usage, and cost tracking."
+  ],
+  "business_constraints": [
+    "BrandBuild is positioned as a high-end creative production operating system, not a generic multi-tool wrapper.",
+    "The strongest near-term value is seamless orchestration and operator efficiency, not breadth of features for their own sake."
+  ],
+  "technical_constraints": [
+    "Current runtime stack is Next.js App Router + TypeScript + Supabase + Vercel.",
+    "Provider readiness depends on real account access beyond the presence of API keys.",
+    "The root package naming still uses ai-video-studio even though the product brand is BrandBuild."
+  ],
+  "compliance_notes": [
+    "Uploaded customer assets and generated outputs should remain private by default.",
+    "Branded authentication email flows should hide Supabase as much as practical while keeping Supabase as the backend."
+  ],
+  "definitions_of_done": [
+    "Production routes render without crashes on brandbuild.online.",
+    "Core workflow steps are understandable for a signed-in operator.",
+    "At least one real validated run exists for each provider integration targeted as live-capable.",
+    "Project memory files reflect the current product truth, blockers, and next steps."
+  ]
 }

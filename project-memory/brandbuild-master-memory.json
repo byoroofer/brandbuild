@@ -4,7 +4,7 @@
     "repo": "brandbuild",
     "local_path": "D:\\Playground\\brandbuild-online-repo",
     "production_url": "https://brandbuild.online",
-    "updated_at": "2026-03-24T18:52:00-05:00"
+    "updated_at": "2026-03-24T19:41:23.2499373-05:00"
   },
   "current_product_objective": "Build BrandBuild into a premium creative production operating system that unifies Sora, Kling, and Higgsfield for prompt creation, asset upload, generation orchestration, review, versioning, and delivery.",
   "stack_summary": [
@@ -19,6 +19,9 @@
     "Higgsfield API"
   ],
   "architecture_summary": {
+    "canonical_structured_memory": "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory",
+    "human_operating_memory": "D:\\Playground\\brandbuild-online-repo\\project-memory",
+    "mirrored_compatibility_memory": "D:\\Playground\\brandbuild-online-repo\\.project-memory",
     "current_spine": [
       "campaigns",
       "scenes",
@@ -35,7 +38,8 @@
       "Private shot asset uploads",
       "Generation status refresh",
       "Asset sync from successful generations",
-      "Premium dark dashboard shell"
+      "Premium dark dashboard shell",
+      "Control-center settings page"
     ],
     "current_gaps": [
       "No dedicated compare outputs workspace",
@@ -52,7 +56,8 @@
     "Studio Agent and tag discovery",
     "Private shot asset upload flow",
     "Live-capable Sora, Kling, and Higgsfield adapters",
-    "Settings/control-center audit page at /dashboard/settings"
+    "Settings/control-center audit page at /dashboard/settings",
+    "Healthy production deployment on brandbuild.online after redeploy"
   ],
   "broken_or_blocked_features": [
     "Branded auth emails are coded but still blocked by manual Supabase dashboard setup.",
@@ -67,13 +72,13 @@
     ],
     "kling": [
       "Validate one real dashboard run",
-      "Add webhook/background refresh support",
+      "Add webhook or background refresh support",
       "Expand beyond the current text-to-video path"
     ],
     "higgsfield": [
       "Validate one real reference-image-led dashboard run",
       "Add product-managed model selection",
-      "Implement webhook/background refresh support"
+      "Implement webhook or background refresh support"
     ]
   },
   "credentials_or_manual_setup_needed": [
@@ -83,16 +88,17 @@
     "Real provider-account validation results captured from signed-in runs"
   ],
   "major_decisions_made": [
-    "Use a clean standalone BrandBuild repo and deployment target",
-    "Keep providers behind one internal adapter contract",
-    "Use a Supabase Send Email Hook for branded auth emails",
-    "Build private asset upload before editing flows",
-    "Add an in-product settings/control-center truth layer before deeper orchestration work"
+    "Use a clean standalone BrandBuild repo and deployment target.",
+    "Keep providers behind one internal adapter contract.",
+    "Use a Supabase Send Email Hook for branded auth emails.",
+    "Build private asset upload before editing flows.",
+    "Expose a settings/control-center truth layer inside the product.",
+    "Canonicalize structured memory in docs/project-memory and mirror it into .project-memory."
   ],
   "files_changed_this_session": [
-    "apps/dashboard/app/dashboard/settings/page.tsx",
-    "apps/dashboard/components/settings/studio-control-center.tsx",
     "apps/dashboard/lib/studio/system-audit.ts",
+    "apps/dashboard/components/settings/studio-control-center.tsx",
+    "apps/dashboard/app/dashboard/settings/page.tsx",
     "apps/dashboard/components/dashboard/dashboard-shell.tsx",
     "apps/dashboard/app/dashboard/page.tsx",
     "apps/dashboard/components/dashboard/command-bar.tsx",
@@ -103,12 +109,21 @@
     "docs/project-memory/session_log.json",
     "docs/project-memory/tasks.json",
     "docs/project-memory/file_index.json",
-    "docs/project-memory/knowledge_registry.json"
+    "docs/project-memory/knowledge_registry.json",
+    "project-memory/brandbuild-master-memory.json",
+    "project-memory/session-log.md",
+    "project-memory/known-issues.md",
+    "project-memory/integration-status.md",
+    "project-memory/ui-ux-review.md",
+    "project-memory/roadmap.md"
   ],
   "unresolved_bugs_or_issues": [
     "Supabase auth trust layer is still not fully live.",
     "Compare outputs, versions, and export workflow remain unbuilt.",
-    "Settings/control-center currently reports readiness from code and env state, not live runtime telemetry."
+    "Settings/control-center currently reports readiness from code and env state, not live telemetry.",
+    "The root package naming still says ai-video-studio.",
+    "Next.js currently warns about workspace-root inference because multiple lockfiles exist.",
+    "The marketing route still logs a non-fatal Dynamic server usage warning during build."
   ],
   "ui_ux_improvements_still_needed": [
     "Promote compare outputs into a first-class workspace.",

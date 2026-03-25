@@ -1,49 +1,36 @@
 # BrandBuild Session Log
 
-## 2026-03-24
+## 2026-03-24 17:40 CT - Repo Cleanup And Memory Init
+- Established durable project memory inside the repo.
+- Recorded that BrandBuild and AI Video are the same product family.
+- Strengthened repo boundary protections against unrelated legacy features.
 
-### Session: Full repo audit + control center
-- Loaded the canonical JSON memory from `docs/project-memory`.
-- Audited the current BrandBuild repo structure, routes, provider adapters, generation orchestration, asset flow, auth/email infrastructure, and UI shell.
-- Confirmed the main strengths: premium operator UI, shared provider adapter layer, prompt builder, private shot uploads, generation refresh, and asset sync.
-- Confirmed the biggest gaps: compare outputs, version timeline, edit handoff/export, usage/cost visibility, and admin/debug surfaces.
-- Added a new in-product settings route at `/dashboard/settings`.
-- Added a server-side system audit model to surface provider readiness, architecture gaps, and recommended implementation order.
-- Updated dashboard navigation so Settings is discoverable and Campaigns is framed as Projects.
-- Refreshed the canonical machine-readable memory files under `docs/project-memory`.
-- Created this root `project-memory` summary layer requested by the user.
+## 2026-03-24 19:25 CT - Upstream Sync Recorded
+- Recorded that earlier cleanup work was already upstream.
+- Preserved that sync state in structured project memory.
 
-### Files created
-- `apps/dashboard/app/dashboard/settings/page.tsx`
-- `apps/dashboard/components/settings/studio-control-center.tsx`
-- `apps/dashboard/lib/studio/system-audit.ts`
-- `project-memory/brandbuild-master-memory.json`
-- `project-memory/session-log.md`
-- `project-memory/known-issues.md`
-- `project-memory/integration-status.md`
-- `project-memory/ui-ux-review.md`
-- `project-memory/roadmap.md`
+## 2026-03-24 18:15-18:55 CT - Full Product Audit And Control Center
+- Audited the current BrandBuild stack, routes, provider adapters, storage, and auth layer.
+- Added `/dashboard/settings` plus the new studio control-center surface.
+- Documented the strongest current vertical slice, the biggest missing workflow layers, and the highest-value implementation order.
 
-### Files modified
-- `apps/dashboard/components/dashboard/dashboard-shell.tsx`
-- `apps/dashboard/app/dashboard/page.tsx`
-- `apps/dashboard/components/dashboard/command-bar.tsx`
-- `docs/project-memory/project_profile.json`
-- `docs/project-memory/goals_and_rules.json`
-- `docs/project-memory/current_state.json`
-- `docs/project-memory/decisions_log.json`
-- `docs/project-memory/session_log.json`
-- `docs/project-memory/tasks.json`
-- `docs/project-memory/file_index.json`
-- `docs/project-memory/knowledge_registry.json`
+## 2026-03-24 19:30-19:41 CT - Production Recovery And Memory Consolidation
+- Confirmed the live domain had been serving an older deployment.
+- Redeployed the latest BrandBuild dashboard workspace to Vercel production.
+- Verified `brandbuild.online`, `/login`, and signed-out `/dashboard` were healthy again.
+- Consolidated structured memory under `docs/project-memory`, mirrored it into `.project-memory`, and kept `project-memory/` as the user-facing operating summary layer.
 
-### What changed in project understanding
-- BrandBuild already has a stronger backend/provider foundation than the surface UX communicates.
-- The next product-defining layer is not another provider adapter; it is compare/version/handoff orchestration.
-- The current repo fallback behavior can hide partial live-data issues by shifting into demo mode too aggressively.
+## 2026-03-24 23:50-23:59 CT - Production Incident Hardening
+- Confirmed the live domain was on a ready deployment and public routes were healthy.
+- Traced the likely crash path to authenticated dashboard client initialization before repository fallback.
+- Hardened `apps/dashboard/lib/db/client.ts` to return `null` instead of throwing on server-side auth/Supabase initialization failures.
+- Re-ran typecheck and build, deployed the fix to Vercel production, and verified the live domain, login page, and signed-out dashboard redirect in a browser.
 
-### Recorded next steps
-1. Finish manual Supabase Auth dashboard configuration.
-2. Validate one real run each for Sora, Kling, and Higgsfield.
-3. Build compare outputs as the next workflow surface.
-4. Build version timeline, handoff, and export bundle flow after compare.
+## 2026-03-25 00:05-00:08 CT - Local Env Sync
+- Verified that production still had the required Supabase env variables.
+- Confirmed the clean repo had no local dashboard `.env.local`.
+- Pulled the current production environment into `apps/dashboard/.env.local` so local runs stop throwing `NEXT_PUBLIC_SUPABASE_URL is not set`.
+
+## 2026-03-25 00:12-00:13 CT - Git vs Production Status Check
+- Confirmed the recent incident fixes are live in production.
+- Confirmed they are not pushed yet: local `HEAD` and `origin/main` are still the same old commit, and the new work only exists in the working tree plus the live Vercel deploy.

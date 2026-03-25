@@ -11,17 +11,22 @@ async function createAuthenticatedStudioClient() {
     return null;
   }
 
-  const supabase = (await createServerSupabaseClient()) as unknown as StudioSupabaseClient;
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser();
+  try {
+    const supabase = (await createServerSupabaseClient()) as unknown as StudioSupabaseClient;
+    const {
+      data: { user },
+      error,
+    } = await supabase.auth.getUser();
 
-  if (error || !user) {
+    if (error || !user) {
+      return null;
+    }
+
+    return supabase;
+  } catch (error) {
+    console.error("[BrandBuild] Failed to initialize studio persistence client.", error);
     return null;
   }
-
-  return supabase;
 }
 
 export async function createStudioReadClient() {

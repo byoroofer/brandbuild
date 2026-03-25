@@ -1,55 +1,327 @@
-﻿{
-    "session_id":  "2026-03-24-roof-measure-realignment-memory-init",
-    "timestamp_start":  "2026-03-24T17:40:09.0933149-05:00",
-    "timestamp_end":  "2026-03-24T17:40:09.0933149-05:00",
-    "user_objective":  "Audit repo overlap, remove misplaced roof-measure work from non-BYOR repos, archive that work into BYOR, and initialize durable project memory.",
-    "actions_taken":  [
-                          "Removed roof-measure runtime source trees from the canonical BrandBuild repo.",
-                          "Updated hidden-prefix config and the forbidden-reference guard script.",
-                          "Verified typecheck still passes.",
-                          "Initialized BrandBuild project memory in .project-memory."
-                      ],
-    "files_created":  [
-                          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json",
-                          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\goals_and_rules.json",
-                          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\current_state.json",
-                          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\decisions_log.json",
-                          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\session_log.json",
-                          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\tasks.json",
-                          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\file_index.json",
-                          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\knowledge_registry.json"
-                      ],
-    "files_modified":  [
-                           "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
-                           "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
-                           "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs"
-                       ],
-    "files_reviewed":  [
-                           "D:\\Playground\\brandbuild-online-repo\\README.md",
-                           "D:\\Playground\\brandbuild-online-repo\\package.json",
-                           "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\roof-measure\\page.tsx"
-                       ],
-    "key_findings":  [
-                         "BrandBuild carried a misplaced BYOR roof-measure implementation.",
-                         "BrandBuild and AI Video are the same product family by user direction.",
-                         "Typecheck still passes after removing roof-measure runtime source."
-                     ],
-    "decisions_added":  [
-                            "brandbuild-dec-20260324-001",
-                            "brandbuild-dec-20260324-002",
-                            "brandbuild-dec-20260324-003"
-                        ],
-    "memory_updates":  [
-                           "Initialized full .project-memory set for BrandBuild.",
-                           "Recorded product-family and repo-boundary decisions."
-                       ],
-    "unresolved_items":  [
-                             "Root package naming still says ai-video-studio while README says BrandBuild.",
-                             "There are unrelated local file changes not addressed in this cleanup."
-                         ],
-    "next_recommended_actions":  [
-                                     "Decide how much naming alignment is desirable between BrandBuild and AI Video labels.",
-                                     "Keep future product work inside the BrandBuild surface and not in BYOR or sandbox repos.",
-                                     "Maintain .project-memory on future sessions."
-                                 ]
-}
+[
+  {
+    "session_id": "2026-03-24-repo-cleanup-memory-init",
+    "timestamp_start": "2026-03-24T17:40:09.0933149-05:00",
+    "timestamp_end": "2026-03-24T17:40:09.0933149-05:00",
+    "user_objective": "Audit repo overlap, remove misplaced legacy runtime work, and initialize durable project memory.",
+    "actions_taken": [
+      "Cleaned BrandBuild repo boundaries.",
+      "Updated the forbidden-reference guard.",
+      "Initialized the first structured project-memory files."
+    ],
+    "files_created": [
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json",
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\goals_and_rules.json",
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\decisions_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\session_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\tasks.json",
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\file_index.json",
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\knowledge_registry.json"
+    ],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\README.md",
+      "D:\\Playground\\brandbuild-online-repo\\package.json"
+    ],
+    "key_findings": [
+      "BrandBuild and AI Video belong to the same product family.",
+      "The repo had already experienced cross-product contamination and needed stronger boundaries."
+    ],
+    "decisions_added": [
+      "brandbuild-dec-20260324-001",
+      "brandbuild-dec-20260324-002",
+      "brandbuild-dec-20260324-003"
+    ],
+    "memory_updates": [
+      "Initialized the first repo-backed memory set."
+    ],
+    "unresolved_items": [
+      "Naming drift between BrandBuild and ai-video-studio remained unresolved."
+    ],
+    "next_recommended_actions": [
+      "Keep future product work inside the BrandBuild surface only.",
+      "Continue maintaining durable memory in files."
+    ]
+  },
+  {
+    "session_id": "2026-03-24-upstream-sync",
+    "timestamp_start": "2026-03-24T19:25:09.983424-05:00",
+    "timestamp_end": "2026-03-24T19:25:09.983424-05:00",
+    "user_objective": "Send the current repo changes upstream and preserve the outcome in memory.",
+    "actions_taken": [
+      "Recorded that cleanup work had already been pushed upstream.",
+      "Marked the push task complete in memory."
+    ],
+    "files_created": [],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\session_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\tasks.json"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\.project-memory\\session_log.json"
+    ],
+    "key_findings": [
+      "The earlier cleanup work was already safely upstream."
+    ],
+    "decisions_added": [
+      "brandbuild-dec-20260324-004"
+    ],
+    "memory_updates": [
+      "Recorded the upstream sync state."
+    ],
+    "unresolved_items": [
+      "Naming drift remained unresolved."
+    ],
+    "next_recommended_actions": [
+      "Focus the next session on product work rather than repo cleanup."
+    ]
+  },
+  {
+    "session_id": "2026-03-24-platform-audit-control-center",
+    "timestamp_start": "2026-03-24T18:15:00-05:00",
+    "timestamp_end": "2026-03-24T18:55:00-05:00",
+    "user_objective": "Audit the full BrandBuild product, identify what works or is missing, and start implementing the highest-value improvements.",
+    "actions_taken": [
+      "Audited the app routes, core dashboard pages, provider adapters, auth layer, generation pipeline, storage helpers, and Supabase foundations.",
+      "Added a system audit model for product and integration readiness.",
+      "Added /dashboard/settings as an in-product control center.",
+      "Added the requested root project-memory operating files."
+    ],
+    "files_created": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\settings\\studio-control-center.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\settings\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\ui-ux-review.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md"
+    ],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\dashboard\\dashboard-shell.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\dashboard\\command-bar.tsx"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\prompt-builder.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+      "D:\\Playground\\brandbuild-online-repo\\supabase\\functions\\send-auth-email\\index.ts"
+    ],
+    "key_findings": [
+      "BrandBuild already had a meaningful shot workspace, private asset uploads, and live-capable provider adapters.",
+      "The biggest missing layers were compare outputs, versioning, edit handoff/export, and admin/debug visibility.",
+      "The largest non-code blocker remained manual Supabase Auth dashboard setup."
+    ],
+    "decisions_added": [
+      "brandbuild-dec-20260324-005"
+    ],
+    "memory_updates": [
+      "Added a human-facing project-memory operating layer at project-memory/."
+    ],
+    "unresolved_items": [
+      "The canonical structured memory location was still inconsistent.",
+      "Provider runs had not yet been fully validated in production."
+    ],
+    "next_recommended_actions": [
+      "Consolidate project memory to a single canonical structured location.",
+      "Validate one real run per provider.",
+      "Build compare outputs as the next workflow surface."
+    ]
+  },
+  {
+    "session_id": "2026-03-24-production-recovery-memory-consolidation",
+    "timestamp_start": "2026-03-24T19:30:00-05:00",
+    "timestamp_end": "2026-03-24T19:41:23.2499373-05:00",
+    "user_objective": "Make brandbuild.online work again after a production application error and preserve the correct state durably.",
+    "actions_taken": [
+      "Verified that production was pointing at an older Vercel deployment.",
+      "Deployed the latest BrandBuild dashboard workspace to Vercel production.",
+      "Confirmed brandbuild.online, /login, and signed-out /dashboard surfaces were healthy.",
+      "Consolidated structured memory under docs/project-memory and mirrored it to .project-memory.",
+      "Re-ran typecheck and production build successfully after memory consolidation."
+    ],
+    "files_created": [],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\goals_and_rules.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\decisions_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\file_index.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\ui-ux-review.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+      "D:\\Playground\\brandbuild-online-repo\\package.json",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\package.json"
+    ],
+    "key_findings": [
+      "The production error was caused by the domain serving an older deployment, not by a newly introduced code regression in the local workspace.",
+      "Memory had diverged across docs/project-memory, .project-memory, and project-memory and needed deliberate consolidation.",
+      "The repo builds cleanly, but Next.js warns that multiple lockfiles cause workspace-root inference."
+    ],
+    "decisions_added": [
+      "brandbuild-dec-20260324-006"
+    ],
+    "memory_updates": [
+      "Promoted docs/project-memory to canonical structured memory.",
+      "Aligned .project-memory as a mirror and preserved project-memory as the human-facing operating summary."
+    ],
+    "unresolved_items": [
+      "Supabase Auth dashboard setup remains incomplete.",
+      "Live provider runs still need full validation.",
+      "The Next.js workspace-root warning should be cleaned up by setting outputFileTracingRoot or removing the extra lockfile."
+    ],
+    "next_recommended_actions": [
+      "Keep production on the current deployment target.",
+      "Continue with compare outputs and provider validation.",
+      "Resolve the workspace-root warning when it is safe to touch build configuration."
+    ]
+  },
+  {
+    "session_id": "2026-03-24-production-incident-dashboard-hardening",
+    "timestamp_start": "2026-03-24T23:50:00-05:00",
+    "timestamp_end": "2026-03-24T23:59:00-05:00",
+    "user_objective": "Fix the live BrandBuild server-side crash showing the global error screen and make the site work again immediately.",
+    "actions_taken": [
+      "Confirmed the live domain and current production deployment were reachable.",
+      "Reproduced that public routes were healthy in a real browser and narrowed the likely failure to authenticated dashboard initialization.",
+      "Hardened the studio persistence client so server-side auth or Supabase initialization failures return null instead of throwing through the dashboard path.",
+      "Re-ran typecheck and build successfully.",
+      "Deployed the fix to Vercel production and verified brandbuild.online, /login, and the signed-out /dashboard redirect in a browser."
+    ],
+    "files_created": [],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\file_index.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\session.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\layout.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\error.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\global-error.tsx"
+    ],
+    "key_findings": [
+      "The live domain was on a ready deployment, so the incident was not caused by a broken alias.",
+      "Public routes were healthy, which pointed to a user-session or dashboard initialization failure path.",
+      "The dashboard read client could throw before the repository fallback logic ran, making an authenticated request vulnerable to the global error boundary."
+    ],
+    "decisions_added": [],
+    "memory_updates": [
+      "Recorded the production incident, the client hardening change, and the remaining Dynamic server usage build warning."
+    ],
+    "unresolved_items": [
+      "The marketing route still logs a non-fatal Dynamic server usage warning during build.",
+      "Supabase Auth dashboard setup remains incomplete.",
+      "Live provider runs still need full validation."
+    ],
+    "next_recommended_actions": [
+      "Clean up the root-route cookie access so the build log is quieter and more trustworthy.",
+      "Continue with Supabase Auth setup and provider validation."
+    ]
+  },
+  {
+    "session_id": "2026-03-25-local-env-sync",
+    "timestamp_start": "2026-03-25T00:05:00-05:00",
+    "timestamp_end": "2026-03-25T00:08:00-05:00",
+    "user_objective": "Resolve the NEXT_PUBLIC_SUPABASE_URL is not set error.",
+    "actions_taken": [
+      "Verified that the BrandBuild production environment still contained NEXT_PUBLIC_SUPABASE_URL and the public key.",
+      "Confirmed the clean repo had no local .env.local file for the dashboard app.",
+      "Pulled the current production environment into apps/dashboard/.env.local."
+    ],
+    "files_created": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.env.local"
+    ],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\env.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\browser.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\server.ts"
+    ],
+    "key_findings": [
+      "This specific error was caused by missing local app environment, not a missing production Vercel variable.",
+      "In this repo, the dashboard app needs its own apps/dashboard/.env.local for local runs."
+    ],
+    "decisions_added": [],
+    "memory_updates": [
+      "Recorded that local env should be pulled into apps/dashboard/.env.local when syncing from production."
+    ],
+    "unresolved_items": [
+      "Supabase Auth dashboard setup remains incomplete.",
+      "Live provider runs still need full validation."
+    ],
+    "next_recommended_actions": [
+      "Restart the local Next.js server so it loads the new env file.",
+      "Keep apps/dashboard/.env.local in sync with intended local runtime values."
+    ]
+  },
+  {
+    "session_id": "2026-03-25-git-vs-production-status-check",
+    "timestamp_start": "2026-03-25T00:12:00-05:00",
+    "timestamp_end": "2026-03-25T00:13:00-05:00",
+    "user_objective": "Confirm whether the latest BrandBuild fixes were pushed.",
+    "actions_taken": [
+      "Checked git status in the clean BrandBuild repo.",
+      "Compared local HEAD with origin/main.",
+      "Confirmed that production includes uncommitted local changes from the recent incident response."
+    ],
+    "files_created": [],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts"
+    ],
+    "key_findings": [
+      "HEAD and origin/main are both still ff709e12df03d60a78d4a645685f0e40a8d0dd0b.",
+      "The recent local fixes exist only in the working tree and the live Vercel deployment."
+    ],
+    "decisions_added": [],
+    "memory_updates": [
+      "Recorded the current divergence between git and the live deployment."
+    ],
+    "unresolved_items": [
+      "Local fixes still need a commit and push."
+    ],
+    "next_recommended_actions": [
+      "Commit the current BrandBuild incident fixes and project-memory updates.",
+      "Push main so git matches production again."
+    ]
+  }
+]

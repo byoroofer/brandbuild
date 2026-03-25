@@ -1,42 +1,60 @@
 {
-  "current_phase": "canonical repo cleanup pushed; naming drift remains",
-  "summary": "BrandBuild / AI Video remains the canonical product repo and its roof-measure cleanup plus memory initialization were pushed upstream as 3b02833. Remaining follow-up is mostly naming/documentation drift and any unrelated product changes already present in the repo.",
+  "current_phase": "stabilization, integration hardening, and workflow expansion",
+  "summary": "BrandBuild is live on brandbuild.online with a premium dashboard, private shot asset uploads, provider adapters for Sora, Kling, and Higgsfield, and a new settings control center. Production was recovered again on March 24 by hardening the dashboard persistence client so auth or Supabase client initialization failures fall back cleanly instead of crashing the page. The main remaining blockers are Supabase Auth dashboard configuration, end-to-end live provider validation, and missing compare/version/export workflow layers.",
   "active_workstreams": [
-    "internal dashboard product development",
-    "cross-product boundary cleanup",
-    "project-memory initialization"
+    "production stability and trust",
+    "provider validation and orchestration hardening",
+    "compare outputs and version workflow design",
+    "durable project-memory consolidation"
   ],
   "current_priorities": [
-    "Keep this repo focused on BrandBuild / AI Video.",
-    "Resolve naming drift between README branding and package naming when appropriate.",
-    "Track remaining unrelated local changes separately from cleanup work."
+    "Keep brandbuild.online stable on the latest deployment.",
+    "Finish the Supabase Auth trust layer so emails and redirects are fully BrandBuild-native.",
+    "Validate one real generation run each for Sora, Kling, and Higgsfield.",
+    "Build compare outputs as the next major workflow surface."
   ],
-  "blockers": [],
+  "blockers": [
+    "Supabase Auth dashboard still needs branded email hook enablement, SMTP sender setup, and redirect cleanup.",
+    "Provider integrations are code-wired but not fully validated against real operator runs in production."
+  ],
   "risks": [
-    "Naming drift can confuse repo ownership and release communication.",
-    "Unrelated local changes may complicate future cleanup commits."
+    "The repository can fall back to demo data too aggressively when live queries partially fail, which can hide production issues.",
+    "Multiple memory folders can drift if they are not mirrored deliberately.",
+    "The worktree contains unrelated pre-existing changes outside this session's scope."
   ],
   "assumptions": [
-    "BrandBuild and AI Video are the same product family.",
-    "Roof-measure belongs to BYOR."
+    "BrandBuild and AI Video Studio are the same product family.",
+    "D:\\Playground\\brandbuild-online-repo is the canonical BrandBuild repo and deployment source.",
+    "The current production deployment should track the local clean BrandBuild workspace, not the mixed legacy root workspace."
   ],
   "known_issues": [
-    "Root package name still uses ai-video-studio while README and product identity use BrandBuild.",
-    "There are unrelated modified/untracked files already present in the repo."
+    "Branded auth email infrastructure exists in code but is not fully live until the Supabase dashboard settings are completed.",
+    "There is no dedicated compare outputs workspace yet.",
+    "There is no version timeline or edit handoff/export bundle layer yet.",
+    "The root package naming still says ai-video-studio while the product brand is BrandBuild.",
+    "Next.js build warns that it is inferring the workspace root because both D:\\Playground and the BrandBuild repo contain lockfiles.",
+    "The marketing root still triggers a non-fatal Dynamic server usage warning during build because session-aware code can touch cookies while Next is statically evaluating /.",
+    "The latest dashboard hardening and memory updates are deployed to production but not yet committed and pushed to origin/main."
   ],
   "recent_changes": [
-    "Pushed the BrandBuild roof-measure cleanup and memory initialization upstream as commit 3b02833.",
-    "Confirmed the repo is clean on main after the upstream push.",
-    "Removed roof-measure source trees and the new-scan page from the dashboard app.",
-    "Updated site header/footer hidden-prefix handling.",
-    "Updated the forbidden-reference script to neutral BrandBuild / AI Video messaging.",
-    "Initialized .project-memory files."
+    "Added /dashboard/settings as a control-center route for system readiness and integration status.",
+    "Added the studio system audit model and settings UI.",
+    "Recovered production by deploying the latest BrandBuild workspace to Vercel and confirming brandbuild.online points at the new deployment.",
+    "Hardened the studio persistence client so dashboard pages return null instead of throwing when server-side auth client initialization fails.",
+    "Deployed a fresh production build at brandbuild-online-453sok21c-byoroofers-projects.vercel.app and verified the live domain, login page, and signed-out dashboard redirect in a browser.",
+    "Pulled the current production environment into apps/dashboard/.env.local so local runs stop throwing NEXT_PUBLIC_SUPABASE_URL is not set.",
+    "Created the requested root project-memory operating files.",
+    "Consolidated project memory so docs/project-memory is the canonical structured source and .project-memory is a mirrored copy.",
+    "Re-ran typecheck and production build successfully after memory consolidation."
   ],
   "next_steps": [
-    "Decide whether the root package name should stay ai-video-studio or be aligned with BrandBuild branding.",
-    "Decide whether to align package naming with BrandBuild branding or keep the shared AI Video naming intentionally.",
-    "Keep the repo free of BYOR-owned runtime features.",
-    "Update .project-memory files as future product work lands."
+    "Finish Supabase Auth dashboard setup for branded email and correct redirect behavior.",
+    "Clean up the marketing-route cookie access so the build stops logging the Dynamic server usage warning.",
+    "Run and capture one real Sora generation through the dashboard.",
+    "Run and capture one real Kling generation through the dashboard.",
+    "Run and capture one real Higgsfield generation through the dashboard.",
+    "Build the compare outputs workspace.",
+    "Design and implement version timeline plus edit handoff/export."
   ],
-  "updated_at": "2026-03-24T19:25:09.983424-05:00"
+  "updated_at": "2026-03-24T19:41:23.2499373-05:00"
 }
