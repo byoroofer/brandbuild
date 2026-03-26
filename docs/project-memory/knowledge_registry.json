@@ -767,7 +767,7 @@
                       "confidence":  "high",
                       "source":  "explicit user correction on 2026-03-26",
                       "first_recorded_at":  "2026-03-26T13:02:03.4617083-05:00",
-                      "last_confirmed_at":  "2026-03-26T13:02:03.4617083-05:00",
+                      "last_confirmed_at":  "2026-03-26T13:35:24.0148653-05:00",
                       "status":  "active",
                       "related_projects":  [
                                                "brandbuild"
@@ -777,7 +777,41 @@
                                             "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
                                             "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md"
                                         ]
+                  },
+                  {
+                      "id":  "brandbuild-know-046",
+                      "category":  "supabase",
+                      "fact":  "The correct BrandBuild Supabase project at https://ikdewffoqtliwkoywfrx.supabase.co is live and reachable; a direct REST read on 2026-03-26 returned the seeded campaigns row 11111111-1111-1111-1111-111111111111, confirming the schema exists on the right backend.",
+                      "confidence":  "high",
+                      "source":  "direct REST verification with the correct project URL and credentials",
+                      "first_recorded_at":  "2026-03-26T13:35:24.0148653-05:00",
+                      "last_confirmed_at":  "2026-03-26T13:35:24.0148653-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.env.local",
+                                            "D:\\Playground\\brandbuild-online-repo\\supabase\\manual\\20260326_brandbuild_full_bootstrap.sql"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-047",
+                      "category":  "deployment",
+                      "fact":  "On 2026-03-26 BrandBuild production was realigned to the correct Supabase project by updating NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY, and SUPABASE_SERVICE_ROLE_KEY in the brandbuild-online Vercel project, then successfully deploying brandbuild-online-ddhqsaby9-byoroofers-projects.vercel.app and re-aliasing brandbuild.online.",
+                      "confidence":  "high",
+                      "source":  "Vercel env update and successful production deployment",
+                      "first_recorded_at":  "2026-03-26T13:35:24.0148653-05:00",
+                      "last_confirmed_at":  "2026-03-26T13:35:24.0148653-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json",
+                                            "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json"
+                                        ]
                   }
               ],
-    "Count":  45
+    "Count":  47
 }

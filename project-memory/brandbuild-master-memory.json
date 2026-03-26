@@ -83,7 +83,7 @@
                                  ],
     "broken_or_blocked_features":  [
                                        "Branded auth emails are coded but still blocked by manual Supabase dashboard setup.",
-                                       "BrandBuild's real Supabase project is now confirmed to be ikdewffoqtliwkoywfrx.supabase.co; Vercel and local env still need to be verified against that project and the schema must be confirmed there.",
+                                       "BrandBuild's real Supabase project is ikdewffoqtliwkoywfrx.supabase.co, and both local env plus Vercel production are now aligned to it.",
                                        "The assets bucket and authenticated storage policy migration still need to be applied in Supabase before production private uploads can work end to end.",
                                        "Kling live generation is currently blocked by account balance.",
                                        "Higgsfield live generation is currently blocked by invalid credentials.",
@@ -111,7 +111,7 @@
                                                "Supabase Send Email Hook enablement in dashboard",
                                                "SMTP sender configuration for auth emails",
                                                "Supabase Auth redirect URL cleanup and verification",
-                                               "SUPABASE_SERVICE_ROLE_KEY if provider-output mirroring should run on the deployment",
+                                               "Supabase Auth dashboard and SMTP sender configuration",
                                                "Funded Kling account access",
                                                "Working Higgsfield credentials",
                                                "Real provider-account validation results captured from signed-in runs"
@@ -160,8 +160,7 @@
                                             "Show provider requirements in-context during generation, not only in settings."
                                         ],
     "exact_next_steps":  [
-                             "Verify that Vercel and local env point BrandBuild at ikdewffoqtliwkoywfrx.supabase.co.",
-                             "Run the schema verification query in the BrandBuild Supabase project and rerun supabase/manual/20260326_brandbuild_full_bootstrap.sql there if any required tables are missing.",
+                             "Validate campaign creation, uploads, and a signed-in Sora run against the corrected BrandBuild backend.",
                              "Reload BrandBuild and verify campaigns, shots, assets, reviews, and account tables are now reachable.",
                              "Validate campaign creation against the real database.",
                              "Run a signed-in Sora dashboard generation using a sample or hosted reference and confirm the completed result streams through BrandBuild.",

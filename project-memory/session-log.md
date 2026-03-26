@@ -150,3 +150,11 @@ pm run build successfully.
 - User clarified that the real BrandBuild Supabase project is `https://ikdewffoqtliwkoywfrx.supabase.co`.
 - Recorded that the previously checked `hdwneidxkakrzrhuxqcd.supabase.co` project belongs to PolitiViral, so those schema conclusions are superseded for BrandBuild.
 - Reset the next infrastructure step to verify BrandBuild env and schema against `ikdewffoqtliwkoywfrx`, then rerun the bootstrap there only if the verification query shows missing tables.
+
+## 2026-03-26 13:35 CT - BrandBuild Backend Realignment Completed
+- Replaced the local dashboard env with a clean BrandBuild-only `.env.local` pointed at `ikdewffoqtliwkoywfrx.supabase.co`.
+- Verified the correct Supabase backend directly: `public.campaigns` returned the seeded row `11111111-1111-1111-1111-111111111111`.
+- Updated Vercel production env so `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY`, and `SUPABASE_SERVICE_ROLE_KEY` all point at the correct BrandBuild project.
+- Found the Vercel deployment blocker: the repo head commit was authored by `BrandBuild Local <brandbuild@local.invalid>`, which Vercel refused.
+- Switched the repo git identity back to `TJ Ware <info@byoroofer.com>`, committed the current integration state as `14daff9`, pushed `main`, and redeployed production successfully.
+- Verified `https://brandbuild.online` and `https://brandbuild.online/login` both return `200`.

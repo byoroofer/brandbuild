@@ -423,10 +423,10 @@
                       "title":  "Apply BrandBuild schema to the connected Supabase project",
                       "description":  "Push the foundation, account, and assets-bucket migrations to the live Supabase project currently used by BrandBuild so public.campaigns and the rest of the app schema exist in the PostgREST cache.",
                       "priority":  "critical",
-                      "status":  "active",
+                      "status":  "complete",
                       "owner":  "user+agent",
                       "created_at":  "2026-03-25T20:02:36.1176226-05:00",
-                      "updated_at":  "2026-03-26T13:02:03.4617083-05:00",
+                      "updated_at":  "2026-03-26T13:35:24.0148653-05:00",
                       "dependencies":  [
 
                                        ],
@@ -436,41 +436,41 @@
                                             "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260325164000_assets_bucket_policies.sql",
                                             "D:\\Playground\\brandbuild-online-repo\\supabase\\manual\\20260326_brandbuild_full_bootstrap.sql"
                                         ],
-                      "notes":  "This task must now target the corrected BrandBuild Supabase project at ikdewffoqtliwkoywfrx.supabase.co. The earlier PGRST205 check against hdwneidxkakrzrhuxqcd was against the PolitiViral project and is superseded for BrandBuild. Next step: verify the schema on ikdewffoqtliwkoywfrx and rerun the full bootstrap there if needed."
+                      "notes":  "Completed after the backend was corrected to ikdewffoqtliwkoywfrx.supabase.co and a direct REST read returned the seeded campaign row from public.campaigns on 2026-03-26."
                   },
                   {
                       "task_id":  "brandbuild-task-024",
                       "title":  "Run the manual Supabase bootstrap SQL bundle",
                       "description":  "Paste and run supabase/manual/20260326_brandbuild_full_bootstrap.sql in the connected Supabase project so the missing BrandBuild schema, legacy profile prerequisites, storage policies, and demo seed data all exist server-side.",
                       "priority":  "critical",
-                      "status":  "active",
+                      "status":  "complete",
                       "owner":  "user+agent",
                       "created_at":  "2026-03-26T07:06:25.5026444-05:00",
-                      "updated_at":  "2026-03-26T13:02:03.4617083-05:00",
+                      "updated_at":  "2026-03-26T13:35:24.0148653-05:00",
                       "dependencies":  [
                                            "brandbuild-task-023"
                                        ],
                       "related_files":  [
                                             "D:\\Playground\\brandbuild-online-repo\\supabase\\manual\\20260326_brandbuild_full_bootstrap.sql"
                                         ],
-                      "notes":  "The next validation must happen on the corrected BrandBuild project ikdewffoqtliwkoywfrx.supabase.co. If the verification query there shows any missing tables, rerun the full bootstrap SQL in that exact project window."
+                      "notes":  "Completed in practice after the corrected BrandBuild backend returned a real campaigns row on 2026-03-26, confirming the schema exists on ikdewffoqtliwkoywfrx.supabase.co."
                   },
                   {
                       "task_id":  "brandbuild-task-025",
                       "title":  "Verify missing Vercel admin/runtime environment values",
                       "description":  "Confirm the brandbuild-online production environment includes the remaining required runtime values, especially SUPABASE_SERVICE_ROLE_KEY, and redeploy after any changes.",
                       "priority":  "critical",
-                      "status":  "blocked",
+                      "status":  "complete",
                       "owner":  "user+agent",
                       "created_at":  "2026-03-26T09:09:29.0918710-05:00",
-                      "updated_at":  "2026-03-26T09:09:29.0918710-05:00",
+                      "updated_at":  "2026-03-26T13:35:24.0148653-05:00",
                       "dependencies":  [],
                       "related_files":  [
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.env.example",
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\env.ts",
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\admin.ts"
                                         ],
-                      "notes":  "The Vercel env inventory now includes NEXT_PUBLIC_APP_NAME, NEXT_PUBLIC_SUPPORT_EMAIL, STORAGE_BUCKET_ASSETS, and STORAGE_BUCKET_EXPORTS, but the current listing still does not show SUPABASE_SERVICE_ROLE_KEY."
+                      "notes":  "Completed on 2026-03-26 by updating NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY, and SUPABASE_SERVICE_ROLE_KEY to the correct BrandBuild Supabase project and redeploying production successfully."
                   },
                   {
                       "task_id":  "brandbuild-task-026",
@@ -496,7 +496,7 @@
                       "status":  "active",
                       "owner":  "agent",
                       "created_at":  "2026-03-26T09:33:45.5273300-05:00",
-                      "updated_at":  "2026-03-26T13:02:03.4617083-05:00",
+                      "updated_at":  "2026-03-26T13:35:24.0148653-05:00",
                       "dependencies":  [
                                            "brandbuild-task-023",
                                            "brandbuild-task-024"
@@ -506,7 +506,7 @@
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\campaigns\\page.tsx"
                                         ],
-                      "notes":  "This becomes the immediate next technical validation step only after Vercel/local env are pointed at the corrected BrandBuild project ikdewffoqtliwkoywfrx.supabase.co and the schema is confirmed there."
+                      "notes":  "The backend alignment preconditions are now satisfied: local env and Vercel production both point at ikdewffoqtliwkoywfrx, public.campaigns is confirmed reachable there, and production has been redeployed successfully. The next step is signed-in product validation."
                   }
               ],
     "Count":  26

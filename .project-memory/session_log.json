@@ -1388,5 +1388,56 @@
                                          "Run the schema verification query in project ikdewffoqtliwkoywfrx and rerun the bootstrap there if needed.",
                                          "Then continue with live app validation and Supabase Auth setup."
                                      ]
+    },
+    {
+        "session_id":  "brandbuild-session-2026-03-26-correct-backend-live-realignment",
+        "timestamp_start":  "2026-03-26T13:35:24.0148653-05:00",
+        "timestamp_end":  "2026-03-26T13:35:24.0148653-05:00",
+        "user_objective":  "Realign BrandBuild to the correct Supabase project, update production env, and get the live deployment serving from the right backend.",
+        "actions_taken":  [
+                              "Replaced apps/dashboard/.env.local with a clean BrandBuild-only local environment pointed at ikdewffoqtliwkoywfrx.",
+                              "Verified the correct Supabase backend directly by reading public.campaigns through the REST API with the provided BrandBuild credentials.",
+                              "Updated Vercel production env so NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY, and SUPABASE_SERVICE_ROLE_KEY all target the correct BrandBuild project.",
+                              "Identified the Vercel deployment blocker caused by the repo head commit using BrandBuild Local <brandbuild@local.invalid>.",
+                              "Switched the repo git identity back to TJ Ware <info@byoroofer.com>, committed the integration/memory changes as 14daff9, pushed main, and redeployed production successfully.",
+                              "Verified the live homepage and login route both return HTTP 200 after the successful production deployment."
+                          ],
+        "files_created":  [],
+        "files_modified":  [
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.env.local",
+                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+                               "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
+                               "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+                               "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
+                           ],
+        "files_reviewed":  [
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.env.local",
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\env.ts",
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+                           ],
+        "key_findings":  [
+                             "The correct BrandBuild Supabase project is live and reachable at ikdewffoqtliwkoywfrx.supabase.co.",
+                             "The prior deployment failures were caused by Vercel refusing the invalid local git author on the repo head commit, not by the BrandBuild app build itself.",
+                             "Once the envs were corrected and the head commit author was valid, production deployed cleanly and aliased back to brandbuild.online."
+                         ],
+        "decisions_added":  [],
+        "memory_updates":  [
+                               "Recorded the successful BrandBuild backend realignment, the resolved Vercel deployment blocker, and the new production deployment URL."
+                           ],
+        "unresolved_items":  [
+                                 "Supabase Auth dashboard setup is still manual.",
+                                 "Kling still needs account funding.",
+                                 "Higgsfield still needs valid credentials.",
+                                 "Signed-in product validation is still needed for campaigns, uploads, and Sora generation."
+                             ],
+        "next_recommended_actions":  [
+                                         "Validate a signed-in campaign creation flow against the corrected backend.",
+                                         "Validate uploads and a signed-in Sora generation through the live dashboard.",
+                                         "Finish Supabase Auth email and redirect setup.",
+                                         "Then resume Kling and Higgsfield live validation."
+                                     ]
     }
 ]

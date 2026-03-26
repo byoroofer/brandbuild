@@ -1,6 +1,6 @@
 {
     "current_phase":  "stabilization, integration hardening, and workflow expansion",
-    "summary":  "BrandBuild is live on brandbuild.online with a premium dashboard, compare workspace, assets workspace, repaired campaign creation flow, a working in-app Sora media proxy, a no-storage shot reference fallback, reference-aware generation prompts for Sora and Kling, and a manual Supabase bootstrap file ready for live recovery. GitHub and the local Vercel project link are confirmed correct. On 2026-03-26 the user clarified that the real BrandBuild Supabase project is https://ikdewffoqtliwkoywfrx.supabase.co and that the previously checked hdwneidxkakrzrhuxqcd project belongs to PolitiViral. The remaining primary blockers are aligning Vercel and local env to the correct BrandBuild Supabase project, verifying the schema on that correct project, finishing Supabase Auth dashboard setup, verifying the Vercel admin env, and resolving provider account readiness for Kling and Higgsfield.",
+    "summary":  "BrandBuild is live on brandbuild.online with a premium dashboard, compare workspace, assets workspace, repaired campaign creation flow, a working in-app Sora media proxy, a no-storage shot reference fallback, reference-aware generation prompts for Sora and Kling, and a manual Supabase bootstrap file ready for live recovery. GitHub, the local Vercel project link, the BrandBuild Supabase project identity, the local app env, and the Vercel production env are now aligned to https://ikdewffoqtliwkoywfrx.supabase.co. A direct REST check against that correct project returned a real campaigns row and a fresh production deployment completed successfully on 2026-03-26. The remaining primary blockers are finishing Supabase Auth dashboard setup plus provider account readiness for Kling and Higgsfield.",
     "active_workstreams":  [
                                "production stability and trust",
                                "provider validation and orchestration hardening",
@@ -15,10 +15,7 @@
                                "Resolve provider account readiness: fund Kling, fix Higgsfield credentials, and continue live validation."
                            ],
     "blockers":  [
-                     "BrandBuild was previously checked against the wrong Supabase project; Vercel and local env now need to be verified against the correct BrandBuild project at https://ikdewffoqtliwkoywfrx.supabase.co.",
-                     "The BrandBuild schema still needs to be verified on the correct Supabase project because the earlier PGRST205 check targeted the wrong backend.",
                      "Supabase Auth dashboard still needs branded email hook enablement, SMTP sender setup, and redirect cleanup.",
-                     "The Vercel production env inventory still needs at least SUPABASE_SERVICE_ROLE_KEY verified or added for backend-only storage mirroring and admin workflows.",
                      "Kling live validation is blocked by account balance.",
                      "Higgsfield live validation is blocked by invalid credentials.",
                      "Supabase CLI is installed locally but not authenticated or linked to the BrandBuild project, so schema management cannot be driven from this machine yet."
@@ -43,9 +40,15 @@
                      ],
     "recent_changes":  [
                            "Created D:\\Playground\\brandbuild-online-repo\\supabase\\manual\\20260326_brandbuild_full_bootstrap.sql as a single paste-ready bootstrap that includes the missing legacy profiles foundation, BrandBuild schema, storage bucket policies, auth-user trigger wiring, and demo seed data for manual Supabase setup.",
-                           "User reported that the full manual bootstrap SQL executed successfully in Supabase on 2026-03-26.",
                            "User clarified on 2026-03-26 that the correct BrandBuild Supabase project is https://ikdewffoqtliwkoywfrx.supabase.co and that the previously checked hdwneidxkakrzrhuxqcd project belongs to PolitiViral.",
                            "The earlier direct REST verification and missing-schema conclusion against hdwneidxkakrzrhuxqcd are now superseded for BrandBuild because they targeted the wrong project.",
+                           "Cleaned apps/dashboard/.env.local so BrandBuild local development now points at ikdewffoqtliwkoywfrx with normalized provider and Supabase keys instead of the old PolitiViral project and newline-corrupted secrets.",
+                           "Verified the correct BrandBuild Supabase backend directly: https://ikdewffoqtliwkoywfrx.supabase.co/rest/v1/campaigns?select=id&limit=1 returned the seeded campaign row 11111111-1111-1111-1111-111111111111.",
+                           "Updated the brandbuild-online Vercel production environment so NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY, and SUPABASE_SERVICE_ROLE_KEY now point at the correct BrandBuild Supabase project.",
+                           "Identified and resolved the Vercel deployment blocker caused by the repo head commit using BrandBuild Local <brandbuild@local.invalid>, then switched the repo git identity back to TJ Ware <info@byoroofer.com>.",
+                           "Committed and pushed Align BrandBuild Supabase integration as 14daff9 so the head commit author now matches a valid Vercel team identity.",
+                           "Deployed production successfully at https://brandbuild-online-ddhqsaby9-byoroofers-projects.vercel.app and re-aliased https://brandbuild.online.",
+                           "Verified the live homepage and login route both return 200 after the successful production deployment.",
                            "Confirmed the Git remote is origin=https://github.com/byoroofer/brandbuild.git on the main branch for D:\\Playground\\brandbuild-online-repo.",
                            "Confirmed the local Vercel project link in apps/dashboard/.vercel/project.json points at brandbuild-online (projectId prj_tDiWPGRPN8Y3NAJ7kJEuljkp8rGr).",
                            "Confirmed Vercel CLI access to the byoroofer account and the brandbuild-online project, then added the missing safe production env vars NEXT_PUBLIC_APP_NAME, NEXT_PUBLIC_SUPPORT_EMAIL, STORAGE_BUCKET_ASSETS, and STORAGE_BUCKET_EXPORTS.",
@@ -104,18 +107,14 @@
                            "Pushed the hosted-reference and sample-import batch to origin/main in commit e7393d3 so git, deployment, and project memory are aligned again."
                        ],
     "next_steps":  [
-                       "Verify that Vercel and local env both point BrandBuild at https://ikdewffoqtliwkoywfrx.supabase.co instead of the old PolitiViral project.",
-                       "Run a verification query in the Supabase SQL Editor for project ikdewffoqtliwkoywfrx to confirm whether public.campaigns and related tables exist there.",
-                       "If the verification query returns null tables, rerun the full bootstrap SQL in the correct BrandBuild project window.",
-                       "Finish Supabase Auth dashboard setup: Site URL, redirect URLs, Send Email Hook, and SMTP sender configuration.",
-                       "Verify or add SUPABASE_SERVICE_ROLE_KEY in the brandbuild-online Vercel project.",
-                       "Authenticate the Supabase CLI on this machine and link the repo to the live BrandBuild project if you want agent-driven schema and function management from the terminal.",
-                       "Validate campaign creation against the real database.",
+                       "Validate campaign creation against the real BrandBuild database now that the backend is aligned to ikdewffoqtliwkoywfrx.",
                        "Validate a signed-in Sora dashboard generation using a sample or hosted reference and confirm the result streams through BrandBuild.",
+                       "Finish Supabase Auth dashboard setup: Site URL, redirect URLs, Send Email Hook, and SMTP sender configuration.",
+                       "Authenticate the Supabase CLI on this machine and link the repo to the live BrandBuild project if you want agent-driven schema and function management from the terminal.",
                        "Finish Supabase Auth dashboard setup for branded email and correct redirect behavior.",
                        "Fund or otherwise unblock the Kling account, then rerun a live Kling smoke test and a signed-in dashboard generation.",
                        "Fix or rotate Higgsfield credentials, then rerun the smoke test and a signed-in dashboard generation.",
                        "Add timeline sequencing across selected outputs and deepen the delivery/export workflow."
                    ],
-    "updated_at":  "2026-03-26T13:02:03.4617083-05:00"
+    "updated_at":  "2026-03-26T13:35:24.0148653-05:00"
 }
