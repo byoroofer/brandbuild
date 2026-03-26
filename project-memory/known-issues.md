@@ -1,5 +1,6 @@
 ﻿# BrandBuild Known Issues
 ## Critical / Active
+- The connected live Supabase project is still missing the BrandBuild schema. Direct REST reads currently return `PGRST205` for `public.campaigns` until the foundation, account, and assets migrations are applied.
 - Supabase Auth dashboard setup is still incomplete, so branded auth emails and clean BrandBuild-native magic-link behavior are not fully live yet.
 - Authenticated private uploads still need the assets bucket and storage policy migration applied in Supabase before they work end to end on production.
 - Kling live validation is blocked by Account balance not enough.
@@ -12,6 +13,7 @@
 - Campaign creation was moved off the server-action path and onto POST /api/campaigns so failures stay inline instead of spilling into the global error boundary.
 - The repo includes pps/dashboard/scripts/provider-smoke.mjs for repeatable live provider checks outside the signed-in UI flow.
 - The repo now also includes a no-storage shot fallback path: operators can attach hosted HTTPS media URLs or import curated BrandBuild sample references directly on shot detail.
+- Attached shot references now enrich `provider_prompt_text` for Sora and Kling, but direct provider-native multimodal reference parameters are still unverified and unshipped.
 - The read model can fall back to demo state too aggressively when live queries partially fail.
 - The root package naming still says i-video-studio even though the product brand is BrandBuild.
 - Next.js currently warns about workspace-root inference because both the parent workspace and this repo contain lockfiles.

@@ -119,3 +119,10 @@
 pm run typecheck and 
 pm run build successfully.
 - Next: deploy this batch, then validate a signed-in Sora dashboard run using the new fallback reference path.
+
+## 2026-03-25 19:55-20:02 CT - Reference-Aware Generation And Schema Triage
+- Confirmed the hosted-reference and sample-import workflow was live, but Sora and Kling were still ignoring attached references at enqueue time.
+- Updated the shared generation pipeline so attached shot references now enrich `provider_prompt_text` for Sora and Kling, while Higgsfield keeps its direct reference-image path.
+- Verified by direct REST call that the connected live Supabase project is still missing the BrandBuild schema and currently returns `PGRST205` for `public.campaigns`.
+- Hardened the campaigns surface so empty but valid live datasets stay in live mode, while missing-schema environments degrade into a clear setup state instead of surfacing raw PostgREST cache errors.
+- Re-ran `npm run typecheck` and `npm run build`, committed the product batch as `2041747`, and deployed production to `https://brandbuild-online-ijil4m0yh-byoroofers-projects.vercel.app`.

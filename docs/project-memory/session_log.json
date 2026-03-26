@@ -1,1011 +1,1095 @@
-﻿[
-    {
-        "value":  [
-                      {
-                          "session_id":  "2026-03-24-repo-cleanup-memory-init",
-                          "timestamp_start":  "2026-03-24T17:40:09.0933149-05:00",
-                          "timestamp_end":  "2026-03-24T17:40:09.0933149-05:00",
-                          "user_objective":  "Audit repo overlap, remove misplaced legacy runtime work, and initialize durable project memory.",
-                          "actions_taken":  [
-                                                "Cleaned BrandBuild repo boundaries.",
-                                                "Updated the forbidden-reference guard.",
-                                                "Initialized the first structured project-memory files."
-                                            ],
-                          "files_created":  [
-                                                "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json",
-                                                "D:\\Playground\\brandbuild-online-repo\\.project-memory\\goals_and_rules.json",
-                                                "D:\\Playground\\brandbuild-online-repo\\.project-memory\\current_state.json",
-                                                "D:\\Playground\\brandbuild-online-repo\\.project-memory\\decisions_log.json",
-                                                "D:\\Playground\\brandbuild-online-repo\\.project-memory\\session_log.json",
-                                                "D:\\Playground\\brandbuild-online-repo\\.project-memory\\tasks.json",
-                                                "D:\\Playground\\brandbuild-online-repo\\.project-memory\\file_index.json",
-                                                "D:\\Playground\\brandbuild-online-repo\\.project-memory\\knowledge_registry.json"
-                                            ],
-                          "files_modified":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs"
-                                             ],
-                          "files_reviewed":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\README.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\package.json"
-                                             ],
-                          "key_findings":  [
-                                               "BrandBuild and AI Video belong to the same product family.",
-                                               "The repo had already experienced cross-product contamination and needed stronger boundaries."
-                                           ],
-                          "decisions_added":  [
-                                                  "brandbuild-dec-20260324-001",
-                                                  "brandbuild-dec-20260324-002",
-                                                  "brandbuild-dec-20260324-003"
-                                              ],
-                          "memory_updates":  [
-                                                 "Initialized the first repo-backed memory set."
-                                             ],
-                          "unresolved_items":  [
-                                                   "Naming drift between BrandBuild and ai-video-studio remained unresolved."
-                                               ],
-                          "next_recommended_actions":  [
-                                                           "Keep future product work inside the BrandBuild surface only.",
-                                                           "Continue maintaining durable memory in files."
-                                                       ]
-                      },
-                      {
-                          "session_id":  "2026-03-24-upstream-sync",
-                          "timestamp_start":  "2026-03-24T19:25:09.983424-05:00",
-                          "timestamp_end":  "2026-03-24T19:25:09.983424-05:00",
-                          "user_objective":  "Send the current repo changes upstream and preserve the outcome in memory.",
-                          "actions_taken":  [
-                                                "Recorded that cleanup work had already been pushed upstream.",
-                                                "Marked the push task complete in memory."
-                                            ],
-                          "files_created":  [
-
-                                            ],
-                          "files_modified":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\.project-memory\\current_state.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\.project-memory\\session_log.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\.project-memory\\tasks.json"
-                                             ],
-                          "files_reviewed":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\.project-memory\\current_state.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\.project-memory\\session_log.json"
-                                             ],
-                          "key_findings":  [
-                                               "The earlier cleanup work was already safely upstream."
-                                           ],
-                          "decisions_added":  [
-                                                  "brandbuild-dec-20260324-004"
-                                              ],
-                          "memory_updates":  [
-                                                 "Recorded the upstream sync state."
-                                             ],
-                          "unresolved_items":  [
-                                                   "Naming drift remained unresolved."
-                                               ],
-                          "next_recommended_actions":  [
-                                                           "Focus the next session on product work rather than repo cleanup."
-                                                       ]
-                      },
-                      {
-                          "session_id":  "2026-03-24-platform-audit-control-center",
-                          "timestamp_start":  "2026-03-24T18:15:00-05:00",
-                          "timestamp_end":  "2026-03-24T18:55:00-05:00",
-                          "user_objective":  "Audit the full BrandBuild product, identify what works or is missing, and start implementing the highest-value improvements.",
-                          "actions_taken":  [
-                                                "Audited the app routes, core dashboard pages, provider adapters, auth layer, generation pipeline, storage helpers, and Supabase foundations.",
-                                                "Added a system audit model for product and integration readiness.",
-                                                "Added /dashboard/settings as an in-product control center.",
-                                                "Added the requested root project-memory operating files."
-                                            ],
-                          "files_created":  [
-                                                "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
-                                                "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\settings\\studio-control-center.tsx",
-                                                "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\settings\\page.tsx",
-                                                "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
-                                                "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
-                                                "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
-                                                "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
-                                                "D:\\Playground\\brandbuild-online-repo\\project-memory\\ui-ux-review.md",
-                                                "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md"
-                                            ],
-                          "files_modified":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\dashboard\\dashboard-shell.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\page.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\dashboard\\command-bar.tsx"
-                                             ],
-                          "files_reviewed":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\prompt-builder.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\supabase\\functions\\send-auth-email\\index.ts"
-                                             ],
-                          "key_findings":  [
-                                               "BrandBuild already had a meaningful shot workspace, private asset uploads, and live-capable provider adapters.",
-                                               "The biggest missing layers were compare outputs, versioning, edit handoff/export, and admin/debug visibility.",
-                                               "The largest non-code blocker remained manual Supabase Auth dashboard setup."
-                                           ],
-                          "decisions_added":  [
-                                                  "brandbuild-dec-20260324-005"
-                                              ],
-                          "memory_updates":  [
-                                                 "Added a human-facing project-memory operating layer at project-memory/."
-                                             ],
-                          "unresolved_items":  [
-                                                   "The canonical structured memory location was still inconsistent.",
-                                                   "Provider runs had not yet been fully validated in production."
-                                               ],
-                          "next_recommended_actions":  [
-                                                           "Consolidate project memory to a single canonical structured location.",
-                                                           "Validate one real run per provider.",
-                                                           "Build compare outputs as the next workflow surface."
-                                                       ]
-                      },
-                      {
-                          "session_id":  "2026-03-24-production-recovery-memory-consolidation",
-                          "timestamp_start":  "2026-03-24T19:30:00-05:00",
-                          "timestamp_end":  "2026-03-24T19:41:23.2499373-05:00",
-                          "user_objective":  "Make brandbuild.online work again after a production application error and preserve the correct state durably.",
-                          "actions_taken":  [
-                                                "Verified that production was pointing at an older Vercel deployment.",
-                                                "Deployed the latest BrandBuild dashboard workspace to Vercel production.",
-                                                "Confirmed brandbuild.online, /login, and signed-out /dashboard surfaces were healthy.",
-                                                "Consolidated structured memory under docs/project-memory and mirrored it to .project-memory.",
-                                                "Re-ran typecheck and production build successfully after memory consolidation."
-                                            ],
-                          "files_created":  [
-
-                                            ],
-                          "files_modified":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\goals_and_rules.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\decisions_log.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\file_index.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\ui-ux-review.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md"
-                                             ],
-                          "files_reviewed":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\package.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\package.json"
-                                             ],
-                          "key_findings":  [
-                                               "The production error was caused by the domain serving an older deployment, not by a newly introduced code regression in the local workspace.",
-                                               "Memory had diverged across docs/project-memory, .project-memory, and project-memory and needed deliberate consolidation.",
-                                               "The repo builds cleanly, but Next.js warns that multiple lockfiles cause workspace-root inference."
-                                           ],
-                          "decisions_added":  [
-                                                  "brandbuild-dec-20260324-006"
-                                              ],
-                          "memory_updates":  [
-                                                 "Promoted docs/project-memory to canonical structured memory.",
-                                                 "Aligned .project-memory as a mirror and preserved project-memory as the human-facing operating summary."
-                                             ],
-                          "unresolved_items":  [
-                                                   "Supabase Auth dashboard setup remains incomplete.",
-                                                   "Live provider runs still need full validation.",
-                                                   "The Next.js workspace-root warning should be cleaned up by setting outputFileTracingRoot or removing the extra lockfile."
-                                               ],
-                          "next_recommended_actions":  [
-                                                           "Keep production on the current deployment target.",
-                                                           "Continue with compare outputs and provider validation.",
-                                                           "Resolve the workspace-root warning when it is safe to touch build configuration."
-                                                       ]
-                      },
-                      {
-                          "session_id":  "2026-03-24-production-incident-dashboard-hardening",
-                          "timestamp_start":  "2026-03-24T23:50:00-05:00",
-                          "timestamp_end":  "2026-03-24T23:59:00-05:00",
-                          "user_objective":  "Fix the live BrandBuild server-side crash showing the global error screen and make the site work again immediately.",
-                          "actions_taken":  [
-                                                "Confirmed the live domain and current production deployment were reachable.",
-                                                "Reproduced that public routes were healthy in a real browser and narrowed the likely failure to authenticated dashboard initialization.",
-                                                "Hardened the studio persistence client so server-side auth or Supabase initialization failures return null instead of throwing through the dashboard path.",
-                                                "Re-ran typecheck and build successfully.",
-                                                "Deployed the fix to Vercel production and verified brandbuild.online, /login, and the signed-out /dashboard redirect in a browser."
-                                            ],
-                          "files_created":  [
-
-                                            ],
-                          "files_modified":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\file_index.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md"
-                                             ],
-                          "files_reviewed":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\session.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\layout.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\error.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\global-error.tsx"
-                                             ],
-                          "key_findings":  [
-                                               "The live domain was on a ready deployment, so the incident was not caused by a broken alias.",
-                                               "Public routes were healthy, which pointed to a user-session or dashboard initialization failure path.",
-                                               "The dashboard read client could throw before the repository fallback logic ran, making an authenticated request vulnerable to the global error boundary."
-                                           ],
-                          "decisions_added":  [
-
-                                              ],
-                          "memory_updates":  [
-                                                 "Recorded the production incident, the client hardening change, and the remaining Dynamic server usage build warning."
-                                             ],
-                          "unresolved_items":  [
-                                                   "The marketing route still logs a non-fatal Dynamic server usage warning during build.",
-                                                   "Supabase Auth dashboard setup remains incomplete.",
-                                                   "Live provider runs still need full validation."
-                                               ],
-                          "next_recommended_actions":  [
-                                                           "Clean up the root-route cookie access so the build log is quieter and more trustworthy.",
-                                                           "Continue with Supabase Auth setup and provider validation."
-                                                       ]
-                      },
-                      {
-                          "session_id":  "2026-03-25-local-env-sync",
-                          "timestamp_start":  "2026-03-25T00:05:00-05:00",
-                          "timestamp_end":  "2026-03-25T00:08:00-05:00",
-                          "user_objective":  "Resolve the NEXT_PUBLIC_SUPABASE_URL is not set error.",
-                          "actions_taken":  [
-                                                "Verified that the BrandBuild production environment still contained NEXT_PUBLIC_SUPABASE_URL and the public key.",
-                                                "Confirmed the clean repo had no local .env.local file for the dashboard app.",
-                                                "Pulled the current production environment into apps/dashboard/.env.local."
-                                            ],
-                          "files_created":  [
-                                                "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.env.local"
-                                            ],
-                          "files_modified":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md"
-                                             ],
-                          "files_reviewed":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\env.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\browser.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\server.ts"
-                                             ],
-                          "key_findings":  [
-                                               "This specific error was caused by missing local app environment, not a missing production Vercel variable.",
-                                               "In this repo, the dashboard app needs its own apps/dashboard/.env.local for local runs."
-                                           ],
-                          "decisions_added":  [
-
-                                              ],
-                          "memory_updates":  [
-                                                 "Recorded that local env should be pulled into apps/dashboard/.env.local when syncing from production."
-                                             ],
-                          "unresolved_items":  [
-                                                   "Supabase Auth dashboard setup remains incomplete.",
-                                                   "Live provider runs still need full validation."
-                                               ],
-                          "next_recommended_actions":  [
-                                                           "Restart the local Next.js server so it loads the new env file.",
-                                                           "Keep apps/dashboard/.env.local in sync with intended local runtime values."
-                                                       ]
-                      },
-                      {
-                          "session_id":  "2026-03-25-git-vs-production-status-check",
-                          "timestamp_start":  "2026-03-25T00:12:00-05:00",
-                          "timestamp_end":  "2026-03-25T00:13:00-05:00",
-                          "user_objective":  "Confirm whether the latest BrandBuild fixes were pushed.",
-                          "actions_taken":  [
-                                                "Checked git status in the clean BrandBuild repo.",
-                                                "Compared local HEAD with origin/main.",
-                                                "Confirmed that production includes uncommitted local changes from the recent incident response."
-                                            ],
-                          "files_created":  [
-
-                                            ],
-                          "files_modified":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
-                                             ],
-                          "files_reviewed":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts"
-                                             ],
-                          "key_findings":  [
-                                               "HEAD and origin/main are both still ff709e12df03d60a78d4a645685f0e40a8d0dd0b.",
-                                               "The recent local fixes exist only in the working tree and the live Vercel deployment."
-                                           ],
-                          "decisions_added":  [
-
-                                              ],
-                          "memory_updates":  [
-                                                 "Recorded the current divergence between git and the live deployment."
-                                             ],
-                          "unresolved_items":  [
-                                                   "Local fixes still need a commit and push."
-                                               ],
-                          "next_recommended_actions":  [
-                                                           "Commit the current BrandBuild incident fixes and project-memory updates.",
-                                                           "Push main so git matches production again."
-                                                       ]
-                      },
-                      {
-                          "session_id":  "2026-03-25-push-runtime-fixes",
-                          "timestamp_start":  "2026-03-25T00:13:00-05:00",
-                          "timestamp_end":  "2026-03-25T00:18:00-05:00",
-                          "user_objective":  "Push the current BrandBuild runtime fixes and memory updates.",
-                          "actions_taken":  [
-                                                "Verified the intended diff and reran typecheck and build.",
-                                                "Committed the staged runtime fix and memory updates as 4351c81.",
-                                                "Pushed main to origin so git now includes the live production fix set."
-                                            ],
-                          "files_created":  [
-
-                                            ],
-                          "files_modified":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
-                                             ],
-                          "files_reviewed":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts"
-                                             ],
-                          "key_findings":  [
-                                               "The deployed runtime fix is now committed and pushed in git.",
-                                               "origin/main now includes the current BrandBuild production hardening work."
-                                           ],
-                          "decisions_added":  [
-
-                                              ],
-                          "memory_updates":  [
-                                                 "Recorded the successful push and cleared the deployed-but-unpushed known issue."
-                                             ],
-                          "unresolved_items":  [
-                                                   "Supabase Auth dashboard setup remains incomplete.",
-                                                   "Live provider runs still need full validation.",
-                                                   "The non-fatal Dynamic server usage build warning still needs cleanup."
-                                               ],
-                          "next_recommended_actions":  [
-                                                           "Continue with Supabase Auth setup, provider validation, and the marketing-root warning cleanup."
-                                                       ]
-                      },
-                      {
-                          "session_id":  "2026-03-25-marketing-root-static-fix",
-                          "timestamp_start":  "2026-03-25T00:20:00-05:00",
-                          "timestamp_end":  "2026-03-25T00:28:00-05:00",
-                          "user_objective":  "Continue improving stability by removing the non-fatal Dynamic server usage warning on the marketing root.",
-                          "actions_taken":  [
-                                                "Inspected the marketing homepage and confirmed it still called getOptionalUser and getWorkspaceMode.",
-                                                "Refactored the homepage to use only static-safe provider catalog and env-based workspace readiness.",
-                                                "Re-ran typecheck and build successfully and confirmed the Dynamic server usage warning no longer appears."
-                                            ],
-                          "files_created":  [
-
-                                            ],
-                          "files_modified":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
-                                             ],
-                          "files_reviewed":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx"
-                                             ],
-                          "key_findings":  [
-                                               "The warning came from cookie-dependent auth and workspace checks on the marketing root.",
-                                               "The root page does not need to auto-redirect authenticated users in order to satisfy BrandBuild\u0027s core workflow."
-                                           ],
-                          "decisions_added":  [
-
-                                              ],
-                          "memory_updates":  [
-                                                 "Marked the Dynamic server usage warning as resolved."
-                                             ],
-                          "unresolved_items":  [
-                                                   "Supabase Auth dashboard setup remains incomplete.",
-                                                   "Live provider runs still need full validation.",
-                                                   "The Next.js workspace-root warning from duplicate lockfiles still remains."
-                                               ],
-                          "next_recommended_actions":  [
-                                                           "Push the root-page fix and deploy it so production and git remain aligned.",
-                                                           "Continue with Supabase Auth setup and provider validation."
-                                                       ]
-                      },
-                      {
-                          "session_id":  "2026-03-25-push-and-deploy-static-homepage-fix",
-                          "timestamp_start":  "2026-03-25T08:00:00-05:00",
-                          "timestamp_end":  "2026-03-25T08:11:00-05:00",
-                          "user_objective":  "Continue the pending BrandBuild stability batch through push and production deployment.",
-                          "actions_taken":  [
-                                                "Loaded the BrandBuild project memory and confirmed the pending diff was the static-safe marketing homepage fix plus aligned memory updates.",
-                                                "Mirrored canonical structured memory into .project-memory before shipping.",
-                                                "Re-ran typecheck and production build successfully.",
-                                                "Committed the batch as 6701f83 and pushed main to origin.",
-                                                "Deployed the dashboard app to Vercel production and re-aliased brandbuild.online.",
-                                                "Verified the live site with direct checks: root 200, login 200, signed-out dashboard 307 to /login."
-                                            ],
-                          "files_created":  [
-
-                                            ],
-                          "files_modified":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
-                                             ],
-                          "files_reviewed":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
-                                             ],
-                          "key_findings":  [
-                                               "The outstanding batch was production-safe and verified locally before shipping.",
-                                               "The marketing homepage fix is now in git and live production, so git, memory, and Vercel are aligned again."
-                                           ],
-                          "decisions_added":  [
-
-                                              ],
-                          "memory_updates":  [
-                                                 "Recorded the successful push, deployment, and live verification outcome."
-                                             ],
-                          "unresolved_items":  [
-                                                   "Supabase Auth dashboard setup remains incomplete.",
-                                                   "Live provider runs still need full validation.",
-                                                   "The Next.js workspace-root warning from duplicate lockfiles still remains."
-                                               ],
-                          "next_recommended_actions":  [
-                                                           "Finish Supabase Auth dashboard setup for branded emails and correct redirect behavior.",
-                                                           "Validate one real run each for Sora, Kling, and Higgsfield.",
-                                                           "Build the compare outputs workspace."
-                                                       ]
-                      },
-                      {
-                          "session_id":  "2026-03-25-compare-workspace-batch",
-                          "timestamp_start":  "2026-03-25T08:12:00-05:00",
-                          "timestamp_end":  "2026-03-25T08:38:00-05:00",
-                          "user_objective":  "Continue BrandBuild by implementing the next major workflow surface after stabilization.",
-                          "actions_taken":  [
-                                                "Loaded BrandBuild project memory and identified compare outputs as the next implementable vertical slice.",
-                                                "Audited the existing reviews route, reviews workbench, asset library, studio types, and repository read model.",
-                                                "Expanded the reviews read model into shot-grouped comparison data with provider, generation, campaign, and average-score context.",
-                                                "Rebuilt /dashboard/reviews into a premium compare-outputs workspace with filters, grouped shot navigation, rich previews, and focused review detail.",
-                                                "Re-ran typecheck and production build successfully.",
-                                                "Committed the batch as 387f697 and pushed main to origin.",
-                                                "Deployed the dashboard app to Vercel production and re-aliased brandbuild.online.",
-                                                "Verified the live site with direct checks: root 200, login 200, signed-out dashboard 307, and signed-out dashboard/reviews 307 to /login."
-                                            ],
-                          "files_created":  [
-
-                                            ],
-                          "files_modified":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\decisions_log.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\file_index.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\ui-ux-review.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md"
-                                             ],
-                          "files_reviewed":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\reviews\\page.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
-                                             ],
-                          "key_findings":  [
-                                               "The old reviews surface still behaved like a score list and did not express BrandBuild\u0027s multi-model compare value clearly.",
-                                               "The existing schema already had enough data to build a proper compare workspace without migration drift."
-                                           ],
-                          "decisions_added":  [
-                                                  "brandbuild-dec-20260325-007"
-                                              ],
-                          "memory_updates":  [
-                                                 "Marked compare outputs as a shipped workflow surface and moved the roadmap forward to versions plus handoff."
-                                             ],
-                          "unresolved_items":  [
-                                                   "Supabase Auth dashboard setup remains incomplete.",
-                                                   "Live provider runs still need full validation.",
-                                                   "Version timeline and edit handoff/export are still missing."
-                                               ],
-                          "next_recommended_actions":  [
-                                                           "Design and build version groups plus edit handoff/export next.",
-                                                           "Continue with Supabase Auth setup and live provider validation."
-                                                       ]
-                      },
-                      {
-                          "session_id":  "2026-03-25-assets-workspace-version-handoff-batch",
-                          "timestamp_start":  "2026-03-25T08:43:00-05:00",
-                          "timestamp_end":  "2026-03-25T09:09:41.3207972-05:00",
-                          "user_objective":  "Continue BrandBuild by turning the assets area into the next workflow surface after compare outputs.",
-                          "actions_taken":  [
-                                                "Loaded BrandBuild project memory and confirmed version groups plus handoff were the next highest-value workflow layer.",
-                                                "Expanded the assets read model so it derives normalized version candidates, grouped version sets, and campaign handoff packages from the existing schema.",
-                                                "Restored and wired the assets workspace to support library, versions, and handoff views on /dashboard/assets.",
-                                                "Re-ran typecheck and production build successfully.",
-                                                "Committed the batch as 428ce4b and pushed main to origin.",
-                                                "Deployed the dashboard app to Vercel production and re-aliased brandbuild.online.",
-                                                "Verified the live root returns 200 after deployment."
-                                            ],
-                          "files_created":  [
-
-                                            ],
-                          "files_modified":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\decisions_log.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\file_index.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\ui-ux-review.md",
-                                                 "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md"
-                                             ],
-                          "files_reviewed":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
-                                             ],
-                          "key_findings":  [
-                                               "The existing schema already contained enough information to build version groups and handoff packages without migration drift.",
-                                               "Keeping versions and handoff inside /dashboard/assets preserved navigation clarity while materially upgrading the workflow.",
-                                               "The shipped assets workspace can reach production cleanly without route churn or schema changes."
-                                           ],
-                          "decisions_added":  [
-                                                  "brandbuild-dec-20260325-008"
-                                              ],
-                          "memory_updates":  [
-                                                 "Recorded the new assets workspace as a shipped workflow surface and advanced the roadmap to timeline sequencing plus live validation."
-                                             ],
-                          "unresolved_items":  [
-                                                   "Supabase Auth dashboard setup remains incomplete.",
-                                                   "Live provider runs still need full validation.",
-                                                   "There is still no dedicated timeline sequencing interface across selected outputs."
-                                               ],
-                          "next_recommended_actions":  [
-                                                           "Validate one real run each for Sora, Kling, and Higgsfield.",
-                                                           "Add campaign-level sequencing and delivery preparation on top of the new handoff data."
-                                                       ]
-                      },
-                      {
-                          "session_id":  "2026-03-25-auth-boundary-incident-hardening",
-                          "timestamp_start":  "2026-03-25T09:10:00-05:00",
-                          "timestamp_end":  "2026-03-25T09:34:30.9567883-05:00",
-                          "user_objective":  "Fix the live BrandBuild error page that was still appearing during login and auth-link handling.",
-                          "actions_taken":  [
-                                                "Loaded BrandBuild project memory and treated the issue as a production incident.",
-                                                "Inspected the dashboard, auth, Supabase server, and middleware boundaries instead of assuming the latest UI batch was the direct cause.",
-                                                "Pulled Vercel deploy output and runtime logging commands to narrow the failure toward the auth/session boundary.",
-                                                "Hardened middleware session refresh so bad cookies or Supabase session-refresh failures return a safe anonymous response instead of throwing.",
-                                                "Hardened auth email-action handling so callback failures redirect back to login with a safe error instead of hitting the global error page.",
-                                                "Re-ran typecheck and production build successfully.",
-                                                "Deployed the fix to Vercel production and re-aliased brandbuild.online.",
-                                                "Verified the live root returns 200 after the incident deployment."
-                                            ],
-                          "files_created":  [
-
-                                            ],
-                          "files_modified":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\middleware.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\email-action.ts"
-                                             ],
-                          "files_reviewed":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\layout.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\session.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\email-action.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\middleware.ts"
-                                             ],
-                          "key_findings":  [
-                                               "The newly shipped assets workspace was build-clean and not the most likely root cause of the live error page.",
-                                               "The remaining brittle paths were middleware session refresh and auth callback handling around bad cookies, expired links, or transient Supabase failures."
-                                           ],
-                          "decisions_added":  [
-
-                                              ],
-                          "memory_updates":  [
-                                                 "Recorded the auth/session hardening as a production reliability fix and preserved the exact deployment URL."
-                                             ],
-                          "unresolved_items":  [
-                                                   "Supabase Auth dashboard setup remains incomplete.",
-                                                   "Live provider runs still need full validation.",
-                                                   "Campaign-level sequencing across selected outputs is still unbuilt."
-                                               ],
-                          "next_recommended_actions":  [
-                                                           "Push the auth-boundary incident fix to origin/main.",
-                                                           "Keep watching the login and callback paths until the user confirms the global error page is gone.",
-                                                           "Continue with Supabase Auth dashboard setup and real provider validation."
-                                                       ]
-                      },
-                      {
-                          "session_id":  "2026-03-25-public-login-path-hardening",
-                          "timestamp_start":  "2026-03-25T12:00:00-05:00",
-                          "timestamp_end":  "2026-03-25T12:18:00-05:00",
-                          "user_objective":  "Fix the public-site login button so it actually takes users to the login page.",
-                          "actions_taken":  [
-                                                "Loaded BrandBuild project memory and inspected the public header, homepage, marketing media surfaces, login route, and redirect helpers.",
-                                                "Confirmed the actual /login route was healthy and narrowed the UX issue to the public marketing shell rather than the auth page itself.",
-                                                "Updated the public header and footer so access CTAs point directly to /login rather than relying on a /dashboard redirect.",
-                                                "Marked decorative marketing overlays, video frames, and preview layers as pointer-events-none so they cannot intercept clicks or taps.",
-                                                "Re-ran typecheck and production build successfully.",
-                                                "Deployed production to Vercel and re-aliased brandbuild.online.",
-                                                "Verified the live root returned 200 after the deployment.",
-                                                "Committed the batch as 74eafe4 and pushed main so git matches the live fix."
-                                            ],
-                          "files_created":  [
-
-                                            ],
-                          "files_modified":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx"
-                                             ],
-                          "files_reviewed":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(auth)\\login\\page.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\auth\\login-form.tsx",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\redirects.ts"
-                                             ],
-                          "key_findings":  [
-                                               "The public-site login path issue was a UX and hit-testing problem, not a missing /login route.",
-                                               "On smaller screens, the visible header CTA was effectively the primary access path, so sending it to /dashboard created unnecessary dependence on protected-route redirect behavior.",
-                                               "Decorative marketing overlays should be explicitly non-interactive so they cannot interfere with CTA clicks."
-                                           ],
-                          "decisions_added":  [
-                                                  "brandbuild-dec-20260325-009"
-                                              ],
-                          "memory_updates":  [
-                                                 "Recorded the public login-path hardening and the new navigation/hit-testing rule for future marketing work."
-                                             ],
-                          "unresolved_items":  [
-                                                   "Supabase Auth dashboard setup remains incomplete.",
-                                                   "Live provider runs still need full validation.",
-                                                   "Campaign-level sequencing across selected outputs is still unbuilt."
-                                               ],
-                          "next_recommended_actions":  [
-                                                           "Verify the live /login path in a browser session once the user tests the updated site.",
-                                                           "Continue with Supabase Auth dashboard setup and real provider validation."
-                                                       ]
-                      },
-                      {
-                          "session_id":  "2026-03-25-sora-proxy-and-storage-auth",
-                          "timestamp_start":  "2026-03-25T15:56:00-05:00",
-                          "timestamp_end":  "2026-03-25T16:30:00-05:00",
-                          "user_objective":  "Continue autonomously on the highest-value live integration blockers and make BrandBuild more usable end to end.",
-                          "actions_taken":  [
-                                                "Reloaded project memory and confirmed the active blockers.",
-                                                "Inspected the raw OpenAI video status payload for the completed Sora job.",
-                                                "Verified that completed Sora media is retrieved from /v1/videos/{video_id}/content.",
-                                                "Added a BrandBuild proxy route for completed generation media.",
-                                                "Updated the Sora adapter and generation output mapping to use the content endpoint truthfully.",
-                                                "Refactored shot uploads and storage-backed asset URL resolution to use authenticated Supabase storage access.",
-                                                "Added a Supabase storage migration for the assets bucket and authenticated storage policies.",
-                                                "Updated the provider smoke harness to reflect the new upload/mirroring readiness split.",
-                                                "Ran typecheck, production build, a live Sora smoke-status check, and deployed production."
-                                            ],
-                          "files_created":  [
-                                                "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\content\\route.ts",
-                                                "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\generation-content.ts",
-                                                "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260325164000_assets_bucket_policies.sql"
-                                            ],
-                          "files_modified":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\route.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\route.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\generated-asset-storage.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\types.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\server.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
-                                             ],
-                          "files_reviewed":  [
-                                                 "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\generated-asset-storage.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\server.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-                                                 "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts"
-                                             ],
-                          "key_findings":  [
-                                               "The raw OpenAI video status object for a completed Sora render does not include a direct media URL.",
-                                               "The real media is available from the authenticated /v1/videos/{video_id}/content endpoint.",
-                                               "Shot uploads do not inherently require SUPABASE_SERVICE_ROLE_KEY; they can run through authenticated Supabase storage when the bucket and policies exist.",
-                                               "Server-side storage credentials are still needed for backend-only provider-output mirroring."
-                                           ],
-                          "decisions_added":  [
-                                                  "brandbuild-decision-012",
-                                                  "brandbuild-decision-013"
-                                              ],
-                          "memory_updates":  [
-                                                 "Updated current state, tasks, file index, and knowledge to reflect the Sora content proxy and storage-auth upload architecture.",
-                                                 "Mirrored canonical structured memory into .project-memory.",
-                                                 "Updated root project-memory operating files with the new deployment and next steps."
-                                             ],
-                          "unresolved_items":  [
-                                                   "Supabase storage migration still needs to be applied to the live project.",
-                                                   "Supabase branded auth/email setup is still manual.",
-                                                   "Kling account still needs balance.",
-                                                   "Higgsfield credentials are still invalid."
-                                               ],
-                          "next_recommended_actions":  [
-                                                           "Apply the assets bucket/storage policy migration in Supabase.",
-                                                           "Validate a real signed-in upload and Sora dashboard generation.",
-                                                           "Finish Supabase Auth dashboard configuration.",
-                                                           "Unblock Kling and Higgsfield for live dashboard validation."
-                                                       ]
-                      }
-                  ],
-        "Count":  14
-    },
-    {
-        "session_id":  "brandbuild-session-2026-03-25-repo-capture",
-        "timestamp_start":  "2026-03-25T12:24:56.9046794-05:00",
-        "timestamp_end":  "2026-03-25T12:24:56.9046794-05:00",
-        "user_objective":  "Capture the correct BrandBuild Git repo and preserve its relationship to the local Stable Diffusion tool.",
-        "actions_taken":  [
-                              "Confirmed the actual BrandBuild remote URL and kept it in git configuration rather than repeating it in memory prose.",
-                              "Verified the existing local repo at D:\\\\Playground\\\\brandbuild-online-repo still exists and already points at that origin.",
-                              "Cloned a secondary local copy to D:\\\\Projects\\\\brandbuild while resolving the repo location.",
-                              "Updated structured project memory to keep the D:\\\\Playground checkout canonical and record the future Stable Diffusion integration relationship."
-                          ],
-        "files_created":  [
-
-                          ],
-        "files_modified":  [
-                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
-                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
-                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\decisions_log.json",
-                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
-                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
-                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json"
-                           ],
-        "files_reviewed":  [
-                               "D:\\Playground\\brandbuild-online-repo\\README.md",
-                               "D:\\Playground\\brandbuild-online-repo\\package.json",
-                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
-                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json"
-                           ],
-        "key_findings":  [
-                             "The user-provided GitHub repo URL matches the existing BrandBuild remote already used locally.",
-                             "The existing D:\\\\Playground checkout should stay canonical because prior memory and deployment history point there.",
-                             "A new secondary clone now exists at D:\\\\Projects\\\\brandbuild and should not become a competing source of truth by accident."
-                         ],
-        "decisions_added":  [
-                                "brandbuild-dec-20260325-009"
-                            ],
-        "memory_updates":  [
-                               "Recorded the confirmed GitHub remote and canonical local repo path.",
-                               "Recorded the future integration relationship between BrandBuild and the Stable Diffusion local tooling."
-                           ],
-        "unresolved_items":  [
-                                 "The future integration boundary for local generative tooling is still undecided.",
-                                 "It is still undecided whether the secondary D:\\\\Projects clone should be kept long-term."
-                             ],
-        "next_recommended_actions":  [
-                                         "Keep using D:\\\\Playground\\\\brandbuild-online-repo for actual BrandBuild work unless the canonical path is intentionally changed later.",
-                                         "Decide the integration boundary only after the local Stable Diffusion tool is ready for controlled testing."
-                                     ]
-    },
-    {
-        "session_id":  "brandbuild-session-2026-03-25-campaign-repair-and-provider-smoke",
-        "timestamp_start":  "2026-03-25T12:46:38.0836727-05:00",
-        "timestamp_end":  "2026-03-25T15:19:24-05:00",
-        "user_objective":  "Make BrandBuild actually work when creating campaigns, verify uploads and generation together, and build any control tooling needed to validate the integrations.",
-        "actions_taken":  [
-                              "Inspected the create-campaign flow, the shot upload route, generation route, provider adapters, environment state, and current project memory before editing.",
-                              "Repaired campaign creation by moving it onto POST /api/campaigns and changing the modal to client-side fetch with inline success and error handling.",
-                              "Confirmed that the live deployment and local app env do not currently have SUPABASE_SERVICE_ROLE_KEY, which means the private upload path cannot succeed yet.",
-                              "Updated the shot uploader and shot detail page so uploads show a clear blocked state when storage is not configured instead of pretending the feature is ready.",
-                              "Updated the control-center system audit so compare outputs and handoff are treated as shipped while private uploads are correctly shown as blocked without server-side storage credentials.",
-                              "Added a reusable provider smoke-test harness at apps/dashboard/scripts/provider-smoke.mjs and wired it into package.json.",
-                              "Ran the live smoke test against the current provider credentials.",
-                              "Verified the repo still passes typecheck and build.",
-                              "Deployed the latest batch to Vercel production and verified brandbuild.online returned 200.",
-                              "Pushed origin/main through commit 1a8b5b3 so GitHub matches the latest deployed state."
-                          ],
-        "files_created":  [
-                              "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
-                          ],
-        "files_modified":  [
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\create-campaign-modal.tsx",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\package.json"
-                           ],
-        "files_reviewed":  [
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\route.ts",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts"
-                           ],
-        "key_findings":  [
-                             "Campaign creation was still brittle at the server-action boundary and needed a dedicated API path with inline UI error handling.",
-                             "The live deployment is missing SUPABASE_SERVICE_ROLE_KEY, so private uploads cannot work yet even though the upload route and UI exist.",
-                             "A live provider smoke test produced concrete integration results: Sora accepted a queued job, Kling failed because the account balance is not enough, and Higgsfield failed because the current credentials are invalid."
-                         ],
-        "decisions_added":  [
-                                "brandbuild-dec-20260325-010",
-                                "brandbuild-dec-20260325-011"
-                            ],
-        "memory_updates":  [
-                               "Recorded the campaign-creation repair, storage-readiness blocker, provider smoke-test outcomes, and the new reusable smoke-test script."
-                           ],
-        "unresolved_items":  [
-                                 "Production still needs SUPABASE_SERVICE_ROLE_KEY before private uploads can work.",
-                                 "Kling still needs account funding before live jobs can proceed.",
-                                 "Higgsfield still needs valid credentials before live jobs can proceed."
-                             ],
-        "next_recommended_actions":  [
-                                         "Add SUPABASE_SERVICE_ROLE_KEY to the Vercel project and local app env, then test a real private upload from the shot page.",
-                                         "Poll the queued Sora job to capture the full live success or failure path.",
-                                         "Fund Kling and rerun the smoke test plus an in-product generation.",
-                                         "Fix or rotate Higgsfield credentials and rerun the smoke test plus an in-product generation."
-                                     ]
-    },
-    {
-        "session_id":  "brandbuild-session-2026-03-25-shot-reference-fallback",
-        "timestamp_start":  "2026-03-25T16:31:00-05:00",
-        "timestamp_end":  "2026-03-25T16:49:53.1809302-05:00",
-        "user_objective":  "Unblock the shot workflow and continue full auto while Supabase storage rollout remains an external dependency.",
-        "actions_taken":  [
-                              "Reloaded BrandBuild project memory and confirmed storage rollout remained the main infrastructure blocker.",
-                              "Inspected the current shot uploader, shot page, asset route, validation layer, and asset persistence helpers.",
-                              "Added a curated BrandBuild reference-sample registry plus built-in sample preview assets.",
-                              "Extended the existing shot assets API route to accept hosted HTTPS references and built-in sample imports in addition to private file uploads.",
-                              "Extended asset persistence to create external_link records for linked and imported references.",
-                              "Rebuilt the shot asset uploader UI so private upload, hosted reference linking, and sample import all live in one premium workspace.",
-                              "Re-ran typecheck and production build successfully."
-                          ],
-        "files_created":  [
-                              "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\reference-samples.ts",
-                              "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\product-hero.svg",
-                              "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\rooftop-lifestyle.svg",
-                              "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\neon-character.svg",
-                              "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\moodboard-grid.svg",
-                              "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\motion-preview.svg"
-                          ],
-        "files_modified":  [
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\validation.ts"
-                           ],
-        "files_reviewed":  [
-                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
-                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
-                               "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\validation.ts"
-                           ],
-        "key_findings":  [
-                             "The current app no longer needs to wait on storage rollout for every reference workflow.",
-                             "A hosted HTTPS link path plus built-in sample library can unblock real operator testing without pretending private uploads are already live.",
-                             "The existing shot asset route was flexible enough to absorb the new modes without route churn."
-                         ],
-        "decisions_added":  [
-                                "brandbuild-decision-014"
-                            ],
-        "memory_updates":  [
-                               "Recorded the no-storage reference fallback architecture and promoted it into durable product memory.",
-                               "Updated current blockers, next steps, tasks, file index, and integration status to reflect that private upload rollout is no longer the only way forward."
-                           ],
-        "unresolved_items":  [
-                                 "The Supabase assets-bucket migration still needs to be applied before authenticated private uploads work end to end on production.",
-                                 "Kling still needs account funding.",
-                                 "Higgsfield still needs valid credentials.",
-                                 "Supabase branded auth/email setup is still manual."
-                             ],
-        "next_recommended_actions":  [
-                                         "Deploy the hosted-reference and sample-import batch to production.",
-                                         "Validate a signed-in Sora dashboard run using the new fallback reference path.",
-                                         "Apply the Supabase storage migration and then validate authenticated private uploads."
-                                     ]
-    },
-    {
-        "session_id":  "brandbuild-session-2026-03-25-shot-reference-fallback-deploy",
-        "timestamp_start":  "2026-03-25T16:50:00-05:00",
-        "timestamp_end":  "2026-03-25T17:00:00-05:00",
-        "user_objective":  "Ship the shot reference fallback batch to production and align git plus project memory.",
-        "actions_taken":  [
-                              "Deployed the hosted-reference and sample-import batch to Vercel production.",
-                              "Verified brandbuild.online returned 200.",
-                              "Committed the batch as e7393d3 and pushed origin/main."
-                          ],
-        "files_created":  [
-
-                          ],
-        "files_modified":  [
-                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
-                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
-                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
-                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
-                               "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
-                               "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
-                           ],
-        "files_reviewed":  [
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
-                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts"
-                           ],
-        "key_findings":  [
-                             "The shot workflow no longer has to wait on private-upload readiness to attach useful references.",
-                             "GitHub, Vercel production, and repo-backed project memory are aligned again."
-                         ],
-        "decisions_added":  [
-
-                            ],
-        "memory_updates":  [
-                               "Recorded the production deployment URL and pushed commit for the new fallback workflow."
-                           ],
-        "unresolved_items":  [
-                                 "Supabase storage migration still needs to be applied for authenticated private uploads.",
-                                 "Supabase branded auth/email setup is still manual.",
-                                 "Kling balance and Higgsfield credentials are still external blockers."
-                             ],
-        "next_recommended_actions":  [
-                                         "Run a signed-in Sora dashboard generation using the new fallback reference path.",
-                                         "Apply the Supabase assets-bucket migration.",
-                                         "Continue live provider validation."
-                                     ]
-    }
+[
+  {
+    "value": [
+      {
+        "session_id": "2026-03-24-repo-cleanup-memory-init",
+        "timestamp_start": "2026-03-24T17:40:09.0933149-05:00",
+        "timestamp_end": "2026-03-24T17:40:09.0933149-05:00",
+        "user_objective": "Audit repo overlap, remove misplaced legacy runtime work, and initialize durable project memory.",
+        "actions_taken": [
+          "Cleaned BrandBuild repo boundaries.",
+          "Updated the forbidden-reference guard.",
+          "Initialized the first structured project-memory files."
+        ],
+        "files_created": [
+          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json",
+          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\goals_and_rules.json",
+          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\current_state.json",
+          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\decisions_log.json",
+          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\session_log.json",
+          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\tasks.json",
+          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\file_index.json",
+          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\knowledge_registry.json"
+        ],
+        "files_modified": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs"
+        ],
+        "files_reviewed": [
+          "D:\\Playground\\brandbuild-online-repo\\README.md",
+          "D:\\Playground\\brandbuild-online-repo\\package.json"
+        ],
+        "key_findings": [
+          "BrandBuild and AI Video belong to the same product family.",
+          "The repo had already experienced cross-product contamination and needed stronger boundaries."
+        ],
+        "decisions_added": [
+          "brandbuild-dec-20260324-001",
+          "brandbuild-dec-20260324-002",
+          "brandbuild-dec-20260324-003"
+        ],
+        "memory_updates": [
+          "Initialized the first repo-backed memory set."
+        ],
+        "unresolved_items": [
+          "Naming drift between BrandBuild and ai-video-studio remained unresolved."
+        ],
+        "next_recommended_actions": [
+          "Keep future product work inside the BrandBuild surface only.",
+          "Continue maintaining durable memory in files."
+        ]
+      },
+      {
+        "session_id": "2026-03-24-upstream-sync",
+        "timestamp_start": "2026-03-24T19:25:09.983424-05:00",
+        "timestamp_end": "2026-03-24T19:25:09.983424-05:00",
+        "user_objective": "Send the current repo changes upstream and preserve the outcome in memory.",
+        "actions_taken": [
+          "Recorded that cleanup work had already been pushed upstream.",
+          "Marked the push task complete in memory."
+        ],
+        "files_created": [],
+        "files_modified": [
+          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\current_state.json",
+          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\session_log.json",
+          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\tasks.json"
+        ],
+        "files_reviewed": [
+          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\current_state.json",
+          "D:\\Playground\\brandbuild-online-repo\\.project-memory\\session_log.json"
+        ],
+        "key_findings": [
+          "The earlier cleanup work was already safely upstream."
+        ],
+        "decisions_added": [
+          "brandbuild-dec-20260324-004"
+        ],
+        "memory_updates": [
+          "Recorded the upstream sync state."
+        ],
+        "unresolved_items": [
+          "Naming drift remained unresolved."
+        ],
+        "next_recommended_actions": [
+          "Focus the next session on product work rather than repo cleanup."
+        ]
+      },
+      {
+        "session_id": "2026-03-24-platform-audit-control-center",
+        "timestamp_start": "2026-03-24T18:15:00-05:00",
+        "timestamp_end": "2026-03-24T18:55:00-05:00",
+        "user_objective": "Audit the full BrandBuild product, identify what works or is missing, and start implementing the highest-value improvements.",
+        "actions_taken": [
+          "Audited the app routes, core dashboard pages, provider adapters, auth layer, generation pipeline, storage helpers, and Supabase foundations.",
+          "Added a system audit model for product and integration readiness.",
+          "Added /dashboard/settings as an in-product control center.",
+          "Added the requested root project-memory operating files."
+        ],
+        "files_created": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\settings\\studio-control-center.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\settings\\page.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\ui-ux-review.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md"
+        ],
+        "files_modified": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\dashboard\\dashboard-shell.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\page.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\dashboard\\command-bar.tsx"
+        ],
+        "files_reviewed": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\prompt-builder.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+          "D:\\Playground\\brandbuild-online-repo\\supabase\\functions\\send-auth-email\\index.ts"
+        ],
+        "key_findings": [
+          "BrandBuild already had a meaningful shot workspace, private asset uploads, and live-capable provider adapters.",
+          "The biggest missing layers were compare outputs, versioning, edit handoff/export, and admin/debug visibility.",
+          "The largest non-code blocker remained manual Supabase Auth dashboard setup."
+        ],
+        "decisions_added": [
+          "brandbuild-dec-20260324-005"
+        ],
+        "memory_updates": [
+          "Added a human-facing project-memory operating layer at project-memory/."
+        ],
+        "unresolved_items": [
+          "The canonical structured memory location was still inconsistent.",
+          "Provider runs had not yet been fully validated in production."
+        ],
+        "next_recommended_actions": [
+          "Consolidate project memory to a single canonical structured location.",
+          "Validate one real run per provider.",
+          "Build compare outputs as the next workflow surface."
+        ]
+      },
+      {
+        "session_id": "2026-03-24-production-recovery-memory-consolidation",
+        "timestamp_start": "2026-03-24T19:30:00-05:00",
+        "timestamp_end": "2026-03-24T19:41:23.2499373-05:00",
+        "user_objective": "Make brandbuild.online work again after a production application error and preserve the correct state durably.",
+        "actions_taken": [
+          "Verified that production was pointing at an older Vercel deployment.",
+          "Deployed the latest BrandBuild dashboard workspace to Vercel production.",
+          "Confirmed brandbuild.online, /login, and signed-out /dashboard surfaces were healthy.",
+          "Consolidated structured memory under docs/project-memory and mirrored it to .project-memory.",
+          "Re-ran typecheck and production build successfully after memory consolidation."
+        ],
+        "files_created": [],
+        "files_modified": [
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\goals_and_rules.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\decisions_log.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\file_index.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\ui-ux-review.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md"
+        ],
+        "files_reviewed": [
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+          "D:\\Playground\\brandbuild-online-repo\\package.json",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\package.json"
+        ],
+        "key_findings": [
+          "The production error was caused by the domain serving an older deployment, not by a newly introduced code regression in the local workspace.",
+          "Memory had diverged across docs/project-memory, .project-memory, and project-memory and needed deliberate consolidation.",
+          "The repo builds cleanly, but Next.js warns that multiple lockfiles cause workspace-root inference."
+        ],
+        "decisions_added": [
+          "brandbuild-dec-20260324-006"
+        ],
+        "memory_updates": [
+          "Promoted docs/project-memory to canonical structured memory.",
+          "Aligned .project-memory as a mirror and preserved project-memory as the human-facing operating summary."
+        ],
+        "unresolved_items": [
+          "Supabase Auth dashboard setup remains incomplete.",
+          "Live provider runs still need full validation.",
+          "The Next.js workspace-root warning should be cleaned up by setting outputFileTracingRoot or removing the extra lockfile."
+        ],
+        "next_recommended_actions": [
+          "Keep production on the current deployment target.",
+          "Continue with compare outputs and provider validation.",
+          "Resolve the workspace-root warning when it is safe to touch build configuration."
+        ]
+      },
+      {
+        "session_id": "2026-03-24-production-incident-dashboard-hardening",
+        "timestamp_start": "2026-03-24T23:50:00-05:00",
+        "timestamp_end": "2026-03-24T23:59:00-05:00",
+        "user_objective": "Fix the live BrandBuild server-side crash showing the global error screen and make the site work again immediately.",
+        "actions_taken": [
+          "Confirmed the live domain and current production deployment were reachable.",
+          "Reproduced that public routes were healthy in a real browser and narrowed the likely failure to authenticated dashboard initialization.",
+          "Hardened the studio persistence client so server-side auth or Supabase initialization failures return null instead of throwing through the dashboard path.",
+          "Re-ran typecheck and build successfully.",
+          "Deployed the fix to Vercel production and verified brandbuild.online, /login, and the signed-out /dashboard redirect in a browser."
+        ],
+        "files_created": [],
+        "files_modified": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\file_index.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md"
+        ],
+        "files_reviewed": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\session.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\layout.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\error.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\global-error.tsx"
+        ],
+        "key_findings": [
+          "The live domain was on a ready deployment, so the incident was not caused by a broken alias.",
+          "Public routes were healthy, which pointed to a user-session or dashboard initialization failure path.",
+          "The dashboard read client could throw before the repository fallback logic ran, making an authenticated request vulnerable to the global error boundary."
+        ],
+        "decisions_added": [],
+        "memory_updates": [
+          "Recorded the production incident, the client hardening change, and the remaining Dynamic server usage build warning."
+        ],
+        "unresolved_items": [
+          "The marketing route still logs a non-fatal Dynamic server usage warning during build.",
+          "Supabase Auth dashboard setup remains incomplete.",
+          "Live provider runs still need full validation."
+        ],
+        "next_recommended_actions": [
+          "Clean up the root-route cookie access so the build log is quieter and more trustworthy.",
+          "Continue with Supabase Auth setup and provider validation."
+        ]
+      },
+      {
+        "session_id": "2026-03-25-local-env-sync",
+        "timestamp_start": "2026-03-25T00:05:00-05:00",
+        "timestamp_end": "2026-03-25T00:08:00-05:00",
+        "user_objective": "Resolve the NEXT_PUBLIC_SUPABASE_URL is not set error.",
+        "actions_taken": [
+          "Verified that the BrandBuild production environment still contained NEXT_PUBLIC_SUPABASE_URL and the public key.",
+          "Confirmed the clean repo had no local .env.local file for the dashboard app.",
+          "Pulled the current production environment into apps/dashboard/.env.local."
+        ],
+        "files_created": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.env.local"
+        ],
+        "files_modified": [
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md"
+        ],
+        "files_reviewed": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\env.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\browser.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\server.ts"
+        ],
+        "key_findings": [
+          "This specific error was caused by missing local app environment, not a missing production Vercel variable.",
+          "In this repo, the dashboard app needs its own apps/dashboard/.env.local for local runs."
+        ],
+        "decisions_added": [],
+        "memory_updates": [
+          "Recorded that local env should be pulled into apps/dashboard/.env.local when syncing from production."
+        ],
+        "unresolved_items": [
+          "Supabase Auth dashboard setup remains incomplete.",
+          "Live provider runs still need full validation."
+        ],
+        "next_recommended_actions": [
+          "Restart the local Next.js server so it loads the new env file.",
+          "Keep apps/dashboard/.env.local in sync with intended local runtime values."
+        ]
+      },
+      {
+        "session_id": "2026-03-25-git-vs-production-status-check",
+        "timestamp_start": "2026-03-25T00:12:00-05:00",
+        "timestamp_end": "2026-03-25T00:13:00-05:00",
+        "user_objective": "Confirm whether the latest BrandBuild fixes were pushed.",
+        "actions_taken": [
+          "Checked git status in the clean BrandBuild repo.",
+          "Compared local HEAD with origin/main.",
+          "Confirmed that production includes uncommitted local changes from the recent incident response."
+        ],
+        "files_created": [],
+        "files_modified": [
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
+        ],
+        "files_reviewed": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts"
+        ],
+        "key_findings": [
+          "HEAD and origin/main are both still ff709e12df03d60a78d4a645685f0e40a8d0dd0b.",
+          "The recent local fixes exist only in the working tree and the live Vercel deployment."
+        ],
+        "decisions_added": [],
+        "memory_updates": [
+          "Recorded the current divergence between git and the live deployment."
+        ],
+        "unresolved_items": [
+          "Local fixes still need a commit and push."
+        ],
+        "next_recommended_actions": [
+          "Commit the current BrandBuild incident fixes and project-memory updates.",
+          "Push main so git matches production again."
+        ]
+      },
+      {
+        "session_id": "2026-03-25-push-runtime-fixes",
+        "timestamp_start": "2026-03-25T00:13:00-05:00",
+        "timestamp_end": "2026-03-25T00:18:00-05:00",
+        "user_objective": "Push the current BrandBuild runtime fixes and memory updates.",
+        "actions_taken": [
+          "Verified the intended diff and reran typecheck and build.",
+          "Committed the staged runtime fix and memory updates as 4351c81.",
+          "Pushed main to origin so git now includes the live production fix set."
+        ],
+        "files_created": [],
+        "files_modified": [
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
+        ],
+        "files_reviewed": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts"
+        ],
+        "key_findings": [
+          "The deployed runtime fix is now committed and pushed in git.",
+          "origin/main now includes the current BrandBuild production hardening work."
+        ],
+        "decisions_added": [],
+        "memory_updates": [
+          "Recorded the successful push and cleared the deployed-but-unpushed known issue."
+        ],
+        "unresolved_items": [
+          "Supabase Auth dashboard setup remains incomplete.",
+          "Live provider runs still need full validation.",
+          "The non-fatal Dynamic server usage build warning still needs cleanup."
+        ],
+        "next_recommended_actions": [
+          "Continue with Supabase Auth setup, provider validation, and the marketing-root warning cleanup."
+        ]
+      },
+      {
+        "session_id": "2026-03-25-marketing-root-static-fix",
+        "timestamp_start": "2026-03-25T00:20:00-05:00",
+        "timestamp_end": "2026-03-25T00:28:00-05:00",
+        "user_objective": "Continue improving stability by removing the non-fatal Dynamic server usage warning on the marketing root.",
+        "actions_taken": [
+          "Inspected the marketing homepage and confirmed it still called getOptionalUser and getWorkspaceMode.",
+          "Refactored the homepage to use only static-safe provider catalog and env-based workspace readiness.",
+          "Re-ran typecheck and build successfully and confirmed the Dynamic server usage warning no longer appears."
+        ],
+        "files_created": [],
+        "files_modified": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
+        ],
+        "files_reviewed": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx"
+        ],
+        "key_findings": [
+          "The warning came from cookie-dependent auth and workspace checks on the marketing root.",
+          "The root page does not need to auto-redirect authenticated users in order to satisfy BrandBuild's core workflow."
+        ],
+        "decisions_added": [],
+        "memory_updates": [
+          "Marked the Dynamic server usage warning as resolved."
+        ],
+        "unresolved_items": [
+          "Supabase Auth dashboard setup remains incomplete.",
+          "Live provider runs still need full validation.",
+          "The Next.js workspace-root warning from duplicate lockfiles still remains."
+        ],
+        "next_recommended_actions": [
+          "Push the root-page fix and deploy it so production and git remain aligned.",
+          "Continue with Supabase Auth setup and provider validation."
+        ]
+      },
+      {
+        "session_id": "2026-03-25-push-and-deploy-static-homepage-fix",
+        "timestamp_start": "2026-03-25T08:00:00-05:00",
+        "timestamp_end": "2026-03-25T08:11:00-05:00",
+        "user_objective": "Continue the pending BrandBuild stability batch through push and production deployment.",
+        "actions_taken": [
+          "Loaded the BrandBuild project memory and confirmed the pending diff was the static-safe marketing homepage fix plus aligned memory updates.",
+          "Mirrored canonical structured memory into .project-memory before shipping.",
+          "Re-ran typecheck and production build successfully.",
+          "Committed the batch as 6701f83 and pushed main to origin.",
+          "Deployed the dashboard app to Vercel production and re-aliased brandbuild.online.",
+          "Verified the live site with direct checks: root 200, login 200, signed-out dashboard 307 to /login."
+        ],
+        "files_created": [],
+        "files_modified": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
+        ],
+        "files_reviewed": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(marketing)\\page.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json"
+        ],
+        "key_findings": [
+          "The outstanding batch was production-safe and verified locally before shipping.",
+          "The marketing homepage fix is now in git and live production, so git, memory, and Vercel are aligned again."
+        ],
+        "decisions_added": [],
+        "memory_updates": [
+          "Recorded the successful push, deployment, and live verification outcome."
+        ],
+        "unresolved_items": [
+          "Supabase Auth dashboard setup remains incomplete.",
+          "Live provider runs still need full validation.",
+          "The Next.js workspace-root warning from duplicate lockfiles still remains."
+        ],
+        "next_recommended_actions": [
+          "Finish Supabase Auth dashboard setup for branded emails and correct redirect behavior.",
+          "Validate one real run each for Sora, Kling, and Higgsfield.",
+          "Build the compare outputs workspace."
+        ]
+      },
+      {
+        "session_id": "2026-03-25-compare-workspace-batch",
+        "timestamp_start": "2026-03-25T08:12:00-05:00",
+        "timestamp_end": "2026-03-25T08:38:00-05:00",
+        "user_objective": "Continue BrandBuild by implementing the next major workflow surface after stabilization.",
+        "actions_taken": [
+          "Loaded BrandBuild project memory and identified compare outputs as the next implementable vertical slice.",
+          "Audited the existing reviews route, reviews workbench, asset library, studio types, and repository read model.",
+          "Expanded the reviews read model into shot-grouped comparison data with provider, generation, campaign, and average-score context.",
+          "Rebuilt /dashboard/reviews into a premium compare-outputs workspace with filters, grouped shot navigation, rich previews, and focused review detail.",
+          "Re-ran typecheck and production build successfully.",
+          "Committed the batch as 387f697 and pushed main to origin.",
+          "Deployed the dashboard app to Vercel production and re-aliased brandbuild.online.",
+          "Verified the live site with direct checks: root 200, login 200, signed-out dashboard 307, and signed-out dashboard/reviews 307 to /login."
+        ],
+        "files_created": [],
+        "files_modified": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\decisions_log.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\file_index.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\ui-ux-review.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md"
+        ],
+        "files_reviewed": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\reviews\\page.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
+        ],
+        "key_findings": [
+          "The old reviews surface still behaved like a score list and did not express BrandBuild's multi-model compare value clearly.",
+          "The existing schema already had enough data to build a proper compare workspace without migration drift."
+        ],
+        "decisions_added": [
+          "brandbuild-dec-20260325-007"
+        ],
+        "memory_updates": [
+          "Marked compare outputs as a shipped workflow surface and moved the roadmap forward to versions plus handoff."
+        ],
+        "unresolved_items": [
+          "Supabase Auth dashboard setup remains incomplete.",
+          "Live provider runs still need full validation.",
+          "Version timeline and edit handoff/export are still missing."
+        ],
+        "next_recommended_actions": [
+          "Design and build version groups plus edit handoff/export next.",
+          "Continue with Supabase Auth setup and live provider validation."
+        ]
+      },
+      {
+        "session_id": "2026-03-25-assets-workspace-version-handoff-batch",
+        "timestamp_start": "2026-03-25T08:43:00-05:00",
+        "timestamp_end": "2026-03-25T09:09:41.3207972-05:00",
+        "user_objective": "Continue BrandBuild by turning the assets area into the next workflow surface after compare outputs.",
+        "actions_taken": [
+          "Loaded BrandBuild project memory and confirmed version groups plus handoff were the next highest-value workflow layer.",
+          "Expanded the assets read model so it derives normalized version candidates, grouped version sets, and campaign handoff packages from the existing schema.",
+          "Restored and wired the assets workspace to support library, versions, and handoff views on /dashboard/assets.",
+          "Re-ran typecheck and production build successfully.",
+          "Committed the batch as 428ce4b and pushed main to origin.",
+          "Deployed the dashboard app to Vercel production and re-aliased brandbuild.online.",
+          "Verified the live root returns 200 after deployment."
+        ],
+        "files_created": [],
+        "files_modified": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\decisions_log.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\file_index.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\ui-ux-review.md",
+          "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md"
+        ],
+        "files_reviewed": [
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
+        ],
+        "key_findings": [
+          "The existing schema already contained enough information to build version groups and handoff packages without migration drift.",
+          "Keeping versions and handoff inside /dashboard/assets preserved navigation clarity while materially upgrading the workflow.",
+          "The shipped assets workspace can reach production cleanly without route churn or schema changes."
+        ],
+        "decisions_added": [
+          "brandbuild-dec-20260325-008"
+        ],
+        "memory_updates": [
+          "Recorded the new assets workspace as a shipped workflow surface and advanced the roadmap to timeline sequencing plus live validation."
+        ],
+        "unresolved_items": [
+          "Supabase Auth dashboard setup remains incomplete.",
+          "Live provider runs still need full validation.",
+          "There is still no dedicated timeline sequencing interface across selected outputs."
+        ],
+        "next_recommended_actions": [
+          "Validate one real run each for Sora, Kling, and Higgsfield.",
+          "Add campaign-level sequencing and delivery preparation on top of the new handoff data."
+        ]
+      },
+      {
+        "session_id": "2026-03-25-auth-boundary-incident-hardening",
+        "timestamp_start": "2026-03-25T09:10:00-05:00",
+        "timestamp_end": "2026-03-25T09:34:30.9567883-05:00",
+        "user_objective": "Fix the live BrandBuild error page that was still appearing during login and auth-link handling.",
+        "actions_taken": [
+          "Loaded BrandBuild project memory and treated the issue as a production incident.",
+          "Inspected the dashboard, auth, Supabase server, and middleware boundaries instead of assuming the latest UI batch was the direct cause.",
+          "Pulled Vercel deploy output and runtime logging commands to narrow the failure toward the auth/session boundary.",
+          "Hardened middleware session refresh so bad cookies or Supabase session-refresh failures return a safe anonymous response instead of throwing.",
+          "Hardened auth email-action handling so callback failures redirect back to login with a safe error instead of hitting the global error page.",
+          "Re-ran typecheck and production build successfully.",
+          "Deployed the fix to Vercel production and re-aliased brandbuild.online.",
+          "Verified the live root returns 200 after the incident deployment."
+        ],
+        "files_created": [],
+        "files_modified": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\middleware.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\email-action.ts"
+        ],
+        "files_reviewed": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\layout.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\session.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\email-action.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\middleware.ts"
+        ],
+        "key_findings": [
+          "The newly shipped assets workspace was build-clean and not the most likely root cause of the live error page.",
+          "The remaining brittle paths were middleware session refresh and auth callback handling around bad cookies, expired links, or transient Supabase failures."
+        ],
+        "decisions_added": [],
+        "memory_updates": [
+          "Recorded the auth/session hardening as a production reliability fix and preserved the exact deployment URL."
+        ],
+        "unresolved_items": [
+          "Supabase Auth dashboard setup remains incomplete.",
+          "Live provider runs still need full validation.",
+          "Campaign-level sequencing across selected outputs is still unbuilt."
+        ],
+        "next_recommended_actions": [
+          "Push the auth-boundary incident fix to origin/main.",
+          "Keep watching the login and callback paths until the user confirms the global error page is gone.",
+          "Continue with Supabase Auth dashboard setup and real provider validation."
+        ]
+      },
+      {
+        "session_id": "2026-03-25-public-login-path-hardening",
+        "timestamp_start": "2026-03-25T12:00:00-05:00",
+        "timestamp_end": "2026-03-25T12:18:00-05:00",
+        "user_objective": "Fix the public-site login button so it actually takes users to the login page.",
+        "actions_taken": [
+          "Loaded BrandBuild project memory and inspected the public header, homepage, marketing media surfaces, login route, and redirect helpers.",
+          "Confirmed the actual /login route was healthy and narrowed the UX issue to the public marketing shell rather than the auth page itself.",
+          "Updated the public header and footer so access CTAs point directly to /login rather than relying on a /dashboard redirect.",
+          "Marked decorative marketing overlays, video frames, and preview layers as pointer-events-none so they cannot intercept clicks or taps.",
+          "Re-ran typecheck and production build successfully.",
+          "Deployed production to Vercel and re-aliased brandbuild.online.",
+          "Verified the live root returned 200 after the deployment.",
+          "Committed the batch as 74eafe4 and pushed main so git matches the live fix."
+        ],
+        "files_created": [],
+        "files_modified": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx"
+        ],
+        "files_reviewed": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\(auth)\\login\\page.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\auth\\login-form.tsx",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\redirects.ts"
+        ],
+        "key_findings": [
+          "The public-site login path issue was a UX and hit-testing problem, not a missing /login route.",
+          "On smaller screens, the visible header CTA was effectively the primary access path, so sending it to /dashboard created unnecessary dependence on protected-route redirect behavior.",
+          "Decorative marketing overlays should be explicitly non-interactive so they cannot interfere with CTA clicks."
+        ],
+        "decisions_added": [
+          "brandbuild-dec-20260325-009"
+        ],
+        "memory_updates": [
+          "Recorded the public login-path hardening and the new navigation/hit-testing rule for future marketing work."
+        ],
+        "unresolved_items": [
+          "Supabase Auth dashboard setup remains incomplete.",
+          "Live provider runs still need full validation.",
+          "Campaign-level sequencing across selected outputs is still unbuilt."
+        ],
+        "next_recommended_actions": [
+          "Verify the live /login path in a browser session once the user tests the updated site.",
+          "Continue with Supabase Auth dashboard setup and real provider validation."
+        ]
+      },
+      {
+        "session_id": "2026-03-25-sora-proxy-and-storage-auth",
+        "timestamp_start": "2026-03-25T15:56:00-05:00",
+        "timestamp_end": "2026-03-25T16:30:00-05:00",
+        "user_objective": "Continue autonomously on the highest-value live integration blockers and make BrandBuild more usable end to end.",
+        "actions_taken": [
+          "Reloaded project memory and confirmed the active blockers.",
+          "Inspected the raw OpenAI video status payload for the completed Sora job.",
+          "Verified that completed Sora media is retrieved from /v1/videos/{video_id}/content.",
+          "Added a BrandBuild proxy route for completed generation media.",
+          "Updated the Sora adapter and generation output mapping to use the content endpoint truthfully.",
+          "Refactored shot uploads and storage-backed asset URL resolution to use authenticated Supabase storage access.",
+          "Added a Supabase storage migration for the assets bucket and authenticated storage policies.",
+          "Updated the provider smoke harness to reflect the new upload/mirroring readiness split.",
+          "Ran typecheck, production build, a live Sora smoke-status check, and deployed production."
+        ],
+        "files_created": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\content\\route.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\generation-content.ts",
+          "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260325164000_assets_bucket_policies.sql"
+        ],
+        "files_modified": [
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\route.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\route.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\generated-asset-storage.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\types.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\server.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
+        ],
+        "files_reviewed": [
+          "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\generated-asset-storage.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\server.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+          "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts"
+        ],
+        "key_findings": [
+          "The raw OpenAI video status object for a completed Sora render does not include a direct media URL.",
+          "The real media is available from the authenticated /v1/videos/{video_id}/content endpoint.",
+          "Shot uploads do not inherently require SUPABASE_SERVICE_ROLE_KEY; they can run through authenticated Supabase storage when the bucket and policies exist.",
+          "Server-side storage credentials are still needed for backend-only provider-output mirroring."
+        ],
+        "decisions_added": [
+          "brandbuild-decision-012",
+          "brandbuild-decision-013"
+        ],
+        "memory_updates": [
+          "Updated current state, tasks, file index, and knowledge to reflect the Sora content proxy and storage-auth upload architecture.",
+          "Mirrored canonical structured memory into .project-memory.",
+          "Updated root project-memory operating files with the new deployment and next steps."
+        ],
+        "unresolved_items": [
+          "Supabase storage migration still needs to be applied to the live project.",
+          "Supabase branded auth/email setup is still manual.",
+          "Kling account still needs balance.",
+          "Higgsfield credentials are still invalid."
+        ],
+        "next_recommended_actions": [
+          "Apply the assets bucket/storage policy migration in Supabase.",
+          "Validate a real signed-in upload and Sora dashboard generation.",
+          "Finish Supabase Auth dashboard configuration.",
+          "Unblock Kling and Higgsfield for live dashboard validation."
+        ]
+      }
+    ],
+    "Count": 14
+  },
+  {
+    "session_id": "brandbuild-session-2026-03-25-repo-capture",
+    "timestamp_start": "2026-03-25T12:24:56.9046794-05:00",
+    "timestamp_end": "2026-03-25T12:24:56.9046794-05:00",
+    "user_objective": "Capture the correct BrandBuild Git repo and preserve its relationship to the local Stable Diffusion tool.",
+    "actions_taken": [
+      "Confirmed the actual BrandBuild remote URL and kept it in git configuration rather than repeating it in memory prose.",
+      "Verified the existing local repo at D:\\\\Playground\\\\brandbuild-online-repo still exists and already points at that origin.",
+      "Cloned a secondary local copy to D:\\\\Projects\\\\brandbuild while resolving the repo location.",
+      "Updated structured project memory to keep the D:\\\\Playground checkout canonical and record the future Stable Diffusion integration relationship."
+    ],
+    "files_created": [],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\decisions_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\README.md",
+      "D:\\Playground\\brandbuild-online-repo\\package.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json"
+    ],
+    "key_findings": [
+      "The user-provided GitHub repo URL matches the existing BrandBuild remote already used locally.",
+      "The existing D:\\\\Playground checkout should stay canonical because prior memory and deployment history point there.",
+      "A new secondary clone now exists at D:\\\\Projects\\\\brandbuild and should not become a competing source of truth by accident."
+    ],
+    "decisions_added": [
+      "brandbuild-dec-20260325-009"
+    ],
+    "memory_updates": [
+      "Recorded the confirmed GitHub remote and canonical local repo path.",
+      "Recorded the future integration relationship between BrandBuild and the Stable Diffusion local tooling."
+    ],
+    "unresolved_items": [
+      "The future integration boundary for local generative tooling is still undecided.",
+      "It is still undecided whether the secondary D:\\\\Projects clone should be kept long-term."
+    ],
+    "next_recommended_actions": [
+      "Keep using D:\\\\Playground\\\\brandbuild-online-repo for actual BrandBuild work unless the canonical path is intentionally changed later.",
+      "Decide the integration boundary only after the local Stable Diffusion tool is ready for controlled testing."
+    ]
+  },
+  {
+    "session_id": "brandbuild-session-2026-03-25-campaign-repair-and-provider-smoke",
+    "timestamp_start": "2026-03-25T12:46:38.0836727-05:00",
+    "timestamp_end": "2026-03-25T15:19:24-05:00",
+    "user_objective": "Make BrandBuild actually work when creating campaigns, verify uploads and generation together, and build any control tooling needed to validate the integrations.",
+    "actions_taken": [
+      "Inspected the create-campaign flow, the shot upload route, generation route, provider adapters, environment state, and current project memory before editing.",
+      "Repaired campaign creation by moving it onto POST /api/campaigns and changing the modal to client-side fetch with inline success and error handling.",
+      "Confirmed that the live deployment and local app env do not currently have SUPABASE_SERVICE_ROLE_KEY, which means the private upload path cannot succeed yet.",
+      "Updated the shot uploader and shot detail page so uploads show a clear blocked state when storage is not configured instead of pretending the feature is ready.",
+      "Updated the control-center system audit so compare outputs and handoff are treated as shipped while private uploads are correctly shown as blocked without server-side storage credentials.",
+      "Added a reusable provider smoke-test harness at apps/dashboard/scripts/provider-smoke.mjs and wired it into package.json.",
+      "Ran the live smoke test against the current provider credentials.",
+      "Verified the repo still passes typecheck and build.",
+      "Deployed the latest batch to Vercel production and verified brandbuild.online returned 200.",
+      "Pushed origin/main through commit 1a8b5b3 so GitHub matches the latest deployed state."
+    ],
+    "files_created": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
+    ],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\create-campaign-modal.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\package.json"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\route.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts"
+    ],
+    "key_findings": [
+      "Campaign creation was still brittle at the server-action boundary and needed a dedicated API path with inline UI error handling.",
+      "The live deployment is missing SUPABASE_SERVICE_ROLE_KEY, so private uploads cannot work yet even though the upload route and UI exist.",
+      "A live provider smoke test produced concrete integration results: Sora accepted a queued job, Kling failed because the account balance is not enough, and Higgsfield failed because the current credentials are invalid."
+    ],
+    "decisions_added": [
+      "brandbuild-dec-20260325-010",
+      "brandbuild-dec-20260325-011"
+    ],
+    "memory_updates": [
+      "Recorded the campaign-creation repair, storage-readiness blocker, provider smoke-test outcomes, and the new reusable smoke-test script."
+    ],
+    "unresolved_items": [
+      "Production still needs SUPABASE_SERVICE_ROLE_KEY before private uploads can work.",
+      "Kling still needs account funding before live jobs can proceed.",
+      "Higgsfield still needs valid credentials before live jobs can proceed."
+    ],
+    "next_recommended_actions": [
+      "Add SUPABASE_SERVICE_ROLE_KEY to the Vercel project and local app env, then test a real private upload from the shot page.",
+      "Poll the queued Sora job to capture the full live success or failure path.",
+      "Fund Kling and rerun the smoke test plus an in-product generation.",
+      "Fix or rotate Higgsfield credentials and rerun the smoke test plus an in-product generation."
+    ]
+  },
+  {
+    "session_id": "brandbuild-session-2026-03-25-shot-reference-fallback",
+    "timestamp_start": "2026-03-25T16:31:00-05:00",
+    "timestamp_end": "2026-03-25T16:49:53.1809302-05:00",
+    "user_objective": "Unblock the shot workflow and continue full auto while Supabase storage rollout remains an external dependency.",
+    "actions_taken": [
+      "Reloaded BrandBuild project memory and confirmed storage rollout remained the main infrastructure blocker.",
+      "Inspected the current shot uploader, shot page, asset route, validation layer, and asset persistence helpers.",
+      "Added a curated BrandBuild reference-sample registry plus built-in sample preview assets.",
+      "Extended the existing shot assets API route to accept hosted HTTPS references and built-in sample imports in addition to private file uploads.",
+      "Extended asset persistence to create external_link records for linked and imported references.",
+      "Rebuilt the shot asset uploader UI so private upload, hosted reference linking, and sample import all live in one premium workspace.",
+      "Re-ran typecheck and production build successfully."
+    ],
+    "files_created": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\reference-samples.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\product-hero.svg",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\rooftop-lifestyle.svg",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\neon-character.svg",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\moodboard-grid.svg",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\motion-preview.svg"
+    ],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\validation.ts"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\validation.ts"
+    ],
+    "key_findings": [
+      "The current app no longer needs to wait on storage rollout for every reference workflow.",
+      "A hosted HTTPS link path plus built-in sample library can unblock real operator testing without pretending private uploads are already live.",
+      "The existing shot asset route was flexible enough to absorb the new modes without route churn."
+    ],
+    "decisions_added": [
+      "brandbuild-decision-014"
+    ],
+    "memory_updates": [
+      "Recorded the no-storage reference fallback architecture and promoted it into durable product memory.",
+      "Updated current blockers, next steps, tasks, file index, and integration status to reflect that private upload rollout is no longer the only way forward."
+    ],
+    "unresolved_items": [
+      "The Supabase assets-bucket migration still needs to be applied before authenticated private uploads work end to end on production.",
+      "Kling still needs account funding.",
+      "Higgsfield still needs valid credentials.",
+      "Supabase branded auth/email setup is still manual."
+    ],
+    "next_recommended_actions": [
+      "Deploy the hosted-reference and sample-import batch to production.",
+      "Validate a signed-in Sora dashboard run using the new fallback reference path.",
+      "Apply the Supabase storage migration and then validate authenticated private uploads."
+    ]
+  },
+  {
+    "session_id": "brandbuild-session-2026-03-25-shot-reference-fallback-deploy",
+    "timestamp_start": "2026-03-25T16:50:00-05:00",
+    "timestamp_end": "2026-03-25T17:00:00-05:00",
+    "user_objective": "Ship the shot reference fallback batch to production and align git plus project memory.",
+    "actions_taken": [
+      "Deployed the hosted-reference and sample-import batch to Vercel production.",
+      "Verified brandbuild.online returned 200.",
+      "Committed the batch as e7393d3 and pushed origin/main."
+    ],
+    "files_created": [],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts"
+    ],
+    "key_findings": [
+      "The shot workflow no longer has to wait on private-upload readiness to attach useful references.",
+      "GitHub, Vercel production, and repo-backed project memory are aligned again."
+    ],
+    "decisions_added": [],
+    "memory_updates": [
+      "Recorded the production deployment URL and pushed commit for the new fallback workflow."
+    ],
+    "unresolved_items": [
+      "Supabase storage migration still needs to be applied for authenticated private uploads.",
+      "Supabase branded auth/email setup is still manual.",
+      "Kling balance and Higgsfield credentials are still external blockers."
+    ],
+    "next_recommended_actions": [
+      "Run a signed-in Sora dashboard generation using the new fallback reference path.",
+      "Apply the Supabase assets-bucket migration.",
+      "Continue live provider validation."
+    ]
+  },
+  {
+    "session_id": "brandbuild-session-2026-03-25-reference-aware-generation",
+    "timestamp_start": "2026-03-25T19:55:00-05:00",
+    "timestamp_end": "2026-03-25T20:02:36.1176226-05:00",
+    "user_objective": "Continue the full-auto BrandBuild integration work and make sure the new reference fallback actually influences provider generations.",
+    "actions_taken": [
+      "Reloaded BrandBuild project memory and verified the current blockers plus the newly shipped reference fallback state.",
+      "Inspected the generation pipeline and confirmed Higgsfield already used direct reference URLs while Sora and Kling were still ignoring attached references.",
+      "Updated the shared generation pipeline so candidate reference assets now enrich provider_prompt_text before enqueue time.",
+      "Recorded provider_prompt_text in normalized generation request payloads for later debugging and operator visibility.",
+      "Re-ran npm run typecheck and npm run build successfully."
+    ],
+    "files_created": [],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\decisions_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\file_index.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\types.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json"
+    ],
+    "key_findings": [
+      "The new hosted-reference and sample-import flow was live, but Sora and Kling were still ignoring attached reference assets at enqueue time.",
+      "Prompt-aware reference augmentation is a safe immediate improvement across providers while official direct multimodal parameter support is still being verified.",
+      "The repo still passes typecheck and production build with the new generation-pipeline behavior."
+    ],
+    "decisions_added": [
+      "brandbuild-decision-015"
+    ],
+    "memory_updates": [
+      "Recorded the new reference-aware generation behavior, follow-up task, and durable integration truth in repo-backed memory."
+    ],
+    "unresolved_items": [
+      "Supabase Auth dashboard setup is still manual.",
+      "The assets bucket and storage policy migration still need to be applied in Supabase.",
+      "Kling still needs account funding.",
+      "Higgsfield still needs valid credentials.",
+      "Direct multimodal Sora and Kling reference conditioning still needs official API confirmation."
+    ],
+    "next_recommended_actions": [
+      "Commit, push, and deploy the reference-aware generation batch.",
+      "Run a signed-in Sora dashboard generation using a hosted or sample reference and confirm the operator UI path end to end.",
+      "Verify documented direct multimodal parameters for Sora and Kling without losing the new prompt-aware fallback."
+    ]
+  },
+  {
+    "session_id": "brandbuild-session-2026-03-25-reference-hardening-and-schema-triage",
+    "timestamp_start": "2026-03-25T19:55:00-05:00",
+    "timestamp_end": "2026-03-25T20:02:36.1176226-05:00",
+    "user_objective": "Continue full auto, make attached references actually influence provider generations, and stop the campaigns flow from breaking the live site.",
+    "actions_taken": [
+      "Reloaded BrandBuild project memory and verified the current fallback-reference, provider, and storage blockers.",
+      "Updated the shared generation pipeline so attached references now enrich provider_prompt_text for Sora and Kling while Higgsfield keeps its direct reference-image path.",
+      "Confirmed by direct REST call that the connected Supabase project is missing the BrandBuild schema and currently returns PGRST205 for public.campaigns.",
+      "Updated the campaign read and create surfaces so empty but valid live datasets remain live, while missing-schema environments degrade into a clear setup state instead of surfacing raw PostgREST cache errors.",
+      "Re-ran npm run typecheck and npm run build successfully.",
+      "Committed the product batch as 2041747 and deployed production to https://brandbuild-online-ijil4m0yh-byoroofers-projects.vercel.app."
+    ],
+    "files_created": [],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\campaigns\\page.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\campaign-table.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\create-campaign-modal.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\decisions_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\file_index.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\roadmap.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\campaign-table.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260319113000_ai_video_studio_foundation.sql",
+      "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260320113000_account_settings_foundation.sql",
+      "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260325164000_assets_bucket_policies.sql"
+    ],
+    "key_findings": [
+      "The new hosted-reference and sample-import flow was live, but Sora and Kling were still ignoring attached reference assets at enqueue time until provider_prompt_text was augmented.",
+      "The connected Supabase project (hdwneidxkakrzrhuxqcd.supabase.co) is missing the BrandBuild schema; PostgREST currently returns PGRST205 for public.campaigns.",
+      "A zero-row but valid live database should stay in live mode so operators can create the first campaign; only true schema failures should degrade the UI into setup mode."
+    ],
+    "decisions_added": [
+      "brandbuild-decision-015",
+      "brandbuild-decision-016"
+    ],
+    "memory_updates": [
+      "Recorded the new prompt-aware reference behavior, the confirmed missing-schema root cause, the live deployment URL, and the follow-up schema task in repo-backed memory."
+    ],
+    "unresolved_items": [
+      "The connected Supabase project still needs the BrandBuild schema applied.",
+      "Supabase Auth dashboard setup is still manual.",
+      "Kling still needs account funding.",
+      "Higgsfield still needs valid credentials.",
+      "Direct multimodal Sora and Kling reference conditioning still needs official API confirmation."
+    ],
+    "next_recommended_actions": [
+      "Apply the BrandBuild schema migrations to the connected Supabase project.",
+      "Push main so GitHub matches the deployed product fix.",
+      "Run a signed-in Sora dashboard generation using a hosted or sample reference and confirm the operator UI path end to end.",
+      "Verify documented direct multimodal parameters for Sora and Kling without losing the new prompt-aware fallback."
+    ]
+  }
 ]

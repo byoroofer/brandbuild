@@ -1,161 +1,177 @@
-﻿{
-    "project":  {
-                    "name":  "BrandBuild",
-                    "repo":  "brandbuild",
-                    "local_path":  "D:\\Playground\\brandbuild-online-repo",
-                    "production_url":  "https://brandbuild.online",
-                    "updated_at":  "2026-03-25T17:00:00-05:00"
-                },
-    "current_product_objective":  "Build BrandBuild into a premium creative production operating system that unifies Sora, Kling, and Higgsfield for prompt creation, asset upload, generation orchestration, review, versioning, delivery, and carefully scoped future local-tool integration only after isolated testing is ready.",
-    "stack_summary":  [
-                          "Next.js App Router",
-                          "TypeScript",
-                          "React 19",
-                          "Tailwind CSS 4",
-                          "Supabase",
-                          "Vercel",
-                          "OpenAI API",
-                          "Kling API",
-                          "Higgsfield API"
-                      ],
-    "architecture_summary":  {
-                                 "canonical_structured_memory":  "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory",
-                                 "human_operating_memory":  "D:\\Playground\\brandbuild-online-repo\\project-memory",
-                                 "mirrored_compatibility_memory":  "D:\\Playground\\brandbuild-online-repo\\.project-memory",
-                                 "current_spine":  [
-                                                       "campaigns",
-                                                       "scenes",
-                                                       "shots",
-                                                       "assets",
-                                                       "reviews",
-                                                       "shot_generations",
-                                                       "prompt_templates",
-                                                       "activity_log"
-                                                   ],
-                                 "current_strengths":  [
-                                                           "Shared provider adapter layer",
-                                                           "Structured shot prompt builder",
-                                                           "Dedicated JSON API for campaign creation",
-                                                           "Authenticated private shot asset upload path",
-                                                           "Generation status refresh and Sora media proxy route",
-                                                           "Assets workspace with library, version groups, and handoff packages",
-                                                           "Grouped compare outputs workspace",
-                                                           "Premium dark dashboard shell",
-                                                           "Control-center settings page",
-                                                           "Provider smoke-test harness",
-                                                           "Hosted HTTPS shot reference linking",
-                                                           "Built-in BrandBuild sample reference library"
-                                                       ],
-                                 "current_gaps":  [
-                                                      "No dedicated timeline sequencing model across selected outputs",
-                                                      "No usage or cost tracking surface",
-                                                      "No admin/debug console"
-                                                  ]
-                             },
-    "current_working_features":  [
-                                     "Campaign, shot, asset, and review pages",
-                                     "Grouped compare outputs workspace at /dashboard/reviews",
-                                     "Assets workspace with library, versions, and handoff views at /dashboard/assets",
-                                     "Guided prompt builder on shot detail",
-                                     "Provider routing recommendations",
-                                     "Studio Agent and tag discovery",
-                                     "Campaign creation through POST /api/campaigns with inline modal errors",
-                                     "Private shot asset upload flow when server-side storage credentials are present",
-                                     "Public-site access CTAs now route directly to /login",
-                                     "Live-capable Sora, Kling, and Higgsfield adapters",
-                                     "Settings/control-center audit page at /dashboard/settings",
-                                     "Healthy production deployment on brandbuild.online after redeploy",
-                                     "Compare outputs workspace shipped to production",
-                                     "Assets workspace shipped to production",
-                                     "Auth/session boundary hardened so broken cookies or callback failures redirect safely instead of crashing",
-                                     "Reusable provider smoke-test script at apps/dashboard/scripts/provider-smoke.mjs",
-                                     "Completed Sora outputs can now stream through BrandBuild via /api/generate/[generationId]/content",
-                                     "Private shot asset upload flow now uses authenticated Supabase storage when the assets bucket and policies are applied",
-                                     "Reusable provider smoke-test script at apps/dashboard/scripts/provider-smoke.mjs now distinguishes upload readiness from provider-output mirroring readiness",
-                                     "Hosted HTTPS reference linking directly into a shot",
-                                     "Built-in BrandBuild sample imports for shot references"
-                                 ],
-    "broken_or_blocked_features":  [
-                                       "Branded auth emails are coded but still blocked by manual Supabase dashboard setup.",
-                                       "The assets bucket and authenticated storage policy migration still need to be applied in Supabase before production private uploads can work end to end.",
-                                       "Kling live generation is currently blocked by account balance.",
-                                       "Higgsfield live generation is currently blocked by invalid credentials.",
-                                       "The repository can fall back to demo mode too aggressively when live queries partially fail."
-                                   ],
-    "pending_integrations":  {
-                                 "sora":  [
-                                              "Validate one real dashboard run",
-                                              "Add background polling or webhook support",
-                                              "Persist cost and timing telemetry"
-                                          ],
-                                 "kling":  [
-                                               "Validate one real dashboard run",
-                                               "Add webhook or background refresh support",
-                                               "Expand beyond the current text-to-video path"
-                                           ],
-                                 "higgsfield":  [
-                                                    "Validate one real reference-image-led dashboard run",
-                                                    "Add product-managed model selection",
-                                                    "Implement webhook or background refresh support"
-                                                ]
-                             },
-    "credentials_or_manual_setup_needed":  [
-                                               "Supabase Send Email Hook enablement in dashboard",
-                                               "SMTP sender configuration for auth emails",
-                                               "Supabase Auth redirect URL cleanup and verification",
-                                               "Apply supabase/migrations/20260325164000_assets_bucket_policies.sql to the live Supabase project",
-                                               "SUPABASE_SERVICE_ROLE_KEY if provider-output mirroring should run on the deployment",
-                                               "Funded Kling account access",
-                                               "Working Higgsfield credentials",
-                                               "Real provider-account validation results captured from signed-in runs"
-                                           ],
-    "major_decisions_made":  [
-                                 "Use a clean standalone BrandBuild repo and deployment target.",
-                                 "Keep providers behind one internal adapter contract.",
-                                 "Use a Supabase Send Email Hook for branded auth emails.",
-                                 "Build private asset upload before editing flows.",
-                                 "Use POST /api/campaigns plus inline client handling for campaign creation.",
-                                 "Expose a settings/control-center truth layer inside the product.",
-                                 "Keep upload readiness truthful and validate providers through a committed smoke-test harness.",
-                                 "Canonicalize structured memory in docs/project-memory and mirror it into .project-memory.",
-                                 "Keep D:\\\\Playground\\\\brandbuild-online-repo as the canonical local BrandBuild repo while D:\\\\Projects\\\\brandbuild remains a secondary integration-planning clone."
-                             ],
-    "files_changed_this_session":  [
-                                       "apps/dashboard/app/api/shots/[shotId]/assets/route.ts",
-                                       "apps/dashboard/app/dashboard/shots/[shotId]/page.tsx",
-                                       "apps/dashboard/components/shots/shot-asset-uploader.tsx",
-                                       "apps/dashboard/lib/db/assets.ts",
-                                       "apps/dashboard/lib/studio/reference-samples.ts",
-                                       "apps/dashboard/lib/studio/validation.ts",
-                                       "apps/dashboard/public/reference-samples/product-hero.svg",
-                                       "apps/dashboard/public/reference-samples/rooftop-lifestyle.svg",
-                                       "apps/dashboard/public/reference-samples/neon-character.svg",
-                                       "apps/dashboard/public/reference-samples/moodboard-grid.svg",
-                                       "apps/dashboard/public/reference-samples/motion-preview.svg"
-                                   ],
-    "unresolved_bugs_or_issues":  [
-                                      "Supabase auth trust layer is still not fully live.",
-                                      "The storage migration still needs to be applied before production uploads can be validated end to end.",
-                                      "Kling currently fails live smoke tests because the account balance is not enough.",
-                                      "Higgsfield currently fails live smoke tests because the credentials are invalid.",
-                                      "Campaign-level sequencing across selected outputs is still unbuilt.",
-                                      "Settings/control-center currently reports readiness from code and env state, not live telemetry.",
-                                      "The root package naming still says ai-video-studio.",
-                                      "Next.js currently warns about workspace-root inference because multiple lockfiles exist.",
-                                      "Two local BrandBuild clones now exist and can drift if changes are split between D:\\Playground\\brandbuild-online-repo and D:\\Projects\\brandbuild."
-                                  ],
-    "ui_ux_improvements_still_needed":  [
-                                            "Promote campaign-level sequencing into a first-class workflow on top of the new handoff layer.",
-                                            "Clarify Projects as the top-level mental model across the app.",
-                                            "Show provider requirements in-context during generation, not only in settings."
-                                        ],
-    "exact_next_steps":  [
-                             "Deploy the hosted-reference and sample-import batch to production.",
-                             "Run a signed-in Sora dashboard generation using a sample or hosted reference and confirm the completed result streams through BrandBuild.",
-                             "Apply the assets bucket and storage policy migration in Supabase.",
-                             "Finish manual Supabase Auth dashboard setup.",
-                             "Fund Kling and rerun the smoke test plus a signed-in dashboard generation.",
-                             "Fix or rotate Higgsfield credentials and rerun the smoke test plus a signed-in dashboard generation.",
-                             "Design and build campaign-level sequencing on top of the new handoff data."
-                         ]
+{
+  "project": {
+    "name": "BrandBuild",
+    "repo": "brandbuild",
+    "local_path": "D:\\Playground\\brandbuild-online-repo",
+    "production_url": "https://brandbuild.online",
+    "updated_at": "2026-03-25T20:02:36.1176226-05:00"
+  },
+  "current_product_objective": "Build BrandBuild into a premium creative production operating system that unifies Sora, Kling, and Higgsfield for prompt creation, asset upload, generation orchestration, review, versioning, delivery, and carefully scoped future local-tool integration only after isolated testing is ready.",
+  "stack_summary": [
+    "Next.js App Router",
+    "TypeScript",
+    "React 19",
+    "Tailwind CSS 4",
+    "Supabase",
+    "Vercel",
+    "OpenAI API",
+    "Kling API",
+    "Higgsfield API"
+  ],
+  "architecture_summary": {
+    "canonical_structured_memory": "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory",
+    "human_operating_memory": "D:\\Playground\\brandbuild-online-repo\\project-memory",
+    "mirrored_compatibility_memory": "D:\\Playground\\brandbuild-online-repo\\.project-memory",
+    "current_spine": [
+      "campaigns",
+      "scenes",
+      "shots",
+      "assets",
+      "reviews",
+      "shot_generations",
+      "prompt_templates",
+      "activity_log"
+    ],
+    "current_strengths": [
+      "Shared provider adapter layer",
+      "Structured shot prompt builder",
+      "Dedicated JSON API for campaign creation",
+      "Authenticated private shot asset upload path",
+      "Generation status refresh and Sora media proxy route",
+      "Assets workspace with library, version groups, and handoff packages",
+      "Grouped compare outputs workspace",
+      "Premium dark dashboard shell",
+      "Control-center settings page",
+      "Provider smoke-test harness",
+      "Hosted HTTPS shot reference linking",
+      "Built-in BrandBuild sample reference library",
+      "Reference-aware provider prompt augmentation for attached shot assets",
+      "Graceful setup-state handling for missing Supabase schema"
+    ],
+    "current_gaps": [
+      "No dedicated timeline sequencing model across selected outputs",
+      "No usage or cost tracking surface",
+      "No admin/debug console"
+    ]
+  },
+  "current_working_features": [
+    "Campaign, shot, asset, and review pages",
+    "Grouped compare outputs workspace at /dashboard/reviews",
+    "Assets workspace with library, versions, and handoff views at /dashboard/assets",
+    "Guided prompt builder on shot detail",
+    "Provider routing recommendations",
+    "Studio Agent and tag discovery",
+    "Campaign creation through POST /api/campaigns with inline modal errors",
+    "Campaign creation now degrades into a setup-required state when the live Supabase schema is missing instead of surfacing raw PGRST205 errors",
+    "Fresh live databases with zero campaigns now remain in live mode so the first campaign can be created",
+    "Private shot asset upload flow when server-side storage credentials are present",
+    "Public-site access CTAs now route directly to /login",
+    "Live-capable Sora, Kling, and Higgsfield adapters",
+    "Settings/control-center audit page at /dashboard/settings",
+    "Healthy production deployment on brandbuild.online after redeploy",
+    "Compare outputs workspace shipped to production",
+    "Assets workspace shipped to production",
+    "Auth/session boundary hardened so broken cookies or callback failures redirect safely instead of crashing",
+    "Reusable provider smoke-test script at apps/dashboard/scripts/provider-smoke.mjs",
+    "Completed Sora outputs can now stream through BrandBuild via /api/generate/[generationId]/content",
+    "Private shot asset upload flow now uses authenticated Supabase storage when the assets bucket and policies are applied",
+    "Reusable provider smoke-test script at apps/dashboard/scripts/provider-smoke.mjs now distinguishes upload readiness from provider-output mirroring readiness",
+    "Hosted HTTPS reference linking directly into a shot",
+    "Built-in BrandBuild sample imports for shot references",
+    "Attached shot references now enrich provider prompt text before Sora and Kling enqueue requests"
+  ],
+  "broken_or_blocked_features": [
+    "Branded auth emails are coded but still blocked by manual Supabase dashboard setup.",
+    "The connected Supabase project (hdwneidxkakrzrhuxqcd.supabase.co) is still missing the BrandBuild schema, so live persistence cannot work until the migrations are applied.",
+    "The assets bucket and authenticated storage policy migration still need to be applied in Supabase before production private uploads can work end to end.",
+    "Kling live generation is currently blocked by account balance.",
+    "Higgsfield live generation is currently blocked by invalid credentials.",
+    "The repository can fall back to demo mode too aggressively when live queries partially fail."
+  ],
+  "pending_integrations": {
+    "sora": [
+      "Validate one real dashboard run",
+      "Add background polling or webhook support",
+      "Persist cost and timing telemetry"
+    ],
+    "kling": [
+      "Validate one real dashboard run",
+      "Add webhook or background refresh support",
+      "Expand beyond the current text-to-video path"
+    ],
+    "higgsfield": [
+      "Validate one real reference-image-led dashboard run",
+      "Add product-managed model selection",
+      "Implement webhook or background refresh support"
+    ]
+  },
+  "credentials_or_manual_setup_needed": [
+    "Supabase access-token auth or manual SQL application so the BrandBuild migrations can be pushed to the connected Supabase project",
+    "Supabase Send Email Hook enablement in dashboard",
+    "SMTP sender configuration for auth emails",
+    "Supabase Auth redirect URL cleanup and verification",
+    "Apply supabase/migrations/20260319113000_ai_video_studio_foundation.sql, 20260320113000_account_settings_foundation.sql, and 20260325164000_assets_bucket_policies.sql to the live Supabase project",
+    "SUPABASE_SERVICE_ROLE_KEY if provider-output mirroring should run on the deployment",
+    "Funded Kling account access",
+    "Working Higgsfield credentials",
+    "Real provider-account validation results captured from signed-in runs"
+  ],
+  "major_decisions_made": [
+    "Use a clean standalone BrandBuild repo and deployment target.",
+    "Keep providers behind one internal adapter contract.",
+    "Use a Supabase Send Email Hook for branded auth emails.",
+    "Build private asset upload before editing flows.",
+    "Use POST /api/campaigns plus inline client handling for campaign creation.",
+    "Expose a settings/control-center truth layer inside the product.",
+    "Keep upload readiness truthful and validate providers through a committed smoke-test harness.",
+    "Canonicalize structured memory in docs/project-memory and mirror it into .project-memory.",
+    "Keep D:\\Playground\\brandbuild-online-repo as the canonical local BrandBuild repo while D:\\Projects\\brandbuild remains a secondary integration-planning clone.",
+    "Use reference-aware prompt augmentation as the cross-provider fallback when direct multimodal wiring is not yet verified.",
+    "Treat empty live tables as live and missing schema as setup mode instead of collapsing everything into demo or surfacing raw cache errors."
+  ],
+  "files_changed_this_session": [
+    "apps/dashboard/lib/db/shot-generations.ts",
+    "apps/dashboard/lib/studio/repository.ts",
+    "apps/dashboard/app/api/campaigns/route.ts",
+    "apps/dashboard/app/dashboard/campaigns/page.tsx",
+    "apps/dashboard/components/campaigns/campaign-table.tsx",
+    "apps/dashboard/components/campaigns/create-campaign-modal.tsx",
+    "docs/project-memory/current_state.json",
+    "docs/project-memory/decisions_log.json",
+    "docs/project-memory/tasks.json",
+    "docs/project-memory/file_index.json",
+    "docs/project-memory/knowledge_registry.json",
+    "docs/project-memory/session_log.json",
+    "project-memory/brandbuild-master-memory.json",
+    "project-memory/integration-status.md",
+    "project-memory/known-issues.md",
+    "project-memory/roadmap.md",
+    "project-memory/session-log.md"
+  ],
+  "unresolved_bugs_or_issues": [
+    "Supabase auth trust layer is still not fully live.",
+    "The storage migration still needs to be applied before production uploads can be validated end to end.",
+    "Kling currently fails live smoke tests because the account balance is not enough.",
+    "Higgsfield currently fails live smoke tests because the credentials are invalid.",
+    "Campaign-level sequencing across selected outputs is still unbuilt.",
+    "Settings/control-center currently reports readiness from code and env state, not live telemetry.",
+    "The root package naming still says ai-video-studio.",
+    "Next.js currently warns about workspace-root inference because multiple lockfiles exist.",
+    "Two local BrandBuild clones now exist and can drift if changes are split between D:\\Playground\\brandbuild-online-repo and D:\\Projects\\brandbuild."
+  ],
+  "ui_ux_improvements_still_needed": [
+    "Promote campaign-level sequencing into a first-class workflow on top of the new handoff layer.",
+    "Clarify Projects as the top-level mental model across the app.",
+    "Show provider requirements in-context during generation, not only in settings."
+  ],
+  "exact_next_steps": [
+    "Apply the BrandBuild schema migrations to the connected Supabase project.",
+    "Push main so GitHub matches the deployed campaign and generation fixes.",
+    "Run a signed-in Sora dashboard generation using a sample or hosted reference and confirm the completed result streams through BrandBuild with the new provider_prompt_text path.",
+    "Finish manual Supabase Auth dashboard setup.",
+    "Fund Kling and rerun the smoke test plus a signed-in dashboard generation.",
+    "Fix or rotate Higgsfield credentials and rerun the smoke test plus a signed-in dashboard generation.",
+    "Verify documented direct multimodal Sora and Kling parameters and wire them only if the official APIs support them.",
+    "Design and build campaign-level sequencing on top of the new handoff data."
+  ]
 }
