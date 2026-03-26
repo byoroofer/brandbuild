@@ -361,19 +361,15 @@ async function loadLiveData() {
       return null;
     }
 
-    if (!campaignsResult.data || campaignsResult.data.length === 0) {
-      return null;
-    }
-
-    const resolvedAssetRows = await resolveStorageBackedAssetRows(assetsResult.data, supabase);
+    const resolvedAssetRows = await resolveStorageBackedAssetRows(assetsResult.data ?? [], supabase);
 
     return {
       assets: resolvedAssetRows.map(mapAssetRow),
-      campaigns: campaignsResult.data.map(mapCampaignRow),
-      generations: generationsResult.data.map(mapShotGenerationRow),
-      promptTemplates: promptTemplatesResult.data.map(mapPromptTemplateRow),
-      reviews: reviewsResult.data.map(mapReviewRow),
-      shots: shotsResult.data.map(mapShotRow),
+      campaigns: (campaignsResult.data ?? []).map(mapCampaignRow),
+      generations: (generationsResult.data ?? []).map(mapShotGenerationRow),
+      promptTemplates: (promptTemplatesResult.data ?? []).map(mapPromptTemplateRow),
+      reviews: (reviewsResult.data ?? []).map(mapReviewRow),
+      shots: (shotsResult.data ?? []).map(mapShotRow),
     };
   } catch {
     return null;

@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 
 type CreateCampaignModalProps = {
+  disabledReason?: string | null;
   openOnLoad?: boolean;
   persistenceEnabled: boolean;
 };
@@ -25,6 +26,7 @@ const inputClassName =
   "w-full rounded-2xl border border-white/10 bg-black/18 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-400/40";
 
 export function CreateCampaignModal({
+  disabledReason = null,
   openOnLoad = false,
   persistenceEnabled,
 }: CreateCampaignModalProps) {
@@ -153,7 +155,8 @@ export function CreateCampaignModal({
 
               {!persistenceEnabled ? (
                 <p className="rounded-2xl border border-amber-400/20 bg-amber-400/10 px-4 py-3 text-sm text-amber-100">
-                  Supabase admin access is not configured here yet, so campaign creation is disabled.
+                  {disabledReason ??
+                    "Live BrandBuild persistence is not ready in this environment yet, so campaign creation is disabled."}
                 </p>
               ) : null}
 

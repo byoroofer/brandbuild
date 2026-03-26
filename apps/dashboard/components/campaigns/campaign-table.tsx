@@ -12,6 +12,7 @@ type CampaignTableProps = {
   mode: WorkspaceMode;
   openCreateOnLoad?: boolean;
   persistenceEnabled: boolean;
+  persistenceMessage?: string | null;
 };
 
 export function CampaignTable({
@@ -19,6 +20,7 @@ export function CampaignTable({
   mode,
   openCreateOnLoad = false,
   persistenceEnabled,
+  persistenceMessage = null,
 }: CampaignTableProps) {
   const [search, setSearch] = useState("");
   const [sortKey, setSortKey] = useState<"createdAt" | "name" | "status">("createdAt");
@@ -67,9 +69,19 @@ export function CampaignTable({
 
         <div className="flex flex-wrap items-center gap-3">
           <StatusPill label={mode === "live" ? "Live mode" : "Demo mode"} tone={mode === "live" ? "success" : "warning"} />
-          <CreateCampaignModal openOnLoad={openCreateOnLoad} persistenceEnabled={persistenceEnabled} />
+          <CreateCampaignModal
+            disabledReason={persistenceMessage}
+            openOnLoad={openCreateOnLoad}
+            persistenceEnabled={persistenceEnabled}
+          />
         </div>
       </div>
+
+      {!persistenceEnabled && persistenceMessage ? (
+        <div className="rounded-[28px] border border-amber-400/20 bg-amber-400/10 px-5 py-4 text-sm leading-6 text-amber-100">
+          {persistenceMessage}
+        </div>
+      ) : null}
 
       <div className="app-shell rounded-[30px] p-5">
         <div className="flex flex-col gap-4 md:flex-row md:items-center md:justify-between">

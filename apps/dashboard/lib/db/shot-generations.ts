@@ -216,6 +216,73 @@ function buildStatusSyncNote(job: GenerationJob, title: string) {
   return `Mock ${providerLabel} status refreshed for ${title}.`;
 }
 
+function formatReferenceAssetType(
+  assetType: Database["public"]["Tables"]["assets"]["Row"]["type"],
+) {
+  switch (assetType) {
+    case "reference_image":
+      return "Reference image";
+    case "reference_video":
+      return "Reference video";
+    case "product_image":
+      return "Product image";
+    case "character_sheet":
+      return "Character sheet";
+    case "moodboard":
+      return "Moodboard";
+    case "logo":
+      return "Logo";
+    default:
+      return assetType.replaceAll("_", " ");
+  }
+}
+
+function buildReferenceContextLine(asset: {
+  file_name: string;
+  metadata_json: Database["public"]["Tables"]["assets"]["Row"]["metadata_json"];
+  tags?: string[] | null;
+  type: Database["public"]["Tables"]["assets"]["Row"]["type"];
+}) {
+  const metadata = asAssetMetadataRecord(asset.metadata_json);
+  const label =
+    typeof metadata.sample_title === "string" && metadata.sample_title.trim().length > 0
+      ? metadata.sample_title.trim()
+      : asset.file_name;
+  const sourceLabel =
+    typeof metadata.source_label === "string" && metadata.source_label.trim().length > 0
+      ? metadata.source_label.trim()
+      : typeof metadata.import_mode === "string" && metadata.import_mode.trim().length > 0
+        ? metadata.import_mode.trim().replaceAll("_", " ")
+        : null;
+  const tags = Array.isArray(asset.tags)
+    ? asset.tags.filter((tag) => typeof tag === "string" && tag.trim().length > 0).slice(0, 4)
+    : [];
+  const details = [
+    sourceLabel ? `source ${sourceLabel}` : null,
+    tags.length > 0 ? `tags ${tags.join(", ")}` : null,
+  ].filter((value): value is string => Boolean(value));
+
+  return `- ${formatReferenceAssetType(asset.type)}: ${label}${details.length > 0 ? ` (${details.join("; ")})` : ""}`;
+}
+
+function buildProviderPromptText(
+  promptText: string,
+  referenceAssets: Array<{
+    file_name: string;
+    metadata_json: Database["public"]["Tables"]["assets"]["Row"]["metadata_json"];
+    tags?: string[] | null;
+    type: Database["public"]["Tables"]["assets"]["Row"]["type"];
+  }>,
+) {
+  if (referenceAssets.length === 0) {
+    return promptText;
+  }
+
+  const referenceLines = referenceAssets.slice(0, 4).map(buildReferenceContextLine);
+
+  return `${promptText}\n\nReference direction:\nUse the attached references as visual guidance for styling, composition, tone, and motion intent while preserving brand fidelity.\n${referenceLines.join("\n")}`;
+}
+
 async function resolveProviderReferenceAssetUrls(
   assets: Array<{
     file_url: string;
@@ -462,7 +529,7 @@ export async function triggerShotGeneration(input: SaveShotPromptDraftInput) {
 
   const { data: referenceAssets, error: assetsError } = await supabase
     .from("assets")
-    .select("file_url, metadata_json, shot_id, type")
+    .select("file_name, file_url, metadata_json, shot_id, tags, type")
     .eq("campaign_id", updatedShot.campaign_id);
 
   if (assetsError) {
@@ -481,13 +548,14 @@ export async function triggerShotGeneration(input: SaveShotPromptDraftInput) {
           asset.type === "logo"),
     ) ?? [];
   const referenceAssetUrls = await resolveProviderReferenceAssetUrls(candidateReferenceAssets);
+  const providerPromptText = buildProviderPromptText(input.promptText, candidateReferenceAssets);
 
   const provider = getProvider(input.targetModel);
   const job = await provider.enqueue({
     aspectRatio: input.aspectRatio,
     campaignId: updatedShot.campaign_id,
     durationSeconds: input.durationSeconds,
-    promptText: input.promptText,
+    promptText: providerPromptText,
     referenceAssetUrls,
     shotId: input.shotId,
   });
@@ -503,6 +571,7 @@ export async function triggerShotGeneration(input: SaveShotPromptDraftInput) {
       aspect_ratio: input.aspectRatio,
       duration_seconds: input.durationSeconds,
       prompt_text: input.promptText,
+      provider_prompt_text: providerPromptText,
       provider: input.targetModel,
       reference_asset_urls: referenceAssetUrls,
       shot_id: input.shotId,

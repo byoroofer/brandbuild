@@ -23,6 +23,18 @@ function makeCampaignSlug(name: string, brandName: string) {
   return `${base || "campaign"}-${suffix}`;
 }
 
+function isMissingSchemaError(error: { code?: string | null; message?: string | null } | null | undefined) {
+  if (!error) {
+    return false;
+  }
+
+  return (
+    error.code === "PGRST205" ||
+    Boolean(error.message?.includes("schema cache")) ||
+    Boolean(error.message?.includes("Could not find the table"))
+  );
+}
+
 export async function GET() {
   const data = await listCampaigns();
   return NextResponse.json(data);
@@ -65,11 +77,18 @@ export async function POST(request: Request) {
     const campaignsTable = studioDb.from("campaigns");
     const { data, error } = await campaignsTable.insert(payload).select("id").single();
 
+    if (isMissingSchemaError(error)) {
+      throw new StudioApiError(
+        "BrandBuild setup is incomplete in this environment. Apply the Supabase schema migrations, then refresh and try again.",
+        503,
+      );
+    }
+
     if (error || !data?.id) {
       throw new StudioApiError(error?.message ?? "Unable to create campaign.", 500);
     }
 
-    await studioDb.from("activity_log").insert({
+    const { error: activityLogError } = await studioDb.from("activity_log").insert({
       action: "campaign_created",
       entity_id: data.id,
       entity_type: "campaign",
@@ -79,6 +98,13 @@ export async function POST(request: Request) {
         target_platforms: parsed.data.targetPlatforms,
       },
     });
+
+    if (isMissingSchemaError(activityLogError)) {
+      throw new StudioApiError(
+        "BrandBuild setup is incomplete in this environment. Apply the Supabase schema migrations, then refresh and try again.",
+        503,
+      );
+    }
 
     revalidatePath("/dashboard");
     revalidatePath("/dashboard/campaigns");
