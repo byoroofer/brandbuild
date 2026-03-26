@@ -21,7 +21,8 @@
 - Adapter status: live-capable
 - Current state: OpenAI-backed adapter exists and is wired into the shared generation pipeline. The 2026-03-25 provider smoke test successfully created a real queued Sora job: `video_69c442cd810881939bdbe6afd2d428f80824e179028ff0fc`.
 - Latest validation: the 2026-03-26 smoke run against the corrected BrandBuild env successfully queued `video_69c57e95635481918f524550c7a927690a2346e2b6e9823e`.
-- Still needed: run the signed-in dashboard path using the new hosted-reference or sample-import flow, then add cost/timing telemetry plus stronger refresh or webhook support.
+- Latest live UI validation: the 2026-03-26 signed-in dashboard smoke run successfully attached a hosted reference and queued live Sora job `video_69c588d8cda4819198c0338739e1e30c0f5646755badeead` through generation `36e5379b-1932-4948-b7b7-ca3fcb6fbd37`.
+- Still needed: refresh that queued dashboard run through completion, validate the operator-facing `/api/generate/[generationId]/content` path, then add cost/timing telemetry plus stronger refresh or webhook support.
 - Reference handling: attached references now enrich `provider_prompt_text` at enqueue time, so Sora gets normalized visual guidance even before any future direct multimodal parameter wiring is verified.
 ## Kling
 - Adapter status: live-capable
@@ -37,6 +38,7 @@
 - Working now: structured prompts, normalized generation persistence, status refresh, grouped compare outputs, asset-driven version groups and handoff packages, a repaired campaign-creation API path, a reusable provider smoke-test harness, hosted HTTPS reference linking, curated BrandBuild sample imports on shot detail, reference-aware provider prompt augmentation for attached shot assets, and a single-file manual Supabase bootstrap.
 - Working now: BrandBuild is aligned to the correct Supabase backend and production is live again on `brandbuild.online`.
 - Working now: direct campaign insert/delete smoke tests pass and the private `assets` bucket accepts uploads on the corrected backend.
+- Working now: the repo-owned live dashboard smoke harness verifies sign-in, campaign creation, hosted reference attachment, and live Sora queueing on production.
 - Setup hardening: empty but valid live datasets now remain in live mode, while missing-schema environments degrade into a clear setup state instead of surfacing raw PostgREST cache errors in the UI.
 - Missing now: campaign-level sequencing, cost tracking, and richer admin/debug visibility.
 ## Auth / Trust Layer
@@ -49,4 +51,5 @@
 ## 2026-03-26 schema recovery status
 - One-file manual SQL bundle is now prepared inside the repo.
 - The schema blocker is resolved for the correct BrandBuild project.
-- The next validation is product-level: signed-in campaigns, uploads, Sora generation, then auth/email finishing work.
+- Signed-in product validation is now proven through login, campaign creation, hosted reference attachment, and Sora queueing on production.
+- The next validation is product-level completion: refresh the queued Sora run through completion, then finish auth/email setup and the remaining provider-account unblock work.

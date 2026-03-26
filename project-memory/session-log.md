@@ -168,3 +168,17 @@ pm run build successfully.
   - Kling still fails on credits
   - Higgsfield now fails on credits rather than invalid auth
 - Reduced the remaining uncertainty from backend alignment to signed-in dashboard validation plus external provider credits.
+
+## 2026-03-26 14:00-14:29 CT - Live Dashboard Smoke Success
+- Added `apps/dashboard/scripts/live-dashboard-smoke.mjs` as a reusable signed-in production smoke harness.
+- Traced the shot-page production React error to locale-dependent timestamp rendering inside the client-side prompt-builder generation history.
+- Replaced that timestamp output with deterministic UTC formatting in `apps/dashboard/lib/utils/dates.ts` and `apps/dashboard/components/shots/prompt-builder.tsx`.
+- Updated `apps/dashboard/.gitignore` so local smoke artifacts stay out of git.
+- Re-ran `npm run typecheck` and `npm run build` successfully.
+- Pushed commit `35f1260` and explicitly deployed production to `brandbuild-online-qjirkgm7c-byoroofers-projects.vercel.app`, then re-aliased `brandbuild.online`.
+- Verified the live signed-in operator path on production:
+  - login succeeded
+  - campaign creation returned `877e4747-abd1-48c2-9d97-1fa46efad01a`
+  - hosted reference attachment returned asset `91a5c52d-123d-4436-8ab2-16a24cbf076c`
+  - Sora queued live job `video_69c588d8cda4819198c0338739e1e30c0f5646755badeead` through generation `36e5379b-1932-4948-b7b7-ca3fcb6fbd37`
+- Remaining runtime gap: refresh that queued Sora run through completion and verify the operator-facing content proxy path.
