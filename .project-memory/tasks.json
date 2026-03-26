@@ -306,10 +306,10 @@
                       "title":  "Configure server-side storage access for private uploads",
                       "description":  "Apply the new assets bucket and authenticated storage policy migration in Supabase, then validate that private operator uploads work on production. SUPABASE_SERVICE_ROLE_KEY is now only required for backend provider-output mirroring.",
                       "priority":  "critical",
-                      "status":  "active",
+                      "status":  "complete",
                       "owner":  "agent",
                       "created_at":  "2026-03-25T12:46:38.0836727-05:00",
-                      "updated_at":  "2026-03-25T20:02:36.1176226-05:00",
+                      "updated_at":  "2026-03-26T13:50:07.8524977-05:00",
                       "dependencies":  [
 
                                        ],
@@ -319,7 +319,7 @@
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
                                             "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260325164000_assets_bucket_policies.sql"
                                         ],
-                      "notes":  "The connected live Supabase project now has a confirmed schema gap: hdwneidxkakrzrhuxqcd.supabase.co returns PGRST205 for public.campaigns. Applying the foundation, account, and assets-bucket migrations is now the primary unblock before authenticated private uploads can be validated."
+                      "notes":  "Completed after the corrected BrandBuild backend exposed the private assets bucket and a direct upload/delete smoke test succeeded on 2026-03-26. Signed-in dashboard validation is still part of task 027."
                   },
                   {
                       "task_id":  "brandbuild-task-018",
@@ -329,7 +329,7 @@
                       "status":  "blocked",
                       "owner":  "user+agent",
                       "created_at":  "2026-03-25T12:46:38.0836727-05:00",
-                      "updated_at":  "2026-03-25T15:19:24-05:00",
+                      "updated_at":  "2026-03-26T13:50:07.8524977-05:00",
                       "dependencies":  [
                                            "brandbuild-task-002"
                                        ],
@@ -337,7 +337,7 @@
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts",
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
                                         ],
-                      "notes":  "The live smoke test reached Kling and failed with \u0027Account balance not enough\u0027, which points to account funding rather than missing code wiring."
+                      "notes":  "The latest live smoke test against the corrected BrandBuild env still reaches Kling successfully but fails with \u0027Account balance not enough\u0027, which points to credits rather than missing code wiring."
                   },
                   {
                       "task_id":  "brandbuild-task-019",
@@ -347,7 +347,7 @@
                       "status":  "blocked",
                       "owner":  "user+agent",
                       "created_at":  "2026-03-25T12:46:38.0836727-05:00",
-                      "updated_at":  "2026-03-25T15:19:24-05:00",
+                      "updated_at":  "2026-03-26T13:50:07.8524977-05:00",
                       "dependencies":  [
                                            "brandbuild-task-002"
                                        ],
@@ -355,7 +355,7 @@
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts",
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
                                         ],
-                      "notes":  "The live smoke test returned \u0027Invalid credentials\u0027, so the current Higgsfield keys are not usable."
+                      "notes":  "The latest live smoke test against the corrected BrandBuild env now reaches Higgsfield successfully but fails with \u0027Not enough credits\u0027, so the blocker has moved from invalid auth to credits."
                   },
                   {
                       "task_id":  "brandbuild-task-020",
@@ -506,7 +506,7 @@
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\campaigns\\page.tsx"
                                         ],
-                      "notes":  "The backend alignment preconditions are now satisfied: local env and Vercel production both point at ikdewffoqtliwkoywfrx, public.campaigns is confirmed reachable there, and production has been redeployed successfully. The next step is signed-in product validation."
+                      "notes":  "The backend alignment preconditions are now satisfied: local env and Vercel production both point at ikdewffoqtliwkoywfrx, campaign reads and writes are confirmed directly, the private assets bucket is writable, and production has been redeployed successfully. The next step is signed-in product validation."
                   }
               ],
     "Count":  26

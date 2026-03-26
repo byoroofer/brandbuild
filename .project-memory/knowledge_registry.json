@@ -811,7 +811,58 @@
                                             "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.vercel\\project.json",
                                             "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json"
                                         ]
+                  },
+                  {
+                      "id":  "brandbuild-know-048",
+                      "category":  "database",
+                      "fact":  "The corrected BrandBuild backend accepts campaign writes: on 2026-03-26 a temporary campaign with slug smoke-1f2a856a was inserted and deleted successfully through the Supabase REST API using the BrandBuild service-role key.",
+                      "confidence":  "high",
+                      "source":  "direct REST insert/delete smoke test against the correct BrandBuild backend",
+                      "first_recorded_at":  "2026-03-26T13:50:07.8524977-05:00",
+                      "last_confirmed_at":  "2026-03-26T13:50:07.8524977-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-049",
+                      "category":  "storage",
+                      "fact":  "The private assets bucket on the corrected BrandBuild backend is real and writable: on 2026-03-26 a temporary PNG was uploaded and deleted successfully under the smoke-tests prefix.",
+                      "confidence":  "high",
+                      "source":  "direct Supabase Storage upload/delete smoke test",
+                      "first_recorded_at":  "2026-03-26T13:50:07.8524977-05:00",
+                      "last_confirmed_at":  "2026-03-26T13:50:07.8524977-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260325164000_assets_bucket_policies.sql",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-know-050",
+                      "category":  "integrations",
+                      "fact":  "After the BrandBuild backend realignment, the provider smoke harness reported a healthy readiness snapshot, successfully queued Sora job video_69c57e95635481918f524550c7a927690a2346e2b6e9823e, and now shows Kling and Higgsfield failing on credits rather than missing env or invalid auth.",
+                      "confidence":  "high",
+                      "source":  "2026-03-26 provider smoke run against corrected local env",
+                      "first_recorded_at":  "2026-03-26T13:50:07.8524977-05:00",
+                      "last_confirmed_at":  "2026-03-26T13:50:07.8524977-05:00",
+                      "status":  "active",
+                      "related_projects":  [
+                                               "brandbuild"
+                                           ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.env.local"
+                                        ]
                   }
               ],
-    "Count":  47
+    "Count":  50
 }

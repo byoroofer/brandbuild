@@ -158,3 +158,13 @@ pm run build successfully.
 - Found the Vercel deployment blocker: the repo head commit was authored by `BrandBuild Local <brandbuild@local.invalid>`, which Vercel refused.
 - Switched the repo git identity back to `TJ Ware <info@byoroofer.com>`, committed the current integration state as `14daff9`, pushed `main`, and redeployed production successfully.
 - Verified `https://brandbuild.online` and `https://brandbuild.online/login` both return `200`.
+
+## 2026-03-26 13:50 CT - Corrected Backend Smoke Validation
+- Confirmed the private `assets` bucket exists on the corrected BrandBuild project with the expected private limits and mime types.
+- Inserted and deleted a temporary campaign directly through the corrected Supabase REST API to prove backend writes work.
+- Uploaded and deleted a temporary PNG in the private `assets` bucket to prove storage writes work.
+- Re-ran the provider smoke harness against the corrected BrandBuild env:
+  - Sora queued successfully: `video_69c57e95635481918f524550c7a927690a2346e2b6e9823e`
+  - Kling still fails on credits
+  - Higgsfield now fails on credits rather than invalid auth
+- Reduced the remaining uncertainty from backend alignment to signed-in dashboard validation plus external provider credits.

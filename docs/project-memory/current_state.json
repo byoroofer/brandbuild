@@ -1,6 +1,6 @@
 {
     "current_phase":  "stabilization, integration hardening, and workflow expansion",
-    "summary":  "BrandBuild is live on brandbuild.online with a premium dashboard, compare workspace, assets workspace, repaired campaign creation flow, a working in-app Sora media proxy, a no-storage shot reference fallback, reference-aware generation prompts for Sora and Kling, and a manual Supabase bootstrap file ready for live recovery. GitHub, the local Vercel project link, the BrandBuild Supabase project identity, the local app env, and the Vercel production env are now aligned to https://ikdewffoqtliwkoywfrx.supabase.co. A direct REST check against that correct project returned a real campaigns row and a fresh production deployment completed successfully on 2026-03-26. The remaining primary blockers are finishing Supabase Auth dashboard setup plus provider account readiness for Kling and Higgsfield.",
+    "summary":  "BrandBuild is live on brandbuild.online with a premium dashboard, compare workspace, assets workspace, repaired campaign creation flow, a working in-app Sora media proxy, a no-storage shot reference fallback, reference-aware generation prompts for Sora and Kling, and a manual Supabase bootstrap file ready for live recovery. GitHub, the local Vercel project link, the BrandBuild Supabase project identity, the local app env, and the Vercel production env are aligned to https://ikdewffoqtliwkoywfrx.supabase.co. Direct validation on 2026-03-26 confirmed that the correct backend now supports campaign reads, campaign writes, private asset uploads, and live Sora job queueing. The remaining primary blockers are finishing Supabase Auth dashboard setup, signed-in product-path validation, and provider account readiness for Kling and Higgsfield.",
     "active_workstreams":  [
                                "production stability and trust",
                                "provider validation and orchestration hardening",
@@ -16,8 +16,9 @@
                            ],
     "blockers":  [
                      "Supabase Auth dashboard still needs branded email hook enablement, SMTP sender setup, and redirect cleanup.",
+                     "Signed-in product validation is still pending for campaign creation, asset upload, and Sora generation through the actual dashboard UI.",
                      "Kling live validation is blocked by account balance.",
-                     "Higgsfield live validation is blocked by invalid credentials.",
+                     "Higgsfield live validation is blocked by insufficient credits.",
                      "Supabase CLI is installed locally but not authenticated or linked to the BrandBuild project, so schema management cannot be driven from this machine yet."
                  ],
     "risks":  [
@@ -49,6 +50,9 @@
                            "Committed and pushed Align BrandBuild Supabase integration as 14daff9 so the head commit author now matches a valid Vercel team identity.",
                            "Deployed production successfully at https://brandbuild-online-ddhqsaby9-byoroofers-projects.vercel.app and re-aliased https://brandbuild.online.",
                            "Verified the live homepage and login route both return 200 after the successful production deployment.",
+                           "Confirmed direct campaign writes on the correct BrandBuild backend by inserting and deleting the temporary campaign slug smoke-1f2a856a through the Supabase REST API.",
+                           "Confirmed the private assets bucket is real on the correct backend and accepts uploads by creating and deleting a temporary PNG in storage path smoke-tests/ae54c8e3b92546b7b4c9a90deb9b873e.png.",
+                           "Re-ran the live provider smoke harness against the corrected environment: Sora queued job video_69c57e95635481918f524550c7a927690a2346e2b6e9823e successfully, Kling now fails on credits, and Higgsfield now fails on credits rather than invalid credentials.",
                            "Confirmed the Git remote is origin=https://github.com/byoroofer/brandbuild.git on the main branch for D:\\Playground\\brandbuild-online-repo.",
                            "Confirmed the local Vercel project link in apps/dashboard/.vercel/project.json points at brandbuild-online (projectId prj_tDiWPGRPN8Y3NAJ7kJEuljkp8rGr).",
                            "Confirmed Vercel CLI access to the byoroofer account and the brandbuild-online project, then added the missing safe production env vars NEXT_PUBLIC_APP_NAME, NEXT_PUBLIC_SUPPORT_EMAIL, STORAGE_BUCKET_ASSETS, and STORAGE_BUCKET_EXPORTS.",
@@ -107,8 +111,8 @@
                            "Pushed the hosted-reference and sample-import batch to origin/main in commit e7393d3 so git, deployment, and project memory are aligned again."
                        ],
     "next_steps":  [
-                       "Validate campaign creation against the real BrandBuild database now that the backend is aligned to ikdewffoqtliwkoywfrx.",
-                       "Validate a signed-in Sora dashboard generation using a sample or hosted reference and confirm the result streams through BrandBuild.",
+                       "Validate signed-in campaign creation through the live dashboard now that backend reads and writes are confirmed directly.",
+                       "Validate a signed-in asset upload and Sora dashboard generation using a sample or hosted reference and confirm the result streams through BrandBuild.",
                        "Finish Supabase Auth dashboard setup: Site URL, redirect URLs, Send Email Hook, and SMTP sender configuration.",
                        "Authenticate the Supabase CLI on this machine and link the repo to the live BrandBuild project if you want agent-driven schema and function management from the terminal.",
                        "Finish Supabase Auth dashboard setup for branded email and correct redirect behavior.",
@@ -116,5 +120,5 @@
                        "Fix or rotate Higgsfield credentials, then rerun the smoke test and a signed-in dashboard generation.",
                        "Add timeline sequencing across selected outputs and deepen the delivery/export workflow."
                    ],
-    "updated_at":  "2026-03-26T13:35:24.0148653-05:00"
+    "updated_at":  "2026-03-26T13:50:07.8524977-05:00"
 }

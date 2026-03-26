@@ -1439,5 +1439,52 @@
                                          "Finish Supabase Auth email and redirect setup.",
                                          "Then resume Kling and Higgsfield live validation."
                                      ]
+    },
+    {
+        "session_id":  "brandbuild-session-2026-03-26-backend-smoke-validation",
+        "timestamp_start":  "2026-03-26T13:50:07.8524977-05:00",
+        "timestamp_end":  "2026-03-26T13:50:07.8524977-05:00",
+        "user_objective":  "Continue after backend realignment and validate whether the corrected BrandBuild backend is truly ready for product flows.",
+        "actions_taken":  [
+                              "Inspected the campaign API route and provider smoke harness for the next backend-dependent validation points.",
+                              "Confirmed the private assets bucket exists on the corrected BrandBuild Supabase project with the expected limits and allowed mime types.",
+                              "Inserted and deleted a temporary campaign directly through the Supabase REST API to prove campaign writes work on the corrected backend.",
+                              "Uploaded and deleted a temporary PNG in the private assets bucket to prove storage writes work on the corrected backend.",
+                              "Ran the provider smoke harness against the corrected BrandBuild env and confirmed Sora queues successfully while Kling and Higgsfield now fail on credits."
+                          ],
+        "files_created":  [],
+        "files_modified":  [
+                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+                               "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+                               "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
+                               "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
+                           ],
+        "files_reviewed":  [
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
+                               "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs",
+                               "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260325164000_assets_bucket_policies.sql"
+                           ],
+        "key_findings":  [
+                             "The corrected BrandBuild backend supports campaign reads, writes, and deletes through the API layer used by the app schema.",
+                             "The private assets bucket exists and accepts uploads on the corrected backend.",
+                             "Sora queues successfully from the aligned environment, while Kling and Higgsfield are now blocked by credits rather than bad configuration."
+                         ],
+        "decisions_added":  [],
+        "memory_updates":  [
+                               "Recorded that backend uncertainty is largely resolved and the next remaining validation step is the signed-in dashboard path."
+                           ],
+        "unresolved_items":  [
+                                 "Signed-in dashboard validation is still needed for campaigns, uploads, and Sora generation.",
+                                 "Supabase Auth dashboard setup is still manual.",
+                                 "Kling still needs credits.",
+                                 "Higgsfield still needs credits."
+                             ],
+        "next_recommended_actions":  [
+                                         "Validate the signed-in dashboard path for campaign creation, uploads, and Sora generation.",
+                                         "Finish Supabase Auth email and redirect setup.",
+                                         "Then resume Kling and Higgsfield live validation once credits are available."
+                                     ]
     }
 ]

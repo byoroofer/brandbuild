@@ -20,20 +20,23 @@
 ## Sora
 - Adapter status: live-capable
 - Current state: OpenAI-backed adapter exists and is wired into the shared generation pipeline. The 2026-03-25 provider smoke test successfully created a real queued Sora job: `video_69c442cd810881939bdbe6afd2d428f80824e179028ff0fc`.
+- Latest validation: the 2026-03-26 smoke run against the corrected BrandBuild env successfully queued `video_69c57e95635481918f524550c7a927690a2346e2b6e9823e`.
 - Still needed: run the signed-in dashboard path using the new hosted-reference or sample-import flow, then add cost/timing telemetry plus stronger refresh or webhook support.
 - Reference handling: attached references now enrich `provider_prompt_text` at enqueue time, so Sora gets normalized visual guidance even before any future direct multimodal parameter wiring is verified.
 ## Kling
 - Adapter status: live-capable
 - Current state: JWT-signed adapter exists and is wired into the shared generation pipeline, but the 2026-03-25 provider smoke test failed with Account balance not enough.
+- Latest validation: the 2026-03-26 smoke run against the corrected BrandBuild env still fails with `Account balance not enough`.
 - Still needed: fund or otherwise unblock the Kling account, then rerun the smoke test and validate a signed-in dashboard generation.
 - Reference handling: attached references now enrich `provider_prompt_text` before Kling enqueue requests, while direct provider-native reference conditioning still remains a later documented enhancement.
 ## Higgsfield
 - Adapter status: live-capable
-- Current state: reference-image-led adapter exists and is wired into the shared generation pipeline, but the 2026-03-25 provider smoke test failed with Invalid credentials.
-- Still needed: rotate or correct the Higgsfield credentials, then rerun the smoke test and validate a signed-in dashboard generation plus model-selection and refresh hardening.
+- Current state: reference-image-led adapter exists and is wired into the shared generation pipeline. After backend realignment, the 2026-03-26 smoke test now reaches Higgsfield but fails with `Not enough credits`.
+- Still needed: add credits, then rerun the smoke test and validate a signed-in dashboard generation plus model-selection and refresh hardening.
 ## Shared Pipeline
 - Working now: structured prompts, normalized generation persistence, status refresh, grouped compare outputs, asset-driven version groups and handoff packages, a repaired campaign-creation API path, a reusable provider smoke-test harness, hosted HTTPS reference linking, curated BrandBuild sample imports on shot detail, reference-aware provider prompt augmentation for attached shot assets, and a single-file manual Supabase bootstrap.
 - Working now: BrandBuild is aligned to the correct Supabase backend and production is live again on `brandbuild.online`.
+- Working now: direct campaign insert/delete smoke tests pass and the private `assets` bucket accepts uploads on the corrected backend.
 - Setup hardening: empty but valid live datasets now remain in live mode, while missing-schema environments degrade into a clear setup state instead of surfacing raw PostgREST cache errors in the UI.
 - Missing now: campaign-level sequencing, cost tracking, and richer admin/debug visibility.
 ## Auth / Trust Layer
