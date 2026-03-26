@@ -1,321 +1,370 @@
 {
-  "value": [
-    {
-      "id": "brandbuild-dec-20260324-001",
-      "timestamp": "2026-03-24T17:40:09.0933149-05:00",
-      "title": "Treat BrandBuild and AI Video as the same product family",
-      "decision": "Allow BrandBuild and AI Video Studio naming to coexist as one product family rather than treating them as separate repos or products.",
-      "reason": "User explicitly said AI Video and BrandBuild are the same.",
-      "alternatives_considered": [
-        "Force a separate-product interpretation",
-        "Split responsibilities across different repos"
-      ],
-      "impact": "Repo cleanup and roadmap decisions focus on removing unrelated product work instead of renaming everything immediately.",
-      "status": "active",
-      "supersedes": [],
-      "related_files": [
-        "D:\\Playground\\brandbuild-online-repo\\README.md",
-        "D:\\Playground\\brandbuild-online-repo\\package.json"
-      ]
-    },
-    {
-      "id": "brandbuild-dec-20260324-002",
-      "timestamp": "2026-03-24T17:40:09.0933149-05:00",
-      "title": "Remove unrelated legacy runtime source from BrandBuild",
-      "decision": "Keep the canonical BrandBuild repo focused on BrandBuild surfaces and block reintroduction of unrelated legacy runtime features.",
-      "reason": "The repo had already experienced cross-product contamination and needed stronger boundaries.",
-      "alternatives_considered": [
-        "Allow mixed product runtime features to coexist in the repo",
-        "Delay cleanup until after future feature work"
-      ],
-      "impact": "BrandBuild stays cleaner, and future work can build on a more trustworthy surface.",
-      "status": "active",
-      "supersedes": [],
-      "related_files": [
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs"
-      ]
-    },
-    {
-      "id": "brandbuild-dec-20260324-003",
-      "timestamp": "2026-03-24T17:40:09.0933149-05:00",
-      "title": "Use .project-memory as the initial durable memory location",
-      "decision": "Store the first repo-backed project memory set inside .project-memory at repo root.",
-      "reason": "It was the fastest way to initialize durable memory inside the repo during cleanup work.",
-      "alternatives_considered": [
-        "docs/project-memory",
-        "Only human-facing markdown files at project-memory"
-      ],
-      "impact": "Project memory existed immediately, but duplicate memory locations later needed consolidation.",
-      "status": "superseded",
-      "supersedes": [],
-      "related_files": [
-        "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json"
-      ]
-    },
-    {
-      "id": "brandbuild-dec-20260324-004",
-      "timestamp": "2026-03-24T19:25:09.983424-05:00",
-      "title": "Send BrandBuild cleanup upstream on main",
-      "decision": "Push the BrandBuild cleanup and memory initialization upstream on main rather than leaving it local-only.",
-      "reason": "User explicitly asked to send all changed repos.",
-      "alternatives_considered": [
-        "Leave the cleanup local-only",
-        "Delay the push until all naming drift was resolved"
-      ],
-      "impact": "The canonical repo became safer to build on without waiting for every later cleanup.",
-      "status": "active",
-      "supersedes": [],
-      "related_files": [
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs"
-      ]
-    },
-    {
-      "id": "brandbuild-dec-20260324-005",
-      "timestamp": "2026-03-24T18:52:00-05:00",
-      "title": "Expose system readiness inside the product",
-      "decision": "Add an in-product settings and control-center surface that shows integration readiness, architecture gaps, and next actions.",
-      "reason": "The product needed a visible operator-facing truth layer instead of leaving audit state buried in code and chat.",
-      "alternatives_considered": [
-        "Keep readiness knowledge only in docs",
-        "Wait until all integrations were finished before exposing status"
-      ],
-      "impact": "BrandBuild now has a clearer internal operating surface at /dashboard/settings.",
-      "status": "active",
-      "supersedes": [],
-      "related_files": [
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\settings\\page.tsx",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\settings\\studio-control-center.tsx",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts"
-      ]
-    },
-    {
-      "id": "brandbuild-dec-20260324-006",
-      "timestamp": "2026-03-24T19:41:23.2499373-05:00",
-      "title": "Canonicalize structured memory in docs/project-memory",
-      "decision": "Use docs/project-memory as the canonical structured memory layer, mirror it into .project-memory to avoid stale loads, and keep project-memory as the human-facing operating summary requested by the user.",
-      "reason": "The repo had diverged across three memory locations and needed a single structured source of truth without destroying history.",
-      "alternatives_considered": [
-        "Keep .project-memory canonical",
-        "Delete the duplicate folders outright"
-      ],
-      "impact": "Future sessions can reconstruct state reliably while still preserving the earlier memory location.",
-      "status": "active",
-      "supersedes": [
-        "brandbuild-dec-20260324-003"
-      ],
-      "related_files": [
-        "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
-        "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json",
-        "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json"
-      ]
-    },
-    {
-      "id": "brandbuild-dec-20260325-007",
-      "timestamp": "2026-03-25T08:38:00-05:00",
-      "title": "Use shot-grouped compare outputs as the reviews surface",
-      "decision": "Keep /dashboard/reviews as the compare route and rebuild it around shot-grouped candidates with media previews, provider context, and focused review details rather than adding a separate compare route.",
-      "reason": "The product needed a first-class comparison workflow quickly, and the existing reviews surface already owned selection logic and review context.",
-      "alternatives_considered": [
-        "Keep the existing flat review list and defer compare UX",
-        "Create a brand new /dashboard/compare route before improving the reviews workspace"
-      ],
-      "impact": "BrandBuild now expresses its multi-model value proposition much more clearly without changing the route structure or schema.",
-      "status": "active",
-      "supersedes": [],
-      "related_files": [
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\reviews\\page.tsx",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
-      ]
-    },
-    {
-      "id": "brandbuild-dec-20260325-008",
-      "timestamp": "2026-03-25T09:01:54.1394838-05:00",
-      "title": "Use /dashboard/assets as the versions and handoff workspace",
-      "decision": "Keep /dashboard/assets as the unified route for asset browsing, version groups, and handoff preparation instead of introducing a separate versions or deliverables route at this stage.",
-      "reason": "The assets surface already owned the mental model for outputs and files, so extending it into versions and handoff kept navigation stable while making the workflow materially more useful.",
-      "alternatives_considered": [
-        "Create a separate /dashboard/versions route before the model was mature",
-        "Wait to build handoff until a full timeline editor existed"
-      ],
-      "impact": "BrandBuild now has a functional pre-edit delivery layer without route churn or schema changes, and the next missing step is sequencing rather than structure.",
-      "status": "active",
-      "supersedes": [],
-      "related_files": [
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
-      ]
-    },
-    {
-      "id": "brandbuild-dec-20260325-009",
-      "timestamp": "2026-03-25T12:18:00-05:00",
-      "title": "Send all public access CTAs directly to login",
-      "decision": "Route the public-site header and footer access CTAs straight to /login and make decorative marketing layers non-interactive so access buttons stay reliably clickable across desktop and mobile.",
-      "reason": "The public site should never depend on a protected /dashboard redirect for the basic sign-in path, and decorative overlays should not be allowed to interfere with navigation hit-testing.",
-      "alternatives_considered": [
-        "Keep the header primary CTA pointed at /dashboard and rely on middleware redirects",
-        "Only change the button label without changing click behavior",
-        "Leave decorative overlays interactive and assume browser hit-testing would remain reliable"
-      ],
-      "impact": "Public access is clearer on small screens, login intent is explicit, and the marketing shell is less likely to swallow taps or clicks that should navigate into authentication.",
-      "status": "active",
-      "supersedes": [],
-      "related_files": [
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx"
-      ]
-    },
-    {
-      "id": "brandbuild-dec-20260325-010",
-      "timestamp": "2026-03-25T12:46:38.0836727-05:00",
-      "title": "Use an API route for campaign creation instead of the brittle server-action boundary",
-      "decision": "Move campaign creation onto POST /api/campaigns and let the create-campaign modal handle success and error states client-side instead of relying on a server-action path that could throw users into the global error screen.",
-      "reason": "Campaign creation was still producing a full-page failure state for the user, and the server-action boundary made the failure mode harder to contain and explain inline.",
-      "alternatives_considered": [
-        "Keep the server-action flow and keep patching thrown errors around it",
-        "Disable campaign creation until the dashboard auth and persistence stack were revisited more broadly"
-      ],
-      "impact": "Campaign creation now fails inline through JSON responses, redirects directly to the new campaign on success, and is easier to debug and validate separately from the page shell.",
-      "status": "active",
-      "supersedes": [],
-      "related_files": [
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\create-campaign-modal.tsx"
-      ]
-    },
-    {
-      "id": "brandbuild-dec-20260325-011",
-      "timestamp": "2026-03-25T12:46:38.0836727-05:00",
-      "title": "Expose storage readiness truth and validate providers with a dedicated smoke harness",
-      "decision": "Keep the private-upload requirement strict, but surface the blocked state clearly in the shot uploader and add a reusable provider smoke-test script so real provider readiness can be validated without pretending uploads are available when storage is not configured.",
-      "reason": "The live deployment is missing SUPABASE_SERVICE_ROLE_KEY, and users need a truthful product state plus a repeatable way to validate Sora, Kling, and Higgsfield from the repo.",
-      "alternatives_considered": [
-        "Leave the uploader looking available and let the route fail with a generic message",
-        "Hide all upload surfaces entirely whenever storage credentials are missing",
-        "Rely on ad hoc shell commands instead of a committed smoke-test tool"
-      ],
-      "impact": "Operators now get explicit upload-readiness messaging, the settings audit reflects the real blocker, and the repo has a reusable control script for provider integration checks.",
-      "status": "active",
-      "supersedes": [],
-      "related_files": [
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
-      ]
-    },
-    {
-      "id": "brandbuild-decision-012",
-      "timestamp": "2026-03-25T16:30:00-05:00",
-      "title": "Proxy completed Sora media through BrandBuild",
-      "decision": "Completed Sora outputs are exposed to operators through /api/generate/[generationId]/content instead of relying on a missing url field from the OpenAI video status object.",
-      "reason": "OpenAI video status responses can be completed without containing a direct media URL. The actual media lives behind an authenticated /content endpoint, so BrandBuild needs its own server-side proxy to make completed outputs usable in the UI.",
-      "alternatives_considered": [
-        "Keep treating the status object url as authoritative even when it is missing.",
-        "Expose the raw OpenAI /content endpoint directly to the client.",
-        "Delay all Sora result viewing until storage mirroring is configured."
-      ],
-      "impact": "Generation history and future asset views can link to completed Sora media reliably, and the provider abstraction now matches the real OpenAI video retrieval model.",
-      "status": "active",
-      "supersedes": null,
-      "related_files": [
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\content\\route.ts",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\generation-content.ts"
-      ]
-    },
-    {
-      "id": "brandbuild-decision-013",
-      "timestamp": "2026-03-25T16:30:00-05:00",
-      "title": "Move shot uploads to authenticated storage policies",
-      "decision": "BrandBuild shot uploads and signed asset URLs should use the authenticated Supabase client plus storage policies, while SUPABASE_SERVICE_ROLE_KEY remains optional for backend-only provider-output mirroring.",
-      "reason": "Requiring the service-role key for basic operator uploads made the product unnecessarily brittle and blocked the workflow on otherwise healthy deployments.",
-      "alternatives_considered": [
-        "Keep all storage operations behind the admin client.",
-        "Make uploads public instead of private.",
-        "Disable uploads until service-role credentials are always present."
-      ],
-      "impact": "Private uploads can work with normal authenticated operator sessions once the assets bucket and storage policies are applied, and provider-output mirroring remains an additive backend capability.",
-      "status": "active",
-      "supersedes": "brandbuild-decision-011",
-      "related_files": [
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\server.ts",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-        "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260325164000_assets_bucket_policies.sql"
-      ]
-    },
-    {
-      "id": "brandbuild-decision-014",
-      "timestamp": "2026-03-25T16:49:53.1809302-05:00",
-      "title": "Use hosted references and sample imports as the upload fallback",
-      "decision": "Keep the shot asset route unified, but allow operators to attach hosted HTTPS media URLs and import curated BrandBuild sample references so generation work can continue while authenticated private uploads wait on Supabase storage migration rollout.",
-      "reason": "The biggest remaining unblock was not provider code but the external storage-policy rollout. A fallback path inside the same shot workflow preserves momentum without faking private uploads.",
-      "alternatives_considered": [
-        "Leave the shot workspace blocked until the Supabase migration is applied.",
-        "Add a separate temporary route just for samples.",
-        "Hide all asset-input surfaces until storage is fully ready."
-      ],
-      "impact": "Operators now have a truthful, usable way to attach references immediately, and the product can validate Sora dashboard generation before the private-upload rollout is finished.",
-      "status": "active",
-      "supersedes": [],
-      "related_files": [
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\reference-samples.ts"
-      ]
-    },
-    {
-      "id": "brandbuild-decision-015",
-      "timestamp": "2026-03-25T20:02:36.1176226-05:00",
-      "title": "Use reference-aware prompt augmentation as the cross-provider fallback",
-      "decision": "When a provider path does not yet support verified direct image or video conditioning, BrandBuild should still carry attached shot references into provider execution by augmenting the stored provider prompt text with normalized reference context.",
-      "reason": "Hosted references and built-in samples now make references available earlier in the workflow, but Sora and Kling were still ignoring that context at enqueue time. Prompt augmentation creates an immediate, truthful improvement without pretending undocumented multimodal parameters are production-ready.",
-      "alternatives_considered": [
-        "Leave Sora and Kling reference assets unused until direct multimodal adapter wiring is verified.",
-        "Invent provider-specific image or video parameters without confirmed API support.",
-        "Restrict all reference-aware generation to Higgsfield only."
-      ],
-      "impact": "Attached references now influence Sora and Kling generations immediately through provider_prompt_text, and the repo has a clear line between shipped prompt-aware behavior and future direct multimodal wiring.",
-      "status": "active",
-      "supersedes": [],
-      "related_files": [
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts"
-      ]
-    },
-    {
-      "id": "brandbuild-decision-016",
-      "timestamp": "2026-03-25T20:02:36.1176226-05:00",
-      "title": "Treat empty live tables as live and missing schema as setup mode",
-      "decision": "BrandBuild should keep a real but empty Supabase project in live mode, while missing-schema responses should disable creation flows gracefully and return setup guidance instead of raw PostgREST errors.",
-      "reason": "The app was conflating first-run empty state with persistence failure, which would keep campaign creation misleading or brittle. Missing schema is an infrastructure setup problem, not a reason to crash or mislabel a valid live project.",
-      "alternatives_considered": [
-        "Keep returning demo mode whenever campaigns is empty.",
-        "Let raw PGRST205 responses surface through the create-campaign flow.",
-        "Disable the entire campaigns surface whenever persistence checks fail."
-      ],
-      "impact": "Fresh live projects can create their first campaign once the schema exists, and currently misconfigured projects now show a clear setup state instead of a broken experience.",
-      "status": "active",
-      "supersedes": [],
-      "related_files": [
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\campaigns\\page.tsx",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\campaign-table.tsx",
-        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\create-campaign-modal.tsx"
-      ]
-    }
-  ],
-  "Count": 16
+    "value":  [
+                  {
+                      "id":  "brandbuild-dec-20260324-001",
+                      "timestamp":  "2026-03-24T17:40:09.0933149-05:00",
+                      "title":  "Treat BrandBuild and AI Video as the same product family",
+                      "decision":  "Allow BrandBuild and AI Video Studio naming to coexist as one product family rather than treating them as separate repos or products.",
+                      "reason":  "User explicitly said AI Video and BrandBuild are the same.",
+                      "alternatives_considered":  [
+                                                      "Force a separate-product interpretation",
+                                                      "Split responsibilities across different repos"
+                                                  ],
+                      "impact":  "Repo cleanup and roadmap decisions focus on removing unrelated product work instead of renaming everything immediately.",
+                      "status":  "active",
+                      "supersedes":  [
+
+                                     ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\README.md",
+                                            "D:\\Playground\\brandbuild-online-repo\\package.json"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-dec-20260324-002",
+                      "timestamp":  "2026-03-24T17:40:09.0933149-05:00",
+                      "title":  "Remove unrelated legacy runtime source from BrandBuild",
+                      "decision":  "Keep the canonical BrandBuild repo focused on BrandBuild surfaces and block reintroduction of unrelated legacy runtime features.",
+                      "reason":  "The repo had already experienced cross-product contamination and needed stronger boundaries.",
+                      "alternatives_considered":  [
+                                                      "Allow mixed product runtime features to coexist in the repo",
+                                                      "Delay cleanup until after future feature work"
+                                                  ],
+                      "impact":  "BrandBuild stays cleaner, and future work can build on a more trustworthy surface.",
+                      "status":  "active",
+                      "supersedes":  [
+
+                                     ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-dec-20260324-003",
+                      "timestamp":  "2026-03-24T17:40:09.0933149-05:00",
+                      "title":  "Use .project-memory as the initial durable memory location",
+                      "decision":  "Store the first repo-backed project memory set inside .project-memory at repo root.",
+                      "reason":  "It was the fastest way to initialize durable memory inside the repo during cleanup work.",
+                      "alternatives_considered":  [
+                                                      "docs/project-memory",
+                                                      "Only human-facing markdown files at project-memory"
+                                                  ],
+                      "impact":  "Project memory existed immediately, but duplicate memory locations later needed consolidation.",
+                      "status":  "superseded",
+                      "supersedes":  [
+
+                                     ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-dec-20260324-004",
+                      "timestamp":  "2026-03-24T19:25:09.983424-05:00",
+                      "title":  "Send BrandBuild cleanup upstream on main",
+                      "decision":  "Push the BrandBuild cleanup and memory initialization upstream on main rather than leaving it local-only.",
+                      "reason":  "User explicitly asked to send all changed repos.",
+                      "alternatives_considered":  [
+                                                      "Leave the cleanup local-only",
+                                                      "Delay the push until all naming drift was resolved"
+                                                  ],
+                      "impact":  "The canonical repo became safer to build on without waiting for every later cleanup.",
+                      "status":  "active",
+                      "supersedes":  [
+
+                                     ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\check-forbidden-references.mjs"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-dec-20260324-005",
+                      "timestamp":  "2026-03-24T18:52:00-05:00",
+                      "title":  "Expose system readiness inside the product",
+                      "decision":  "Add an in-product settings and control-center surface that shows integration readiness, architecture gaps, and next actions.",
+                      "reason":  "The product needed a visible operator-facing truth layer instead of leaving audit state buried in code and chat.",
+                      "alternatives_considered":  [
+                                                      "Keep readiness knowledge only in docs",
+                                                      "Wait until all integrations were finished before exposing status"
+                                                  ],
+                      "impact":  "BrandBuild now has a clearer internal operating surface at /dashboard/settings.",
+                      "status":  "active",
+                      "supersedes":  [
+
+                                     ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\settings\\page.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\settings\\studio-control-center.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-dec-20260324-006",
+                      "timestamp":  "2026-03-24T19:41:23.2499373-05:00",
+                      "title":  "Canonicalize structured memory in docs/project-memory",
+                      "decision":  "Use docs/project-memory as the canonical structured memory layer, mirror it into .project-memory to avoid stale loads, and keep project-memory as the human-facing operating summary requested by the user.",
+                      "reason":  "The repo had diverged across three memory locations and needed a single structured source of truth without destroying history.",
+                      "alternatives_considered":  [
+                                                      "Keep .project-memory canonical",
+                                                      "Delete the duplicate folders outright"
+                                                  ],
+                      "impact":  "Future sessions can reconstruct state reliably while still preserving the earlier memory location.",
+                      "status":  "active",
+                      "supersedes":  [
+                                         "brandbuild-dec-20260324-003"
+                                     ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
+                                            "D:\\Playground\\brandbuild-online-repo\\.project-memory\\project_profile.json",
+                                            "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-dec-20260325-007",
+                      "timestamp":  "2026-03-25T08:38:00-05:00",
+                      "title":  "Use shot-grouped compare outputs as the reviews surface",
+                      "decision":  "Keep /dashboard/reviews as the compare route and rebuild it around shot-grouped candidates with media previews, provider context, and focused review details rather than adding a separate compare route.",
+                      "reason":  "The product needed a first-class comparison workflow quickly, and the existing reviews surface already owned selection logic and review context.",
+                      "alternatives_considered":  [
+                                                      "Keep the existing flat review list and defer compare UX",
+                                                      "Create a brand new /dashboard/compare route before improving the reviews workspace"
+                                                  ],
+                      "impact":  "BrandBuild now expresses its multi-model value proposition much more clearly without changing the route structure or schema.",
+                      "status":  "active",
+                      "supersedes":  [
+
+                                     ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\reviews\\page.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-dec-20260325-008",
+                      "timestamp":  "2026-03-25T09:01:54.1394838-05:00",
+                      "title":  "Use /dashboard/assets as the versions and handoff workspace",
+                      "decision":  "Keep /dashboard/assets as the unified route for asset browsing, version groups, and handoff preparation instead of introducing a separate versions or deliverables route at this stage.",
+                      "reason":  "The assets surface already owned the mental model for outputs and files, so extending it into versions and handoff kept navigation stable while making the workflow materially more useful.",
+                      "alternatives_considered":  [
+                                                      "Create a separate /dashboard/versions route before the model was mature",
+                                                      "Wait to build handoff until a full timeline editor existed"
+                                                  ],
+                      "impact":  "BrandBuild now has a functional pre-edit delivery layer without route churn or schema changes, and the next missing step is sequencing rather than structure.",
+                      "status":  "active",
+                      "supersedes":  [
+
+                                     ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-dec-20260325-009",
+                      "timestamp":  "2026-03-25T12:18:00-05:00",
+                      "title":  "Send all public access CTAs directly to login",
+                      "decision":  "Route the public-site header and footer access CTAs straight to /login and make decorative marketing layers non-interactive so access buttons stay reliably clickable across desktop and mobile.",
+                      "reason":  "The public site should never depend on a protected /dashboard redirect for the basic sign-in path, and decorative overlays should not be allowed to interfere with navigation hit-testing.",
+                      "alternatives_considered":  [
+                                                      "Keep the header primary CTA pointed at /dashboard and rely on middleware redirects",
+                                                      "Only change the button label without changing click behavior",
+                                                      "Leave decorative overlays interactive and assume browser hit-testing would remain reliable"
+                                                  ],
+                      "impact":  "Public access is clearer on small screens, login intent is explicit, and the marketing shell is less likely to swallow taps or clicks that should navigate into authentication.",
+                      "status":  "active",
+                      "supersedes":  [
+
+                                     ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-dec-20260325-010",
+                      "timestamp":  "2026-03-25T12:46:38.0836727-05:00",
+                      "title":  "Use an API route for campaign creation instead of the brittle server-action boundary",
+                      "decision":  "Move campaign creation onto POST /api/campaigns and let the create-campaign modal handle success and error states client-side instead of relying on a server-action path that could throw users into the global error screen.",
+                      "reason":  "Campaign creation was still producing a full-page failure state for the user, and the server-action boundary made the failure mode harder to contain and explain inline.",
+                      "alternatives_considered":  [
+                                                      "Keep the server-action flow and keep patching thrown errors around it",
+                                                      "Disable campaign creation until the dashboard auth and persistence stack were revisited more broadly"
+                                                  ],
+                      "impact":  "Campaign creation now fails inline through JSON responses, redirects directly to the new campaign on success, and is easier to debug and validate separately from the page shell.",
+                      "status":  "active",
+                      "supersedes":  [
+
+                                     ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\create-campaign-modal.tsx"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-dec-20260325-011",
+                      "timestamp":  "2026-03-25T12:46:38.0836727-05:00",
+                      "title":  "Expose storage readiness truth and validate providers with a dedicated smoke harness",
+                      "decision":  "Keep the private-upload requirement strict, but surface the blocked state clearly in the shot uploader and add a reusable provider smoke-test script so real provider readiness can be validated without pretending uploads are available when storage is not configured.",
+                      "reason":  "The live deployment is missing SUPABASE_SERVICE_ROLE_KEY, and users need a truthful product state plus a repeatable way to validate Sora, Kling, and Higgsfield from the repo.",
+                      "alternatives_considered":  [
+                                                      "Leave the uploader looking available and let the route fail with a generic message",
+                                                      "Hide all upload surfaces entirely whenever storage credentials are missing",
+                                                      "Rely on ad hoc shell commands instead of a committed smoke-test tool"
+                                                  ],
+                      "impact":  "Operators now get explicit upload-readiness messaging, the settings audit reflects the real blocker, and the repo has a reusable control script for provider integration checks.",
+                      "status":  "active",
+                      "supersedes":  [
+
+                                     ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-decision-012",
+                      "timestamp":  "2026-03-25T16:30:00-05:00",
+                      "title":  "Proxy completed Sora media through BrandBuild",
+                      "decision":  "Completed Sora outputs are exposed to operators through /api/generate/[generationId]/content instead of relying on a missing url field from the OpenAI video status object.",
+                      "reason":  "OpenAI video status responses can be completed without containing a direct media URL. The actual media lives behind an authenticated /content endpoint, so BrandBuild needs its own server-side proxy to make completed outputs usable in the UI.",
+                      "alternatives_considered":  [
+                                                      "Keep treating the status object url as authoritative even when it is missing.",
+                                                      "Expose the raw OpenAI /content endpoint directly to the client.",
+                                                      "Delay all Sora result viewing until storage mirroring is configured."
+                                                  ],
+                      "impact":  "Generation history and future asset views can link to completed Sora media reliably, and the provider abstraction now matches the real OpenAI video retrieval model.",
+                      "status":  "active",
+                      "supersedes":  null,
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\content\\route.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\generation-content.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-decision-013",
+                      "timestamp":  "2026-03-25T16:30:00-05:00",
+                      "title":  "Move shot uploads to authenticated storage policies",
+                      "decision":  "BrandBuild shot uploads and signed asset URLs should use the authenticated Supabase client plus storage policies, while SUPABASE_SERVICE_ROLE_KEY remains optional for backend-only provider-output mirroring.",
+                      "reason":  "Requiring the service-role key for basic operator uploads made the product unnecessarily brittle and blocked the workflow on otherwise healthy deployments.",
+                      "alternatives_considered":  [
+                                                      "Keep all storage operations behind the admin client.",
+                                                      "Make uploads public instead of private.",
+                                                      "Disable uploads until service-role credentials are always present."
+                                                  ],
+                      "impact":  "Private uploads can work with normal authenticated operator sessions once the assets bucket and storage policies are applied, and provider-output mirroring remains an additive backend capability.",
+                      "status":  "active",
+                      "supersedes":  "brandbuild-decision-011",
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\server.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260325164000_assets_bucket_policies.sql"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-decision-014",
+                      "timestamp":  "2026-03-25T16:49:53.1809302-05:00",
+                      "title":  "Use hosted references and sample imports as the upload fallback",
+                      "decision":  "Keep the shot asset route unified, but allow operators to attach hosted HTTPS media URLs and import curated BrandBuild sample references so generation work can continue while authenticated private uploads wait on Supabase storage migration rollout.",
+                      "reason":  "The biggest remaining unblock was not provider code but the external storage-policy rollout. A fallback path inside the same shot workflow preserves momentum without faking private uploads.",
+                      "alternatives_considered":  [
+                                                      "Leave the shot workspace blocked until the Supabase migration is applied.",
+                                                      "Add a separate temporary route just for samples.",
+                                                      "Hide all asset-input surfaces until storage is fully ready."
+                                                  ],
+                      "impact":  "Operators now have a truthful, usable way to attach references immediately, and the product can validate Sora dashboard generation before the private-upload rollout is finished.",
+                      "status":  "active",
+                      "supersedes":  [
+
+                                     ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\reference-samples.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-decision-015",
+                      "timestamp":  "2026-03-25T20:02:36.1176226-05:00",
+                      "title":  "Use reference-aware prompt augmentation as the cross-provider fallback",
+                      "decision":  "When a provider path does not yet support verified direct image or video conditioning, BrandBuild should still carry attached shot references into provider execution by augmenting the stored provider prompt text with normalized reference context.",
+                      "reason":  "Hosted references and built-in samples now make references available earlier in the workflow, but Sora and Kling were still ignoring that context at enqueue time. Prompt augmentation creates an immediate, truthful improvement without pretending undocumented multimodal parameters are production-ready.",
+                      "alternatives_considered":  [
+                                                      "Leave Sora and Kling reference assets unused until direct multimodal adapter wiring is verified.",
+                                                      "Invent provider-specific image or video parameters without confirmed API support.",
+                                                      "Restrict all reference-aware generation to Higgsfield only."
+                                                  ],
+                      "impact":  "Attached references now influence Sora and Kling generations immediately through provider_prompt_text, and the repo has a clear line between shipped prompt-aware behavior and future direct multimodal wiring.",
+                      "status":  "active",
+                      "supersedes":  [
+
+                                     ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-decision-016",
+                      "timestamp":  "2026-03-25T20:02:36.1176226-05:00",
+                      "title":  "Treat empty live tables as live and missing schema as setup mode",
+                      "decision":  "BrandBuild should keep a real but empty Supabase project in live mode, while missing-schema responses should disable creation flows gracefully and return setup guidance instead of raw PostgREST errors.",
+                      "reason":  "The app was conflating first-run empty state with persistence failure, which would keep campaign creation misleading or brittle. Missing schema is an infrastructure setup problem, not a reason to crash or mislabel a valid live project.",
+                      "alternatives_considered":  [
+                                                      "Keep returning demo mode whenever campaigns is empty.",
+                                                      "Let raw PGRST205 responses surface through the create-campaign flow.",
+                                                      "Disable the entire campaigns surface whenever persistence checks fail."
+                                                  ],
+                      "impact":  "Fresh live projects can create their first campaign once the schema exists, and currently misconfigured projects now show a clear setup state instead of a broken experience.",
+                      "status":  "active",
+                      "supersedes":  [
+
+                                     ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\campaigns\\page.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\campaign-table.tsx",
+                                            "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\create-campaign-modal.tsx"
+                                        ]
+                  },
+                  {
+                      "id":  "brandbuild-decision-017",
+                      "timestamp":  "2026-03-26T07:06:25.5026444-05:00",
+                      "title":  "Provide one manual Supabase bootstrap bundle",
+                      "decision":  "BrandBuild should keep one paste-ready SQL bootstrap file in the repo that includes the missing legacy profile foundation, the core app schema, storage policies, auth-user trigger wiring, and demo seed data for manual Supabase setup.",
+                      "reason":  "The connected Supabase project is missing the BrandBuild schema, and the repo migration chain is incomplete because the account-settings migration depends on legacy profile tables and functions that are not present in the repo migrations.",
+                      "alternatives_considered":  [
+                                                      "Ask the operator to run three separate repo migrations manually and discover the hidden prerequisite tables later.",
+                                                      "Wait for Supabase CLI access-token auth before giving the user a runnable schema path.",
+                                                      "Provide only partial snippets instead of a single canonical bootstrap file."
+                                                  ],
+                      "impact":  "Schema recovery is now a single explicit manual step, the missing legacy dependencies are preserved in the repo, and future sessions have one canonical SQL file to reference.",
+                      "status":  "active",
+                      "supersedes":  [
+
+                                     ],
+                      "related_files":  [
+                                            "D:\\Playground\\brandbuild-online-repo\\supabase\\manual\\20260326_brandbuild_full_bootstrap.sql",
+                                            "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260319113000_ai_video_studio_foundation.sql",
+                                            "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260320113000_account_settings_foundation.sql",
+                                            "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260325164000_assets_bucket_policies.sql"
+                                        ]
+                  }
+              ],
+    "Count":  16
 }

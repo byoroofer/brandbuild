@@ -1,391 +1,407 @@
 [
-  {
-    "value": [
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts",
-        "purpose": "Creates the authenticated studio persistence client used by the live read and write paths.",
-        "criticality": "high",
-        "last_touched": "2026-03-24T23:59:00-05:00",
-        "notes": "Hardened to return null instead of throwing when server-side auth client initialization fails.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\page.tsx",
-        "purpose": "Main operator dashboard home.",
-        "criticality": "high",
-        "last_touched": "2026-03-24T18:52:00-05:00",
-        "notes": "Includes quick access into the new settings control center.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
-        "purpose": "Primary shot workspace route.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T16:49:53.1809302-05:00",
-        "notes": "Empty-state copy now reflects upload, hosted-link, and sample-import reference paths.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\prompt-builder.tsx",
-        "purpose": "Structured prompt builder, generate flow, and review stage UI.",
-        "criticality": "high",
-        "last_touched": "2026-03-22T00:00:00-05:00",
-        "notes": "One of the strongest existing product surfaces.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
-        "purpose": "Shot asset workspace UI covering private upload, hosted URL linking, and built-in sample imports.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T16:49:53.1809302-05:00",
-        "notes": "Now provides three asset-input paths so generation work can continue while private-upload rollout is still pending.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts",
-        "purpose": "Unified shot asset endpoint handling uploads, hosted references, and built-in sample imports.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T16:49:53.1809302-05:00",
-        "notes": "Validates asset mode, keeps one route surface, and records activity-log events for linked or imported references.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
-        "purpose": "Lists campaigns and now also creates campaigns through a dedicated JSON API path.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T20:02:36.1176226-05:00",
-        "notes": "Campaign creation now converts missing-schema PostgREST failures into a clear setup-required message instead of surfacing the raw schema cache error.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\create-campaign-modal.tsx",
-        "purpose": "Operator modal for creating campaigns from the dashboard and campaigns list.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T20:02:36.1176226-05:00",
-        "notes": "Disabled-state messaging is now explicit about live persistence or schema readiness instead of implying a generic failure.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs",
-        "purpose": "Reusable smoke-test harness for live Sora, Kling, and Higgsfield connectivity plus upload-readiness reporting.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T12:46:38.0836727-05:00",
-        "notes": "Used to validate real provider credentials without depending on the full signed-in dashboard workflow.",
-        "type": "docs"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\middleware.ts",
-        "purpose": "Refreshes Supabase auth state in middleware and protects dashboard routes.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T09:34:30.9567883-05:00",
-        "notes": "Hardened so bad cookies or Supabase session-refresh failures fall back to an anonymous response instead of throwing a production error page.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\email-action.ts",
-        "purpose": "Handles BrandBuild auth email callback, verification, and magic-link redirects.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T09:34:30.9567883-05:00",
-        "notes": "Hardened so auth callback failures redirect back to login safely instead of falling through to the global error page.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\route.ts",
-        "purpose": "Create generation jobs through the unified provider layer.",
-        "criticality": "high",
-        "last_touched": "2026-03-22T00:00:00-05:00",
-        "notes": "Central path for launching provider runs from the dashboard.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\route.ts",
-        "purpose": "Refresh generation status and provider outputs.",
-        "criticality": "high",
-        "last_touched": "2026-03-22T00:00:00-05:00",
-        "notes": "Used for Sora refresh and generalized provider polling.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
-        "purpose": "Normalized generation persistence, refresh, and asset sync.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T20:02:36.1176226-05:00",
-        "notes": "Core orchestration and storage bridge. Now persists provider_prompt_text so attached references influence Sora and Kling via normalized prompt augmentation while direct multimodal adapter wiring remains a later enhancement.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
-        "purpose": "Server read model for dashboard data.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T20:02:36.1176226-05:00",
-        "notes": "Now keeps empty but valid live datasets in live mode instead of collapsing them into demo mode, while still falling back when schema reads actually fail.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
-        "purpose": "Primary compare-outputs workspace for grouped review and selection decisions.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T08:38:00-05:00",
-        "notes": "Rebuilt from a flat review list into a grouped compare console with filters, previews, and focused review detail.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts",
-        "purpose": "Core product read-model and workflow types shared across dashboard surfaces.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T09:01:54.1394838-05:00",
-        "notes": "Expanded with comparison, version-group, and handoff-package types for the reviews and assets workspaces.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
-        "purpose": "Assets route that now fronts the library, version-group, and handoff workflow.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T09:01:54.1394838-05:00",
-        "notes": "Keeps the existing /dashboard/assets route stable while feeding the richer workspace model.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
-        "purpose": "Primary asset workspace UI for browsing outputs, reviewing version groups, and preparing handoff packages.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T09:01:54.1394838-05:00",
-        "notes": "Now owns three views: library, versions, and handoff/export preparation.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
-        "purpose": "OpenAI Sora provider adapter including job creation, status retrieval, and direct content retrieval.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T16:30:00-05:00",
-        "notes": "Now resolves completed renders to the /content endpoint.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts",
-        "purpose": "Kling provider adapter.",
-        "criticality": "high",
-        "last_touched": "2026-03-22T00:00:00-05:00",
-        "notes": "JWT-based live-capable adapter that still needs a validated run.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts",
-        "purpose": "Higgsfield provider adapter.",
-        "criticality": "high",
-        "last_touched": "2026-03-22T00:00:00-05:00",
-        "notes": "Reference-image-led live-capable adapter that still needs a validated run.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
-        "purpose": "Product and integration readiness audit model.",
-        "criticality": "medium",
-        "last_touched": "2026-03-25T12:46:38.0836727-05:00",
-        "notes": "Feeds the control-center status page and now reflects that compare outputs and handoff are shipped while private uploads remain blocked without SUPABASE_SERVICE_ROLE_KEY.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\settings\\studio-control-center.tsx",
-        "purpose": "Control-center UI for readiness, blockers, and architecture gaps.",
-        "criticality": "medium",
-        "last_touched": "2026-03-24T18:52:00-05:00",
-        "notes": "New premium settings surface for product truth.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\supabase\\functions\\send-auth-email\\index.ts",
-        "purpose": "Branded auth email sending hook.",
-        "criticality": "high",
-        "last_touched": "2026-03-23T00:00:00-05:00",
-        "notes": "Implemented in code but not fully live until Supabase dashboard setup is completed.",
-        "type": "infra"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260319113000_ai_video_studio_foundation.sql",
-        "purpose": "Core schema for campaigns, scenes, shots, prompt templates, generations, assets, reviews, tags, and activity log.",
-        "criticality": "high",
-        "last_touched": "2026-03-19T00:00:00-05:00",
-        "notes": "Current production data foundation.",
-        "type": "data"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
-        "purpose": "Public-site sticky header and primary access CTA.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T12:18:00-05:00",
-        "notes": "Public access buttons now route directly to /login so small-screen users do not depend on a protected /dashboard redirect for sign-in.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
-        "purpose": "Public-site footer navigation and access links.",
-        "criticality": "medium",
-        "last_touched": "2026-03-25T12:18:00-05:00",
-        "notes": "Access links now route directly to /login to keep public sign-in behavior explicit and consistent with the header.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
-        "purpose": "Reusable cinematic media surface for the public marketing experience.",
-        "criticality": "medium",
-        "last_touched": "2026-03-25T12:18:00-05:00",
-        "notes": "Decorative overlays, labels, and media layers are explicitly non-interactive so they cannot steal clicks from nearby CTAs.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
-        "purpose": "BrandBuild public homepage and premium marketing experience.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T12:18:00-05:00",
-        "notes": "Hero and CTA decorative overlays are now non-interactive to keep public login and workflow CTAs reliably clickable.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx",
-        "purpose": "Public-site control-room preview surface.",
-        "criticality": "medium",
-        "last_touched": "2026-03-25T12:18:00-05:00",
-        "notes": "Background glow layer is non-interactive so preview chrome cannot interfere with nearby click targets.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\content\\route.ts",
-        "purpose": "Streams completed provider-owned media through BrandBuild for authenticated operators.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T16:30:00-05:00",
-        "notes": "Currently the key Sora media proxy route.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\generation-content.ts",
-        "purpose": "Centralizes rules for when generation outputs should resolve to internal BrandBuild content routes.",
-        "criticality": "medium",
-        "last_touched": "2026-03-25T16:30:00-05:00",
-        "notes": "Used by repository and generate APIs.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260325164000_assets_bucket_policies.sql",
-        "purpose": "Creates the private assets bucket and authenticated storage policies required for operator uploads.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T16:30:00-05:00",
-        "notes": "Needs to be applied to the live Supabase project.",
-        "type": "infra"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
-        "purpose": "Creates uploaded and externally linked shot assets.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T16:49:53.1809302-05:00",
-        "notes": "Now supports external-link asset records in addition to authenticated private uploads.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\reference-samples.ts",
-        "purpose": "Curated BrandBuild sample-reference catalog for shot quick-start imports.",
-        "criticality": "medium",
-        "last_touched": "2026-03-25T16:49:53.1809302-05:00",
-        "notes": "Provides built-in image and motion references that unblock generation tests before private storage rollout is finished.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\validation.ts",
-        "purpose": "Validation schemas for campaign creation, prompt editing, uploads, and external reference linking.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T16:49:53.1809302-05:00",
-        "notes": "Now validates hosted HTTPS reference URLs and built-in sample imports.",
-        "type": "server-side"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\product-hero.svg",
-        "purpose": "Built-in premium product sample reference asset.",
-        "criticality": "medium",
-        "last_touched": "2026-03-25T16:49:53.1809302-05:00",
-        "notes": "Used by the shot quick-start sample library.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\rooftop-lifestyle.svg",
-        "purpose": "Built-in rooftop lifestyle sample reference asset.",
-        "criticality": "medium",
-        "last_touched": "2026-03-25T16:49:53.1809302-05:00",
-        "notes": "Used by the shot quick-start sample library.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\neon-character.svg",
-        "purpose": "Built-in character continuity sample reference asset.",
-        "criticality": "medium",
-        "last_touched": "2026-03-25T16:49:53.1809302-05:00",
-        "notes": "Used by the shot quick-start sample library.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\moodboard-grid.svg",
-        "purpose": "Built-in moodboard sample reference asset.",
-        "criticality": "medium",
-        "last_touched": "2026-03-25T16:49:53.1809302-05:00",
-        "notes": "Used by the shot quick-start sample library.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\motion-preview.svg",
-        "purpose": "Preview art for the public motion-reference sample.",
-        "criticality": "medium",
-        "last_touched": "2026-03-25T16:49:53.1809302-05:00",
-        "notes": "Lets operators understand the motion sample before importing the linked MP4.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\campaigns\\page.tsx",
-        "purpose": "Campaigns route that drives the project list and create flow.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T20:02:36.1176226-05:00",
-        "notes": "Now enables creation only when the workspace is truly live and passes a setup-state message into the create modal.",
-        "type": "user-facing"
-      },
-      {
-        "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\campaign-table.tsx",
-        "purpose": "Campaign list workspace with search, sorting, and create access.",
-        "criticality": "high",
-        "last_touched": "2026-03-25T20:02:36.1176226-05:00",
-        "notes": "Now shows a setup-state warning when the live schema is unavailable instead of leaving creation affordances looking broken.",
-        "type": "user-facing"
-      }
-    ],
-    "Count": 44
-  },
-  {
-    "path": "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
-    "purpose": "Canonical structured identity and repo-memory location for BrandBuild.",
-    "criticality": "high",
-    "last_touched": "2026-03-25T12:25:58.5741113-05:00",
-    "notes": "Confirms the canonical local repo remains D:\\\\Playground\\\\brandbuild-online-repo.",
-    "type": "docs"
-  },
-  {
-    "path": "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
-    "purpose": "Canonical current state, blockers, and next steps for BrandBuild.",
-    "criticality": "high",
-    "last_touched": "2026-03-25T12:25:58.5741113-05:00",
-    "notes": "Now records the confirmed GitHub remote and the secondary clone created for future integration planning.",
-    "type": "docs"
-  },
-  {
-    "path": "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
-    "purpose": "Canonical durable facts and cross-project knowledge for BrandBuild.",
-    "criticality": "high",
-    "last_touched": "2026-03-25T12:25:58.5741113-05:00",
-    "notes": "Now records the BrandBuild GitHub remote and the Stable Diffusion integration relationship.",
-    "type": "docs"
-  },
-  {
-    "path": "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
-    "purpose": "Canonical append-only session history for BrandBuild.",
-    "criticality": "high",
-    "last_touched": "2026-03-25T12:25:58.5741113-05:00",
-    "notes": "Includes the repo-capture and cross-project integration session.",
-    "type": "docs"
-  }
+    {
+        "value":  [
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\client.ts",
+                          "purpose":  "Creates the authenticated studio persistence client used by the live read and write paths.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-24T23:59:00-05:00",
+                          "notes":  "Hardened to return null instead of throwing when server-side auth client initialization fails.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\page.tsx",
+                          "purpose":  "Main operator dashboard home.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-24T18:52:00-05:00",
+                          "notes":  "Includes quick access into the new settings control center.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\shots\\[shotId]\\page.tsx",
+                          "purpose":  "Primary shot workspace route.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T16:49:53.1809302-05:00",
+                          "notes":  "Empty-state copy now reflects upload, hosted-link, and sample-import reference paths.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\prompt-builder.tsx",
+                          "purpose":  "Structured prompt builder, generate flow, and review stage UI.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-22T00:00:00-05:00",
+                          "notes":  "One of the strongest existing product surfaces.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\shot-asset-uploader.tsx",
+                          "purpose":  "Shot asset workspace UI covering private upload, hosted URL linking, and built-in sample imports.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T16:49:53.1809302-05:00",
+                          "notes":  "Now provides three asset-input paths so generation work can continue while private-upload rollout is still pending.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\shots\\[shotId]\\assets\\route.ts",
+                          "purpose":  "Unified shot asset endpoint handling uploads, hosted references, and built-in sample imports.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T16:49:53.1809302-05:00",
+                          "notes":  "Validates asset mode, keeps one route surface, and records activity-log events for linked or imported references.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\campaigns\\route.ts",
+                          "purpose":  "Lists campaigns and now also creates campaigns through a dedicated JSON API path.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T20:02:36.1176226-05:00",
+                          "notes":  "Campaign creation now converts missing-schema PostgREST failures into a clear setup-required message instead of surfacing the raw schema cache error.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\create-campaign-modal.tsx",
+                          "purpose":  "Operator modal for creating campaigns from the dashboard and campaigns list.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T20:02:36.1176226-05:00",
+                          "notes":  "Disabled-state messaging is now explicit about live persistence or schema readiness instead of implying a generic failure.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs",
+                          "purpose":  "Reusable smoke-test harness for live Sora, Kling, and Higgsfield connectivity plus upload-readiness reporting.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T12:46:38.0836727-05:00",
+                          "notes":  "Used to validate real provider credentials without depending on the full signed-in dashboard workflow.",
+                          "type":  "docs"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\supabase\\middleware.ts",
+                          "purpose":  "Refreshes Supabase auth state in middleware and protects dashboard routes.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T09:34:30.9567883-05:00",
+                          "notes":  "Hardened so bad cookies or Supabase session-refresh failures fall back to an anonymous response instead of throwing a production error page.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\auth\\email-action.ts",
+                          "purpose":  "Handles BrandBuild auth email callback, verification, and magic-link redirects.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T09:34:30.9567883-05:00",
+                          "notes":  "Hardened so auth callback failures redirect back to login safely instead of falling through to the global error page.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\route.ts",
+                          "purpose":  "Create generation jobs through the unified provider layer.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-22T00:00:00-05:00",
+                          "notes":  "Central path for launching provider runs from the dashboard.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\route.ts",
+                          "purpose":  "Refresh generation status and provider outputs.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-22T00:00:00-05:00",
+                          "notes":  "Used for Sora refresh and generalized provider polling.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
+                          "purpose":  "Normalized generation persistence, refresh, and asset sync.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T20:02:36.1176226-05:00",
+                          "notes":  "Core orchestration and storage bridge. Now persists provider_prompt_text so attached references influence Sora and Kling via normalized prompt augmentation while direct multimodal adapter wiring remains a later enhancement.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\repository.ts",
+                          "purpose":  "Server read model for dashboard data.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T20:02:36.1176226-05:00",
+                          "notes":  "Now keeps empty but valid live datasets in live mode instead of collapsing them into demo mode, while still falling back when schema reads actually fail.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\reviews\\reviews-workbench.tsx",
+                          "purpose":  "Primary compare-outputs workspace for grouped review and selection decisions.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T08:38:00-05:00",
+                          "notes":  "Rebuilt from a flat review list into a grouped compare console with filters, previews, and focused review detail.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\types.ts",
+                          "purpose":  "Core product read-model and workflow types shared across dashboard surfaces.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T09:01:54.1394838-05:00",
+                          "notes":  "Expanded with comparison, version-group, and handoff-package types for the reviews and assets workspaces.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\assets\\page.tsx",
+                          "purpose":  "Assets route that now fronts the library, version-group, and handoff workflow.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T09:01:54.1394838-05:00",
+                          "notes":  "Keeps the existing /dashboard/assets route stable while feeding the richer workspace model.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\assets\\asset-library.tsx",
+                          "purpose":  "Primary asset workspace UI for browsing outputs, reviewing version groups, and preparing handoff packages.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T09:01:54.1394838-05:00",
+                          "notes":  "Now owns three views: library, versions, and handoff/export preparation.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts",
+                          "purpose":  "OpenAI Sora provider adapter including job creation, status retrieval, and direct content retrieval.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T16:30:00-05:00",
+                          "notes":  "Now resolves completed renders to the /content endpoint.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\kling.ts",
+                          "purpose":  "Kling provider adapter.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-22T00:00:00-05:00",
+                          "notes":  "JWT-based live-capable adapter that still needs a validated run.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\higgsfield.ts",
+                          "purpose":  "Higgsfield provider adapter.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-22T00:00:00-05:00",
+                          "notes":  "Reference-image-led live-capable adapter that still needs a validated run.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
+                          "purpose":  "Product and integration readiness audit model.",
+                          "criticality":  "medium",
+                          "last_touched":  "2026-03-25T12:46:38.0836727-05:00",
+                          "notes":  "Feeds the control-center status page and now reflects that compare outputs and handoff are shipped while private uploads remain blocked without SUPABASE_SERVICE_ROLE_KEY.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\settings\\studio-control-center.tsx",
+                          "purpose":  "Control-center UI for readiness, blockers, and architecture gaps.",
+                          "criticality":  "medium",
+                          "last_touched":  "2026-03-24T18:52:00-05:00",
+                          "notes":  "New premium settings surface for product truth.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\supabase\\functions\\send-auth-email\\index.ts",
+                          "purpose":  "Branded auth email sending hook.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-23T00:00:00-05:00",
+                          "notes":  "Implemented in code but not fully live until Supabase dashboard setup is completed.",
+                          "type":  "infra"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260319113000_ai_video_studio_foundation.sql",
+                          "purpose":  "Core schema for campaigns, scenes, shots, prompt templates, generations, assets, reviews, tags, and activity log.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-19T00:00:00-05:00",
+                          "notes":  "Current production data foundation.",
+                          "type":  "data"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-header.tsx",
+                          "purpose":  "Public-site sticky header and primary access CTA.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T12:18:00-05:00",
+                          "notes":  "Public access buttons now route directly to /login so small-screen users do not depend on a protected /dashboard redirect for sign-in.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\site\\site-footer.tsx",
+                          "purpose":  "Public-site footer navigation and access links.",
+                          "criticality":  "medium",
+                          "last_touched":  "2026-03-25T12:18:00-05:00",
+                          "notes":  "Access links now route directly to /login to keep public sign-in behavior explicit and consistent with the header.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\media-frame.tsx",
+                          "purpose":  "Reusable cinematic media surface for the public marketing experience.",
+                          "criticality":  "medium",
+                          "last_touched":  "2026-03-25T12:18:00-05:00",
+                          "notes":  "Decorative overlays, labels, and media layers are explicitly non-interactive so they cannot steal clicks from nearby CTAs.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\brandbuild-homepage.tsx",
+                          "purpose":  "BrandBuild public homepage and premium marketing experience.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T12:18:00-05:00",
+                          "notes":  "Hero and CTA decorative overlays are now non-interactive to keep public login and workflow CTAs reliably clickable.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\marketing\\control-room-preview.tsx",
+                          "purpose":  "Public-site control-room preview surface.",
+                          "criticality":  "medium",
+                          "last_touched":  "2026-03-25T12:18:00-05:00",
+                          "notes":  "Background glow layer is non-interactive so preview chrome cannot interfere with nearby click targets.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\content\\route.ts",
+                          "purpose":  "Streams completed provider-owned media through BrandBuild for authenticated operators.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T16:30:00-05:00",
+                          "notes":  "Currently the key Sora media proxy route.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\generation-content.ts",
+                          "purpose":  "Centralizes rules for when generation outputs should resolve to internal BrandBuild content routes.",
+                          "criticality":  "medium",
+                          "last_touched":  "2026-03-25T16:30:00-05:00",
+                          "notes":  "Used by repository and generate APIs.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\supabase\\migrations\\20260325164000_assets_bucket_policies.sql",
+                          "purpose":  "Creates the private assets bucket and authenticated storage policies required for operator uploads.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T16:30:00-05:00",
+                          "notes":  "Needs to be applied to the live Supabase project.",
+                          "type":  "infra"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\assets.ts",
+                          "purpose":  "Creates uploaded and externally linked shot assets.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T16:49:53.1809302-05:00",
+                          "notes":  "Now supports external-link asset records in addition to authenticated private uploads.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\reference-samples.ts",
+                          "purpose":  "Curated BrandBuild sample-reference catalog for shot quick-start imports.",
+                          "criticality":  "medium",
+                          "last_touched":  "2026-03-25T16:49:53.1809302-05:00",
+                          "notes":  "Provides built-in image and motion references that unblock generation tests before private storage rollout is finished.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\validation.ts",
+                          "purpose":  "Validation schemas for campaign creation, prompt editing, uploads, and external reference linking.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T16:49:53.1809302-05:00",
+                          "notes":  "Now validates hosted HTTPS reference URLs and built-in sample imports.",
+                          "type":  "server-side"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\product-hero.svg",
+                          "purpose":  "Built-in premium product sample reference asset.",
+                          "criticality":  "medium",
+                          "last_touched":  "2026-03-25T16:49:53.1809302-05:00",
+                          "notes":  "Used by the shot quick-start sample library.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\rooftop-lifestyle.svg",
+                          "purpose":  "Built-in rooftop lifestyle sample reference asset.",
+                          "criticality":  "medium",
+                          "last_touched":  "2026-03-25T16:49:53.1809302-05:00",
+                          "notes":  "Used by the shot quick-start sample library.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\neon-character.svg",
+                          "purpose":  "Built-in character continuity sample reference asset.",
+                          "criticality":  "medium",
+                          "last_touched":  "2026-03-25T16:49:53.1809302-05:00",
+                          "notes":  "Used by the shot quick-start sample library.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\moodboard-grid.svg",
+                          "purpose":  "Built-in moodboard sample reference asset.",
+                          "criticality":  "medium",
+                          "last_touched":  "2026-03-25T16:49:53.1809302-05:00",
+                          "notes":  "Used by the shot quick-start sample library.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\public\\reference-samples\\motion-preview.svg",
+                          "purpose":  "Preview art for the public motion-reference sample.",
+                          "criticality":  "medium",
+                          "last_touched":  "2026-03-25T16:49:53.1809302-05:00",
+                          "notes":  "Lets operators understand the motion sample before importing the linked MP4.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\dashboard\\campaigns\\page.tsx",
+                          "purpose":  "Campaigns route that drives the project list and create flow.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T20:02:36.1176226-05:00",
+                          "notes":  "Now enables creation only when the workspace is truly live and passes a setup-state message into the create modal.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\campaigns\\campaign-table.tsx",
+                          "purpose":  "Campaign list workspace with search, sorting, and create access.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-25T20:02:36.1176226-05:00",
+                          "notes":  "Now shows a setup-state warning when the live schema is unavailable instead of leaving creation affordances looking broken.",
+                          "type":  "user-facing"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\supabase\\manual\\20260326_brandbuild_full_bootstrap.sql",
+                          "purpose":  "Single paste-ready Supabase bootstrap for manual BrandBuild schema installation on a fresh or missing-schema project.",
+                          "criticality":  "high",
+                          "last_touched":  "2026-03-26T07:06:25.5026444-05:00",
+                          "notes":  "Includes missing legacy prerequisites, core schema, account/settings tables, storage policies, auth trigger wiring, and demo seed data.",
+                          "type":  "infra"
+                      },
+                      {
+                          "path":  "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\vercel.json",
+                          "purpose":  "App-level Vercel config declaring the intended framework preset for the deployed BrandBuild app.",
+                          "criticality":  "medium",
+                          "last_touched":  "2026-03-26T09:09:29.0918710-05:00",
+                          "notes":  "Currently declares framework=nextjs even though Vercel project inspect still reports the generic Other preset; this mismatch should be verified in the dashboard.",
+                          "type":  "config"
+                      }
+                  ],
+        "Count":  44
+    },
+    {
+        "path":  "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
+        "purpose":  "Canonical structured identity and repo-memory location for BrandBuild.",
+        "criticality":  "high",
+        "last_touched":  "2026-03-25T12:25:58.5741113-05:00",
+        "notes":  "Confirms the canonical local repo remains D:\\\\Playground\\\\brandbuild-online-repo.",
+        "type":  "docs"
+    },
+    {
+        "path":  "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+        "purpose":  "Canonical current state, blockers, and next steps for BrandBuild.",
+        "criticality":  "high",
+        "last_touched":  "2026-03-25T12:25:58.5741113-05:00",
+        "notes":  "Now records the confirmed GitHub remote and the secondary clone created for future integration planning.",
+        "type":  "docs"
+    },
+    {
+        "path":  "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+        "purpose":  "Canonical durable facts and cross-project knowledge for BrandBuild.",
+        "criticality":  "high",
+        "last_touched":  "2026-03-25T12:25:58.5741113-05:00",
+        "notes":  "Now records the BrandBuild GitHub remote and the Stable Diffusion integration relationship.",
+        "type":  "docs"
+    },
+    {
+        "path":  "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+        "purpose":  "Canonical append-only session history for BrandBuild.",
+        "criticality":  "high",
+        "last_touched":  "2026-03-25T12:25:58.5741113-05:00",
+        "notes":  "Includes the repo-capture and cross-project integration session.",
+        "type":  "docs"
+    }
 ]

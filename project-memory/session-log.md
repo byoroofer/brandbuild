@@ -126,3 +126,27 @@ pm run build successfully.
 - Verified by direct REST call that the connected live Supabase project is still missing the BrandBuild schema and currently returns `PGRST205` for `public.campaigns`.
 - Hardened the campaigns surface so empty but valid live datasets stay in live mode, while missing-schema environments degrade into a clear setup state instead of surfacing raw PostgREST cache errors.
 - Re-ran `npm run typecheck` and `npm run build`, committed the product batch as `2041747`, and deployed production to `https://brandbuild-online-ijil4m0yh-byoroofers-projects.vercel.app`.
+
+## 2026-03-26 07:06 CT - Manual Supabase Bootstrap Bundle
+- Inspected the current repo migrations, seed data, database types, and legacy onboarding/profile flows.
+- Confirmed the repo migration chain was incomplete because account settings depended on legacy profile tables and update-trigger helpers that were never included in the migration sequence.
+- Created supabase/manual/20260326_brandbuild_full_bootstrap.sql as one paste-ready SQL bundle containing the missing prerequisites, BrandBuild schema, storage policies, auth-user trigger wiring, and demo seed data.
+- Recorded the new manual bootstrap path in structured and human-facing project memory so the next session can immediately resume from the same fix path.
+
+## 2026-03-26 09:09 CT - Access And Integration Alignment Audit
+- Verified the canonical Git remote is `https://github.com/byoroofer/brandbuild.git` on branch `main`.
+- Verified the local Vercel link points at the `brandbuild-online` project and the CLI is authenticated to the `byoroofer` account.
+- Confirmed the current Vercel production env inventory includes the OpenAI, Kling, Higgsfield, and public Supabase keys already in use.
+- Added the missing safe production vars:
+  - `NEXT_PUBLIC_APP_NAME`
+  - `NEXT_PUBLIC_SUPPORT_EMAIL`
+  - `STORAGE_BUCKET_ASSETS`
+  - `STORAGE_BUCKET_EXPORTS`
+- Confirmed `SUPABASE_SERVICE_ROLE_KEY` still does not appear in the current Vercel env listing.
+- Confirmed Supabase CLI is installed locally but not logged in or linked for this workspace, and local `supabase status` cannot run because Docker is unavailable on this machine.
+- Noted a deploy-setting mismatch to verify later: Vercel project inspect still reports the generic `Other` framework preset even though `apps/dashboard/vercel.json` declares `nextjs`.
+
+## 2026-03-26 13:02 CT - Correct BrandBuild Supabase Project Identity
+- User clarified that the real BrandBuild Supabase project is `https://ikdewffoqtliwkoywfrx.supabase.co`.
+- Recorded that the previously checked `hdwneidxkakrzrhuxqcd.supabase.co` project belongs to PolitiViral, so those schema conclusions are superseded for BrandBuild.
+- Reset the next infrastructure step to verify BrandBuild env and schema against `ikdewffoqtliwkoywfrx`, then rerun the bootstrap there only if the verification query shows missing tables.
