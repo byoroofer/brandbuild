@@ -23,6 +23,7 @@ import {
   mergeTagDiscoveryNotes,
   parseTagDiscoveryNotes,
 } from "@/lib/utils/tag-discovery";
+import { formatDateTime } from "@/lib/utils/dates";
 import { applyPromptTemplate, composeStructuredPrompt } from "@/lib/utils/prompts";
 import { cx } from "@/lib/utils";
 
@@ -1050,7 +1051,7 @@ export function PromptBuilder({
                   <div>
                     <p className="font-semibold text-white">{generation.provider}</p>
                     <p className="mt-1 text-sm text-slate-400">
-                      {new Date(generation.createdAt).toLocaleString()}
+                      {formatDateTime(generation.createdAt)}
                     </p>
                   </div>
                   <div className="flex flex-wrap justify-end gap-2">

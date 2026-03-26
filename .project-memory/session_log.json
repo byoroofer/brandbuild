@@ -1079,7 +1079,7 @@
                               "Confirmed by direct REST call that the connected Supabase project is missing the BrandBuild schema and currently returns PGRST205 for public.campaigns.",
                               "Updated the campaign read and create surfaces so empty but valid live datasets remain live, while missing-schema environments degrade into a clear setup state instead of surfacing raw PostgREST cache errors.",
                               "Re-ran npm run typecheck and npm run build successfully.",
-                              "Committed the product batch as 2041747 and deployed production to https://brandbuild-online-ijil4m0yh-byoroofers-projects.vercel.app."
+                             "Committed the product batch as 2041747 and deployed production successfully."
                           ],
         "files_created":  [
 
@@ -1228,7 +1228,7 @@
                                "D:\\Playground\\brandbuild-online-repo\\README.md"
                            ],
         "key_findings":  [
-                             "GitHub remote alignment is correct: origin points to byoroofer/brandbuild on main.",
+                             "GitHub remote alignment is correct: the canonical BrandBuild origin points to main.",
                              "The local Vercel project link is correct and the CLI is authenticated, but the production env inventory still lacks SUPABASE_SERVICE_ROLE_KEY.",
                              "The Vercel project currently reports the generic Other framework preset even though the app declares nextjs in apps/dashboard/vercel.json.",
                              "Supabase CLI management is blocked until login or SUPABASE_ACCESS_TOKEN is provided, and the workspace still lacks supabase/config.toml."
@@ -1399,7 +1399,7 @@
                               "Verified the correct Supabase backend directly by reading public.campaigns through the REST API with the provided BrandBuild credentials.",
                               "Updated Vercel production env so NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY, and SUPABASE_SERVICE_ROLE_KEY all target the correct BrandBuild project.",
                               "Identified the Vercel deployment blocker caused by the repo head commit using BrandBuild Local <brandbuild@local.invalid>.",
-                              "Switched the repo git identity back to TJ Ware <info@byoroofer.com>, committed the integration/memory changes as 14daff9, pushed main, and redeployed production successfully.",
+                             "Switched the repo git identity back to the approved deployment-owner identity, committed the integration/memory changes as 14daff9, pushed main, and redeployed production successfully.",
                               "Verified the live homepage and login route both return HTTP 200 after the successful production deployment."
                           ],
         "files_created":  [],

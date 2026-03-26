@@ -258,7 +258,7 @@
                   {
                       "id":  "brandbuild-know-016",
                       "category":  "deployment",
-                      "fact":  "The compare-outputs workspace shipped in commit 387f697 and the live deployment at brandbuild-online-5e318lqwu-byoroofers-projects.vercel.app was verified with healthy public routes plus correct signed-out redirects for /dashboard and /dashboard/reviews.",
+                      "fact":  "The compare-outputs workspace shipped in commit 387f697 and the live deployment was verified with healthy public routes plus correct signed-out redirects for /dashboard and /dashboard/reviews.",
                       "confidence":  "high",
                       "source":  "2026-03-25 compare-workspace deployment verification",
                       "first_recorded_at":  "2026-03-25T08:42:00-05:00",
@@ -311,7 +311,7 @@
                   {
                       "id":  "brandbuild-know-019",
                       "category":  "deployment",
-                      "fact":  "The assets workspace with library, versions, and handoff views shipped in commit 428ce4b and was deployed to brandbuild-online-n3qvlcudy-byoroofers-projects.vercel.app, after which brandbuild.online returned 200 on direct verification.",
+                      "fact":  "The assets workspace with library, versions, and handoff views shipped in commit 428ce4b and was deployed successfully, after which brandbuild.online returned 200 on direct verification.",
                       "confidence":  "high",
                       "source":  "2026-03-25 assets-workspace deployment verification",
                       "first_recorded_at":  "2026-03-25T09:09:41.3207972-05:00",
@@ -346,7 +346,7 @@
                   {
                       "id":  "brandbuild-know-021",
                       "category":  "deployment",
-                      "fact":  "The auth/session incident fix was deployed to brandbuild-online-h3jyx59f5-byoroofers-projects.vercel.app, and brandbuild.online returned 200 after the deployment.",
+                      "fact":  "The auth/session incident fix was deployed successfully, and brandbuild.online returned 200 after the deployment.",
                       "confidence":  "high",
                       "source":  "2026-03-25 auth incident deployment verification",
                       "first_recorded_at":  "2026-03-25T09:34:30.9567883-05:00",
@@ -558,7 +558,7 @@
                   {
                       "id":  "brandbuild-know-033",
                       "category":  "deployment",
-                      "fact":  "The hosted-reference and sample-import shot workflow shipped live in commit e7393d3 and was deployed to https://brandbuild-online-8bamrb8bx-byoroofers-projects.vercel.app, after which brandbuild.online returned 200 on direct verification.",
+                      "fact":  "The hosted-reference and sample-import shot workflow shipped live in commit e7393d3 and was deployed successfully, after which brandbuild.online returned 200 on direct verification.",
                       "confidence":  "high",
                       "source":  "2026-03-25 deployment verification",
                       "first_recorded_at":  "2026-03-25T17:00:00-05:00",
@@ -647,7 +647,7 @@
                   {
                       "id":  "brandbuild-know-038",
                       "category":  "git",
-                      "fact":  "The canonical BrandBuild repo is currently on branch main with origin set to https://github.com/byoroofer/brandbuild.git.",
+                      "fact":  "The canonical BrandBuild repo is currently on branch main with the expected origin remote configured.",
                       "confidence":  "high",
                       "source":  "2026-03-26 git remote and branch audit",
                       "first_recorded_at":  "2026-03-26T09:09:29.0918710-05:00",
@@ -663,7 +663,7 @@
                   {
                       "id":  "brandbuild-know-039",
                       "category":  "deployment",
-                      "fact":  "The local Vercel project link is correct for BrandBuild: apps/dashboard/.vercel/project.json points at project brandbuild-online (projectId prj_tDiWPGRPN8Y3NAJ7kJEuljkp8rGr), and the CLI is authenticated to the byoroofer account.",
+                      "fact":  "The local Vercel project link is correct for BrandBuild: apps/dashboard/.vercel/project.json points at project brandbuild-online (projectId prj_tDiWPGRPN8Y3NAJ7kJEuljkp8rGr), and the CLI is authenticated to the deployment owner account.",
                       "confidence":  "high",
                       "source":  "2026-03-26 Vercel audit",
                       "first_recorded_at":  "2026-03-26T09:09:29.0918710-05:00",
@@ -798,7 +798,7 @@
                   {
                       "id":  "brandbuild-know-047",
                       "category":  "deployment",
-                      "fact":  "On 2026-03-26 BrandBuild production was realigned to the correct Supabase project by updating NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY, and SUPABASE_SERVICE_ROLE_KEY in the brandbuild-online Vercel project, then successfully deploying brandbuild-online-ddhqsaby9-byoroofers-projects.vercel.app and re-aliasing brandbuild.online.",
+                      "fact":  "On 2026-03-26 BrandBuild production was realigned to the correct Supabase project by updating NEXT_PUBLIC_SUPABASE_URL, NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY, and SUPABASE_SERVICE_ROLE_KEY in the brandbuild-online Vercel project, then successfully deploying production and re-aliasing brandbuild.online.",
                       "confidence":  "high",
                       "source":  "Vercel env update and successful production deployment",
                       "first_recorded_at":  "2026-03-26T13:35:24.0148653-05:00",
