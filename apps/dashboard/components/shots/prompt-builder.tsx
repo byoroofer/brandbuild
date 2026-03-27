@@ -51,6 +51,7 @@ const workflowStageTargets = [
   "generate-stage",
   "review-stage",
 ] as const;
+const LIVE_GENERATION_AUTO_REFRESH_MS = 12000;
 
 type BuilderSectionProps = {
   children: ReactNode;
@@ -91,6 +92,13 @@ function mergeUniqueTags(currentTags: TagDiscoveryTag[], incomingTags: TagDiscov
   }
 
   return [...merged.values()];
+}
+
+function isLiveGenerationPending(generation: ShotGeneration) {
+  return (
+    generation.integrationMode === "live" &&
+    (generation.status === "queued" || generation.status === "running")
+  );
 }
 
 export function PromptBuilder({
@@ -246,6 +254,10 @@ export function PromptBuilder({
   const activeWorkflowStage =
     workflowStages.find((stage) => stage.state === "active") ??
     workflowStages[workflowStages.length - 1];
+  const autoRefreshGenerationId = useMemo(
+    () => generations.find(isLiveGenerationPending)?.id ?? null,
+    [generations],
+  );
 
   useEffect(() => {
     if (promptOverrideEnabled) {
@@ -414,9 +426,19 @@ export function PromptBuilder({
     });
   }
 
-  async function handleRefreshGeneration(generationId: string) {
-    setGenerationError(null);
-    setGenerationSuccess(null);
+  async function handleRefreshGeneration(
+    generationId: string,
+    options?: {
+      quiet?: boolean;
+    },
+  ) {
+    const quiet = options?.quiet ?? false;
+
+    if (!quiet) {
+      setGenerationError(null);
+      setGenerationSuccess(null);
+    }
+
     setRefreshingGenerationId(generationId);
 
     try {
@@ -442,23 +464,57 @@ export function PromptBuilder({
         throw new Error(payload?.error ?? "Unable to refresh generation status.");
       }
 
-      setGenerationSuccess(
-        payload?.integrationMode === "live"
-          ? `Live ${payload?.provider ?? "provider"} status synced: ${payload?.providerStatus ?? payload?.status ?? "queued"}${typeof payload?.progress === "number" ? ` (${payload.progress}%)` : ""}.${payload?.syncedAssetsCount ? ` ${payload.syncedAssetsCount} asset${payload.syncedAssetsCount === 1 ? "" : "s"} synced to the library.` : ""}`
-          : `Mock ${payload?.provider ?? "provider"} status refreshed.`,
-      );
+      const shouldAnnounceRefresh =
+        !quiet ||
+        payload?.status === "succeeded" ||
+        payload?.status === "failed" ||
+        Boolean(payload?.syncedAssetsCount);
+
+      if (shouldAnnounceRefresh) {
+        setGenerationSuccess(
+          payload?.integrationMode === "live"
+            ? `Live ${payload?.provider ?? "provider"} status synced${quiet ? " automatically" : ""}: ${payload?.providerStatus ?? payload?.status ?? "queued"}${typeof payload?.progress === "number" ? ` (${payload.progress}%)` : ""}.${payload?.syncedAssetsCount ? ` ${payload.syncedAssetsCount} asset${payload.syncedAssetsCount === 1 ? "" : "s"} synced to the library.` : ""}`
+            : `Mock ${payload?.provider ?? "provider"} status refreshed.`,
+        );
+      }
 
       startRefresh(() => {
         router.refresh();
       });
     } catch (error) {
-      setGenerationError(
-        error instanceof Error ? error.message : "Unable to refresh generation status.",
-      );
+      if (!quiet) {
+        setGenerationError(
+          error instanceof Error ? error.message : "Unable to refresh generation status.",
+        );
+      }
     } finally {
       setRefreshingGenerationId(null);
     }
   }
+
+  useEffect(() => {
+    if (!persistenceEnabled || !autoRefreshGenerationId) {
+      return;
+    }
+
+    if (refreshingGenerationId || isGenerating || isSaving) {
+      return;
+    }
+
+    const timeoutId = window.setTimeout(() => {
+      void handleRefreshGeneration(autoRefreshGenerationId, { quiet: true });
+    }, LIVE_GENERATION_AUTO_REFRESH_MS);
+
+    return () => {
+      window.clearTimeout(timeoutId);
+    };
+  }, [
+    autoRefreshGenerationId,
+    isGenerating,
+    isSaving,
+    persistenceEnabled,
+    refreshingGenerationId,
+  ]);
 
   return (
     <div className="grid gap-6 xl:grid-cols-[minmax(0,1.35fr)_380px]">
@@ -1041,7 +1097,12 @@ export function PromptBuilder({
                 Studio generation requests recorded for this shot.
               </p>
             </div>
-            <StatusPill label={`${generations.length} runs`} tone="default" />
+            <div className="flex flex-wrap justify-end gap-2">
+              {autoRefreshGenerationId ? (
+                <StatusPill label="Auto-refresh active" tone="info" />
+              ) : null}
+              <StatusPill label={`${generations.length} runs`} tone="default" />
+            </div>
           </div>
 
           <div className="mt-5 grid gap-3">

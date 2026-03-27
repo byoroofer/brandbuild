@@ -9,7 +9,8 @@
     "start": "next start",
     "typecheck": "npm run check:forbidden-references && tsc --noEmit",
     "smoke:providers": "node ./scripts/provider-smoke.mjs",
-    "smoke:dashboard": "node ./scripts/live-dashboard-smoke.mjs"
+    "smoke:dashboard": "node ./scripts/live-dashboard-smoke.mjs",
+    "smoke:generation-autorefresh": "node ./scripts/live-generation-autorefresh-smoke.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.5.2",
