@@ -39,10 +39,10 @@
       "title": "Validate one real Sora run through the dashboard",
       "description": "Upload a viable reference asset if needed, launch a real Sora generation from a shot, and capture request, status refresh, output sync, and any failure modes.",
       "priority": "high",
-      "status": "active",
+      "status": "complete",
       "owner": "agent",
       "created_at": "2026-03-24T18:20:00-05:00",
-      "updated_at": "2026-03-26T14:29:00.5795556-05:00",
+      "updated_at": "2026-03-27T00:03:23.5186323-05:00",
       "dependencies": [
         "brandbuild-task-002"
       ],
@@ -51,7 +51,7 @@
         "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\route.ts",
         "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts"
       ],
-      "notes": "A live signed-in dashboard run now queues Sora successfully through the hosted-reference workflow. The remaining gap is refreshing a queued run through completion and confirming the operator-facing media proxy path."
+      "notes": "Completed on 2026-03-27 after live signed-in production validation proved Sora queueing, automatic refresh, generated-asset sync, and BrandBuild-owned content playback through /api/generate/[generationId]/content."
     },
     {
       "task_id": "brandbuild-task-004",
@@ -340,10 +340,10 @@
       "title": "Ship and verify Sora content proxy in production",
       "description": "Use the new /api/generate/[generationId]/content route to confirm completed Sora renders are accessible from the live dashboard after a signed-in generation run.",
       "priority": "high",
-      "status": "active",
+      "status": "complete",
       "owner": "agent",
       "created_at": "2026-03-25T16:30:00-05:00",
-      "updated_at": "2026-03-26T14:29:00.5795556-05:00",
+      "updated_at": "2026-03-27T00:03:23.5186323-05:00",
       "dependencies": [
         "brandbuild-task-003"
       ],
@@ -352,7 +352,7 @@
         "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\generation-content.ts",
         "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts"
       ],
-      "notes": "The signed-in dashboard now queues live Sora runs successfully. What remains is confirming refresh-to-complete behavior and opening the completed render through /api/generate/[generationId]/content from the operator UI."
+      "notes": "Completed on 2026-03-27 after the live generation auto-refresh smoke validated a fresh production Sora run from queued to running to succeeded and confirmed the operator-facing /api/generate/[generationId]/content path streams the finished MP4."
     },
     {
       "task_id": "brandbuild-task-021",

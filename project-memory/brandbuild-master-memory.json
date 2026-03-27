@@ -4,7 +4,7 @@
     "repo": "brandbuild",
     "local_path": "D:\\Playground\\brandbuild-online-repo",
     "production_url": "https://brandbuild.online",
-    "updated_at": "2026-03-26T14:29:00.5795556-05:00"
+    "updated_at": "2026-03-27T00:03:23.5186323-05:00"
   },
   "current_product_objective": "Build BrandBuild into a premium creative production operating system that unifies Sora, Kling, and Higgsfield for prompt creation, asset upload, generation orchestration, review, versioning, delivery, and carefully scoped future local-tool integration only after isolated testing is ready.",
   "stack_summary": [
@@ -81,20 +81,20 @@
     "Built-in BrandBuild sample imports for shot references",
     "Attached shot references now enrich provider prompt text before Sora and Kling enqueue requests",
     "Live signed-in dashboard validation now succeeds for login, campaign creation, hosted reference attachment, and Sora queueing on production.",
-    "Reusable live dashboard smoke-test script now exists at apps/dashboard/scripts/live-dashboard-smoke.mjs."
+    "Live signed-in dashboard validation now succeeds for login, campaign creation, hosted reference attachment, automatic Sora status refresh, generated-asset sync, and BrandBuild-owned output playback on production.",
+    "Reusable live dashboard smoke-test script now exists at apps/dashboard/scripts/live-dashboard-smoke.mjs.",
+    "Reusable live generation autorefresh smoke-test script now exists at apps/dashboard/scripts/live-generation-autorefresh-smoke.mjs."
   ],
   "broken_or_blocked_features": [
     "Branded auth emails are coded but still blocked by manual Supabase dashboard setup.",
     "BrandBuild's real Supabase project is ikdewffoqtliwkoywfrx.supabase.co, and both local env plus Vercel production are now aligned to it.",
     "Kling live generation is currently blocked by account balance.",
     "Higgsfield live generation is currently blocked by insufficient credits.",
-    "The repo can still fall back to demo mode too aggressively when live queries partially fail.",
-    "A queued live Sora dashboard run still needs to be refreshed through completion and verified through the operator-facing content proxy."
+    "The repo can still fall back to demo mode too aggressively when live queries partially fail."
   ],
   "pending_integrations": {
     "sora": [
-      "Validate the queued dashboard run through completion and content proxy playback",
-      "Add background polling or webhook support",
+      "Add background webhook support or richer orchestration telemetry after the now-verified polling path",
       "Persist cost and timing telemetry"
     ],
     "kling": [
@@ -132,17 +132,19 @@
     "Treat empty live tables as live and missing schema as setup mode instead of collapsing everything into demo or surfacing raw cache errors."
   ],
   "files_changed_this_session": [
-    "supabase/manual/20260326_brandbuild_full_bootstrap.sql",
+    "apps/dashboard/components/shots/prompt-builder.tsx",
+    "apps/dashboard/package.json",
+    "apps/dashboard/scripts/live-generation-autorefresh-smoke.mjs",
+    "docs/project-memory/project_profile.json",
     "docs/project-memory/current_state.json",
     "docs/project-memory/decisions_log.json",
+    "docs/project-memory/session_log.json",
     "docs/project-memory/tasks.json",
     "docs/project-memory/file_index.json",
     "docs/project-memory/knowledge_registry.json",
-    "docs/project-memory/session_log.json",
     "project-memory/brandbuild-master-memory.json",
     "project-memory/integration-status.md",
     "project-memory/known-issues.md",
-    "project-memory/roadmap.md",
     "project-memory/session-log.md"
   ],
   "unresolved_bugs_or_issues": [
@@ -150,8 +152,7 @@
     "Kling currently fails live smoke tests because the account balance is not enough.",
     "Higgsfield currently fails live smoke tests because there are not enough credits.",
     "Campaign-level sequencing across selected outputs is still unbuilt.",
-    "Settings/control-center currently reports readiness from code and env state, not live telemetry.",
-    "The queued Sora generation still needs completion and proxy validation from the operator UI."
+    "Settings/control-center currently reports readiness from code and env state, not live telemetry."
   ],
   "ui_ux_improvements_still_needed": [
     "Promote campaign-level sequencing into a first-class workflow on top of the new handoff layer.",
@@ -159,10 +160,10 @@
     "Show provider requirements in-context during generation, not only in settings."
   ],
   "exact_next_steps": [
-    "Refresh the queued live Sora run through completion and confirm the completed result streams through BrandBuild.",
     "Finish manual Supabase Auth dashboard setup.",
     "Fund Kling and rerun the smoke test plus a signed-in dashboard generation.",
     "Add Higgsfield credits and rerun the smoke test plus a signed-in dashboard generation.",
-    "Authenticate the Supabase CLI and link this repo to the live BrandBuild project if agent-driven function management is needed next."
+    "Authenticate the Supabase CLI and link this repo to the live BrandBuild project if agent-driven function management is needed next.",
+    "Continue campaign-level sequencing across selected outputs after the live reliability blockers are cleared."
   ]
 }

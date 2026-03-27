@@ -1503,5 +1503,70 @@
       "Finish Supabase Auth email and redirect setup.",
       "Then resume Kling and Higgsfield live validation once credits are available."
     ]
+  },
+  {
+    "session_id": "brandbuild-session-2026-03-27-live-sora-autorefresh-validation",
+    "timestamp_start": "2026-03-27T00:03:23.5186323-05:00",
+    "timestamp_end": "2026-03-27T00:03:23.5186323-05:00",
+    "user_objective": "Continue live integration hardening by validating the queued Sora dashboard run through completion and improving the operator experience if a manual refresh gap remained.",
+    "actions_taken": [
+      "Read current BrandBuild memory and inspected the generation refresh plus content-proxy routes.",
+      "Verified directly that the previously queued Sora provider job had already completed at OpenAI while the stored generation remained queued until refresh.",
+      "Exercised the signed-in production refresh and content-proxy endpoints to confirm the existing backend path was healthy end to end.",
+      "Added automatic live-generation polling to the shot workspace with quiet non-terminal refresh behavior.",
+      "Added a reusable production Playwright smoke harness for live generation autorefresh validation.",
+      "Re-ran typecheck and build successfully.",
+      "Committed the UX batch as ecd2396 and deployed production to brandbuild-online-2pm7m4pmi-byoroofers-projects.vercel.app.",
+      "Ran the new production smoke harness and validated a fresh Sora generation through automatic completion and BrandBuild-owned MP4 playback."
+    ],
+    "files_created": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\live-generation-autorefresh-smoke.mjs"
+    ],
+    "files_modified": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\prompt-builder.tsx",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\package.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\project_profile.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\current_state.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\decisions_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\session_log.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\tasks.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\file_index.json",
+      "D:\\Playground\\brandbuild-online-repo\\docs\\project-memory\\knowledge_registry.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\brandbuild-master-memory.json",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\integration-status.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\known-issues.md",
+      "D:\\Playground\\brandbuild-online-repo\\project-memory\\session-log.md"
+    ],
+    "files_reviewed": [
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\route.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\content\\route.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\db\\shot-generations.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\generation-content.ts",
+      "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\providers\\sora.ts"
+    ],
+    "key_findings": [
+      "The backend gap was already closed: signed-in refresh calls correctly sync completed Sora jobs and the content proxy streams the finished MP4.",
+      "The remaining weakness was UX because the shot page still depended on a manual refresh click to discover completion.",
+      "Production now proves a fresh live Sora run can progress from queued to running to succeeded automatically in the shot workspace and expose the BrandBuild-owned content link without operator babysitting."
+    ],
+    "decisions_added": [
+      "brandbuild-decision-019"
+    ],
+    "memory_updates": [
+      "Marked the Sora completion and content-proxy validation tasks complete and recorded the new automatic live-generation polling behavior."
+    ],
+    "unresolved_items": [
+      "Supabase Auth dashboard setup is still manual.",
+      "Kling still needs credits.",
+      "Higgsfield still needs credits.",
+      "Campaign-level sequencing is still unbuilt.",
+      "Supabase CLI is still not authenticated or linked locally."
+    ],
+    "next_recommended_actions": [
+      "Finish the Supabase Auth trust layer so emails and redirects are BrandBuild-native.",
+      "Fund Kling and rerun the smoke plus signed-in dashboard validation.",
+      "Add Higgsfield credits and rerun the smoke plus signed-in dashboard validation.",
+      "Resume campaign-level sequencing after the remaining live-integration blockers are cleared."
+    ]
   }
 ]

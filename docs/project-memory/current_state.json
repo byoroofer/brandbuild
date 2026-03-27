@@ -1,6 +1,6 @@
 {
   "current_phase": "stabilization, integration hardening, and workflow expansion",
-  "summary": "BrandBuild is live on brandbuild.online with the premium dashboard, compare workspace, assets workspace, repaired campaign creation flow, authenticated storage-backed asset routing, a working in-app Sora media proxy, and a verified signed-in operator flow. On 2026-03-26 the live dashboard successfully completed login, campaign creation, hosted reference attachment, and live Sora queueing against the correct Supabase backend. The remaining primary blockers are finishing Supabase Auth trust-layer setup, validating the queued Sora run through completion and media proxy refresh in the live UI, and adding credits for Kling and Higgsfield.",
+  "summary": "BrandBuild is live on brandbuild.online with the premium dashboard, compare workspace, assets workspace, repaired campaign creation flow, authenticated storage-backed asset routing, a working in-app Sora media proxy, and verified signed-in operator flows. On 2026-03-26 and 2026-03-27 the live dashboard successfully completed login, campaign creation, hosted reference attachment, live Sora queueing, automatic status refresh, generated-asset sync, and operator-facing MP4 playback through BrandBuild-owned content routes. The remaining primary blockers are finishing Supabase Auth trust-layer setup and adding credits for Kling and Higgsfield.",
   "active_workstreams": [
     "production stability and trust",
     "provider validation and orchestration hardening",
@@ -9,14 +9,13 @@
   ],
   "current_priorities": [
     "Finish the Supabase Auth trust layer so emails and redirects are fully BrandBuild-native.",
-    "Refresh the live queued Sora dashboard run through completion and confirm /api/generate/[generationId]/content from the operator UI.",
-    "Resolve provider account readiness: fund Kling and add Higgsfield credits.",
+    "Fund or otherwise unblock the Kling account, then rerun a live Kling smoke test and a signed-in dashboard generation.",
+    "Add Higgsfield credits, then rerun the smoke test and a signed-in dashboard generation.",
     "Authenticate and link the Supabase CLI for direct agent-managed functions and migrations on this machine.",
-    "Continue campaign-level sequencing and delivery workflow refinement after the live reliability work is finished."
+    "Continue campaign-level sequencing and delivery workflow refinement after the live reliability blockers are cleared."
   ],
   "blockers": [
     "Supabase Auth dashboard still needs branded email hook enablement, SMTP sender setup, and redirect cleanup.",
-    "The signed-in dashboard now queues Sora successfully, but the completed-output refresh and content-proxy path still need one live operator validation pass.",
     "Kling live validation is blocked by account balance.",
     "Higgsfield live validation is blocked by insufficient credits.",
     "Supabase CLI is installed locally but not authenticated or linked to the BrandBuild project, so schema and function management cannot yet be driven from this machine."
@@ -40,6 +39,10 @@
     "Next.js build warns that it is inferring the workspace root because both D:\\Playground and the BrandBuild repo contain lockfiles."
   ],
   "recent_changes": [
+    "Added automatic live-generation polling to the shot workspace so queued and running provider jobs refresh themselves every 12 seconds without requiring a manual button click.",
+    "Added apps/dashboard/scripts/live-generation-autorefresh-smoke.mjs as a reusable production Playwright harness that proves a fresh Sora run auto-refreshes from queued to running to succeeded and surfaces the BrandBuild /api/generate/[generationId]/content link.",
+    "Deployed production to https://brandbuild-online-2pm7m4pmi-byoroofers-projects.vercel.app, aliased https://brandbuild.online, and verified a fresh production Sora run completed with asset sync plus operator-facing MP4 proxy playback.",
+    "Validated live generation 7c37fc2b-4e9c-4830-8ff5-7d855fff1ca9 end to end: the shot page auto-polled queued and running statuses, then automatically exposed the proxied output URL /api/generate/7c37fc2b-4e9c-4830-8ff5-7d855fff1ca9/content after success.",
     "Created D:\\Playground\\brandbuild-online-repo\\supabase\\manual\\20260326_brandbuild_full_bootstrap.sql as a single paste-ready bootstrap that includes the missing legacy profiles foundation, BrandBuild schema, storage bucket policies, auth-user trigger wiring, and demo seed data for manual Supabase setup.",
     "User clarified on 2026-03-26 that the correct BrandBuild Supabase project is https://ikdewffoqtliwkoywfrx.supabase.co and that the previously checked hdwneidxkakrzrhuxqcd project belongs to PolitiViral.",
     "The earlier direct REST verification and missing-schema conclusion against hdwneidxkakrzrhuxqcd are now superseded for BrandBuild because they targeted the wrong project.",
@@ -117,12 +120,11 @@
     "Validated the live signed-in operator flow on 2026-03-26: login succeeded, campaign creation returned 877e4747-abd1-48c2-9d97-1fa46efad01a, hosted reference attachment returned asset 91a5c52d-123d-4436-8ab2-16a24cbf076c, and Sora queued live job video_69c588d8cda4819198c0338739e1e30c0f5646755badeead via generation 36e5379b-1932-4948-b7b7-ca3fcb6fbd37 with no page errors."
   ],
   "next_steps": [
-    "Refresh generation 36e5379b-1932-4948-b7b7-ca3fcb6fbd37 from the live dashboard until it completes, then validate the operator-facing Sora content proxy path.",
     "Finish Supabase Auth dashboard setup: Site URL, redirect URLs, Send Email Hook, and SMTP sender configuration.",
     "Fund or otherwise unblock the Kling account, then rerun a live Kling smoke test and a signed-in dashboard generation.",
     "Add Higgsfield credits, then rerun the smoke test and a signed-in dashboard generation.",
     "Authenticate the Supabase CLI on this machine and link the repo to the live BrandBuild project if you want agent-driven schema and function management from the terminal.",
     "Continue campaign-level sequencing across selected outputs after the live reliability blockers are cleared."
   ],
-  "updated_at": "2026-03-26T14:29:00.5795556-05:00"
+  "updated_at": "2026-03-27T00:03:23.5186323-05:00"
 }

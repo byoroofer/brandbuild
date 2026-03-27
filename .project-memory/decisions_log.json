@@ -356,6 +356,26 @@
         "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\utils\\dates.ts",
         "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\live-dashboard-smoke.mjs"
       ]
+    },
+    {
+      "id": "brandbuild-decision-019",
+      "timestamp": "2026-03-27T00:03:23.5186323-05:00",
+      "title": "Auto-refresh live shot generations in the operator workspace",
+      "decision": "BrandBuild should automatically poll queued and running live generation records from the shot workspace and only surface operator messaging when a meaningful state change occurs, while keeping a dedicated production smoke harness to verify that behavior.",
+      "reason": "The backend and Sora content proxy were already healthy, but the operator experience still depended on a manual Refresh status click to discover completed renders. Automatic polling closes the product gap without changing the route structure or provider abstraction.",
+      "alternatives_considered": [
+        "Leave generation refresh entirely manual.",
+        "Move immediately to background webhooks before improving the operator workspace.",
+        "Hide generation progress details until the page is manually refreshed."
+      ],
+      "impact": "Fresh live Sora runs now progress from queued to running to succeeded inside the shot workspace without operator babysitting, and the repo has a reusable script to validate that UX in production.",
+      "status": "active",
+      "supersedes": [],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\prompt-builder.tsx",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\live-generation-autorefresh-smoke.mjs",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\package.json"
+      ]
     }
   ],
   "Count": 16

@@ -419,5 +419,29 @@
     "last_touched": "2026-03-26T14:29:00.5795556-05:00",
     "notes": "Includes the successful 2026-03-26 live dashboard smoke validation session.",
     "type": "docs"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\prompt-builder.tsx",
+    "purpose": "Structured prompt builder, generate flow, and review stage UI.",
+    "criticality": "high",
+    "last_touched": "2026-03-27T00:03:23.5186323-05:00",
+    "notes": "Now auto-refreshes queued and running live generations every 12 seconds so operators do not have to babysit Sora completion in the shot workspace.",
+    "type": "user-facing"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\live-generation-autorefresh-smoke.mjs",
+    "purpose": "Reusable production Playwright harness for validating that the shot workspace auto-refreshes a live generation through completion and exposes the proxied output link.",
+    "criticality": "high",
+    "last_touched": "2026-03-27T00:03:23.5186323-05:00",
+    "notes": "Signs into production, triggers a fresh Sora run, waits for background refresh responses, and confirms the BrandBuild /content link appears without manual clicks.",
+    "type": "server-side"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\package.json",
+    "purpose": "Workspace package scripts and build commands for the BrandBuild dashboard app.",
+    "criticality": "medium",
+    "last_touched": "2026-03-27T00:03:23.5186323-05:00",
+    "notes": "Now includes the smoke:generation-autorefresh script for repeatable production validation of automatic live-generation polling.",
+    "type": "config"
   }
 ]

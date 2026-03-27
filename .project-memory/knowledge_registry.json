@@ -862,6 +862,40 @@
         "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\provider-smoke.mjs",
         "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\.env.local"
       ]
+    },
+    {
+      "id": "brandbuild-know-051",
+      "category": "workflow",
+      "fact": "The shot workspace now auto-refreshes queued and running live generations every 12 seconds and keeps the operator messaging quiet until a terminal state or asset-sync event occurs.",
+      "confidence": "high",
+      "source": "2026-03-27 prompt-builder auto-refresh implementation and production smoke validation",
+      "first_recorded_at": "2026-03-27T00:03:23.5186323-05:00",
+      "last_confirmed_at": "2026-03-27T00:03:23.5186323-05:00",
+      "status": "active",
+      "related_projects": [
+        "brandbuild"
+      ],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\shots\\prompt-builder.tsx"
+      ]
+    },
+    {
+      "id": "brandbuild-know-052",
+      "category": "integrations",
+      "fact": "A fresh signed-in production Sora run now validates end to end without manual refresh: generation 7c37fc2b-4e9c-4830-8ff5-7d855fff1ca9 auto-polled from queued to running to succeeded, synced one asset, and exposed the proxied MP4 at /api/generate/7c37fc2b-4e9c-4830-8ff5-7d855fff1ca9/content.",
+      "confidence": "high",
+      "source": "2026-03-27 live-generation-autorefresh smoke run against production",
+      "first_recorded_at": "2026-03-27T00:03:23.5186323-05:00",
+      "last_confirmed_at": "2026-03-27T00:03:23.5186323-05:00",
+      "status": "active",
+      "related_projects": [
+        "brandbuild"
+      ],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\live-generation-autorefresh-smoke.mjs",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\route.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\content\\route.ts"
+      ]
     }
   ],
   "Count": 50

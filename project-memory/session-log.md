@@ -182,3 +182,16 @@ pm run build successfully.
   - hosted reference attachment returned asset `91a5c52d-123d-4436-8ab2-16a24cbf076c`
   - Sora queued live job `video_69c588d8cda4819198c0338739e1e30c0f5646755badeead` through generation `36e5379b-1932-4948-b7b7-ca3fcb6fbd37`
 - Remaining runtime gap: refresh that queued Sora run through completion and verify the operator-facing content proxy path.
+
+## 2026-03-27 00:03 CT - Live Sora Autorefresh Validation
+- Confirmed directly that the earlier queued Sora provider job had already completed at OpenAI and that the remaining weakness was operator UX, not backend wiring.
+- Added automatic live-generation polling to `apps/dashboard/components/shots/prompt-builder.tsx` so queued and running jobs refresh themselves every 12 seconds without manual babysitting.
+- Added `apps/dashboard/scripts/live-generation-autorefresh-smoke.mjs` plus the `smoke:generation-autorefresh` package script for repeatable production validation.
+- Re-ran `npm run typecheck` and `npm run build` successfully.
+- Committed the batch as `ecd2396` and deployed production to `brandbuild-online-2pm7m4pmi-byoroofers-projects.vercel.app`, then re-aliased `brandbuild.online`.
+- Verified a fresh production Sora run through the new smoke harness:
+  - generation `7c37fc2b-4e9c-4830-8ff5-7d855fff1ca9`
+  - automatic refresh progression: `queued` -> `running` -> `succeeded`
+  - asset sync count: `1`
+  - final output path: `/api/generate/7c37fc2b-4e9c-4830-8ff5-7d855fff1ca9/content`
+- The Sora completion/content-proxy blocker is now cleared. Remaining live blockers are the Supabase auth trust layer plus Kling and Higgsfield credits.
