@@ -896,6 +896,40 @@
         "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\route.ts",
         "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\app\\api\\generate\\[generationId]\\content\\route.ts"
       ]
+    },
+    {
+      "id": "brandbuild-know-053",
+      "category": "ux",
+      "fact": "The control-center provider matrix should distinguish validated production paths from merely code-ready ones. As of 2026-03-27, Sora is validated in production, while Kling and Higgsfield are still blocked by provider credits.",
+      "confidence": "high",
+      "source": "2026-03-27 control-center readiness update after live production validation",
+      "first_recorded_at": "2026-03-27T05:27:47.399Z",
+      "last_confirmed_at": "2026-03-27T05:27:47.399Z",
+      "status": "active",
+      "related_projects": [
+        "brandbuild"
+      ],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\settings\\studio-control-center.tsx"
+      ]
+    },
+    {
+      "id": "brandbuild-know-054",
+      "category": "auth",
+      "fact": "BrandBuild login and signup deployment guidance should refer to the public Supabase browser key rather than the older anon-key label, because the workspace supports NEXT_PUBLIC_SUPABASE_PUBLISHABLE_DEFAULT_KEY as the primary public auth key path.",
+      "confidence": "high",
+      "source": "2026-03-27 auth copy cleanup",
+      "first_recorded_at": "2026-03-27T05:27:47.399Z",
+      "last_confirmed_at": "2026-03-27T05:27:47.399Z",
+      "status": "active",
+      "related_projects": [
+        "brandbuild"
+      ],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\auth\\login-form.tsx",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\auth\\signup-form.tsx"
+      ]
     }
   ],
   "Count": 50

@@ -112,7 +112,7 @@ function AuditList({
             </div>
             <ul className="mt-4 grid gap-2 text-sm leading-6 text-slate-400">
               {item.notes.map((note) => (
-                <li key={note}>• {note}</li>
+                <li key={note}>- {note}</li>
               ))}
             </ul>
           </div>
@@ -268,7 +268,7 @@ export function StudioControlCenter({ audit }: StudioControlCenterProps) {
                 </p>
                 <ul className="mt-3 grid gap-2 text-sm leading-6 text-slate-300">
                   {provider.limitations.map((limitation) => (
-                    <li key={limitation}>• {limitation}</li>
+                    <li key={limitation}>- {limitation}</li>
                   ))}
                 </ul>
               </div>
@@ -279,7 +279,7 @@ export function StudioControlCenter({ audit }: StudioControlCenterProps) {
                 </p>
                 <ul className="mt-3 grid gap-2 text-sm leading-6 text-cyan-50/90">
                   {provider.nextSteps.map((step) => (
-                    <li key={step}>• {step}</li>
+                    <li key={step}>- {step}</li>
                   ))}
                 </ul>
               </div>

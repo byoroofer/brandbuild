@@ -14,6 +14,7 @@
 - The repo now also includes `apps/dashboard/scripts/live-generation-autorefresh-smoke.mjs` for repeatable signed-in production validation of automatic generation polling through completion and BrandBuild-owned output playback.
 - The repo now also includes a no-storage shot fallback path: operators can attach hosted HTTPS media URLs or import curated BrandBuild sample references directly on shot detail.
 - The shot workspace now auto-refreshes queued and running live generations every 12 seconds, so operators no longer need to babysit the Refresh status button for Sora completions.
+- The control-center readiness view is now closer to real production truth, but the Supabase branded-email/dashboard setup is still an external blocker.
 - Attached shot references now enrich `provider_prompt_text` for Sora and Kling, but direct provider-native multimodal reference parameters are still unverified and unshipped.
 - The read model can fall back to demo state too aggressively when live queries partially fail.
 - The root package naming still says `ai-video-studio` even though the product brand is BrandBuild.
@@ -23,5 +24,5 @@
 ### 2026-03-26 schema rollout status
 - The one-file manual bootstrap SQL now exists in `supabase/manual/20260326_brandbuild_full_bootstrap.sql`.
 - The connected BrandBuild project is now aligned and serving the expected schema plus storage bucket.
-- Provider-output mirroring still remains blocked until `SUPABASE_SERVICE_ROLE_KEY` is configured.
-- Hosted URLs and built-in BrandBuild sample references remain the production-safe fallback while private storage rollout is still pending.
+- `SUPABASE_SERVICE_ROLE_KEY` is now configured against the correct BrandBuild project in Vercel production.
+- Hosted URLs and built-in BrandBuild sample references remain useful fallback paths, but private storage itself is now validated on the corrected backend.

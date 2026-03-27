@@ -195,3 +195,17 @@ pm run build successfully.
   - asset sync count: `1`
   - final output path: `/api/generate/7c37fc2b-4e9c-4830-8ff5-7d855fff1ca9/content`
 - The Sora completion/content-proxy blocker is now cleared. Remaining live blockers are the Supabase auth trust layer plus Kling and Higgsfield credits.
+
+## 2026-03-27 Auth Readiness Copy And Control-Center Truth Pass
+- Audited the auth callback, confirmation, branded-email hook, login/signup forms, README auth notes, and the in-product readiness model.
+- Updated `apps/dashboard/lib/studio/system-audit.ts` so the control center now reflects verified production truth: Sora validated, Kling and Higgsfield blocked by provider credits, and auth branding still blocked by manual Supabase setup.
+- Replaced mojibake bullet markers in `apps/dashboard/components/settings/studio-control-center.tsx` with clean ASCII list markers.
+- Updated login and signup setup errors to refer to the public Supabase browser key instead of the older anon-key wording.
+- Re-ran `npm run typecheck` and `npm run build` successfully.
+- Deployed production to `brandbuild-online-a09n7huz2-byoroofers-projects.vercel.app` and re-aliased `brandbuild.online`.
+- Remaining trust-layer blocker is still external: Supabase dashboard hook, SMTP sender, and redirect cleanup.
+
+## 2026-03-27 Auth Copy Cleanup And Human-Memory Sync
+- Synced the human-facing project memory files so they match the structured JSON memory.
+- Recorded that `SUPABASE_SERVICE_ROLE_KEY` is already configured against the correct BrandBuild backend.
+- Recorded that Sora is fully production-validated while Kling and Higgsfield remain blocked by provider credits rather than missing wiring.

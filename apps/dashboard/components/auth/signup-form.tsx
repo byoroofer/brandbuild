@@ -33,7 +33,7 @@ export function SignupForm({ redirectPath }: SignupFormProps) {
 
     if (!supabase || !profilesTable) {
       setErrorMessage(
-        "Supabase auth is not configured in this deployment yet. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in Vercel, then redeploy.",
+        "Supabase auth is not configured in this deployment yet. Add NEXT_PUBLIC_SUPABASE_URL and the public Supabase browser key in Vercel, then redeploy.",
       );
       return;
     }

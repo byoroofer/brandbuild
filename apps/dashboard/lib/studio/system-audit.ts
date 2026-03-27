@@ -55,10 +55,6 @@ export type StudioSystemAudit = {
   working: AuditChecklistItem[];
 };
 
-function buildReadiness(configured: boolean): ProviderReadiness {
-  return configured ? "live-capable" : "awaiting-credentials";
-}
-
 function buildCurrentState(
   configured: boolean,
   configuredSummary: string,
@@ -74,6 +70,9 @@ export function getStudioSystemAudit(): StudioSystemAudit {
   const persistenceEnabled = hasStudioPersistenceEnv();
   const storageUploadEnabled = persistenceEnabled;
   const timestamp = new Date().toISOString();
+  const soraConfigured = providerById.sora?.configured ?? false;
+  const klingConfigured = providerById.kling?.configured ?? false;
+  const higgsfieldConfigured = providerById.higgsfield?.configured ?? false;
 
   const providerAudits: ProviderAudit[] = [
     {
@@ -85,10 +84,10 @@ export function getStudioSystemAudit(): StudioSystemAudit {
         "Polished cinematic launch visuals",
         "Brand-safe realism and finish",
       ],
-      configured: providerById.sora?.configured ?? false,
+      configured: soraConfigured,
       currentState: buildCurrentState(
-        providerById.sora?.configured ?? false,
-        "Live-capable adapter is wired in the app. The remaining unknown is provider-side Sora entitlement and real operator validation.",
+        soraConfigured,
+        "Live Sora is fully validated in production. Signed-in operators can queue a run, watch it auto-refresh through completion, sync the generated asset, and open the finished MP4 through BrandBuild-owned content routes.",
         "Adapter is wired, but OpenAI credentials are missing from this environment.",
       ),
       docsUrl: "https://developers.openai.com/api/docs/guides/video-generation",
@@ -98,23 +97,22 @@ export function getStudioSystemAudit(): StudioSystemAudit {
       label: "OpenAI Sora 2",
       limitations: [
         "Current workspace blocks 1:1 Sora runs.",
-        "No webhook route yet; status refresh is still manual from the shot workspace.",
+        "No webhook route yet; the current production path relies on in-product polling from the shot workspace.",
         "Cost and token usage are not persisted yet.",
       ],
       mediaStorage: storageMirroringEnabled
         ? "Successful provider outputs can be mirrored into Supabase Storage through the existing asset sync path."
         : "Outputs can still stream through BrandBuild, but storage mirroring stays disabled until SUPABASE_SERVICE_ROLE_KEY is present.",
       nextSteps: [
-        "Run a real signed-in Sora shot from the dashboard and capture the success path.",
-        "Add background polling or webhook-driven refresh for completed renders.",
+        "Add background polling or webhook-driven refresh for completed renders beyond the current shot-page polling path.",
         "Persist cost metadata and provider timing metrics.",
       ],
       outputFormat:
         "Video id, status, progress, output URL, and poster frame URL are normalized into shot_generations and assets.",
       rateLimitNotes:
         "OpenAI-side rate limits are not yet surfaced in the UI; failures currently come back as provider errors only.",
-      readiness: buildReadiness(providerById.sora?.configured ?? false),
-      webhookStatus: "Not implemented in the app yet.",
+      readiness: soraConfigured ? "validated" : "awaiting-credentials",
+      webhookStatus: "Not implemented yet. Production currently relies on shot-page polling.",
     },
     {
       asyncHandling:
@@ -125,10 +123,10 @@ export function getStudioSystemAudit(): StudioSystemAudit {
         "Dialogue and lip-sync friendly shots",
         "Readable action-driven social content",
       ],
-      configured: providerById.kling?.configured ?? false,
+      configured: klingConfigured,
       currentState: buildCurrentState(
-        providerById.kling?.configured ?? false,
-        "Live-capable adapter is wired with JWT auth and status refresh. It still needs real production runs validated against the active Kling account.",
+        klingConfigured,
+        "Live-capable adapter is wired with JWT auth and status refresh. The current blocker is provider-side credits, not missing BrandBuild wiring.",
         "Adapter is wired, but Kling credentials are missing from this environment.",
       ),
       docsUrl: "https://docs.qingque.cn/d/home/eZQDkhg4h2Qg8SEVSUTBdzYeY?identityId=2Cn18n4EIHT",
@@ -139,12 +137,13 @@ export function getStudioSystemAudit(): StudioSystemAudit {
       limitations: [
         "Current workspace only wires the text-to-video path, not broader image/video remix modes.",
         "Webhook ingestion is not implemented yet.",
-        "Rate-limit, quota, and billing telemetry are not surfaced yet.",
+        "Rate-limit, quota, and billing telemetry are not surfaced yet, and the current account is blocked by insufficient balance.",
       ],
       mediaStorage: storageMirroringEnabled
         ? "Successful outputs can sync into Supabase asset records and mirror to storage."
         : "Outputs stay on provider URLs until storage mirroring is configured.",
       nextSteps: [
+        "Fund or otherwise unblock the Kling account.",
         "Validate one live Kling job end to end from a signed-in dashboard session.",
         "Add webhook or background refresh support for faster operator feedback.",
         "Expand the adapter beyond text-to-video into advanced motion/reference workflows.",
@@ -153,7 +152,7 @@ export function getStudioSystemAudit(): StudioSystemAudit {
         "Task id, provider status, output URL, and thumbnail are normalized into shot_generations and assets.",
       rateLimitNotes:
         "Kling SLA/rate behavior is not modeled yet; the app currently relies on provider error responses.",
-      readiness: buildReadiness(providerById.kling?.configured ?? false),
+      readiness: klingConfigured ? "live-capable" : "awaiting-credentials",
       webhookStatus: "Planned but not implemented.",
     },
     {
@@ -165,10 +164,10 @@ export function getStudioSystemAudit(): StudioSystemAudit {
         "Worldbuilding and concept exploration",
         "Reference-led image-to-video experimentation",
       ],
-      configured: providerById.higgsfield?.configured ?? false,
+      configured: higgsfieldConfigured,
       currentState: buildCurrentState(
-        providerById.higgsfield?.configured ?? false,
-        "Live-capable adapter is wired and production credentials can be used. The default model still needs real reference-image validation inside the app.",
+        higgsfieldConfigured,
+        "Live-capable adapter is wired and production credentials now authenticate correctly. The current blocker is provider-side credits on the active account.",
         "Adapter is wired, but Higgsfield credentials are missing from this environment.",
       ),
       docsUrl: "https://docs.higgsfield.ai/guides/video",
@@ -179,12 +178,13 @@ export function getStudioSystemAudit(): StudioSystemAudit {
       limitations: [
         "Default model path is image-led, not prompt-only.",
         "No webhook route exists yet even though the adapter supports passing hf_webhook.",
-        "Model catalog selection is still env-driven instead of managed in product UI.",
+        "Model catalog selection is still env-driven instead of managed in product UI, and the active account lacks enough credits for live validation.",
       ],
       mediaStorage: storageMirroringEnabled
         ? "Successful outputs can sync into private asset rows and mirror to storage."
         : "Outputs remain provider-hosted until storage mirroring is available.",
       nextSteps: [
+        "Add Higgsfield credits to the active account.",
         "Validate one live Higgsfield request using a real uploaded reference image.",
         "Add a product UI for model selection and reference requirements.",
         "Implement webhook ingestion or background refresh to remove manual polling friction.",
@@ -193,7 +193,7 @@ export function getStudioSystemAudit(): StudioSystemAudit {
         "Request id, status, video URL, and still image URLs are normalized into shot_generations and assets.",
       rateLimitNotes:
         "Quota, credits, and rate-limit handling are not yet surfaced in the operator workspace.",
-      readiness: buildReadiness(providerById.higgsfield?.configured ?? false),
+      readiness: higgsfieldConfigured ? "live-capable" : "awaiting-credentials",
       webhookStatus: "Supported by provider, not yet wired in BrandBuild.",
     },
   ];
@@ -304,7 +304,7 @@ export function getStudioSystemAudit(): StudioSystemAudit {
         id: "auth-email",
         notes: [
           "Branded auth email code exists, but Supabase dashboard hook/SMTP configuration is still a manual blocker.",
-          "Until that is finished, users may still see default Supabase-looking auth behavior.",
+          "Until that is finished, users may still see default Supabase-looking auth behavior instead of BrandBuild-native sender identity and templates.",
         ],
         status: "blocked",
         title: "Auth branding and trust layer",
@@ -312,8 +312,8 @@ export function getStudioSystemAudit(): StudioSystemAudit {
       {
         id: "provider-validation",
         notes: [
-          "All three provider adapters are wired and credentials can be present, but real signed-in dashboard validation is still pending.",
-          "The current UI is good at launching runs, but not yet at explaining why a provider succeeded or failed.",
+          "Sora is now fully validated through the signed-in production dashboard, including automatic status refresh and BrandBuild-owned output playback.",
+          "Kling and Higgsfield are code-ready, but the current active accounts are blocked by insufficient credits.",
         ],
         status: "partial",
         title: "Live provider validation",

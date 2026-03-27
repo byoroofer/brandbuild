@@ -443,5 +443,37 @@
     "last_touched": "2026-03-27T00:03:23.5186323-05:00",
     "notes": "Now includes the smoke:generation-autorefresh script for repeatable production validation of automatic live-generation polling.",
     "type": "config"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
+    "purpose": "Product and integration readiness audit model.",
+    "criticality": "medium",
+    "last_touched": "2026-03-27T05:27:47.399Z",
+    "notes": "Now reflects verified production truth: Sora validated, Kling and Higgsfield blocked by credits, and auth branding still blocked by manual Supabase setup.",
+    "type": "server-side"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\settings\\studio-control-center.tsx",
+    "purpose": "Control-center UI for readiness, blockers, and architecture gaps.",
+    "criticality": "medium",
+    "last_touched": "2026-03-27T05:27:47.399Z",
+    "notes": "Now renders clean ASCII list markers and the updated readiness truth from the system-audit model.",
+    "type": "user-facing"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\auth\\login-form.tsx",
+    "purpose": "Operator login form for password and branded magic-link sign-in.",
+    "criticality": "high",
+    "last_touched": "2026-03-27T05:27:47.399Z",
+    "notes": "Auth setup errors now refer to the public Supabase browser key instead of the older anon-key label.",
+    "type": "user-facing"
+  },
+  {
+    "path": "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\auth\\signup-form.tsx",
+    "purpose": "Operator signup form for internal BrandBuild account creation.",
+    "criticality": "high",
+    "last_touched": "2026-03-27T05:27:47.399Z",
+    "notes": "Auth setup errors now refer to the public Supabase browser key instead of the older anon-key label.",
+    "type": "user-facing"
   }
 ]

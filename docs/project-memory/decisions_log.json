@@ -376,6 +376,27 @@
         "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\scripts\\live-generation-autorefresh-smoke.mjs",
         "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\package.json"
       ]
+    },
+    {
+      "id": "brandbuild-decision-020",
+      "timestamp": "2026-03-27T05:27:47.399Z",
+      "title": "Keep control-center readiness truthful to verified production state",
+      "decision": "The in-product control center should reflect verified provider and auth readiness from current BrandBuild validation, even when some remaining blockers are dashboard-side manual setup rather than code defects.",
+      "reason": "Sora is now production-validated, while Kling and Higgsfield are blocked by credits and auth branding remains blocked by Supabase dashboard setup. Leaving stale generic language in the control center would understate what already works and overstate what is still uncertain.",
+      "alternatives_considered": [
+        "Leave the control center on older generic live-capable wording.",
+        "Hide provider-readiness truth until every provider is equally validated.",
+        "Only document readiness in repo memory instead of in-product UI."
+      ],
+      "impact": "Operators now see a more accurate production-readiness picture inside BrandBuild, and auth setup messaging is less confusing for future environment or onboarding work.",
+      "status": "active",
+      "supersedes": [],
+      "related_files": [
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\lib\\studio\\system-audit.ts",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\settings\\studio-control-center.tsx",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\auth\\login-form.tsx",
+        "D:\\Playground\\brandbuild-online-repo\\apps\\dashboard\\components\\auth\\signup-form.tsx"
+      ]
     }
   ],
   "Count": 16

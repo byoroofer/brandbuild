@@ -46,7 +46,13 @@
 - Missing now: campaign-level sequencing, cost tracking, and richer admin/debug visibility.
 ## Auth / Trust Layer
 - Code exists for branded auth emails through a Supabase Send Email Hook.
+- Login and signup now use clearer setup messaging that points to the public Supabase browser key instead of the older anon-key wording.
 - Still needed: Supabase dashboard configuration, SMTP sender setup, and redirect cleanup so the email experience is fully BrandBuild-native.
+## 2026-03-27 readiness sync
+- The in-product control center now reflects the verified production state more truthfully.
+- Sora is validated end to end in production, including automatic polling through completion and BrandBuild-owned output playback.
+- Kling and Higgsfield remain wiring-complete but credit-blocked.
+- Latest production deploy for this readiness/copy pass: `brandbuild-online-a09n7huz2-byoroofers-projects.vercel.app`.
 ## Supabase CLI
 - Supabase CLI is installed locally.
 - Still needed: `supabase login` or `SUPABASE_ACCESS_TOKEN`, plus project linking for this workspace.

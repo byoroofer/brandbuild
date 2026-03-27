@@ -39,6 +39,10 @@
     "Next.js build warns that it is inferring the workspace root because both D:\\Playground and the BrandBuild repo contain lockfiles."
   ],
   "recent_changes": [
+    "Updated the control-center readiness model so Sora now shows as validated, Kling and Higgsfield clearly show provider-credit blockers, and auth branding remains called out as a manual trust-layer blocker.",
+    "Cleaned the settings control-center UI to remove mojibake bullet glyphs from operator-facing lists.",
+    "Updated login and signup auth error copy so BrandBuild now refers to the public Supabase browser key instead of the older anon-key wording.",
+    "Deployed production to https://brandbuild-online-a09n7huz2-byoroofers-projects.vercel.app and re-aliased https://brandbuild.online with the auth/readiness messaging batch.",
     "Added automatic live-generation polling to the shot workspace so queued and running provider jobs refresh themselves every 12 seconds without requiring a manual button click.",
     "Added apps/dashboard/scripts/live-generation-autorefresh-smoke.mjs as a reusable production Playwright harness that proves a fresh Sora run auto-refreshes from queued to running to succeeded and surfaces the BrandBuild /api/generate/[generationId]/content link.",
     "Deployed production to https://brandbuild-online-2pm7m4pmi-byoroofers-projects.vercel.app, aliased https://brandbuild.online, and verified a fresh production Sora run completed with asset sync plus operator-facing MP4 proxy playback.",
@@ -126,5 +130,5 @@
     "Authenticate the Supabase CLI on this machine and link the repo to the live BrandBuild project if you want agent-driven schema and function management from the terminal.",
     "Continue campaign-level sequencing across selected outputs after the live reliability blockers are cleared."
   ],
-  "updated_at": "2026-03-27T00:03:23.5186323-05:00"
+  "updated_at": "2026-03-27T05:27:47.399Z"
 }

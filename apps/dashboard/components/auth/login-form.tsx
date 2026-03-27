@@ -34,7 +34,7 @@ export function LoginForm({ redirectPath }: LoginFormProps) {
 
     if (!supabase) {
       setErrorMessage(
-        "Supabase auth is not configured in this deployment yet. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in Vercel, then redeploy.",
+        "Supabase auth is not configured in this deployment yet. Add NEXT_PUBLIC_SUPABASE_URL and the public Supabase browser key in Vercel, then redeploy.",
       );
       return;
     }
@@ -65,7 +65,7 @@ export function LoginForm({ redirectPath }: LoginFormProps) {
   async function handleMagicLinkRequest() {
     if (!supabase) {
       setErrorMessage(
-        "Supabase auth is not configured in this deployment yet. Add NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_ANON_KEY in Vercel, then redeploy.",
+        "Supabase auth is not configured in this deployment yet. Add NEXT_PUBLIC_SUPABASE_URL and the public Supabase browser key in Vercel, then redeploy.",
       );
       return;
     }
